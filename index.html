@@ -1,403 +1,185 @@
 <!DOCTYPE html>
-<html lang="es">
-
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Roger Avellana · Visual Designer &amp; Marketing Assistant</title>
-  <meta name="description"
-    content="Roger Avellana — Diseño que comunica, estrategia que conecta. Diseño visual, branding, UI/UX y marketing digital en Barcelona." />
-  <meta name="theme-color" content="#5850EC" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
-    rel="stylesheet" />
-
-  <link rel="stylesheet" href="css/styles.css" />
+  <title>INTERA Health Monitoring Demo</title>
+  <link rel="stylesheet" href="styles.css?v=interfaces-v4" />
 </head>
-
 <body>
-  <a class="skip-link" href="#main">saltar al contenido</a>
-
-  <!-- NAV -->
-  <nav class="nav" id="nav" aria-label="Principal">
-    <div class="container nav-row">
-      <a href="#top" class="brand" id="brand-link">Roger<span class="slash">/</span>Marketing</a>
-      <div class="nav-links">
-        <a href="#servicios">Servicios</a>
-        <a href="#trabajo">Trabajo</a>
-        <a href="about.html">Sobre mí</a>
-        <a href="#contacto" class="btn btn-primary nav-cta">Hablemos</a>
+  <main class="demo-shell">
+    <header class="topbar">
+      <div>
+        <div class="brand"><img src="assets/intera-logo.webp" alt="INTERA — Seamless AI" width="614" height="128" /></div>
+        <div class="subtitle" id="interfaceSubtitle">HEALTH MONITORING SYSTEM</div>
       </div>
-      <button class="nav-burger" id="burger" aria-expanded="false" aria-controls="mobile-menu">menú</button>
-    </div>
-  </nav>
 
-  <div class="mobile-menu" id="mobile-menu">
-    <a href="#servicios" data-close>Servicios</a>
-    <a href="#trabajo" data-close>Trabajo</a>
-    <a href="about.html" data-close>Sobre mí</a>
-    <a href="#contacto" data-close>Contacto</a>
-    <a href="mailto:roger.ar123@gmail.com" class="btn btn-primary">Hablemos →</a>
-  </div>
-
-  <main id="main">
-
-    <!-- HERO -->
-    <header class="hero" id="top">
-      <div class="container hero-grid">
-        <div>
-          <span class="eyebrow">Diseño y estrategia</span>
-          <h1 class="hero-title">Diseño que comunica,<br /><em>estrategia que conecta.</em></h1>
-          <p class="hero-sub">
-            Ayudo a marcas a convertir el ruido visual en claridad: interfaces afiladas,
-            identidades coherentes y comunicación que conecta.
-          </p>
-          <div class="hero-actions">
-            <a href="#trabajo" class="btn btn-primary">Ver trabajo →</a>
-            <a href="about.html" class="btn btn-ghost">¿Quién soy?</a>
-          </div>
-          <div class="hero-meta">
-            <span>Barcelona · Catalunya</span>
-            <span>Desde 2016 — 2026</span>
-          </div>
-        </div>
-
-        <div class="hero-art" aria-hidden="true">
-          <div class="hero-art-core">
-            <svg viewBox="0 0 200 200" fill="none">
-              <circle cx="100" cy="100" r="34" stroke="#5850EC" stroke-width="1.6" />
-              <path d="M100 40v20M100 140v20M40 100h20M140 100h20" stroke="#5850EC" stroke-width="1.6"
-                stroke-linecap="round" />
-              <circle cx="100" cy="100" r="6" fill="#5850EC" />
-            </svg>
-          </div>
-          <div class="hero-pills-wrap">
-            <div class="hero-pill hp-1"><span class="dot">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E8834A" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 19l7-7 3 3-7 7-3-3z" />
-                  <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
-                </svg>
-              </span>diseño visual</div>
-            <div class="hero-pill hp-2"><span class="dot">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5850EC" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 2l9 5-9 5-9-5 9-5z" />
-                  <path d="M3 12l9 5 9-5" />
-                  <path d="M3 17l9 5 9-5" />
-                </svg>
-              </span>branding</div>
-            <div class="hero-pill hp-3"><span class="dot">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E8834A" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4" width="18" height="14" rx="2" />
-                  <path d="M8 21h8M12 18v3" />
-                </svg>
-              </span>ui/ux</div>
-            <div class="hero-pill hp-4"><span class="dot">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5850EC" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 11l18-7-7 18-2-8-9-3z" />
-                </svg>
-              </span>marketing</div>
-          </div>
-        </div>
+      <div class="top-actions">
+        <span class="live-badge"><span class="dot"></span> LIVE DEMO</span>
+        <button id="fullscreenBtn">Fullscreen</button>
       </div>
     </header>
 
-    <!-- SERVICIOS -->
-    <section id="servicios">
-      <div class="container">
-        <div class="section-head">
-          <span class="section-label">/ servicios</span>
-          <h2>Lo que hago.</h2>
-          <p>Cinco direcciones donde combino diseño visual con pensamiento estratégico. No son
-            silos: se solapan, se nutren entre sí, y al final hablan del mismo proyecto desde
-            ángulos distintos.</p>
-        </div>
 
-        <div class="card-grid">
-          <div class="feature-card">
-            <div class="icon-badge i-lav">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M12 19l7-7 3 3-7 7-3-3z" />
-                <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
-              </svg>
-            </div>
-            <span class="card-num">01</span>
-            <h3>Diseño visual &amp; dirección creativa</h3>
-            <p>Desde el concepto hasta la pieza final. Doy forma al lenguaje visual de tu marca —
-              tipografía, color, composición y sistema gráfico — para que cada punto de contacto
-              hable el mismo idioma.</p>
+    <div id="healthPanel" aria-label="Health interface">
+    <section class="intro" aria-labelledby="pageTitle">
+      <div>
+        <div class="section-label">CONTACTLESS SENSING / REAL-TIME INTELLIGENCE</div>
+        <h1 id="pageTitle">Contactless<br /><span>Health Monitoring</span></h1>
+        <p>From mmWave signals to health insights. AI at the edge.</p>
+        <nav class="interface-switcher" aria-label="Switch interface"><a class="interface-link" href="index.html?view=interfaces-v2" aria-current="page">Health</a><a class="interface-link" href="bms.html?view=interfaces-v2">BMS</a><a class="interface-link" href="eagle.html?view=interfaces-v2">Eagle</a></nav>
+      </div>
+      <div class="system-mark" aria-hidden="true"><span>AI</span><small>EDGE INTELLIGENCE</small></div>
+    </section>
+
+    <section class="overview" aria-label="Live health signals">
+      <div class="patient-card card">
+        <div class="section-label"><span class="section-number">01</span> mmWave sensing</div>
+
+        <div class="person-wrap">
+          <div class="person">
+            <div class="head"></div>
+            <div class="body"></div>
           </div>
 
-          <div class="feature-card">
-            <div class="icon-badge i-peach">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M12 2l9 5-9 5-9-5 9-5z" />
-                <path d="M3 12l9 5 9-5" />
-                <path d="M3 17l9 5 9-5" />
-              </svg>
-            </div>
-            <span class="card-num">02</span>
-            <h3>Branding &amp; identidad corporativa</h3>
-            <p>Construyo identidades que escalan: del símbolo a la guía de marca completa. Piezas
-              que funcionan en papel, en pantalla, en un stand de feria y en un story de
-              Instagram.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="icon-badge i-mint">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                stroke-linejoin="round">
-                <rect x="3" y="4" width="18" height="14" rx="2" />
-                <path d="M8 21h8M12 18v3" />
-              </svg>
-            </div>
-            <span class="card-num">03</span>
-            <h3>UI/UX &amp; diseño de interfaces</h3>
-            <p>Wireframes, prototipos y diseño final en Figma, con foco en jerarquía,
-              accesibilidad y flujos claros. Plataformas IoT, dashboards industriales y portales
-              B2B donde la usabilidad no es opcional.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="icon-badge i-lav">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M3 11l18-7-7 18-2-8-9-3z" />
-              </svg>
-            </div>
-            <span class="card-num">04</span>
-            <h3>Marketing digital &amp; contenido</h3>
-            <p>Estrategia y ejecución para redes sociales y campañas publicitarias. Calendarios
-              editoriales, packs de posts y análisis de métricas, pensando en el feed y no solo en
-              la pieza individual.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="icon-badge i-peach">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M12 3l1.8 4.6L18 9l-4.2 1.4L12 15l-1.8-4.6L6 9l4.2-1.4L12 3z" />
-                <path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8.8-2z" />
-              </svg>
-            </div>
-            <span class="card-num">05</span>
-            <h3>IA aplicada al diseño</h3>
-            <p>Uso Claude, ChatGPT y Gemini como herramientas para acelerar el proceso, no para
-              sustituir el criterio. Iteraciones que antes tomaban semanas hoy se resuelven en
-              días.</p>
+          <div class="radar">
+            <span></span>
+            <span></span>
+            <span></span>
           </div>
         </div>
+
+        <div class="sensor-status">
+          <span class="status-dot"></span>
+          <span id="sensorText">Target detected</span>
+        </div>
+      </div>
+
+      <div class="metrics-grid">
+        <article class="metric-card card">
+          <div class="metric-name"><span class="metric-symbol" aria-hidden="true">♡</span> Heart rate</div>
+          <div class="metric-value"><span id="heartRate">72</span> <small>bpm</small></div>
+          <div class="wave wave-heart"></div>
+        </article>
+
+        <article class="metric-card card">
+          <div class="metric-name"><span class="metric-symbol" aria-hidden="true">≈</span> Respiration rate</div>
+          <div class="metric-value"><span id="respRate">15</span> <small>rpm</small></div>
+          <div class="wave wave-resp"></div>
+        </article>
+
+        <article class="metric-card card">
+          <div class="metric-name"><span class="metric-symbol" aria-hidden="true">▥</span> Signal quality</div>
+          <div class="metric-value"><span id="signalQuality">94</span><small>%</small></div>
+          <div class="quality-track">
+            <div id="qualityBar" class="quality-bar"></div>
+          </div>
+        </article>
       </div>
     </section>
 
-    <!-- TRABAJO -->
-    <section id="trabajo" style="background: var(--bg-soft);">
-      <div class="container">
-        <div class="section-head">
-          <span class="section-label">/ trabajo</span>
-          <h2>Proyectos seleccionados.</h2>
-          <p>Una muestra de proyectos de branding, marketing y diseño de interfaces de los
-            últimos años.</p>
-        </div>
-
-        <div class="work-grid">
-          <article class="project-card">
-            <div class="project-cover" style="background:#504FED;">
-              <span class="p-tag">branding</span>
-              <span class="p-year">2024</span>
-              <span class="p-num">01</span>
-            </div>
-            <div class="project-body">
-              <h3>Intera — identidad corporativa</h3>
-              <p>Rediseño completo de la identidad visual: logotipo, paleta, tipografía y sistema
-                de marca aplicado a todos los materiales corporativos.</p>
-              <a href="#" class="btn-link">Ver caso →</a>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-cover" style="background:#D9482C;">
-              <span class="p-tag">marketing</span>
-              <span class="p-year">2018–2019</span>
-              <span class="p-num">02</span>
-            </div>
-            <div class="project-body">
-              <h3>Ayuntamiento de Igualada — campañas</h3>
-              <p>Diseño y ejecución de materiales gráficos para campañas municipales: cartelería,
-                banners digitales y publicaciones en redes.</p>
-              <a href="#" class="btn-link">Ver caso →</a>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-cover" style="background:#0E8A5A;">
-              <span class="p-tag">ui/ux</span>
-              <span class="p-year">2019–2021</span>
-              <span class="p-num">03</span>
-            </div>
-            <div class="project-body">
-              <h3>Sensing &amp; Control — dashboard IoT</h3>
-              <p>Diseño de interfaz para plataforma de monitorización IoT. Visualización de datos
-                en tiempo real con foco en usabilidad operativa.</p>
-              <a href="#" class="btn-link">Ver caso →</a>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-cover" style="background:#E0A82E;">
-              <span class="p-tag">diseño</span>
-              <span class="p-year">2021–2023</span>
-              <span class="p-num">04</span>
-            </div>
-            <div class="project-body">
-              <h3>nVision — ferias internacionales</h3>
-              <p>Producción de materiales para ferias de I+D: stands, roll-ups, folletos técnicos
-                y presentaciones corporativas.</p>
-              <a href="#" class="btn-link">Ver caso →</a>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-cover" style="background:#7A5BD8;">
-              <span class="p-tag">marketing</span>
-              <span class="p-year">2023–2026</span>
-              <span class="p-num">05</span>
-            </div>
-            <div class="project-body">
-              <h3>Intera — estrategia digital</h3>
-              <p>Planificación de contenido para redes sociales: calendario editorial, packs de
-                posts y análisis de métricas mensuales.</p>
-              <a href="#" class="btn-link">Ver caso →</a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- SOBRE MÍ (teaser) -->
-    <section id="sobre-mi">
-      <div class="container about-teaser">
+    <section class="comparison" aria-labelledby="comparisonTitle">
+      <div class="comparison-heading">
         <div>
-          <span class="section-label">/ sobre mí</span>
-          <h2 style="font-size: clamp(1.8rem, 3.6vw, 2.6rem); font-weight: 700; letter-spacing: -0.03em; margin-top: 10px;">
-            Roger Avellana.
-          </h2>
-          <p style="margin-top: 18px;">
-            Diseñador visual y digital con más de ocho años de experiencia en proyectos de
-            identidad de marca, UI/UX y comunicación digital. Actualmente ampliando el perfil
-            hacia el marketing digital y la estrategia de comunicación, con especial interés en
-            la intersección entre diseño de sistemas y herramientas de IA aplicadas al proceso
-            creativo.
-          </p>
-          <a href="about.html" class="btn-link">Más sobre mí, experiencia y educación →</a>
+          <div class="section-label"><span class="section-number">02</span> AI inference comparison</div>
+          <h2 id="comparisonTitle">Values</h2>
         </div>
-        <div>
-          <span class="section-label">Herramientas</span>
-          <div class="skills-wrap" style="margin-top: 16px;">
-            <span class="skill-tag">Adobe Photoshop</span>
-            <span class="skill-tag">Adobe Illustrator</span>
-            <span class="skill-tag">Adobe InDesign</span>
-            <span class="skill-tag">Figma</span>
-            <span class="skill-tag">Branding</span>
-            <span class="skill-tag">UI/UX Design</span>
-            <span class="skill-tag">Marketing digital</span>
-            <span class="skill-tag">Redes sociales</span>
-            <span class="skill-tag">Claude AI</span>
-            <span class="skill-tag">ChatGPT</span>
-            <span class="skill-tag">Gemini</span>
-            <span class="skill-tag">Google Workspace</span>
-          </div>
-        </div>
+        <p>Same health signal. Different response time.</p>
       </div>
-    </section>
 
-    <!-- TESTIMONIOS -->
-    <section id="testimonios" style="background: var(--bg-soft);">
-      <div class="container">
-        <div class="section-head">
-          <span class="section-label">/ testimonios</span>
-          <h2>Lo que dicen de trabajar conmigo.</h2>
-        </div>
+      <div class="comparison-grid">
+        <article class="data-panel card" aria-labelledby="dataTitle">
+          <div class="panel-kicker" id="dataTitle">DATA</div>
 
-        <div class="testi-grid">
-          <div class="testi-card">
-            <p class="testi-quote">Roger combina criterio visual y estratégico de una forma poco
-              habitual. Entiende la marca como sistema, no como una colección de piezas
-              sueltas.</p>
-            <div class="testi-meta"><strong>Cliente · INTERA</strong><span>Marketing Manager</span></div>
-          </div>
-          <div class="testi-card">
-            <p class="testi-quote">Trabajar con Roger en las ferias internacionales fue clave.
-              Capaz de traducir tecnología compleja en materiales que cualquiera entendía.</p>
-            <div class="testi-meta"><strong>Equipo · nVision Systems</strong><span>R&amp;D Lead</span></div>
-          </div>
-          <div class="testi-card">
-            <p class="testi-quote">Atento al detalle, ordenado y proactivo. Aporta soluciones
-              cuando los demás solo ven problemas, y siempre con calma.</p>
-            <div class="testi-meta"><strong>Compañero · Sensing &amp; Control</strong><span>Project Manager</span></div>
-          </div>
-          <div class="testi-card">
-            <p class="testi-quote">Las campañas que diseñó para el ayuntamiento funcionaron
-              porque no eran solo bonitas: eran legibles, claras y respetaban el tono
-              institucional.</p>
-            <div class="testi-meta"><strong>Colaboración · Ayuntamiento</strong><span>Comunicación</span></div>
-          </div>
-          <div class="testi-card">
-            <p class="testi-quote">Honesto, curioso y con muchas ganas. La combinación de diseño +
-              marketing + IA lo convierte en un perfil muy completo para equipos pequeños.</p>
-            <div class="testi-meta"><strong>Mentor</strong><span>Senior Designer</span></div>
-          </div>
-          <div class="testi-card">
-            <p class="testi-quote">Lo que más me sorprendió fue cómo integró IA en la estrategia
-              de marketing sin perder el tono de marca. Las campañas ganaron en velocidad y en
-              coherencia.</p>
-            <div class="testi-meta"><strong>Colaboración · Agencia Digital</strong><span>Digital Marketing Lead</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACTO -->
-    <section id="contacto">
-      <div class="container">
-        <div class="contact-grid">
-          <div class="contact-card c-lav">
-            <div>
-              <h3>¿Tienes un proyecto?</h3>
-              <p>Cuéntame en qué estás trabajando y te respondo en cuanto pueda.</p>
+          <div class="data-reading data-reading-heart">
+            <div class="data-icon heart-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" focusable="false"><path d="M24 39S7 29.2 7 17.4C7 11.8 10.7 8 15.7 8c3.6 0 6.4 2.1 8.3 5.1C25.9 10.1 28.7 8 32.3 8 37.3 8 41 11.8 41 17.4 41 29.2 24 39 24 39Z"/></svg>
             </div>
-            <a href="mailto:roger.ar123@gmail.com" class="btn btn-primary">Escríbeme →</a>
+            <div class="data-reading-label">Heart rate</div>
+            <div class="data-reading-value"><span id="dataHeartRate">72</span><small>bpm</small></div>
+            <div class="data-reading-line data-reading-line-heart" aria-hidden="true"></div>
           </div>
-          <div class="contact-card c-peach">
-            <div>
-              <h3>Hablemos por LinkedIn</h3>
-              <p>Si prefieres conectar primero, aquí me encuentras.</p>
+
+          <div class="data-reading data-reading-resp">
+            <div class="data-icon lungs-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" focusable="false"><path d="M22 9v12c-2.7-2.2-5.2-5.3-7.6-8.2C12.7 10.7 10 12 9.4 15.2L7 28.1C6.1 33 9.8 37 14.4 37c4.2 0 7.6-3.2 7.6-7.4V22M26 9v12c2.7-2.2 5.2-5.3 7.6-8.2 1.7-2.1 4.4-.8 5 2.4L41 28.1c.9 4.9-2.8 8.9-7.4 8.9-4.2 0-7.6-3.2-7.6-7.4V22M24 9v30"/></svg>
             </div>
-            <a href="https://www.linkedin.com/in/roger-avellana/" target="_blank" rel="noopener"
-              class="btn btn-ghost" style="background:#fff;">Ver LinkedIn →</a>
+            <div class="data-reading-label">Respiration rate</div>
+            <div class="data-reading-value"><span id="dataRespRate">15</span><small>rpm</small></div>
+            <div class="data-reading-line data-reading-line-resp" aria-hidden="true"></div>
           </div>
-        </div>
+        </article>
+
+        <article class="inference-panel edge-panel card" aria-labelledby="edgeTitle">
+          <div class="inference-card-header">
+            <div class="panel-kicker">LOCAL PROCESSING</div>
+            <h3 id="edgeTitle">Edge</h3>
+          </div>
+          <div class="network network-compact" id="edgeNetwork" aria-label="Edge AI processing animation">
+            <div class="layer"><span class="node"></span><span class="node"></span><span class="node"></span></div>
+            <div class="layer"><span class="node"></span><span class="node"></span><span class="node"></span></div>
+            <div class="layer"><span class="node"></span><span class="node"></span><span class="node"></span></div>
+          </div>
+          <div class="inference-metrics"><strong>3 seconds</strong><span id="edgeStatus">Processing</span><b>90%</b></div>
+        </article>
+
+        <article class="inference-panel cloud-panel card" aria-labelledby="cloudTitle">
+          <div class="inference-card-header">
+            <div class="panel-kicker">REMOTE PROCESSING</div>
+            <h3 id="cloudTitle">Cloud</h3>
+          </div>
+          <div class="network network-compact" id="cloudNetwork" aria-label="Cloud AI processing animation">
+            <div class="layer"><span class="node"></span><span class="node"></span><span class="node"></span></div>
+            <div class="layer"><span class="node"></span><span class="node"></span><span class="node"></span></div>
+            <div class="layer"><span class="node"></span><span class="node"></span><span class="node"></span></div>
+          </div>
+          <div class="inference-metrics"><strong>7 seconds</strong><span id="cloudStatus">Processing</span><b>95%</b></div>
+        </article>
+
+        <article class="load-panel edge-load card" aria-labelledby="edgeLoadTitle">
+          <div class="load-card-header"><span class="panel-kicker" id="edgeLoadTitle">EDGE</span><strong>90%</strong></div>
+          <div class="horizontal-load" id="edgeLoadProgress" role="progressbar" aria-label="Edge result confidence" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="horizontal-load-fill" id="edgeLoadFill"></div></div>
+          <span class="load-caption">Confidence</span>
+        </article>
+
+        <article class="load-panel cloud-load card" aria-labelledby="cloudLoadTitle">
+          <div class="load-card-header"><span class="panel-kicker" id="cloudLoadTitle">CLOUD</span><strong>95%</strong></div>
+          <div class="horizontal-load" id="cloudLoadProgress" role="progressbar" aria-label="Cloud result confidence" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="horizontal-load-fill" id="cloudLoadFill"></div></div>
+          <span class="load-caption">Confidence</span>
+        </article>
+
+        <svg class="comparison-flow" viewBox="0 0 1000 500" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <marker id="flowArrowHead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" />
+            </marker>
+          </defs>
+          <circle class="flow-junction" cx="302" cy="250" r="5" />
+          <path class="flow-path flow-data-link" d="M274 250 L302 250" marker-end="url(#flowArrowHead)" />
+          <path class="flow-path flow-data-link" d="M302 250 C310 250 316 175 323 125" marker-end="url(#flowArrowHead)" />
+          <path class="flow-path flow-data-link" d="M302 250 C310 250 316 325 323 375" marker-end="url(#flowArrowHead)" />
+          <path class="flow-path flow-result-link" d="M671 125 L723 125" marker-end="url(#flowArrowHead)" />
+          <path class="flow-path flow-result-link" d="M671 375 L723 375" marker-end="url(#flowArrowHead)" />
+        </svg>
       </div>
     </section>
+
+    <footer>
+      <div class="flow">
+        <span>mmWave Radar</span>
+        <b>→</b>
+        <span>Signal Processing</span>
+        <b>→</b>
+        <span>Falcon Cognit</span>
+        <b>→</b>
+        <span>Health Insight</span>
+      </div>
+      <small>*Simulated data and timing for demonstration purposes. Node animations are illustrative. Final metrics must be technically validated.</small>
+    </footer>
+    </div>
 
   </main>
 
-  <footer class="footer">
-    <div class="container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; width:100%;">
-      <span>© 2026 Roger Avellana · Barcelona · Catalunya</span>
-      <span>Roger<span class="slash">/</span>Marketing</span>
-    </div>
-  </footer>
-
-  <script src="js/main.js"></script>
+  <script src="app.js?v=health-v6"></script>
 </body>
-
 </html>
