@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trabajo · Roger Avellana</title>
+  <meta name="description" content="Proyectos seleccionados de Roger Avellana — branding, marketing y diseño de interfaces." />
+  <meta name="theme-color" content="#5850EC" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#main">saltar al contenido</a>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav" aria-label="Principal">
+    <div class="container nav-row">
+      <a href="index.html" class="brand">Roger<span class="slash">/</span>Marketing</a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-home" aria-label="Inicio" title="Inicio"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5L12 3l9 7.5" /><path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5" /></svg></a>
+        <a href="servicios.html">Servicios</a>
+        <a href="trabajo.html" class="active">Trabajo</a>
+        <a href="about.html">Sobre mí</a>
+        <a href="contacto.html" class="btn btn-primary nav-cta">Hablemos</a>
+      </div>
+      <button class="nav-burger" id="burger" aria-expanded="false" aria-controls="mobile-menu">menú</button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html" class="mobile-home" aria-label="Inicio" data-close><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5L12 3l9 7.5" /><path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5" /></svg></a>
+    <a href="servicios.html" data-close>Servicios</a>
+    <a href="trabajo.html" data-close>Trabajo</a>
+    <a href="about.html" data-close>Sobre mí</a>
+    <a href="contacto.html" data-close>Contacto</a>
+    <div class="mobile-cta">
+      <a href="contacto.html" class="btn btn-primary" data-close>Hablemos →</a>
+      <a href="mailto:roger.ar123@gmail.com" class="btn btn-ghost">Escríbeme por email</a>
+    </div>
+  </div>
+
+  <main id="main">
+
+    <header class="about-hero page-hero">
+      <div class="container page-hero-grid">
+        <div>
+          <span class="eyebrow">Trabajo</span>
+          <h1>Proyectos <em>seleccionados.</em></h1>
+          <p class="about-hero-bio">
+            Una muestra de proyectos de branding, marketing y diseño de interfaces de los
+            últimos años.
+          </p>
+        </div>
+
+        <div class="work-deck" id="work-deck" role="region" aria-roledescription="carrusel"
+          aria-label="Proyectos destacados">
+          <div class="deck-stage" id="deck-stage"></div>
+          <div class="deck-controls">
+            <button class="deck-btn" id="deck-prev" type="button" aria-label="Proyecto anterior">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M19 12H5M11 18l-6-6 6-6" />
+              </svg>
+            </button>
+            <div class="deck-dots" id="deck-dots"></div>
+            <button class="deck-btn" id="deck-next" type="button" aria-label="Proyecto siguiente">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </button>
+          </div>
+          <div class="deck-pills" aria-hidden="true">
+            <div class="hero-pill dp-1"><span class="dot">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5850EC" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                </svg>
+              </span>6 proyectos</div>
+            <div class="hero-pill dp-2"><span class="dot">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E8834A" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>
+              </span>del brief a la entrega</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="work-section" style="background: var(--bg-soft);">
+      <div class="container">
+        <div class="work-intro">
+          <div class="work-intro-text">
+            <span class="section-label">/ enfoque</span>
+            <p class="work-intro-lead">Cada proyecto empieza con una pregunta: <em>¿qué tiene que entender
+              quien lo ve?</em> A partir de ahí, diseño, estrategia e IA trabajan juntos para que la
+              respuesta sea clara, coherente y medible.</p>
+            <p>Trabajo para empresas tecnológicas, instituciones públicas y marcas en crecimiento:
+              desde identidades completas y stands de feria hasta dashboards industriales y
+              estrategias de contenido para redes.</p>
+          </div>
+          <dl class="work-stats">
+            <div><dt>+8</dt><dd>años diseñando marcas, campañas e interfaces</dd></div>
+            <div><dt>4</dt><dd>organizaciones: empresa, industria e institución pública</dd></div>
+            <div><dt>5</dt><dd>disciplinas: branding, marketing, UI/UX, diseño e IA</dd></div>
+          </dl>
+        </div>
+
+        <div class="work-grid">
+          <article class="project-card">
+            <div class="project-cover" style="background:#504FED;">
+              <span class="p-tag">branding</span>
+              <span class="p-year">2024</span>
+              <span class="p-num">01</span>
+              <svg class="p-art" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" font-family="Plus Jakarta Sans, sans-serif"><defs><filter id="psh1" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#15121f" flood-opacity=".28" /></filter></defs>
+                <g filter="url(#psh1)">
+                  <g transform="rotate(-9 215 150)">
+                    <rect x="150" y="80" width="200" height="120" rx="10" fill="#15121f" />
+                    <circle cx="185" cy="118" r="11" fill="#fff" /><circle cx="189" cy="114" r="4.5" fill="#15121f" />
+                    <rect x="170" y="170" width="70" height="4" rx="2" fill="#fff" opacity=".35" />
+                    <rect x="170" y="180" width="46" height="4" rx="2" fill="#fff" opacity=".35" />
+                  </g>
+                  <g transform="rotate(5 190 190)">
+                    <rect x="80" y="125" width="220" height="130" rx="10" fill="#fff" />
+                    <circle cx="122" cy="172" r="16" fill="#504FED" /><circle cx="127" cy="166" r="6.5" fill="#fff" />
+                    <text x="148" y="180" font-size="26" font-weight="800" letter-spacing="-1.2" fill="#15121f">intera</text>
+                    <rect x="104" y="214" width="96" height="5" rx="2.5" fill="#dbd6f9" />
+                    <rect x="104" y="226" width="62" height="5" rx="2.5" fill="#dbd6f9" />
+                    <rect x="236" y="212" width="42" height="20" rx="10" fill="#504FED" />
+                  </g>
+                </g>
+                <g>
+                  <circle cx="46" cy="92" r="10" fill="#fff" /><circle cx="68" cy="92" r="10" fill="#15121f" />
+                  <circle cx="90" cy="92" r="10" fill="#fbe2c6" />
+                </g>
+              </svg>
+            </div>
+            <div class="project-body">
+              <h3>Intera — identidad corporativa</h3>
+              <p>Rediseño completo de la identidad visual: logotipo, paleta, tipografía y sistema
+                de marca aplicado a todos los materiales corporativos.</p>
+              <a href="#" class="btn-link">Ver caso →</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-cover" style="background:#D9482C;">
+              <span class="p-tag">marketing</span>
+              <span class="p-year">2018–2019</span>
+              <span class="p-num">02</span>
+              <svg class="p-art" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" font-family="Plus Jakarta Sans, sans-serif"><defs><filter id="psh2" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#15121f" flood-opacity=".28" /></filter></defs>
+                <g filter="url(#psh2)">
+                  <rect x="92" y="58" width="138" height="200" rx="6" fill="#fbe2c6" />
+                  <circle cx="161" cy="118" r="36" fill="#D9482C" />
+                  <circle cx="161" cy="118" r="18" fill="#fbe2c6" opacity=".45" />
+                  <rect x="108" y="172" width="104" height="14" rx="2" fill="#15121f" />
+                  <rect x="108" y="191" width="74" height="14" rx="2" fill="#15121f" />
+                  <rect x="108" y="218" width="64" height="4" rx="2" fill="#15121f" opacity=".45" />
+                  <rect x="108" y="228" width="48" height="4" rx="2" fill="#15121f" opacity=".45" />
+                  <rect x="196" y="224" width="18" height="18" rx="3" fill="#D9482C" />
+                </g>
+                <g filter="url(#psh2)">
+                  <rect x="250" y="96" width="92" height="176" rx="16" fill="#15121f" />
+                  <rect x="257" y="106" width="78" height="156" rx="10" fill="#fff" />
+                  <circle cx="268" cy="118" r="5" fill="#D9482C" />
+                  <rect x="277" y="115" width="32" height="5" rx="2.5" fill="#15121f" opacity=".7" />
+                  <rect x="263" y="130" width="66" height="66" rx="5" fill="#fbe2c6" />
+                  <circle cx="296" cy="158" r="15" fill="#D9482C" />
+                  <rect x="276" y="178" width="40" height="7" rx="1.5" fill="#15121f" />
+                  <path d="M266 207c0-3 4-4 5-1 1-3 5-2 5 1 0 3-5 6-5 6s-5-3-5-6z" fill="#D9482C" />
+                  <rect x="282" y="206" width="30" height="4" rx="2" fill="#15121f" opacity=".3" />
+                  <rect x="263" y="220" width="60" height="4" rx="2" fill="#15121f" opacity=".2" />
+                  <rect x="263" y="230" width="44" height="4" rx="2" fill="#15121f" opacity=".2" />
+                </g>
+              </svg>
+            </div>
+            <div class="project-body">
+              <h3>Ayuntamiento de Igualada — campañas</h3>
+              <p>Diseño y ejecución de materiales gráficos para campañas municipales: cartelería,
+                banners digitales y publicaciones en redes.</p>
+              <a href="#" class="btn-link">Ver caso →</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-cover" style="background:#0E8A5A;">
+              <span class="p-tag">ui/ux</span>
+              <span class="p-year">2019–2021</span>
+              <span class="p-num">03</span>
+              <svg class="p-art" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" font-family="Plus Jakarta Sans, sans-serif"><defs><filter id="psh3" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#15121f" flood-opacity=".28" /></filter></defs>
+                <g filter="url(#psh3)">
+                  <rect x="46" y="62" width="308" height="206" rx="10" fill="#fff" />
+                </g>
+                <circle cx="60" cy="75" r="3.5" fill="#f7d3aa" /><circle cx="71" cy="75" r="3.5" fill="#dcf3e8" /><circle cx="82" cy="75" r="3.5" fill="#dcf3e8" />
+                <rect x="54" y="88" width="42" height="172" rx="6" fill="#eef6f2" />
+                <rect x="62" y="98" width="18" height="18" rx="5" fill="#0E8A5A" />
+                <rect x="62" y="128" width="26" height="4" rx="2" fill="#0E8A5A" opacity=".35" />
+                <rect x="62" y="140" width="22" height="4" rx="2" fill="#0E8A5A" opacity=".35" />
+                <rect x="62" y="152" width="26" height="4" rx="2" fill="#0E8A5A" opacity=".35" />
+                <g>
+                  <rect x="104" y="88" width="76" height="44" rx="6" fill="#f4f8f6" />
+                  <rect x="112" y="97" width="30" height="4" rx="2" fill="#15121f" opacity=".35" />
+                  <rect x="112" y="108" width="44" height="12" rx="2" fill="#15121f" />
+                  <circle cx="168" cy="100" r="4" fill="#0E8A5A" />
+                  <rect x="188" y="88" width="76" height="44" rx="6" fill="#f4f8f6" />
+                  <rect x="196" y="97" width="30" height="4" rx="2" fill="#15121f" opacity=".35" />
+                  <rect x="196" y="108" width="36" height="12" rx="2" fill="#15121f" />
+                  <circle cx="252" cy="100" r="4" fill="#e0a82e" />
+                  <rect x="272" y="88" width="74" height="44" rx="6" fill="#f4f8f6" />
+                  <rect x="280" y="97" width="30" height="4" rx="2" fill="#15121f" opacity=".35" />
+                  <rect x="280" y="108" width="40" height="12" rx="2" fill="#15121f" />
+                  <circle cx="334" cy="100" r="4" fill="#0E8A5A" />
+                </g>
+                <rect x="104" y="140" width="160" height="120" rx="6" fill="#f4f8f6" />
+                <path d="M114 236 L136 214 L156 222 L178 190 L200 200 L222 170 L254 160 L254 250 L114 250Z" fill="#0E8A5A" opacity=".14" />
+                <polyline points="114,236 136,214 156,222 178,190 200,200 222,170 254,160" fill="none" stroke="#0E8A5A" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" />
+                <circle cx="222" cy="170" r="4" fill="#fff" stroke="#0E8A5A" stroke-width="2" />
+                <rect x="114" y="150" width="46" height="4" rx="2" fill="#15121f" opacity=".35" />
+                <rect x="272" y="140" width="74" height="120" rx="6" fill="#f4f8f6" />
+                <path d="M284 214 A25 25 0 0 1 334 214" fill="none" stroke="#dcf3e8" stroke-width="8" stroke-linecap="round" />
+                <path d="M284 214 A25 25 0 0 1 324 194" fill="none" stroke="#0E8A5A" stroke-width="8" stroke-linecap="round" />
+                <rect x="296" y="224" width="26" height="8" rx="2" fill="#15121f" />
+                <rect x="282" y="150" width="36" height="4" rx="2" fill="#15121f" opacity=".35" />
+              </svg>
+            </div>
+            <div class="project-body">
+              <h3>Sensing &amp; Control — dashboard IoT</h3>
+              <p>Diseño de interfaz para plataforma de monitorización IoT. Visualización de datos
+                en tiempo real con foco en usabilidad operativa.</p>
+              <a href="#" class="btn-link">Ver caso →</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-cover" style="background:#E0A82E;">
+              <span class="p-tag">diseño</span>
+              <span class="p-year">2021–2023</span>
+              <span class="p-num">04</span>
+              <svg class="p-art" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" font-family="Plus Jakarta Sans, sans-serif"><defs><filter id="psh4" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#15121f" flood-opacity=".28" /></filter></defs>
+                <ellipse cx="200" cy="262" rx="170" ry="16" fill="#15121f" opacity=".14" />
+                <g filter="url(#psh4)">
+                  <rect x="78" y="66" width="244" height="170" rx="4" fill="#fff" />
+                  <rect x="78" y="66" width="244" height="28" rx="4" fill="#15121f" />
+                  <circle cx="98" cy="80" r="6" fill="#E0A82E" />
+                  <rect x="110" y="77" width="54" height="6" rx="3" fill="#fff" />
+                  <rect x="172" y="108" width="120" height="70" rx="4" fill="#15121f" />
+                  <polyline points="182,164 202,148 220,154 240,132 260,138 282,118" fill="none" stroke="#E0A82E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+                  <rect x="96" y="112" width="58" height="8" rx="2" fill="#15121f" />
+                  <rect x="96" y="126" width="46" height="4" rx="2" fill="#15121f" opacity=".35" />
+                  <rect x="96" y="135" width="52" height="4" rx="2" fill="#15121f" opacity=".35" />
+                  <rect x="96" y="144" width="38" height="4" rx="2" fill="#15121f" opacity=".35" />
+                </g>
+                <g filter="url(#psh4)">
+                  <rect x="138" y="190" width="124" height="62" rx="4" fill="#15121f" />
+                  <rect x="132" y="184" width="136" height="10" rx="3" fill="#fbe2c6" />
+                  <circle cx="200" cy="222" r="10" fill="#E0A82E" />
+                </g>
+                <g filter="url(#psh4)">
+                  <rect x="34" y="104" width="44" height="146" rx="2" fill="#fbe2c6" />
+                  <rect x="42" y="118" width="28" height="28" rx="14" fill="#E0A82E" />
+                  <rect x="42" y="158" width="28" height="5" rx="2" fill="#15121f" />
+                  <rect x="42" y="168" width="20" height="4" rx="2" fill="#15121f" opacity=".4" />
+                  <rect x="30" y="248" width="52" height="6" rx="2" fill="#15121f" />
+                  <rect x="322" y="104" width="44" height="146" rx="2" fill="#15121f" />
+                  <rect x="330" y="118" width="28" height="28" rx="6" fill="#E0A82E" />
+                  <rect x="330" y="158" width="28" height="5" rx="2" fill="#fff" />
+                  <rect x="330" y="168" width="20" height="4" rx="2" fill="#fff" opacity=".5" />
+                  <rect x="318" y="248" width="52" height="6" rx="2" fill="#15121f" />
+                </g>
+              </svg>
+            </div>
+            <div class="project-body">
+              <h3>nVision — ferias internacionales</h3>
+              <p>Producción de materiales para ferias de I+D: stands, roll-ups, folletos técnicos
+                y presentaciones corporativas.</p>
+              <a href="#" class="btn-link">Ver caso →</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-cover" style="background:#7A5BD8;">
+              <span class="p-tag">marketing</span>
+              <span class="p-year">2023–2026</span>
+              <span class="p-num">05</span>
+              <svg class="p-art" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" font-family="Plus Jakarta Sans, sans-serif"><defs><filter id="psh5" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#15121f" flood-opacity=".28" /></filter></defs>
+                <g filter="url(#psh5)">
+                  <rect x="70" y="60" width="126" height="250" rx="20" fill="#15121f" />
+                  <rect x="78" y="70" width="110" height="240" rx="13" fill="#fff" />
+                </g>
+                <circle cx="96" cy="90" r="9" fill="#7A5BD8" />
+                <rect x="110" y="84" width="40" height="5" rx="2.5" fill="#15121f" />
+                <rect x="110" y="93" width="28" height="4" rx="2" fill="#15121f" opacity=".35" />
+                <g>
+                  <rect x="84" y="110" width="32" height="32" rx="3" fill="#7A5BD8" />
+                  <rect x="117" y="110" width="32" height="32" rx="3" fill="#fbe2c6" />
+                  <rect x="150" y="110" width="32" height="32" rx="3" fill="#15121f" />
+                  <rect x="84" y="143" width="32" height="32" rx="3" fill="#e8e5fb" />
+                  <rect x="117" y="143" width="32" height="32" rx="3" fill="#7A5BD8" />
+                  <rect x="150" y="143" width="32" height="32" rx="3" fill="#f7d3aa" />
+                  <rect x="84" y="176" width="32" height="32" rx="3" fill="#15121f" />
+                  <rect x="117" y="176" width="32" height="32" rx="3" fill="#dbd6f9" />
+                  <rect x="150" y="176" width="32" height="32" rx="3" fill="#7A5BD8" />
+                  <circle cx="100" cy="126" r="7" fill="#fff" opacity=".85" />
+                  <circle cx="133" cy="192" r="7" fill="#7A5BD8" />
+                  <circle cx="166" cy="159" r="7" fill="#fff" opacity=".85" />
+                </g>
+                <g filter="url(#psh5)">
+                  <rect x="218" y="70" width="140" height="112" rx="10" fill="#fff" />
+                </g>
+                <rect x="230" y="82" width="54" height="6" rx="3" fill="#15121f" />
+                <g fill="#f1eefc">
+                  <rect x="230" y="98" width="20" height="18" rx="4" /><rect x="254" y="98" width="20" height="18" rx="4" /><rect x="278" y="98" width="20" height="18" rx="4" /><rect x="302" y="98" width="20" height="18" rx="4" /><rect x="326" y="98" width="20" height="18" rx="4" />
+                  <rect x="230" y="120" width="20" height="18" rx="4" /><rect x="254" y="120" width="20" height="18" rx="4" /><rect x="278" y="120" width="20" height="18" rx="4" /><rect x="302" y="120" width="20" height="18" rx="4" /><rect x="326" y="120" width="20" height="18" rx="4" />
+                  <rect x="230" y="142" width="20" height="18" rx="4" /><rect x="254" y="142" width="20" height="18" rx="4" /><rect x="278" y="142" width="20" height="18" rx="4" /><rect x="302" y="142" width="20" height="18" rx="4" /><rect x="326" y="142" width="20" height="18" rx="4" />
+                </g>
+                <circle cx="240" cy="107" r="4" fill="#7A5BD8" /><circle cx="288" cy="107" r="4" fill="#e8834a" />
+                <circle cx="264" cy="129" r="4" fill="#7A5BD8" /><circle cx="336" cy="129" r="4" fill="#7A5BD8" />
+                <circle cx="312" cy="151" r="4" fill="#e8834a" /><circle cx="240" cy="151" r="4" fill="#7A5BD8" />
+                <rect x="230" y="166" width="70" height="4" rx="2" fill="#15121f" opacity=".3" />
+                <g filter="url(#psh5)">
+                  <rect x="236" y="196" width="130" height="76" rx="10" fill="#fff" />
+                </g>
+                <rect x="248" y="208" width="40" height="5" rx="2.5" fill="#15121f" opacity=".4" />
+                <g fill="#7A5BD8">
+                  <rect x="250" y="244" width="12" height="16" rx="2" opacity=".35" />
+                  <rect x="268" y="236" width="12" height="24" rx="2" opacity=".5" />
+                  <rect x="286" y="240" width="12" height="20" rx="2" opacity=".5" />
+                  <rect x="304" y="228" width="12" height="32" rx="2" opacity=".75" />
+                  <rect x="322" y="220" width="12" height="40" rx="2" />
+                </g>
+                <rect x="340" y="214" width="14" height="46" rx="2" fill="#e8834a" />
+              </svg>
+            </div>
+            <div class="project-body">
+              <h3>Intera — estrategia digital</h3>
+              <p>Planificación de contenido para redes sociales: calendario editorial, packs de
+                posts y análisis de métricas mensuales.</p>
+              <a href="#" class="btn-link">Ver caso →</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-cover" style="background:linear-gradient(135deg, #5850EC 0%, #9B5BD8 55%, #E8834A 100%);">
+              <span class="p-tag">ia</span>
+              <span class="p-year">2024–2026</span>
+              <span class="p-num">06</span>
+              <svg class="p-art" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" font-family="Plus Jakarta Sans, sans-serif"><defs><filter id="psh6" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#15121f" flood-opacity=".28" /></filter><linearGradient id="pgr6" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5850EC" /><stop offset="1" stop-color="#E8834A" /></linearGradient></defs>
+                <g filter="url(#psh6)">
+                  <rect x="60" y="62" width="250" height="206" rx="12" fill="#fff" />
+                </g>
+                <circle cx="76" cy="77" r="3.5" fill="#f7d3aa" /><circle cx="87" cy="77" r="3.5" fill="#dbd6f9" /><circle cx="98" cy="77" r="3.5" fill="#dbd6f9" />
+                <rect x="190" y="94" width="104" height="30" rx="12" fill="#e8e5fb" />
+                <rect x="202" y="104" width="70" height="4" rx="2" fill="#5850EC" opacity=".7" />
+                <rect x="202" y="113" width="48" height="4" rx="2" fill="#5850EC" opacity=".45" />
+                <rect x="76" y="138" width="20" height="20" rx="6" fill="url(#pgr6)" />
+                <path d="M86 142l1.6 4 4 1.4-4 1.4-1.6 4-1.6-4-4-1.4 4-1.4z" fill="#fff" />
+                <rect x="104" y="140" width="120" height="4" rx="2" fill="#15121f" opacity=".45" />
+                <rect x="104" y="149" width="92" height="4" rx="2" fill="#15121f" opacity=".3" />
+                <g>
+                  <rect x="104" y="166" width="58" height="58" rx="8" fill="#15121f" />
+                  <circle cx="133" cy="195" r="14" fill="#E8834A" /><circle cx="138" cy="190" r="5.5" fill="#15121f" />
+                  <rect x="168" y="166" width="58" height="58" rx="8" fill="#fbe2c6" />
+                  <circle cx="197" cy="195" r="14" fill="#5850EC" /><circle cx="202" cy="190" r="5.5" fill="#fbe2c6" />
+                  <rect x="232" y="166" width="58" height="58" rx="8" fill="#e8e5fb" />
+                  <circle cx="261" cy="195" r="14" fill="#15121f" /><circle cx="266" cy="190" r="5.5" fill="#e8e5fb" />
+                </g>
+                <rect x="104" y="232" width="66" height="18" rx="9" fill="#5850EC" />
+                <rect x="115" y="239" width="44" height="4" rx="2" fill="#fff" />
+                <rect x="176" y="232" width="58" height="18" rx="9" fill="none" stroke="#15121f" stroke-opacity=".2" />
+                <rect x="187" y="239" width="36" height="4" rx="2" fill="#15121f" opacity=".4" />
+                <g filter="url(#psh6)" font-size="11" font-weight="700">
+                  <rect x="286" y="118" width="74" height="26" rx="13" fill="#fff" />
+                  <circle cx="300" cy="131" r="5" fill="#E8834A" /><text x="310" y="135" fill="#15121f">Claude</text>
+                  <rect x="298" y="160" width="84" height="26" rx="13" fill="#fff" />
+                  <circle cx="312" cy="173" r="5" fill="#1f8a5f" /><text x="322" y="177" fill="#15121f">ChatGPT</text>
+                  <rect x="286" y="202" width="76" height="26" rx="13" fill="#fff" />
+                  <circle cx="300" cy="215" r="5" fill="#5850EC" /><text x="310" y="219" fill="#15121f">Gemini</text>
+                </g>
+              </svg>
+            </div>
+            <div class="project-body">
+              <h3>IA aplicada al proceso creativo</h3>
+              <p>Claude, ChatGPT y Gemini integrados en el flujo de trabajo: exploración de conceptos,
+                variantes de diseño, copys para campañas y análisis de métricas, siempre con
+                criterio humano en la decisión final.</p>
+              <a href="#" class="btn-link">Ver caso →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-card c-lav">
+            <div>
+              <h3>¿Tienes un proyecto?</h3>
+              <p>Cuéntame en qué estás trabajando y te respondo en cuanto pueda.</p>
+            </div>
+            <a href="mailto:roger.ar123@gmail.com" class="btn btn-primary">Escríbeme →</a>
+          </div>
+          <div class="contact-card c-peach">
+            <div>
+              <h3>Hablemos por LinkedIn</h3>
+              <p>Si prefieres conectar primero, aquí me encuentras.</p>
+            </div>
+            <a href="https://www.linkedin.com/in/roger-avellana/" target="_blank" rel="noopener"
+              class="btn btn-ghost" style="background:#fff;">Ver LinkedIn →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; width:100%;">
+      <span>© 2026 Roger Avellana · Barcelona · Catalunya</span>
+      <span>Roger<span class="slash">/</span>Marketing</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+
+</html>
