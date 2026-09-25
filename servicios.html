@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Servicios · Roger Avellana</title>
+  <meta name="description" content="Servicios de Roger Avellana — diseño visual, branding, UI/UX, marketing digital e IA aplicada al diseño." />
+  <meta name="theme-color" content="#5850EC" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#main">saltar al contenido</a>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav" aria-label="Principal">
+    <div class="container nav-row">
+      <a href="index.html" class="brand">Roger<span class="slash">/</span>Marketing</a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-home" aria-label="Inicio" title="Inicio"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5L12 3l9 7.5" /><path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5" /></svg></a>
+        <a href="servicios.html" class="active">Servicios</a>
+        <a href="trabajo.html">Trabajo</a>
+        <a href="about.html">Sobre mí</a>
+        <a href="contacto.html" class="btn btn-primary nav-cta">Hablemos</a>
+      </div>
+      <button class="nav-burger" id="burger" aria-expanded="false" aria-controls="mobile-menu">menú</button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html" class="mobile-home" aria-label="Inicio" data-close><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5L12 3l9 7.5" /><path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5" /></svg></a>
+    <a href="servicios.html" data-close>Servicios</a>
+    <a href="trabajo.html" data-close>Trabajo</a>
+    <a href="about.html" data-close>Sobre mí</a>
+    <a href="contacto.html" data-close>Contacto</a>
+    <div class="mobile-cta">
+      <a href="contacto.html" class="btn btn-primary" data-close>Hablemos →</a>
+      <a href="mailto:roger.ar123@gmail.com" class="btn btn-ghost">Escríbeme por email</a>
+    </div>
+  </div>
+
+  <main id="main">
+
+    <header class="about-hero">
+      <div class="container">
+        <span class="eyebrow">Servicios</span>
+        <h1>Lo que <em>hago.</em></h1>
+        <p class="about-hero-bio">
+          Cinco direcciones donde combino diseño visual con pensamiento estratégico. No son
+          silos: se solapan, se nutren entre sí, y al final hablan del mismo proyecto desde
+          ángulos distintos.
+        </p>
+      </div>
+    </header>
+
+    <section>
+      <div class="container">
+        <div class="card-grid">
+          <div class="feature-card">
+            <div class="icon-badge i-lav">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M12 19l7-7 3 3-7 7-3-3z" />
+                <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
+              </svg>
+            </div>
+            <span class="card-num">01</span>
+            <h3>Diseño visual &amp; dirección creativa</h3>
+            <p>Desde el concepto hasta la pieza final. Doy forma al lenguaje visual de tu marca —
+              tipografía, color, composición y sistema gráfico — para que cada punto de contacto
+              hable el mismo idioma.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="icon-badge i-peach">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M12 2l9 5-9 5-9-5 9-5z" />
+                <path d="M3 12l9 5 9-5" />
+                <path d="M3 17l9 5 9-5" />
+              </svg>
+            </div>
+            <span class="card-num">02</span>
+            <h3>Branding &amp; identidad corporativa</h3>
+            <p>Construyo identidades que escalan: del símbolo a la guía de marca completa. Piezas
+              que funcionan en papel, en pantalla, en un stand de feria y en un story de
+              Instagram.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="icon-badge i-mint">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="14" rx="2" />
+                <path d="M8 21h8M12 18v3" />
+              </svg>
+            </div>
+            <span class="card-num">03</span>
+            <h3>UI/UX &amp; diseño de interfaces</h3>
+            <p>Wireframes, prototipos y diseño final en Figma, con foco en jerarquía,
+              accesibilidad y flujos claros. Plataformas IoT, dashboards industriales y portales
+              B2B donde la usabilidad no es opcional.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="icon-badge i-lav">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M3 11l18-7-7 18-2-8-9-3z" />
+              </svg>
+            </div>
+            <span class="card-num">04</span>
+            <h3>Marketing digital &amp; contenido</h3>
+            <p>Estrategia y ejecución para redes sociales y campañas publicitarias. Calendarios
+              editoriales, packs de posts y análisis de métricas, pensando en el feed y no solo en
+              la pieza individual.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="icon-badge i-peach">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M12 3l1.8 4.6L18 9l-4.2 1.4L12 15l-1.8-4.6L6 9l4.2-1.4L12 3z" />
+                <path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8.8-2z" />
+              </svg>
+            </div>
+            <span class="card-num">05</span>
+            <h3>IA aplicada al diseño</h3>
+            <p>Uso Claude, ChatGPT y Gemini como herramientas para acelerar el proceso, no para
+              sustituir el criterio. Iteraciones que antes tomaban semanas hoy se resuelven en
+              días.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-card c-lav">
+            <div>
+              <h3>¿Tienes un proyecto?</h3>
+              <p>Cuéntame en qué estás trabajando y te respondo en cuanto pueda.</p>
+            </div>
+            <a href="mailto:roger.ar123@gmail.com" class="btn btn-primary">Escríbeme →</a>
+          </div>
+          <div class="contact-card c-peach">
+            <div>
+              <h3>Hablemos por LinkedIn</h3>
+              <p>Si prefieres conectar primero, aquí me encuentras.</p>
+            </div>
+            <a href="https://www.linkedin.com/in/roger-avellana/" target="_blank" rel="noopener"
+              class="btn btn-ghost" style="background:#fff;">Ver LinkedIn →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; width:100%;">
+      <span>© 2026 Roger Avellana · Barcelona · Catalunya</span>
+      <span>Roger<span class="slash">/</span>Marketing</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto · Roger Avellana</title>
+  <meta name="description" content="Contacta con Roger Avellana — diseño visual, branding, UI/UX y marketing digital en Barcelona." />
+  <meta name="theme-color" content="#5850EC" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#main">saltar al contenido</a>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav" aria-label="Principal">
+    <div class="container nav-row">
+      <a href="index.html" class="brand">Roger<span class="slash">/</span>Marketing</a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-home" aria-label="Inicio" title="Inicio"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5L12 3l9 7.5" /><path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5" /></svg></a>
+        <a href="servicios.html">Servicios</a>
+        <a href="trabajo.html">Trabajo</a>
+        <a href="about.html">Sobre mí</a>
+        <a href="contacto.html" class="btn btn-primary nav-cta active" aria-current="page">Hablemos</a>
+      </div>
+      <button class="nav-burger" id="burger" aria-expanded="false" aria-controls="mobile-menu">menú</button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html" class="mobile-home" aria-label="Inicio" data-close><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5L12 3l9 7.5" /><path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5" /></svg></a>
+    <a href="servicios.html" data-close>Servicios</a>
+    <a href="trabajo.html" data-close>Trabajo</a>
+    <a href="about.html" data-close>Sobre mí</a>
+    <a href="contacto.html" data-close>Contacto</a>
+    <div class="mobile-cta">
+      <a href="contacto.html" class="btn btn-primary" data-close>Hablemos →</a>
+      <a href="mailto:roger.ar123@gmail.com" class="btn btn-ghost">Escríbeme por email</a>
+    </div>
+  </div>
+
+  <main id="main">
+
+    <header class="about-hero">
+      <div class="container">
+        <span class="eyebrow">Contacto</span>
+        <h1>Hablemos<em>.</em></h1>
+        <p class="about-hero-bio">
+          ¿Tienes un proyecto en mente, una marca que necesita orden o una campaña que quieres
+          lanzar? Cuéntame en qué estás trabajando y te respondo en cuanto pueda.
+        </p>
+      </div>
+    </header>
+
+    <section id="contacto">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-card c-lav">
+            <div>
+              <h3>¿Tienes un proyecto?</h3>
+              <p>Cuéntame en qué estás trabajando y te respondo en cuanto pueda.</p>
+            </div>
+            <a href="mailto:roger.ar123@gmail.com" class="btn btn-primary">Escríbeme →</a>
+          </div>
+          <div class="contact-card c-peach">
+            <div>
+              <h3>Hablemos por LinkedIn</h3>
+              <p>Si prefieres conectar primero, aquí me encuentras.</p>
+            </div>
+            <a href="https://www.linkedin.com/in/roger-avellana/" target="_blank" rel="noopener"
+              class="btn btn-ghost" style="background:#fff;">Ver LinkedIn →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  
+    <section style="background: var(--bg-soft);">
+      <div class="container">
+        <span class="section-label">/ datos de contacto</span>
+        <div class="timeline" style="margin-top: 16px; max-width: 620px;">
+          <div class="timeline-row">
+            <div class="t-main"><strong>Email</strong><br /><span><a href="mailto:roger.ar123@gmail.com" style="color: var(--indigo);">roger.ar123@gmail.com</a></span></div>
+          </div>
+          <div class="timeline-row">
+            <div class="t-main"><strong>LinkedIn</strong><br /><span><a href="https://www.linkedin.com/in/roger-avellana/" target="_blank" rel="noopener" style="color: var(--indigo);">linkedin.com/in/roger-avellana</a></span></div>
+          </div>
+          <div class="timeline-row">
+            <div class="t-main"><strong>Ubicación</strong><br /><span>Barcelona · Catalunya</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; width:100%;">
+      <span>© 2026 Roger Avellana · Barcelona · Catalunya</span>
+      <span>Roger<span class="slash">/</span>Marketing</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+
+</html>
