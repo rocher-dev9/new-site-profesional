@@ -458,6 +458,39 @@ section { padding: clamp(64px, 9vw, 112px) 0; }
   margin-bottom: 6px; display: block;
 }
 
+/* Servicios: cuadrícula 3 + 2 equilibrada */
+.services-bento { grid-template-columns: repeat(6, 1fr); }
+.services-bento .feature-card { grid-column: span 2; }
+.services-bento .feature-card--wide {
+  grid-column: span 3;
+  display: flex; gap: 22px; align-items: flex-start;
+}
+.feature-card--wide .icon-badge { flex-shrink: 0; margin-bottom: 0; }
+.fc-chips { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.fc-chips li {
+  font-size: 12px; font-weight: 500; color: var(--ink-soft);
+  background: #fff; border: 1px solid var(--line);
+  border-radius: 999px; padding: 6px 12px;
+}
+.feature-card--ai {
+  background: linear-gradient(135deg, var(--lavender) 0%, #f3ecfb 50%, var(--peach) 100%);
+  border-color: transparent;
+}
+.feature-card--ai .fc-chips li { background: rgba(255, 255, 255, 0.7); border-color: rgba(255, 255, 255, 0.9); }
+
+@media (max-width: 960px) {
+  .services-bento { grid-template-columns: repeat(2, 1fr); }
+  .services-bento .feature-card { grid-column: span 1; }
+  .services-bento .feature-card--wide { flex-direction: column; gap: 20px; }
+  .services-bento .feature-card--ai { grid-column: span 2; flex-direction: row; gap: 22px; }
+}
+@media (max-width: 600px) {
+  .services-bento { grid-template-columns: 1fr; }
+  .services-bento .feature-card,
+  .services-bento .feature-card--ai { grid-column: auto; }
+  .services-bento .feature-card--ai { flex-direction: column; gap: 20px; }
+}
+
 /* ─── Work / projects ──────────────────────────────────────── */
 .work-intro {
   display: grid; grid-template-columns: 1.3fr 1fr; gap: 56px; align-items: end;
