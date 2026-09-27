@@ -49,18 +49,54 @@
 
   <main id="main">
 
-    <header class="about-hero">
-      <div class="container">
-        <span class="eyebrow">Trabajo</span>
-        <h1>Proyectos <em>seleccionados.</em></h1>
-        <p class="about-hero-bio">
-          Una muestra de proyectos de branding, marketing y diseño de interfaces de los
-          últimos años.
-        </p>
+    <header class="about-hero page-hero">
+      <div class="container page-hero-grid">
+        <div>
+          <span class="eyebrow">Trabajo</span>
+          <h1>Proyectos <em>seleccionados.</em></h1>
+          <p class="about-hero-bio">
+            Una muestra de proyectos de branding, marketing y diseño de interfaces de los
+            últimos años.
+          </p>
+        </div>
+
+        <div class="work-deck" id="work-deck" role="region" aria-roledescription="carrusel"
+          aria-label="Proyectos destacados">
+          <div class="deck-stage" id="deck-stage"></div>
+          <div class="deck-controls">
+            <button class="deck-btn" id="deck-prev" type="button" aria-label="Proyecto anterior">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M19 12H5M11 18l-6-6 6-6" />
+              </svg>
+            </button>
+            <div class="deck-dots" id="deck-dots"></div>
+            <button class="deck-btn" id="deck-next" type="button" aria-label="Proyecto siguiente">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </button>
+          </div>
+          <div class="deck-pills" aria-hidden="true">
+            <div class="hero-pill dp-1"><span class="dot">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5850EC" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                </svg>
+              </span>6 proyectos</div>
+            <div class="hero-pill dp-2"><span class="dot">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E8834A" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>
+              </span>del brief a la entrega</div>
+          </div>
+        </div>
       </div>
     </header>
 
-    <section style="background: var(--bg-soft);">
+    <section class="work-section" style="background: var(--bg-soft);">
       <div class="container">
         <div class="work-intro">
           <div class="work-intro-text">
