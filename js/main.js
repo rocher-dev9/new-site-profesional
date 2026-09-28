@@ -143,9 +143,9 @@
     function draw(time) {
       var t = time / 1000;
       var mobile = W < 700;
-      var cx = W * (mobile ? 0.6 : 0.73);
-      var cy = mobile ? H - 150 : H * 0.5;
-      var R = mobile ? Math.min(110, W * 0.3) : Math.min(H * 0.38, W * 0.2);
+      var cx = W * (mobile ? 0.56 : 0.73);
+      var cy = mobile ? H - 175 : H * 0.5;
+      var R = mobile ? Math.min(135, W * 0.37) : Math.min(H * 0.38, W * 0.2);
       var ra = R * 2.3, rb = R * 0.55;
       ctx.clearRect(0, 0, W, H);
 

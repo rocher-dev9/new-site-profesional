@@ -418,7 +418,7 @@ section { padding: clamp(64px, 9vw, 112px) 0; }
 }
 .pixel-section .skill-tag:hover { background: var(--lavender); }
 @media (max-width: 700px) {
-  .pixel-section { align-items: flex-start; padding-bottom: 300px; }
+  .pixel-section { align-items: flex-start; padding-bottom: 350px; }
 }
 
 /* ─── Feature / service cards ──────────────────────────────── */
