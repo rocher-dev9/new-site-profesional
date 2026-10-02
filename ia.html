@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inteligencia artificial · Roger Avellana</title>
+  <meta name="description" content="Cómo Roger Avellana integra la inteligencia artificial en el diseño y el marketing: proceso, herramientas y principios." />
+  <meta name="theme-color" content="#0b0a16" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css?v=20261002" />
+  <link rel="stylesheet" href="css/ia.css?v=20261002" />
+</head>
+
+<body class="theme-ai">
+  <a class="skip-link" href="#main">saltar al contenido</a>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav" aria-label="Principal">
+    <div class="container nav-row">
+      <a href="index.html" class="brand">Roger<span class="slash">/</span>Marketing</a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-home" aria-label="Inicio" title="Inicio"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5L12 3l9 7.5" /><path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5" /></svg></a>
+        <a href="servicios.html">Servicios</a>
+        <a href="trabajo.html">Trabajo</a>
+        <a href="ia.html" class="nav-ai active" aria-current="page"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.6L18 9l-4.2 1.4L12 15l-1.8-4.6L6 9l4.2-1.4L12 3z" /><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8.8-2z" /></svg><span>IA</span></a>
+        <a href="about.html">Sobre mí</a>
+        <a href="contacto.html" class="btn btn-primary nav-cta">Hablemos</a>
+      </div>
+      <button class="nav-burger" id="burger" aria-expanded="false" aria-controls="mobile-menu">menú</button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html" class="mobile-home" aria-label="Inicio" data-close><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5L12 3l9 7.5" /><path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5" /></svg></a>
+    <a href="servicios.html" data-close>Servicios</a>
+    <a href="trabajo.html" data-close>Trabajo</a>
+    <a href="ia.html" class="mobile-ai" data-close>IA <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.6L18 9l-4.2 1.4L12 15l-1.8-4.6L6 9l4.2-1.4L12 3z" /><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8.8-2z" /></svg></a>
+    <a href="about.html" data-close>Sobre mí</a>
+    <a href="contacto.html" data-close>Contacto</a>
+    <div class="mobile-cta">
+      <a href="contacto.html" class="btn btn-primary" data-close>Hablemos →</a>
+      <a href="mailto:roger.ar123@gmail.com" class="btn btn-ghost">Escríbeme por email</a>
+    </div>
+  </div>
+
+  <main id="main">
+
+    <!-- HERO IA -->
+    <header class="ai-hero">
+      <canvas class="neural-field" id="neural-field" aria-hidden="true"></canvas>
+      <div class="ai-hero-grid-bg" aria-hidden="true"></div>
+      <div class="container ai-hero-grid">
+        <div>
+          <span class="ai-eyebrow"><span class="ai-live"></span>inteligencia artificial · modo activo</span>
+          <h1 class="aip-title">Diseño con criterio.<br /><span class="ai-gradient-text">Acelerado por IA.</span></h1>
+          <p class="ai-lead">
+            Integro la inteligencia artificial en cada fase del proceso creativo: para explorar más
+            ideas, iterar más rápido y medir mejor. La IA propone; el criterio decide.
+          </p>
+          <div class="ai-actions">
+            <a href="#proceso" class="btn ai-btn">Ver el proceso →</a>
+            <a href="contacto.html" class="btn ai-btn-ghost">Hablemos</a>
+          </div>
+          <dl class="ai-meta">
+            <div><dt>3</dt><dd>modelos de IA en el día a día</dd></div>
+            <div><dt>4</dt><dd>fases del proceso asistidas</dd></div>
+            <div><dt>100%</dt><dd>decisiones con criterio humano</dd></div>
+          </dl>
+        </div>
+
+        <div class="ai-console" aria-hidden="true">
+          <div class="ai-console-bar">
+            <span class="ai-dots"><i></i><i></i><i></i></span>
+            <span class="ai-console-title">roger@estudio-ia ~</span>
+            <span class="ai-model" id="console-model">claude</span>
+          </div>
+          <div class="ai-console-body">
+            <p class="ai-line ai-line--user"><span class="ai-sign">›</span><span><span id="console-prompt">Propón tres conceptos para una marca de café de especialidad</span><span class="ai-cursor"></span></span></p>
+            <p class="ai-line ai-line--bot"><span class="ai-sign ai-sign--bot">✦</span><span id="console-answer">1. «Origen»: tipografía serif y tonos tierra. 2. «Ritual»: minimalismo cálido. 3. «Tueste»: contraste y textura.</span></p>
+          </div>
+          <div class="ai-console-foot">
+            <span><span class="ai-live"></span><span id="console-status">respuesta lista</span></span>
+            <span id="console-tokens">42 tokens</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- PROCESO -->
+    <section class="ai-section" id="proceso">
+      <div class="container">
+        <div class="ai-head">
+          <span class="aip-label">/ proceso</span>
+          <h2>Cuatro fases. <span class="ai-gradient-text">Una sola dirección.</span></h2>
+          <p>La IA no sustituye ninguna fase del diseño: acelera las que más tiempo consumen para que
+            el esfuerzo vaya donde de verdad marca la diferencia.</p>
+        </div>
+
+        <ol class="ai-pipeline">
+          <li class="ai-step">
+            <span class="ai-step-num">01</span>
+            <span class="ai-step-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="M21 21l-4.3-4.3" /></svg></span>
+            <h3>Explorar</h3>
+            <p>Investigación de mercado, referentes y territorios creativos. La IA amplía el abanico;
+              yo selecciono qué merece la pena desarrollar.</p>
+          </li>
+          <li class="ai-step">
+            <span class="ai-step-num">02</span>
+            <span class="ai-step-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.6L18 9l-4.2 1.4L12 15l-1.8-4.6L6 9l4.2-1.4L12 3z" /><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8.8-2z" /></svg></span>
+            <h3>Generar</h3>
+            <p>Variantes de concepto, copys, paletas y estructuras de contenido en poco tiempo, para
+              comparar opciones reales y no hipótesis.</p>
+          </li>
+          <li class="ai-step">
+            <span class="ai-step-num">03</span>
+            <span class="ai-step-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z" /><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" /></svg></span>
+            <h3>Refinar</h3>
+            <p>Aquí manda el oficio: tipografía, composición, tono de marca y detalle. La IA asiste;
+              el diseño final es mío.</p>
+          </li>
+          <li class="ai-step">
+            <span class="ai-step-num">04</span>
+            <span class="ai-step-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18" /><path d="M7 15l4-4 3 3 5-6" /></svg></span>
+            <h3>Medir</h3>
+            <p>Análisis de métricas y resultados de campaña para entender qué funciona y alimentar la
+              siguiente iteración.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- HERRAMIENTAS -->
+    <section class="ai-section" id="herramientas">
+      <div class="container">
+        <div class="ai-head">
+          <span class="aip-label">/ herramientas</span>
+          <h2>Mi stack de <span class="ai-gradient-text">IA.</span></h2>
+          <p>Tres modelos, cada uno con su papel. Elegir la herramienta adecuada para cada tarea es
+            parte del criterio.</p>
+        </div>
+
+        <div class="ai-tools">
+          <article class="ai-tool" style="--tool: #e8834a;">
+            <div class="ai-tool-top"><span class="ai-tool-dot"></span><span class="ai-tool-role">estrategia y escritura</span></div>
+            <h3>Claude</h3>
+            <ul>
+              <li>Copys, guiones y tono de marca</li>
+              <li>Estructura de contenidos</li>
+              <li>Análisis y síntesis de información</li>
+            </ul>
+          </article>
+          <article class="ai-tool" style="--tool: #3fbf8a;">
+            <div class="ai-tool-top"><span class="ai-tool-dot"></span><span class="ai-tool-role">ideación</span></div>
+            <h3>ChatGPT</h3>
+            <ul>
+              <li>Lluvia de ideas y conceptos</li>
+              <li>Variantes de mensajes</li>
+              <li>Prototipado rápido de textos</li>
+            </ul>
+          </article>
+          <article class="ai-tool" style="--tool: #8f88ff;">
+            <div class="ai-tool-top"><span class="ai-tool-dot"></span><span class="ai-tool-role">investigación</span></div>
+            <h3>Gemini</h3>
+            <ul>
+              <li>Búsqueda y contraste de referencias</li>
+              <li>Trabajo con Google Workspace</li>
+              <li>Resúmenes de documentos</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRINCIPIOS -->
+    <section class="ai-section" id="principios">
+      <div class="container">
+        <div class="ai-head">
+          <span class="aip-label">/ principios</span>
+          <h2>Cómo trabajo <span class="ai-gradient-text">con IA.</span></h2>
+        </div>
+        <div class="ai-principles">
+          <div class="ai-principle">
+            <span class="ai-principle-key">01 · criterio</span>
+            <h3>La decisión es humana</h3>
+            <p>La IA genera opciones; el gusto, la decisión final y la responsabilidad sobre el
+              resultado son míos.</p>
+          </div>
+          <div class="ai-principle">
+            <span class="ai-principle-key">02 · transparencia</span>
+            <h3>Sin cajas negras</h3>
+            <p>Explico qué partes de cada proyecto se han trabajado con IA y cómo, para que el
+              cliente sepa siempre qué está recibiendo.</p>
+          </div>
+          <div class="ai-principle">
+            <span class="ai-principle-key">03 · propósito</span>
+            <h3>Velocidad con sentido</h3>
+            <p>Ahorrar tiempo en lo repetitivo para invertirlo en lo que marca la diferencia: la
+              idea, el detalle y la estrategia.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="ai-section ai-section--cta" id="contacto">
+      <div class="container">
+        <div class="ai-cta">
+          <span class="aip-label">/ siguiente paso</span>
+          <h2>¿Llevamos la IA <span class="ai-gradient-text">a tu marca?</span></h2>
+          <p>Cuéntame tu proyecto y vemos juntos dónde puede aportar más: en el proceso creativo, en
+            el contenido o en el análisis.</p>
+          <div class="ai-actions">
+            <a href="mailto:roger.ar123@gmail.com" class="btn ai-btn">Escríbeme →</a>
+            <a href="trabajo.html" class="btn ai-btn-ghost">Ver proyectos</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; width:100%;">
+      <span>© 2026 Roger Avellana · Barcelona · Catalunya</span>
+      <span>Roger<span class="slash">/</span>Marketing</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js?v=20261002"></script>
+  <script src="js/ia.js?v=20261002"></script>
+</body>
+
+</html>
