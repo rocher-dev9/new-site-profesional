@@ -721,3 +721,14 @@ section { padding: clamp(64px, 9vw, 112px) 0; }
   .ai-glow, .ai-caret, .ai-status .pulse { animation: none; }
   * { transition-duration: 0.001ms !important; animation-duration: 0.001ms !important; }
 }
+
+/* ─── Enlace "IA" del menú (todas las páginas) ─────────────── */
+.nav-links a.nav-ai {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-weight: 700; opacity: 1;
+  background: linear-gradient(90deg, var(--indigo), var(--orange));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.nav-links a.nav-ai svg { color: var(--orange); }
+.mobile-menu a.mobile-ai { display: inline-flex; align-items: center; gap: 8px; color: var(--indigo); }
+.mobile-menu a.mobile-ai svg { color: var(--orange); }
