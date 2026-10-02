@@ -400,6 +400,27 @@ section { padding: clamp(64px, 9vw, 112px) 0; }
   .hero-pill { position: static; margin: 0; animation: none; }
 }
 
+/* ─── Home: bloque de servicios con planeta de píxeles ─────── */
+.pixel-section {
+  position: relative; overflow: hidden; isolation: isolate;
+  background: var(--bg);
+}
+.pixel-field { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; }
+.pixel-section .container { position: relative; }
+.pixel-section { min-height: clamp(480px, 46vw, 600px); display: flex; align-items: center; }
+.pixel-section > .container { width: 100%; }
+.pixel-content { max-width: 480px; }
+.pixel-content p { margin: 18px 0 22px; color: var(--ink-soft); font-size: 15.5px; line-height: 1.7; }
+.pixel-content .skills-wrap { margin-bottom: 26px; }
+.pixel-section .skill-tag {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+.pixel-section .skill-tag:hover { background: var(--lavender); }
+@media (max-width: 700px) {
+  .pixel-section { align-items: flex-start; padding-bottom: 350px; }
+}
+
 /* ─── Feature / service cards ──────────────────────────────── */
 .card-grid {
   display: grid;
@@ -435,6 +456,39 @@ section { padding: clamp(64px, 9vw, 112px) 0; }
 .card-num {
   font-family: var(--mono); font-size: 12px; color: var(--muted);
   margin-bottom: 6px; display: block;
+}
+
+/* Servicios: cuadrícula 3 + 2 equilibrada */
+.services-bento { grid-template-columns: repeat(6, 1fr); }
+.services-bento .feature-card { grid-column: span 2; }
+.services-bento .feature-card--wide {
+  grid-column: span 3;
+  display: flex; gap: 22px; align-items: flex-start;
+}
+.feature-card--wide .icon-badge { flex-shrink: 0; margin-bottom: 0; }
+.fc-chips { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.fc-chips li {
+  font-size: 12px; font-weight: 500; color: var(--ink-soft);
+  background: #fff; border: 1px solid var(--line);
+  border-radius: 999px; padding: 6px 12px;
+}
+.feature-card--ai {
+  background: linear-gradient(135deg, var(--lavender) 0%, #f3ecfb 50%, var(--peach) 100%);
+  border-color: transparent;
+}
+.feature-card--ai .fc-chips li { background: rgba(255, 255, 255, 0.7); border-color: rgba(255, 255, 255, 0.9); }
+
+@media (max-width: 960px) {
+  .services-bento { grid-template-columns: repeat(2, 1fr); }
+  .services-bento .feature-card { grid-column: span 1; }
+  .services-bento .feature-card--wide { flex-direction: column; gap: 20px; }
+  .services-bento .feature-card--ai { grid-column: span 2; flex-direction: row; gap: 22px; }
+}
+@media (max-width: 600px) {
+  .services-bento { grid-template-columns: 1fr; }
+  .services-bento .feature-card,
+  .services-bento .feature-card--ai { grid-column: auto; }
+  .services-bento .feature-card--ai { flex-direction: column; gap: 20px; }
 }
 
 /* ─── Work / projects ──────────────────────────────────────── */
@@ -667,3 +721,14 @@ section { padding: clamp(64px, 9vw, 112px) 0; }
   .ai-glow, .ai-caret, .ai-status .pulse { animation: none; }
   * { transition-duration: 0.001ms !important; animation-duration: 0.001ms !important; }
 }
+
+/* ─── Enlace "IA" del menú (todas las páginas) ─────────────── */
+.nav-links a.nav-ai {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-weight: 700; opacity: 1;
+  background: linear-gradient(90deg, var(--indigo), var(--orange));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.nav-links a.nav-ai svg { color: var(--orange); }
+.mobile-menu a.mobile-ai { display: inline-flex; align-items: center; gap: 8px; color: var(--indigo); }
+.mobile-menu a.mobile-ai svg { color: var(--orange); }
