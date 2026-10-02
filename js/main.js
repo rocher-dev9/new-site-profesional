@@ -111,6 +111,132 @@
     wait(2400).then(function () { i = 1; loop(); });
   }
 
+  // ─── Home: planeta de píxeles animado ───────────────────────
+  var pixelCanvas = document.querySelector('.pixel-field');
+
+  if (pixelCanvas && pixelCanvas.getContext) {
+    var ctx = pixelCanvas.getContext('2d');
+    var CELL = 7, DOT = 5;
+    var W = 0, H = 0, cols = 0, rows = 0, running = false, rafId = 0, lastDraw = 0, inView = true;
+    // Niveles de la paleta de la web (de claro a intenso)
+    var levels = ['#e8e5fb', '#c9c4f9', '#8f88ff', '#5850ec', '#3f37d6'];
+    var bayer = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5];
+    var RING_TILT = -0.42;
+    var cosT = Math.cos(RING_TILT), sinT = Math.sin(RING_TILT);
+    var L = [0.55, -0.35, 0.76]; // luz desde arriba a la derecha: el borde izquierdo queda denso
+
+    function resize() {
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = pixelCanvas.clientWidth; H = pixelCanvas.clientHeight;
+      pixelCanvas.width = W * dpr;
+      pixelCanvas.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      cols = Math.ceil(W / CELL);
+      rows = Math.ceil(H / CELL);
+    }
+
+    function smooth(a, b, x) {
+      var k = Math.min(1, Math.max(0, (x - a) / (b - a)));
+      return k * k * (3 - 2 * k);
+    }
+
+    function draw(time) {
+      var t = time / 1000;
+      var mobile = W < 700;
+      var cx = W * (mobile ? 0.56 : 0.73);
+      var cy = mobile ? H - 175 : H * 0.5;
+      var R = mobile ? Math.min(135, W * 0.37) : Math.min(H * 0.38, W * 0.2);
+      var ra = R * 2.3, rb = R * 0.55;
+      ctx.clearRect(0, 0, W, H);
+
+      for (var y = 0; y < rows; y++) {
+        var py = y * CELL + CELL / 2;
+        for (var x = 0; x < cols; x++) {
+          var px = x * CELL + CELL / 2;
+          var nx = px / W;
+          var dx = (px - cx) / R, dy = (py - cy) / R;
+          var r2 = dx * dx + dy * dy;
+          var v = 0;
+
+          // Planeta: sombreado + bandas que giran lentamente
+          if (r2 < 1) {
+            var z = Math.sqrt(1 - r2);
+            var lit = dx * L[0] + dy * L[1] + z * L[2];
+            var shade = Math.pow(1 - Math.max(0, lit), 2.2);
+            var lon = Math.atan2(dx, z) + t * 0.18;
+            var lat = Math.asin(Math.max(-1, Math.min(1, dy)));
+            var bands = 0.13 * Math.sin(lat * 9 + Math.sin(lon * 3) * 1.6) +
+              0.09 * Math.sin(lon * 5 + lat * 4);
+            v = 0.12 + shade * 0.95 + bands;
+          }
+
+          // Anillo inclinado: la parte delantera tapa el planeta, la trasera queda oculta
+          var u = (px - cx) * cosT + (py - cy) * sinT;
+          var w = -(px - cx) * sinT + (py - cy) * cosT;
+          var e = Math.sqrt((u / ra) * (u / ra) + (w / rb) * (w / rb));
+          var front = w > 0;
+          if (e > 0.72 && e < 1.04 && (front || r2 >= 1)) {
+            var ang = Math.atan2(w / rb, u / ra);
+            var band = 0.44 + 0.16 * Math.sin(e * 60) + 0.1 * Math.sin(ang * 3 - t * 0.4);
+            if (Math.sin(ang * 46 - t * 1.4 + e * 10) > 0.93) band = 1; // partículas que recorren el anillo
+            band *= 0.35 + 0.65 * smooth(0.12, 0.5, nx);
+            if (r2 < 1 && front) {
+              // Delante del planeta: el anillo lo tapa, con una fina separación a cada lado
+              v = (e < 0.75 || e > 1.01) ? 0 : band;
+            } else {
+              v = Math.max(v, band);
+            }
+          }
+
+          // Retícula de puntos muy suave en el fondo
+          if (v === 0 && x % 3 === 0 && y % 3 === 0) {
+            v = 0.2 * smooth(0.35, 1, nx) + 0.04 * Math.sin(t * 0.8 + x * 0.3 + y * 0.2);
+          }
+
+          if (v <= 0) continue;
+          // Tramado ordenado (Bayer 4×4) entre niveles de color
+          var level = Math.floor(v * 4 + bayer[(y & 3) * 4 + (x & 3)] / 16 - 0.35);
+          if (level < 0) continue;
+          ctx.fillStyle = levels[Math.min(level, 4)];
+          ctx.fillRect(x * CELL + 1, y * CELL + 1, DOT, DOT);
+        }
+      }
+    }
+
+    function frame(time) {
+      if (!running) return;
+      if (time - lastDraw > 50) { draw(time); lastDraw = time; } // ~20 fps, suficiente y ligero
+      rafId = requestAnimationFrame(frame);
+    }
+
+    function start() {
+      if (running || reduceMotion) return;
+      running = true;
+      rafId = requestAnimationFrame(frame);
+    }
+    function stop() { running = false; cancelAnimationFrame(rafId); }
+
+    resize();
+    draw(0);
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () { resize(); draw(performance.now()); }, 150);
+    });
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        inView = entries[0].isIntersecting;
+        inView ? start() : stop();
+      }).observe(pixelCanvas);
+    } else {
+      start();
+    }
+    document.addEventListener('visibilitychange', function () {
+      document.hidden || !inView ? stop() : start();
+    });
+  }
+
   // ─── Trabajo: baraja de proyectos ───────────────────────────
   var deckStage = document.getElementById('deck-stage');
   var projects = document.querySelectorAll('.work-grid .project-card');
