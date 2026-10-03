@@ -201,4 +201,86 @@
     });
   });
 
+  // ─── Automatización: pestañas del flujo ─────────────────────
+  var flow = document.getElementById('ai-flow');
+  if (flow) {
+    var flows = [
+      ['Nueva idea en el calendario editorial', 'Redacta borradores de copy y variantes por canal',
+        'Ajusto tono, mensaje y diseño', 'Publicación programada en redes'],
+      ['Cierre de mes de la campaña', 'Recopila los datos y resume las métricas clave',
+        'Interpreto resultados y añado recomendaciones', 'Informe enviado al cliente'],
+      ['Llega un brief por email o formulario', 'Extrae objetivos, público, plazos y entregables',
+        'Valido el alcance y resuelvo dudas', 'Tareas creadas en el gestor de proyectos']
+    ];
+    var flowTexts = flow.querySelectorAll('.ai-node-text');
+    var flowTabs = document.querySelectorAll('.ai-flow-tab');
+
+    flowTabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        var k = Number(tab.getAttribute('data-flow'));
+        flowTabs.forEach(function (x) { x.setAttribute('aria-selected', String(x === tab)); });
+        flow.classList.add('is-switching');
+        setTimeout(function () {
+          flowTexts.forEach(function (el, n) { el.textContent = flows[k][n]; });
+          flow.classList.remove('is-switching');
+        }, reduceMotion ? 0 : 250);
+      });
+    });
+  }
+
+  // ─── Agentes: ejecución paso a paso ─────────────────────────
+  var agent = document.getElementById('ai-agent');
+  if (agent) {
+    var agentSteps = agent.querySelectorAll('.ai-agent-log li');
+    var agentRun = document.getElementById('ai-agent-run');
+    var agentStatus = document.getElementById('ai-agent-status');
+    var agentCount = document.getElementById('ai-agent-steps');
+    var agentBusy = false;
+
+    function setAgentDone(n) {
+      agentSteps.forEach(function (li, k) {
+        li.classList.toggle('is-done', k < n);
+        li.classList.remove('is-running');
+      });
+      agentCount.textContent = n + ' / ' + agentSteps.length + ' pasos';
+    }
+
+    function runAgent() {
+      if (agentBusy) return;
+      agentBusy = true;
+      agentRun.disabled = true;
+      setAgentDone(0);
+      agentStatus.textContent = 'ejecutando…';
+      var k = 0;
+      (function next() {
+        if (k > 0) { agentSteps[k - 1].classList.remove('is-running'); agentSteps[k - 1].classList.add('is-done'); }
+        agentCount.textContent = k + ' / ' + agentSteps.length + ' pasos';
+        if (k === agentSteps.length) {
+          agentStatus.textContent = 'esperando revisión humana';
+          agentRun.textContent = '↻ Repetir';
+          agentRun.disabled = false;
+          agentBusy = false;
+          return;
+        }
+        agentSteps[k].classList.add('is-running');
+        k++;
+        setTimeout(next, 750 + Math.random() * 500);
+      })();
+    }
+
+    agentRun.addEventListener('click', runAgent);
+
+    if (reduceMotion) {
+      setAgentDone(agentSteps.length);
+      agentStatus.textContent = 'esperando revisión humana';
+      agentRun.textContent = '↻ Repetir';
+    } else if ('IntersectionObserver' in window) {
+      // Se ejecuta solo la primera vez que el agente entra en pantalla
+      var aObs = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) { runAgent(); aObs.disconnect(); }
+      }, { threshold: 0.4 });
+      aObs.observe(agent);
+    }
+  }
+
 })();
