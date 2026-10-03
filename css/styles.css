@@ -784,11 +784,9 @@ section { padding: clamp(64px, 9vw, 112px) 0; }
   position: relative; overflow: hidden; display: block;
   background: rgba(22, 16, 92, 0.42); border: 1px solid rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-  border-radius: var(--radius-md); padding: 6px 0 0;
+  border-radius: var(--radius-md); padding: 6px 0 4px;
   box-shadow: 0 30px 70px rgba(20, 14, 90, 0.4);
-  transition: transform 0.3s var(--ease), border-color 0.3s;
 }
-.ia-teaser-panel:hover { transform: translateY(-4px); border-color: rgba(198, 168, 255, 0.45); }
 /* Línea de "escaneo" que recorre el panel */
 .ia-teaser-panel::after {
   content: ''; position: absolute; left: 0; right: 0; top: 0; height: 60px; pointer-events: none;
@@ -798,33 +796,37 @@ section { padding: clamp(64px, 9vw, 112px) 0; }
 @keyframes ia-teaser-scan { from { transform: translateY(-60px); } to { transform: translateY(420px); } }
 .ia-teaser-panel-head {
   display: flex; align-items: center; gap: 12px;
-  padding: 10px 20px 14px; border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  font-family: var(--mono); font-size: 11px; color: rgba(236, 233, 255, 0.45);
-}
-.ia-teaser-dots { display: flex; gap: 5px; }
-.ia-teaser-dots i { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, 0.16); }
-.ia-teaser-dots i:first-child { background: #f7b98a; }
-.ia-teaser-steps { list-style: none; }
-.ia-teaser-steps li {
-  display: grid; grid-template-columns: 34px 1fr auto; align-items: baseline; gap: 10px;
-  padding: 16px 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-}
-.ia-teaser-steps span { font-family: var(--mono); font-size: 11px; color: rgba(236, 233, 255, 0.4); }
-.ia-teaser-steps strong { font-size: 16px; font-weight: 700; letter-spacing: -0.01em; }
-.ia-teaser-steps em { font-style: normal; font-family: var(--mono); font-size: 11px; color: #c9d4ff; }
-.ia-teaser-tools {
-  display: flex; flex-wrap: wrap; gap: 16px; padding: 14px 20px 16px;
+  padding: 10px 20px 14px; border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   font-family: var(--mono); font-size: 11px; color: rgba(236, 233, 255, 0.6);
 }
-.ia-teaser-tools span { display: inline-flex; align-items: center; gap: 7px; }
-.ia-teaser-tools i { width: 8px; height: 8px; border-radius: 50%; }
+.ia-teaser-dots { display: flex; gap: 5px; }
+.ia-teaser-dots i { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, 0.22); }
+.ia-teaser-dots i:first-child { background: #f7b98a; }
+.ia-teaser-steps { list-style: none; }
+.ia-teaser-steps li + li { border-top: 1px solid rgba(255, 255, 255, 0.08); }
+.ia-teaser-steps a {
+  position: relative;
+  display: grid; grid-template-columns: 30px 1fr; column-gap: 10px; row-gap: 3px; align-items: baseline;
+  padding: 13px 44px 13px 20px;
+  transition: background 0.25s;
+}
+.ia-teaser-steps a::after {
+  content: '→'; position: absolute; right: 20px; top: 50%; transform: translate(-6px, -50%);
+  color: #fff; opacity: 0; transition: opacity 0.25s, transform 0.25s var(--ease);
+}
+.ia-teaser-steps a:hover { background: rgba(255, 255, 255, 0.07); }
+.ia-teaser-steps a:hover::after { opacity: 1; transform: translate(0, -50%); }
+.ia-teaser-steps span { font-family: var(--mono); font-size: 11px; color: rgba(236, 233, 255, 0.5); }
+.ia-teaser-steps strong { font-size: 16px; font-weight: 700; letter-spacing: -0.01em; color: #fff; }
+.ia-teaser-steps em {
+  grid-column: 2; font-style: normal; font-family: var(--mono); font-size: 11px; color: #c9d4ff;
+}
+.ia-teaser-tools { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; }
+.ia-teaser-tools i { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-left: 4px; }
+.ia-teaser-tools i:first-child { margin-left: 0; }
 
 @media (max-width: 900px) {
   .ia-teaser-grid { grid-template-columns: 1fr; gap: 40px; }
-}
-@media (max-width: 480px) {
-  .ia-teaser-steps li { grid-template-columns: 30px 1fr; }
-  .ia-teaser-steps em { grid-column: 2; }
 }
 @media (prefers-reduced-motion: reduce) {
   .ia-teaser-live, .ia-teaser-panel::after, .ia-teaser::before { animation: none; }
