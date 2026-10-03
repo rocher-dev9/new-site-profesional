@@ -237,6 +237,18 @@
     });
   }
 
+  // ─── Home: brillo del bloque IA que sigue al cursor ─────────
+  var iaTeaser = document.querySelector('.ia-teaser');
+  if (iaTeaser && !reduceMotion) {
+    iaTeaser.addEventListener('pointermove', function (e) {
+      var r = iaTeaser.getBoundingClientRect();
+      iaTeaser.style.setProperty('--gx', (e.clientX - r.left) + 'px');
+      iaTeaser.style.setProperty('--gy', (e.clientY - r.top) + 'px');
+      iaTeaser.classList.add('is-pointer');
+    });
+    iaTeaser.addEventListener('pointerleave', function () { iaTeaser.classList.remove('is-pointer'); });
+  }
+
   // ─── Trabajo: baraja de proyectos ───────────────────────────
   var deckStage = document.getElementById('deck-stage');
   var projects = document.querySelectorAll('.work-grid .project-card');
