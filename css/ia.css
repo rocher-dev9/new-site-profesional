@@ -370,3 +370,9 @@
   .ai-live, .ai-cursor, .ai-link i { animation: none; }
   .ai-link i { display: none; }
 }
+
+/* Selector de idioma en tema oscuro */
+.theme-ai .lang-switch { border-color: rgba(255, 255, 255, 0.2); }
+.theme-ai .lang-switch a, .theme-ai .nav-links .lang-switch a { color: var(--ai-soft); }
+.theme-ai .lang-switch a:hover { color: #fff; }
+.theme-ai .lang-switch a[aria-current="true"] { background: #fff; color: #0b0a16; }
