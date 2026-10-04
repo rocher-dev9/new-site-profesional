@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artificial intelligence · Roger Avellana</title>
+  <meta name="description" content="How Roger Avellana integrates artificial intelligence into design and marketing: process, tools, automation, AI agents and principles." />
+  <meta name="theme-color" content="#0b0a16" />
+
+  <link rel="icon" href="../favicon.ico" sizes="32x32" />
+  <link rel="icon" href="../img/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="../img/apple-touch-icon.png" />
+  <link rel="alternate" hreflang="es" href="https://rocher-dev9.github.io/new-site-profesional/ia.html" />
+  <link rel="alternate" hreflang="en" href="https://rocher-dev9.github.io/new-site-profesional/en/ai.html" />
+  <link rel="alternate" hreflang="x-default" href="https://rocher-dev9.github.io/new-site-profesional/ia.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="../css/styles.css?v=20261010" />
+  <link rel="stylesheet" href="../css/ia.css?v=20261010" />
+</head>
+
+<body class="theme-ai">
+  <a class="skip-link" href="#main">skip to content</a>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav" aria-label="Main">
+    <div class="container nav-row">
+      <a href="index.html" class="brand">Roger<span class="slash">/</span>Marketing</a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-home" aria-label="Home" title="Home"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5L12 3l9 7.5" /><path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5" /></svg></a>
+        <a href="services.html">Services</a>
+        <a href="work.html">Work</a>
+        <a href="ai.html" class="nav-ai active" aria-current="page"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.6L18 9l-4.2 1.4L12 15l-1.8-4.6L6 9l4.2-1.4L12 3z" /><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8.8-2z" /></svg><span>AI</span></a>
+        <a href="about.html">About</a>
+        <div class="lang-switch" role="group" aria-label="Language"><a href="../ia.html" hreflang="es" lang="es">ES</a><a href="ai.html" hreflang="en" lang="en" aria-current="true">EN</a></div>
+      </div>
+      <button class="nav-burger" id="burger" aria-expanded="false" aria-controls="mobile-menu">menu</button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html" class="mobile-home" aria-label="Home" data-close><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5L12 3l9 7.5" /><path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5" /></svg></a>
+    <a href="services.html" data-close>Services</a>
+    <a href="work.html" data-close>Work</a>
+    <a href="ai.html" class="mobile-ai" data-close>AI <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.6L18 9l-4.2 1.4L12 15l-1.8-4.6L6 9l4.2-1.4L12 3z" /><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8.8-2z" /></svg></a>
+    <a href="about.html" data-close>About</a>
+    <div class="mobile-cta">
+      <a href="mailto:roger.ar123@gmail.com" class="btn btn-ghost">Email me</a>
+    </div>
+    <div class="lang-switch" role="group" aria-label="Language"><a href="../ia.html" hreflang="es" lang="es">ES</a><a href="ai.html" hreflang="en" lang="en" aria-current="true">EN</a></div>
+  </div>
+
+  <main id="main">
+
+    <!-- HERO IA -->
+    <header class="ai-hero">
+      <canvas class="neural-field" id="neural-field" aria-hidden="true"></canvas>
+      <div class="ai-hero-grid-bg" aria-hidden="true"></div>
+      <div class="container ai-hero-grid">
+        <div>
+          <span class="ai-eyebrow"><span class="ai-live"></span>artificial intelligence · active mode</span>
+          <h1 class="aip-title">Design with judgment.<br /><span class="ai-gradient-text">Accelerated by AI.</span></h1>
+          <p class="ai-lead">
+            I integrate artificial intelligence into the creative process, automate repetitive tasks and design agents that carry out work step by step. AI proposes; judgment decides.
+          </p>
+          <div class="ai-actions">
+            <a href="#process" class="btn ai-btn">See the process →</a>
+            <a href="about.html#contact" class="btn ai-btn-ghost">Let's talk</a>
+          </div>
+          <dl class="ai-meta">
+            <div><dt>3</dt><dd>AI models in daily use</dd></div>
+            <div><dt>4</dt><dd>AI-assisted process phases</dd></div>
+            <div><dt>100%</dt><dd>decisions made with human judgment</dd></div>
+          </dl>
+        </div>
+
+        <div class="ai-console" aria-hidden="true">
+          <div class="ai-console-bar">
+            <span class="ai-dots"><i></i><i></i><i></i></span>
+            <span class="ai-console-title">roger@ai-studio ~</span>
+            <span class="ai-model" id="console-model">claude</span>
+          </div>
+          <div class="ai-console-body">
+            <p class="ai-line ai-line--user"><span class="ai-sign">›</span><span><span id="console-prompt">Suggest three concepts for a specialty coffee brand</span><span class="ai-cursor"></span></span></p>
+            <p class="ai-line ai-line--bot"><span class="ai-sign ai-sign--bot">✦</span><span id="console-answer">1. "Origin": serif type and earthy tones. 2. "Ritual": warm minimalism. 3. "Roast": contrast and texture.</span></p>
+          </div>
+          <div class="ai-console-foot">
+            <span><span class="ai-live"></span><span id="console-status">response ready</span></span>
+            <span id="console-tokens">42 tokens</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- PROCESO -->
+    <section class="ai-section" id="process">
+      <div class="container">
+        <div class="ai-head">
+          <span class="aip-label">/ process</span>
+          <h2>Four phases. <span class="ai-gradient-text">One direction.</span></h2>
+          <p>AI doesn't replace any phase of design: it speeds up the most time-consuming ones so the effort goes where it truly makes a difference.</p>
+        </div>
+
+        <ol class="ai-pipeline">
+          <li class="ai-step">
+            <span class="ai-step-num">01</span>
+            <span class="ai-step-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="M21 21l-4.3-4.3" /></svg></span>
+            <h3>Explore</h3>
+            <p>Market research, references and creative territories. AI widens the range; I choose what's worth developing.</p>
+          </li>
+          <li class="ai-step">
+            <span class="ai-step-num">02</span>
+            <span class="ai-step-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.6L18 9l-4.2 1.4L12 15l-1.8-4.6L6 9l4.2-1.4L12 3z" /><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8.8-2z" /></svg></span>
+            <h3>Generate</h3>
+            <p>Concept variants, copy, palettes and content structures in little time, to compare real options rather than hypotheses.</p>
+          </li>
+          <li class="ai-step">
+            <span class="ai-step-num">03</span>
+            <span class="ai-step-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z" /><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" /></svg></span>
+            <h3>Refine</h3>
+            <p>This is where craft takes over: typography, composition, brand tone and detail. AI assists; the final design is mine.</p>
+          </li>
+          <li class="ai-step">
+            <span class="ai-step-num">04</span>
+            <span class="ai-step-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18" /><path d="M7 15l4-4 3 3 5-6" /></svg></span>
+            <h3>Measure</h3>
+            <p>Analysis of metrics and campaign results to understand what works and feed the next iteration.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- HERRAMIENTAS -->
+    <section class="ai-section" id="tools">
+      <div class="container">
+        <div class="ai-head">
+          <span class="aip-label">/ tools</span>
+          <h2>My AI <span class="ai-gradient-text">stack.</span></h2>
+          <p>Three models, each with its own role. Choosing the right tool for each task is part of the judgment.</p>
+        </div>
+
+        <div class="ai-tools">
+          <article class="ai-tool" style="--tool: #e8834a;">
+            <div class="ai-tool-top"><span class="ai-tool-dot"></span><span class="ai-tool-role">strategy &amp; writing</span></div>
+            <h3>Claude</h3>
+            <ul>
+              <li>Copy, scripts and brand tone</li>
+              <li>Content structure</li>
+              <li>Analysis and synthesis of information</li>
+            </ul>
+          </article>
+          <article class="ai-tool" style="--tool: #3fbf8a;">
+            <div class="ai-tool-top"><span class="ai-tool-dot"></span><span class="ai-tool-role">ideation</span></div>
+            <h3>ChatGPT</h3>
+            <ul>
+              <li>Brainstorming and concepts</li>
+              <li>Message variants</li>
+              <li>Rapid copy prototyping</li>
+            </ul>
+          </article>
+          <article class="ai-tool" style="--tool: #8f88ff;">
+            <div class="ai-tool-top"><span class="ai-tool-dot"></span><span class="ai-tool-role">research</span></div>
+            <h3>Gemini</h3>
+            <ul>
+              <li>Finding and cross-checking references</li>
+              <li>Working with Google Workspace</li>
+              <li>Document summaries</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- AUTOMATIZACIÓN -->
+    <section class="ai-section" id="automation">
+      <div class="container">
+        <div class="ai-head">
+          <span class="aip-label">/ automation</span>
+          <h2>Workflows that run <span class="ai-gradient-text">while you create.</span></h2>
+          <p>I connect tools with AI to automate everyday repetitive tasks: drafts, reports, briefs. Always with a human review step before anything goes out.</p>
+        </div>
+
+        <div class="ai-flow-tabs" role="tablist" aria-label="Automation examples">
+          <button type="button" role="tab" class="ai-flow-tab" aria-selected="true" data-flow="0">Content</button>
+          <button type="button" role="tab" class="ai-flow-tab" aria-selected="false" data-flow="1">Reports</button>
+          <button type="button" role="tab" class="ai-flow-tab" aria-selected="false" data-flow="2">Briefs</button>
+        </div>
+
+        <div class="ai-flow" id="ai-flow" role="tabpanel">
+          <div class="ai-node">
+            <span class="ai-node-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z" /></svg></span>
+            <span class="ai-node-kind">trigger</span>
+            <strong class="ai-node-text">New idea in the content calendar</strong>
+          </div>
+          <span class="ai-link" aria-hidden="true"><i></i></span>
+          <div class="ai-node ai-node--ai">
+            <span class="ai-node-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.6L18 9l-4.2 1.4L12 15l-1.8-4.6L6 9l4.2-1.4L12 3z" /><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8.8-2z" /></svg></span>
+            <span class="ai-node-kind">AI</span>
+            <strong class="ai-node-text">Drafts copy and variants for each channel</strong>
+          </div>
+          <span class="ai-link" aria-hidden="true"><i></i></span>
+          <div class="ai-node ai-node--human">
+            <span class="ai-node-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z" /><circle cx="12" cy="12" r="3" /></svg></span>
+            <span class="ai-node-kind">human review</span>
+            <strong class="ai-node-text">I refine tone, message and design</strong>
+          </div>
+          <span class="ai-link" aria-hidden="true"><i></i></span>
+          <div class="ai-node">
+            <span class="ai-node-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13" /><path d="M22 2l-7 20-4-9-9-4 20-7z" /></svg></span>
+            <span class="ai-node-kind">action</span>
+            <strong class="ai-node-text">Post scheduled on social media</strong>
+          </div>
+        </div>
+
+        <div class="ai-auto-list">
+          <span class="ai-auto-title">What can be automated</span>
+          <ul>
+            <li>Metrics reports</li>
+            <li>Content drafts</li>
+            <li>Brief triage</li>
+            <li>Template replies</li>
+            <li>Asset organization</li>
+            <li>Task tracking</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- AGENTES -->
+    <section class="ai-section" id="agents">
+      <div class="container">
+        <div class="ai-head">
+          <span class="aip-label">/ AI agents</span>
+          <h2>Agents that <span class="ai-gradient-text">think in steps.</span></h2>
+          <p>An agent doesn't just answer: it receives a goal, breaks it into steps, uses tools and carries out several tasks in a row. I design them to work within clear limits and always under supervision.</p>
+        </div>
+
+        <div class="ai-agents-grid">
+          <div class="ai-agent" id="ai-agent">
+            <div class="ai-agent-bar">
+              <span class="ai-dots"><i></i><i></i><i></i></span>
+              <span class="ai-agent-name">agent · market research</span>
+              <button type="button" class="ai-agent-run" id="ai-agent-run">▶ Run</button>
+            </div>
+            <ol class="ai-agent-log">
+              <li><span class="ai-agent-state"></span><span><b>Goal</b> Analyze 5 competitors of a specialty coffee brand</span></li>
+              <li><span class="ai-agent-state"></span><span><b>Plan</b> search → comparison → synthesis</span></li>
+              <li><span class="ai-agent-state"></span><span><b>Tool</b> web search · 5 brands identified</span></li>
+              <li><span class="ai-agent-state"></span><span><b>Tool</b> social media analysis · tone, formats and frequency</span></li>
+              <li><span class="ai-agent-state"></span><span><b>Synthesis</b> 3 differentiation opportunities found</span></li>
+              <li><span class="ai-agent-state"></span><span><b>Review</b> report ready for approval</span></li>
+            </ol>
+            <div class="ai-agent-foot"><span id="ai-agent-status">ready to run</span><span id="ai-agent-steps">0 / 6 steps</span></div>
+          </div>
+
+          <div class="ai-agent-types">
+            <article class="ai-agent-type">
+              <span class="ai-agent-type-key">research</span>
+              <h3>Research agent</h3>
+              <p>Analyzes competitors, trends and references, and delivers a summary with opportunities for the project.</p>
+            </article>
+            <article class="ai-agent-type">
+              <span class="ai-agent-type-key">content</span>
+              <h3>Content agent</h3>
+              <p>Adapts a piece to each channel following the brand guidelines: formats, lengths and tone.</p>
+            </article>
+            <article class="ai-agent-type">
+              <span class="ai-agent-type-key">analysis</span>
+              <h3>Analytics agent</h3>
+              <p>Reviews metrics regularly, spots changes and suggests adjustments for the next campaign.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRINCIPIOS -->
+    <section class="ai-section" id="principles">
+      <div class="container">
+        <div class="ai-head">
+          <span class="aip-label">/ principles</span>
+          <h2>How I work <span class="ai-gradient-text">with AI.</span></h2>
+        </div>
+        <div class="ai-principles">
+          <div class="ai-principle">
+            <span class="ai-principle-key">01 · judgment</span>
+            <h3>The decision is human</h3>
+            <p>AI generates options; taste, the final decision and responsibility for the result are mine.</p>
+          </div>
+          <div class="ai-principle">
+            <span class="ai-principle-key">02 · transparency</span>
+            <h3>No black boxes</h3>
+            <p>I explain which parts of each project were done with AI and how, so the client always knows what they're getting.</p>
+          </div>
+          <div class="ai-principle">
+            <span class="ai-principle-key">03 · purpose</span>
+            <h3>Speed with purpose</h3>
+            <p>Saving time on the repetitive to invest it in what makes the difference: the idea, the detail and the strategy.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="ai-section ai-section--cta" id="contact">
+      <div class="container">
+        <div class="ai-cta">
+          <span class="aip-label">/ next step</span>
+          <h2>Shall we bring AI <span class="ai-gradient-text">to your brand?</span></h2>
+          <p>Tell me about your project and let's see together where it can add the most: in the creative process, in content or in analysis.</p>
+          <div class="ai-actions">
+            <a href="mailto:roger.ar123@gmail.com" class="btn ai-btn">Email me →</a>
+            <a href="work.html" class="btn ai-btn-ghost">View projects</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; width:100%;">
+      <span>© 2026 Roger Avellana · Barcelona · Catalonia</span>
+      <span>Roger<span class="slash">/</span>Marketing</span>
+    </div>
+  </footer>
+
+  <script src="../js/main.js?v=20261010"></script>
+  <script src="../js/ia.js?v=20261010"></script>
+</body>
+
+</html>
