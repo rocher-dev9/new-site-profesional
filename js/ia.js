@@ -7,6 +7,8 @@
   'use strict';
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var LANG = document.documentElement.lang === 'en' ? 'en' : 'es';
+  function tr(es, en) { return LANG === 'en' ? en : es; }
 
   // ─── IA: red neuronal animada en la cabecera ────────────────
   var neural = document.getElementById('neural-field');
@@ -113,7 +115,16 @@
     var cTokens = document.getElementById('console-tokens');
     var cModel = document.getElementById('console-model');
     var cBox = cPrompt.closest('.ai-console');
-    var dialogs = [
+    var dialogs = LANG === 'en' ? [
+      { model: 'claude', q: 'Suggest three concepts for a specialty coffee brand',
+        a: '1. "Origin": serif type and earthy tones. 2. "Ritual": warm minimalism. 3. "Roast": contrast and texture.' },
+      { model: 'chatgpt', q: 'Give me five headlines to launch a booking app',
+        a: '"Book in 3 taps" · "Your table is waiting" · "No calls, no waiting" · "Plans, sorted" · "Tonight you eat out".' },
+      { model: 'gemini', q: 'Summarize the September campaign metrics',
+        a: 'Reach grew steadily; carousels outperform every other format in saves. Recommendation: more educational carousels.' },
+      { model: 'claude', q: 'Review the tone of this copy so it sounds warmer',
+        a: 'I would change "We offer end-to-end solutions" to "We help you from start to finish". More direct, more human.' }
+    ] : [
       { model: 'claude', q: 'Propón tres conceptos para una marca de café de especialidad',
         a: '1. «Origen»: tipografía serif y tonos tierra. 2. «Ritual»: minimalismo cálido. 3. «Tueste»: contraste y textura.' },
       { model: 'chatgpt', q: 'Dame cinco titulares para lanzar una app de reservas',
@@ -157,20 +168,20 @@
       cPrompt.textContent = '';
       cTokens.textContent = '0 tokens';
       cModel.textContent = d.model;
-      cStatus.textContent = 'esperando instrucción';
+      cStatus.textContent = tr('esperando instrucción', 'waiting for instructions');
       return cType(cPrompt, d.q, 28)
         .then(function () {
           cBox.classList.add('is-thinking');
-          cStatus.textContent = 'pensando…';
+          cStatus.textContent = tr('pensando…', 'thinking…');
           return cWait(900);
         })
         .then(function () {
-          cStatus.textContent = 'generando';
+          cStatus.textContent = tr('generando', 'generating');
           return cStream(d.a);
         })
         .then(function () {
           cBox.classList.remove('is-thinking');
-          cStatus.textContent = 'respuesta lista';
+          cStatus.textContent = tr('respuesta lista', 'response ready');
           return cWait(3200);
         })
         .then(function () { di = (di + 1) % dialogs.length; return cLoop(); });
@@ -204,7 +215,14 @@
   // ─── Automatización: pestañas del flujo ─────────────────────
   var flow = document.getElementById('ai-flow');
   if (flow) {
-    var flows = [
+    var flows = LANG === 'en' ? [
+      ['New idea in the content calendar', 'Drafts copy and variants for each channel',
+        'I refine tone, message and design', 'Post scheduled on social media'],
+      ['Campaign month-end', 'Gathers the data and summarizes key metrics',
+        'I interpret results and add recommendations', 'Report sent to the client'],
+      ['A brief arrives by email or form', 'Extracts goals, audience, deadlines and deliverables',
+        'I validate the scope and clear up questions', 'Tasks created in the project manager']
+    ] : [
       ['Nueva idea en el calendario editorial', 'Redacta borradores de copy y variantes por canal',
         'Ajusto tono, mensaje y diseño', 'Publicación programada en redes'],
       ['Cierre de mes de la campaña', 'Recopila los datos y resume las métricas clave',
@@ -242,7 +260,7 @@
         li.classList.toggle('is-done', k < n);
         li.classList.remove('is-running');
       });
-      agentCount.textContent = n + ' / ' + agentSteps.length + ' pasos';
+      agentCount.textContent = n + ' / ' + agentSteps.length + tr(' pasos', ' steps');
     }
 
     function runAgent() {
@@ -250,14 +268,14 @@
       agentBusy = true;
       agentRun.disabled = true;
       setAgentDone(0);
-      agentStatus.textContent = 'ejecutando…';
+      agentStatus.textContent = tr('ejecutando…', 'running…');
       var k = 0;
       (function next() {
         if (k > 0) { agentSteps[k - 1].classList.remove('is-running'); agentSteps[k - 1].classList.add('is-done'); }
-        agentCount.textContent = k + ' / ' + agentSteps.length + ' pasos';
+        agentCount.textContent = k + ' / ' + agentSteps.length + tr(' pasos', ' steps');
         if (k === agentSteps.length) {
-          agentStatus.textContent = 'esperando revisión humana';
-          agentRun.textContent = '↻ Repetir';
+          agentStatus.textContent = tr('esperando revisión humana', 'awaiting human review');
+          agentRun.textContent = tr('↻ Repetir', '↻ Run again');
           agentRun.disabled = false;
           agentBusy = false;
           return;
@@ -272,8 +290,8 @@
 
     if (reduceMotion) {
       setAgentDone(agentSteps.length);
-      agentStatus.textContent = 'esperando revisión humana';
-      agentRun.textContent = '↻ Repetir';
+      agentStatus.textContent = tr('esperando revisión humana', 'awaiting human review');
+      agentRun.textContent = tr('↻ Repetir', '↻ Run again');
     } else if ('IntersectionObserver' in window) {
       // Se ejecuta solo la primera vez que el agente entra en pantalla
       var aObs = new IntersectionObserver(function (entries) {
