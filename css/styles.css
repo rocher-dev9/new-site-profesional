@@ -614,6 +614,24 @@ section { padding: clamp(64px, 9vw, 112px) 0; }
 }
 .about-hero h1 { font-size: clamp(2.4rem, 5vw, 3.4rem); font-weight: 800; letter-spacing: -0.03em; }
 .about-hero h1 em { font-style: normal; color: var(--indigo); }
+/* Mano pixelada saludando (mismo estilo que el planeta de la home) */
+.about-hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 40px; align-items: center; }
+.about-hero-grid > * { min-width: 0; }
+.hand-art { position: relative; height: clamp(320px, 34vw, 430px); }
+.hand-field {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  animation: hand-float 4.5s ease-in-out infinite;
+}
+/* Flotación suave arriba y abajo */
+@keyframes hand-float {
+  0%, 100% { transform: translateY(6px) rotate(-1deg); }
+  50% { transform: translateY(-14px) rotate(1deg); }
+}
+@media (prefers-reduced-motion: reduce) { .hand-field { animation: none; } }
+@media (max-width: 860px) {
+  .about-hero-grid { grid-template-columns: 1fr; gap: 16px; }
+  .hand-art { height: 300px; }
+}
 .about-hero-bio { margin-top: 20px; max-width: 620px; color: var(--ink-soft); font-size: 16px; line-height: 1.7; }
 .about-hero-links { margin-top: 20px; display: flex; gap: 20px; flex-wrap: wrap; font-size: 14px; }
 .about-hero-links a { color: var(--indigo); font-weight: 600; }
