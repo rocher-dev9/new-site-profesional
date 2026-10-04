@@ -1,6 +1,10 @@
 (function () {
   'use strict';
 
+  // Idioma de la página (las versiones en inglés viven en /en/ con lang="en")
+  var LANG = document.documentElement.lang === 'en' ? 'en' : 'es';
+  function tr(es, en) { return LANG === 'en' ? en : es; }
+
   // ─── Nav: estado "scrolled" ──────────────────────────────────
   var nav = document.getElementById('nav');
   function updateNav() {
@@ -48,13 +52,13 @@
     var aiFont = document.getElementById('ai-font');
     var aiStatus = document.getElementById('ai-status');
     var prompts = [
-      { text: 'Diseña una identidad para una marca de café', font: 'Serif editorial',
+      { text: tr('Diseña una identidad para una marca de café', 'Design an identity for a coffee brand'), font: tr('Serif editorial', 'Editorial serif'),
         colors: ['#2d1e17', '#b86b3c', '#f2dfc7', '#7a8b5a'] },
-      { text: 'Crea un pack de posts para el lanzamiento', font: 'Sans geométrica',
+      { text: tr('Crea un pack de posts para el lanzamiento', 'Create a post pack for the launch'), font: tr('Sans geométrica', 'Geometric sans'),
         colors: ['#5850ec', '#e8834a', '#fbe2c6', '#15121f'] },
-      { text: 'Prototipa un dashboard IoT accesible', font: 'Sans técnica',
+      { text: tr('Prototipa un dashboard IoT accesible', 'Prototype an accessible IoT dashboard'), font: tr('Sans técnica', 'Technical sans'),
         colors: ['#0e8a5a', '#dcf3e8', '#15121f', '#e0a82e'] },
-      { text: 'Plantea una campaña para redes sociales', font: 'Display rotunda',
+      { text: tr('Plantea una campaña para redes sociales', 'Plan a social media campaign'), font: tr('Display rotunda', 'Bold display'),
         colors: ['#d9482c', '#fbe2c6', '#7a5bd8', '#15121f'] }
     ];
     var i = 0;
@@ -95,14 +99,14 @@
         .then(function () {
           aiOutput.classList.add('is-loading');
           aiStatus.parentNode.classList.add('is-busy');
-          aiStatus.textContent = 'generando propuesta…';
+          aiStatus.textContent = tr('generando propuesta…', 'generating proposal…');
           return wait(1300);
         })
         .then(function () {
           apply(p);
           aiOutput.classList.remove('is-loading');
           aiStatus.parentNode.classList.remove('is-busy');
-          aiStatus.textContent = 'propuesta lista';
+          aiStatus.textContent = tr('propuesta lista', 'proposal ready');
           return wait(3600);
         })
         .then(function () { i = (i + 1) % prompts.length; return loop(); });
@@ -396,7 +400,8 @@
       card.appendChild(cover.cloneNode(true));
       card.insertAdjacentHTML('beforeend',
         '<div class="deck-body"><strong></strong>' +
-        '<div class="deck-steps"><span>brief</span><span>concepto</span><span>diseño</span><span>entrega</span></div>' +
+        '<div class="deck-steps">' + tr('<span>brief</span><span>concepto</span><span>diseño</span><span>entrega</span>',
+          '<span>brief</span><span>concept</span><span>design</span><span>delivery</span>') + '</div>' +
         '<div class="deck-progress"><i></i></div></div>');
       card.querySelector('strong').textContent = project.querySelector('h3').textContent;
       card.addEventListener('click', function () { focusProject(k); });
@@ -406,7 +411,7 @@
       var dot = document.createElement('button');
       dot.type = 'button';
       dot.style.setProperty('--dot-color', solid);
-      dot.setAttribute('aria-label', 'Ver proyecto ' + (k + 1) + ': ' + card.querySelector('strong').textContent);
+      dot.setAttribute('aria-label', tr('Ver proyecto ', 'View project ') + (k + 1) + ': ' + card.querySelector('strong').textContent);
       dot.addEventListener('click', function () { show(k); });
       deckDots.appendChild(dot);
       dots.push(dot);
