@@ -237,6 +237,131 @@
     });
   }
 
+  // ─── Sobre mí: mano pixelada saludando ──────────────────────
+  var handCanvas = document.getElementById('hand-field');
+
+  if (handCanvas && handCanvas.getContext) {
+    var hctx = handCanvas.getContext('2d');
+    var HCELL = 7, HDOT = 5;
+    var HW = 0, HH = 0, hcols = 0, hrows = 0, hRunning = false, hRaf = 0, hLast = 0, hInView = true;
+    var hLevels = ['#e8e5fb', '#c9c4f9', '#8f88ff', '#5850ec', '#3f37d6'];
+    var hBayer = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5];
+    // Lienzo auxiliar a la resolución de la retícula: cada píxel es una celda
+    var off = document.createElement('canvas');
+    var octx = off.getContext('2d', { willReadFrequently: true });
+
+    function hResize() {
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      HW = handCanvas.clientWidth; HH = handCanvas.clientHeight;
+      handCanvas.width = HW * dpr; handCanvas.height = HH * dpr;
+      hctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      hcols = Math.ceil(HW / HCELL); hrows = Math.ceil(HH / HCELL);
+      off.width = hcols; off.height = hrows;
+    }
+
+    function capsule(c, x1, y1, x2, y2, r) {
+      var a = Math.atan2(y2 - y1, x2 - x1);
+      c.beginPath();
+      c.arc(x1, y1, r, a + Math.PI / 2, a - Math.PI / 2);
+      c.arc(x2, y2, r, a - Math.PI / 2, a + Math.PI / 2);
+      c.closePath();
+    }
+
+    // Ángulo del saludo: tres balanceos que se van apagando y una pausa (ciclo de 2,4 s)
+    function waveAngle(t) {
+      var p = (t % 2.4) / 2.4;
+      if (p > 0.6) return 0;
+      var decay = 1 - p / 0.6;
+      return Math.sin(p / 0.6 * Math.PI * 5) * 0.32 * decay;
+    }
+
+    function drawHand(c, angle, unit) {
+      // Coordenadas locales: mano de ~100 unidades de alto, pivote en la muñeca (50, 100)
+      c.save();
+      c.translate(hcols * 0.5, hrows * 0.9);
+      c.rotate(angle);
+      c.scale(unit, unit);
+      c.translate(-50, -100);
+      var g = c.createLinearGradient(10, 0, 90, 0);
+      g.addColorStop(0, '#000');      // borde izquierdo: denso
+      g.addColorStop(0.55, '#9a9a9a');
+      g.addColorStop(1, '#d8d8d8');   // borde derecho: claro
+      c.fillStyle = g;
+      // Dedos (separados para que se lean los huecos)
+      capsule(c, 31, 60, 28, 20, 5.2); c.fill();
+      capsule(c, 45, 58, 45, 10, 5.4); c.fill();
+      capsule(c, 59, 59, 62, 16, 5.2); c.fill();
+      capsule(c, 72, 63, 77, 32, 4.6); c.fill();
+      // Pulgar
+      capsule(c, 29, 80, 10, 56, 5.8); c.fill();
+      // Palma
+      c.beginPath();
+      c.moveTo(26, 56); c.lineTo(78, 56);
+      c.quadraticCurveTo(80, 82, 70, 96);
+      c.lineTo(32, 96);
+      c.quadraticCurveTo(22, 82, 26, 56);
+      c.fill();
+      c.restore();
+    }
+
+    function hDraw(time) {
+      var t = time / 1000;
+      var angle = reduceMotion ? 0.12 : waveAngle(t);
+      var unit = Math.min(hrows * 0.88 / 100, hcols * 0.95 / 100);
+
+      octx.clearRect(0, 0, hcols, hrows);
+      drawHand(octx, angle, unit);
+      var data = octx.getImageData(0, 0, hcols, hrows).data;
+
+      hctx.clearRect(0, 0, HW, HH);
+      for (var y = 0; y < hrows; y++) {
+        for (var x = 0; x < hcols; x++) {
+          var i = (y * hcols + x) * 4;
+          var v = 0;
+          if (data[i + 3] > 110) {
+            v = 0.2 + (1 - data[i] / 255) * 0.85;   // cuanto más oscuro, más denso
+            // Contorno: las celdas del borde de la silueta se dibujan más intensas
+            var edge = (x === 0 || data[i - 1] < 110) || (x === hcols - 1 || data[i + 7] < 110) ||
+              (y === 0 || data[i - hcols * 4 + 3] < 110) || (y === hrows - 1 || data[i + hcols * 4 + 3] < 110);
+            if (edge) v += 0.35;
+          }
+          if (v <= 0) continue;
+          var level = Math.floor(v * 4 + hBayer[(y & 3) * 4 + (x & 3)] / 16 - 0.35);
+          if (level < 0) continue;
+          hctx.fillStyle = hLevels[Math.min(level, 4)];
+          hctx.fillRect(x * HCELL + 1, y * HCELL + 1, HDOT, HDOT);
+        }
+      }
+    }
+
+    function hFrame(time) {
+      if (!hRunning) return;
+      if (time - hLast > 40) { hDraw(time); hLast = time; }
+      hRaf = requestAnimationFrame(hFrame);
+    }
+    function hStart() { if (hRunning || reduceMotion) return; hRunning = true; hRaf = requestAnimationFrame(hFrame); }
+    function hStop() { hRunning = false; cancelAnimationFrame(hRaf); }
+
+    hResize();
+    hDraw(0);
+    var hTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(hTimer);
+      hTimer = setTimeout(function () { hResize(); hDraw(performance.now()); }, 150);
+    });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        hInView = entries[0].isIntersecting;
+        hInView ? hStart() : hStop();
+      }).observe(handCanvas);
+    } else {
+      hStart();
+    }
+    document.addEventListener('visibilitychange', function () {
+      document.hidden || !hInView ? hStop() : hStart();
+    });
+  }
+
   // ─── Home: brillo del bloque IA que sigue al cursor ─────────
   var iaTeaser = document.querySelector('.ia-teaser');
   if (iaTeaser && !reduceMotion) {
