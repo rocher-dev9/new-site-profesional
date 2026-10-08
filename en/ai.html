@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Artificial intelligence · Roger Avellana</title>
-  <meta name="description" content="How Roger Avellana integrates artificial intelligence into design and marketing: process, tools, automation, AI agents and principles." />
+  <meta name="description" content="How Roger Avellana integrates artificial intelligence into design and marketing: process, tools, automation (n8n, Hermes Agent, OpenClaw, OpenAI Dots), AI agents and principles." />
   <meta name="theme-color" content="#0b0a16" />
 
   <link rel="icon" href="../favicon.ico" sizes="32x32" />
@@ -21,8 +21,8 @@
     href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
 
-  <link rel="stylesheet" href="../css/styles.css?v=20261010" />
-  <link rel="stylesheet" href="../css/ia.css?v=20261010" />
+  <link rel="stylesheet" href="../css/styles.css?v=20261012" />
+  <link rel="stylesheet" href="../css/ia.css?v=20261012" />
 </head>
 
 <body class="theme-ai">
@@ -80,6 +80,11 @@
           </dl>
         </div>
 
+        <div class="ai-console-wrap">
+          <button type="button" class="ai-bot" id="ai-bot" aria-label="Bit, the AI assistant. Click to say hi">
+            <canvas class="ai-bot-canvas" id="ai-bot-canvas" width="16" height="16" aria-hidden="true"></canvas>
+          </button>
+          <p class="ai-bot-bubble" id="ai-bot-bubble" role="status" aria-live="polite"></p>
         <div class="ai-console" aria-hidden="true">
           <div class="ai-console-bar">
             <span class="ai-dots"><i></i><i></i><i></i></span>
@@ -94,6 +99,7 @@
             <span><span class="ai-live"></span><span id="console-status">response ready</span></span>
             <span id="console-tokens">42 tokens</span>
           </div>
+        </div>
         </div>
       </div>
     </header>
@@ -229,6 +235,43 @@
             <li>Task tracking</li>
           </ul>
         </div>
+
+        <div class="ai-platforms-head">
+          <span class="ai-auto-title">Platforms &amp; agents</span>
+          <p>I choose the tool to fit the project: from visual workflows to autonomous agents that work
+            on their own. With all of them I apply the same limits: minimal permissions, isolated
+            environments and human review before acting.</p>
+        </div>
+        <div class="ai-platforms">
+          <article class="ai-tool ai-platform" style="--tool: #f7b98a;">
+            <div class="ai-tool-top"><span class="ai-tool-dot"></span><span class="ai-tool-role">workflow orchestration</span></div>
+            <h3>n8n</h3>
+            <p>Automation platform with a visual node editor. It connects hundreds of apps and services
+              with AI steps, and can be self-hosted.</p>
+            <ul class="ai-platform-tags"><li>low-code</li><li>self-hostable</li></ul>
+          </article>
+          <article class="ai-tool ai-platform" style="--tool: #3fbf8a;">
+            <div class="ai-tool-top"><span class="ai-tool-dot"></span><span class="ai-tool-role">agent that learns</span></div>
+            <h3>Hermes Agent</h3>
+            <p>Open-source agent by Nous Research. It runs on your server, remembers across sessions and
+              turns the tasks it solves into reusable skills.</p>
+            <ul class="ai-platform-tags"><li>open source</li><li>memory</li></ul>
+          </article>
+          <article class="ai-tool ai-platform" style="--tool: #8f88ff;">
+            <div class="ai-tool-top"><span class="ai-tool-dot"></span><span class="ai-tool-role">agent in your apps</span></div>
+            <h3>OpenClaw</h3>
+            <p>Open-source agent that connects to WhatsApp, Telegram, Slack or email and takes real
+              actions from the conversation.</p>
+            <ul class="ai-platform-tags"><li>open source</li><li>messaging</li></ul>
+          </article>
+          <article class="ai-tool ai-platform" style="--tool: #ece9ff;">
+            <div class="ai-tool-top"><span class="ai-tool-dot"></span><span class="ai-tool-role">always-on agents</span></div>
+            <h3>OpenAI Dots</h3>
+            <p>ChatGPT agents that keep working after the conversation ends, with their own cloud
+              computer and rules to ask for approval before acting.</p>
+            <ul class="ai-platform-tags"><li>ChatGPT</li><li>cloud</li></ul>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -331,8 +374,8 @@
     </div>
   </footer>
 
-  <script src="../js/main.js?v=20261010"></script>
-  <script src="../js/ia.js?v=20261010"></script>
+  <script src="../js/main.js?v=20261012"></script>
+  <script src="../js/ia.js?v=20261012"></script>
 </body>
 
 </html>
