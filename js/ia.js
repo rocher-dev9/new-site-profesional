@@ -301,4 +301,168 @@
     }
   }
 
+  // ─── Bit: criatura pixelada interactiva ─────────────────────
+  var bot = document.getElementById('ai-bot');
+  var botCanvas = document.getElementById('ai-bot-canvas');
+
+  if (bot && botCanvas && botCanvas.getContext) {
+    var bctx = botCanvas.getContext('2d');
+    var bubble = document.getElementById('ai-bot-bubble');
+    var consoleBox = document.querySelector('.ai-console');
+
+    // Sprite 16×16. O contorno · H cuerpo claro · B cuerpo sombra · A brazos · F pantalla · S antena · L luz
+    var BODY = [
+      '.......LL.......',
+      '.......SS.......',
+      '...OOOOOOOOOO...',
+      '..OHHHHHHHHHHO..',
+      '..OHFFFFFFFFHO..',
+      '..OHFFFFFFFFHO..',
+      '..OHFFFFFFFFHO..',
+      '..OHFFFFFFFFHO..',
+      '..OBHHHHHHHHBO..',
+      '...OOOOOOOOOO...',
+      '....OBBHHBBO....',
+      '..AAOBHHHHBOAA..',
+      '..A.OBBHHBBO.A..',
+      '....OOOOOOOO....',
+      '.....OO..OO.....',
+      '....OOO..OOO....'
+    ];
+    // Brazo derecho levantado (saludo)
+    var WAVE = { 10: '....OBBHHBBO.A..', 11: '..AAOBHHHHBOA...', 12: '..A.OBBHHBBO....' };
+    var COLORS = { O: '#2a2466', H: '#c6a8ff', B: '#8f88ff', A: '#8f88ff', F: '#15132a', S: '#8f88ff' };
+    var EYE = '#8ff5d2';
+    var LED = { idle: '#f7b98a', ready: '#3fbf8a', off: '#4a3a66' };
+
+    var look = { x: 0, y: 0 };
+    var blinking = false, happy = false, waving = false, waveUp = false;
+    var ledState = 'idle', ledBlink = false;
+
+    function px(x, y, c) { bctx.fillStyle = c; bctx.fillRect(x, y, 1, 1); }
+
+    function drawBot() {
+      bctx.clearRect(0, 0, 16, 16);
+      for (var y = 0; y < 16; y++) {
+        var row = (waving && waveUp && WAVE[y]) ? WAVE[y] : BODY[y];
+        for (var x = 0; x < 16; x++) {
+          var ch = row[x];
+          if (ch === 'L') px(x, y, ledBlink ? LED.off : LED[ledState]);
+          else if (COLORS[ch]) px(x, y, COLORS[ch]);
+        }
+      }
+      // Brillo en la cabeza
+      px(4, 3, '#ece9ff'); px(5, 3, '#ece9ff');
+      // Ojos (2×2) que miran hacia el cursor dentro de la pantalla
+      var ex = look.x, ey = look.y;
+      [5, 9].forEach(function (bx) {
+        var x0 = bx + ex, y0 = 5 + ey;
+        if (happy) {               // ojos contentos: ^ ^
+          px(x0, y0 + 1, EYE); px(x0 + 1, y0, EYE);
+        } else if (blinking) {     // parpadeo: una línea
+          px(x0, y0 + 1, EYE); px(x0 + 1, y0 + 1, EYE);
+        } else {
+          px(x0, y0, EYE); px(x0 + 1, y0, EYE); px(x0, y0 + 1, EYE); px(x0 + 1, y0 + 1, EYE);
+        }
+      });
+      if (happy) { px(7, 7 + Math.max(0, ey), '#f7b98a'); px(8, 7 + Math.max(0, ey), '#f7b98a'); } // sonrisa
+    }
+
+    // Los ojos siguen al cursor por toda la página
+    window.addEventListener('pointermove', function (e) {
+      var r = botCanvas.getBoundingClientRect();
+      var dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height * 0.35);
+      var nx = Math.abs(dx) < 50 ? 0 : (dx > 0 ? 1 : -1);
+      var ny = Math.abs(dy) < 50 ? 0 : (dy > 0 ? 1 : -1);
+      if (nx !== look.x || ny !== look.y) { look.x = nx; look.y = ny; drawBot(); }
+    }, { passive: true });
+
+    // Parpadeo aleatorio
+    (function scheduleBlink() {
+      setTimeout(function () {
+        blinking = true; drawBot();
+        setTimeout(function () { blinking = false; drawBot(); scheduleBlink(); }, 140);
+      }, 2200 + Math.random() * 3000);
+    })();
+
+    // Saludo con el brazo al pasar el ratón
+    var waveTimer = 0;
+    function startWave() {
+      if (waving) return;
+      waving = true;
+      waveTimer = setInterval(function () { waveUp = !waveUp; drawBot(); }, reduceMotion ? 600 : 260);
+    }
+    function stopWave() { waving = false; waveUp = false; clearInterval(waveTimer); drawBot(); }
+    bot.addEventListener('pointerenter', startWave);
+    bot.addEventListener('pointerleave', stopWave);
+    bot.addEventListener('focus', startWave);
+    bot.addEventListener('blur', stopWave);
+
+    // Clic: salta, se pone contento y dice algo
+    var phrases = LANG === 'en' ? [
+      "Hi! I'm Bit, your AI copilot.",
+      'AI proposes; you decide.',
+      'Shall we automate something today?',
+      'Thinking in pixels…',
+      'Psst… try moving your cursor.',
+      'I never skip the human review step.'
+    ] : [
+      '¡Hola! Soy Bit, tu copiloto de IA.',
+      'La IA propone; tú decides.',
+      '¿Automatizamos algo hoy?',
+      'Pensando en píxeles…',
+      'Psst… prueba a mover el cursor.',
+      'Nunca me salto la revisión humana.'
+    ];
+    var phraseIndex = 0, bubbleTimer = 0, happyTimer = 0;
+
+    function say(text) {
+      bubble.textContent = text;
+      bubble.classList.add('is-visible');
+      clearTimeout(bubbleTimer);
+      bubbleTimer = setTimeout(function () { bubble.classList.remove('is-visible'); }, 2800);
+    }
+
+    bot.addEventListener('click', function () {
+      say(phrases[phraseIndex]);
+      phraseIndex = (phraseIndex + 1) % phrases.length;
+      happy = true; drawBot();
+      clearTimeout(happyTimer);
+      happyTimer = setTimeout(function () { happy = false; drawBot(); }, 1400);
+      if (!reduceMotion) {
+        bot.classList.remove('is-jumping');
+        void bot.offsetWidth; // reinicia la animación
+        bot.classList.add('is-jumping');
+      }
+    });
+    bot.addEventListener('animationend', function (e) {
+      if (e.animationName === 'ai-bot-jump') bot.classList.remove('is-jumping');
+    });
+
+    // La antena refleja lo que hace la consola: parpadea mientras piensa, verde cuando termina
+    var ledTimer = 0, lastLed = '';
+    function syncLed() {
+      var thinking = consoleBox && consoleBox.classList.contains('is-thinking');
+      var ready = (document.getElementById('console-status') || {}).textContent === tr('respuesta lista', 'response ready');
+      var state = thinking ? 'thinking' : (ready ? 'ready' : 'idle');
+      if (state === lastLed) return;   // solo reacciona a cambios de estado
+      lastLed = state;
+      clearInterval(ledTimer); ledBlink = false;
+      if (thinking) {
+        ledState = 'idle';
+        if (!reduceMotion) ledTimer = setInterval(function () { ledBlink = !ledBlink; drawBot(); }, 180);
+      } else {
+        ledState = ready ? 'ready' : 'idle';
+      }
+      drawBot();
+    }
+    if (consoleBox && 'MutationObserver' in window) {
+      new MutationObserver(syncLed).observe(consoleBox, { attributes: true, attributeFilter: ['class'], subtree: true, childList: true, characterData: true });
+    }
+
+    // Saludo inicial
+    syncLed();
+    if (!reduceMotion) setTimeout(function () { say(phrases[0]); phraseIndex = 1; }, 1200);
+  }
+
 })();
