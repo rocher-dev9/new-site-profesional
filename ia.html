@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Inteligencia artificial · Roger Avellana</title>
-  <meta name="description" content="Cómo Roger Avellana integra la inteligencia artificial en el diseño y el marketing: proceso, herramientas, automatización, agentes de IA y principios." />
+  <meta name="description" content="Cómo Roger Avellana integra la inteligencia artificial en el diseño y el marketing: proceso, herramientas, automatización (n8n, Hermes Agent, OpenClaw, OpenAI Dots), agentes de IA y principios." />
   <meta name="theme-color" content="#0b0a16" />
 
   <link rel="icon" href="favicon.ico" sizes="32x32" />
@@ -21,8 +21,8 @@
     href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/styles.css?v=20261010" />
-  <link rel="stylesheet" href="css/ia.css?v=20261010" />
+  <link rel="stylesheet" href="css/styles.css?v=20261012" />
+  <link rel="stylesheet" href="css/ia.css?v=20261012" />
 </head>
 
 <body class="theme-ai">
@@ -81,6 +81,11 @@
           </dl>
         </div>
 
+        <div class="ai-console-wrap">
+          <button type="button" class="ai-bot" id="ai-bot" aria-label="Bit, el asistente de IA. Haz clic para saludarle">
+            <canvas class="ai-bot-canvas" id="ai-bot-canvas" width="16" height="16" aria-hidden="true"></canvas>
+          </button>
+          <p class="ai-bot-bubble" id="ai-bot-bubble" role="status" aria-live="polite"></p>
         <div class="ai-console" aria-hidden="true">
           <div class="ai-console-bar">
             <span class="ai-dots"><i></i><i></i><i></i></span>
@@ -95,6 +100,7 @@
             <span><span class="ai-live"></span><span id="console-status">respuesta lista</span></span>
             <span id="console-tokens">42 tokens</span>
           </div>
+        </div>
         </div>
       </div>
     </header>
@@ -238,6 +244,43 @@
             <li>Seguimiento de tareas</li>
           </ul>
         </div>
+
+        <div class="ai-platforms-head">
+          <span class="ai-auto-title">Plataformas y agentes</span>
+          <p>Elijo la herramienta según el proyecto: desde flujos visuales hasta agentes autónomos que
+            trabajan por su cuenta. Con todas aplico los mismos límites: permisos mínimos, entornos
+            aislados y revisión humana antes de actuar.</p>
+        </div>
+        <div class="ai-platforms">
+          <article class="ai-tool ai-platform" style="--tool: #f7b98a;">
+            <div class="ai-tool-top"><span class="ai-tool-dot"></span><span class="ai-tool-role">orquestación de flujos</span></div>
+            <h3>n8n</h3>
+            <p>Plataforma de automatización con editor visual de nodos. Conecta cientos de apps y
+              servicios con pasos de IA, y se puede alojar en servidor propio.</p>
+            <ul class="ai-platform-tags"><li>low-code</li><li>autoalojable</li></ul>
+          </article>
+          <article class="ai-tool ai-platform" style="--tool: #3fbf8a;">
+            <div class="ai-tool-top"><span class="ai-tool-dot"></span><span class="ai-tool-role">agente que aprende</span></div>
+            <h3>Hermes Agent</h3>
+            <p>Agente de código abierto de Nous Research. Funciona en tu servidor, recuerda entre
+              sesiones y convierte las tareas que resuelve en habilidades reutilizables.</p>
+            <ul class="ai-platform-tags"><li>código abierto</li><li>memoria</li></ul>
+          </article>
+          <article class="ai-tool ai-platform" style="--tool: #8f88ff;">
+            <div class="ai-tool-top"><span class="ai-tool-dot"></span><span class="ai-tool-role">agente en tus apps</span></div>
+            <h3>OpenClaw</h3>
+            <p>Agente de código abierto que se conecta a WhatsApp, Telegram, Slack o el email y
+              ejecuta acciones reales desde la conversación.</p>
+            <ul class="ai-platform-tags"><li>código abierto</li><li>mensajería</li></ul>
+          </article>
+          <article class="ai-tool ai-platform" style="--tool: #ece9ff;">
+            <div class="ai-tool-top"><span class="ai-tool-dot"></span><span class="ai-tool-role">agentes siempre activos</span></div>
+            <h3>OpenAI Dots</h3>
+            <p>Agentes de ChatGPT que siguen trabajando cuando termina la conversación, con su propio
+              ordenador en la nube y reglas para pedir aprobación antes de actuar.</p>
+            <ul class="ai-platform-tags"><li>ChatGPT</li><li>nube</li></ul>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -349,8 +392,8 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=20261010"></script>
-  <script src="js/ia.js?v=20261010"></script>
+  <script src="js/main.js?v=20261012"></script>
+  <script src="js/ia.js?v=20261012"></script>
 </body>
 
 </html>
