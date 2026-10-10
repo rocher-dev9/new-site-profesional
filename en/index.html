@@ -22,7 +22,7 @@
     href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
 
-  <link rel="stylesheet" href="../css/styles.css?v=20261013" />
+  <link rel="stylesheet" href="../css/styles.css?v=20261014" />
 </head>
 
 <body>
@@ -328,19 +328,25 @@
           <a href="ai.html" class="btn ia-teaser-btn">Discover how I use AI →</a>
         </div>
 
-        <nav class="ia-teaser-panel" aria-label="Contents of the artificial intelligence section">
-          <span class="ia-teaser-panel-head">
-            <span class="ia-teaser-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-            inside IOI
-          </span>
-          <ol class="ia-teaser-steps">
-            <li><a href="ai.html#process"><span>01</span><strong>Process</strong><em>explore · generate · refine · measure</em></a></li>
-            <li><a href="ai.html#tools"><span>02</span><strong>Tools</strong><em class="ia-teaser-tools"><i style="background:#e8834a"></i>Claude <i style="background:#3fbf8a"></i>ChatGPT <i style="background:#8f88ff"></i>Gemini</em></a></li>
-            <li><a href="ai.html#automation"><span>03</span><strong>Automation</strong><em>n8n · Hermes · OpenClaw · Dots</em></a></li>
-            <li><a href="ai.html#agents"><span>04</span><strong>AI agents</strong><em>step-by-step tasks, supervised</em></a></li>
-            <li><a href="ai.html#principles"><span>05</span><strong>Principles</strong><em>judgment · transparency · purpose</em></a></li>
-          </ol>
-        </nav>
+        <div class="ioi-perch" data-ioi="home">
+          <button type="button" class="ioi-bot" aria-label="IOI, Roger's AI copilot. Click to say hi">
+            <canvas class="ioi-canvas" width="16" height="16" aria-hidden="true"></canvas>
+          </button>
+          <p class="ioi-bubble" role="status" aria-live="polite"></p>
+          <nav class="ia-teaser-panel" aria-label="Contents of the artificial intelligence section">
+            <span class="ia-teaser-panel-head">
+              <span class="ia-teaser-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              inside IOI
+            </span>
+            <ol class="ia-teaser-steps">
+              <li><a href="ai.html#process"><span>01</span><strong>Process</strong><em>explore · generate · refine · measure</em></a></li>
+              <li><a href="ai.html#tools"><span>02</span><strong>Tools</strong><em class="ia-teaser-tools"><i style="background:#e8834a"></i>Claude <i style="background:#3fbf8a"></i>ChatGPT <i style="background:#8f88ff"></i>Gemini</em></a></li>
+              <li><a href="ai.html#automation"><span>03</span><strong>Automation</strong><em>n8n · Hermes · OpenClaw · Dots</em></a></li>
+              <li><a href="ai.html#agents"><span>04</span><strong>AI agents</strong><em>step-by-step tasks, supervised</em></a></li>
+              <li><a href="ai.html#principles"><span>05</span><strong>Principles</strong><em>judgment · transparency · purpose</em></a></li>
+            </ol>
+          </nav>
+        </div>
       </div>
     </section>
 
@@ -446,7 +452,8 @@
     </div>
   </footer>
 
-  <script src="../js/main.js?v=20261013"></script>
+  <script src="../js/main.js?v=20261014"></script>
+  <script src="../js/ioi.js?v=20261014"></script>
 </body>
 
 </html>
