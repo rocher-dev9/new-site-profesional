@@ -241,12 +241,14 @@
     });
   }
 
-  // ─── Sobre mí: mano pixelada saludando ──────────────────────
-  var handCanvas = document.getElementById('hand-field');
+  // ─── Mano pixelada saludando (Sobre mí y portada) ───────────
+  // Cada <canvas class="hand-field"> dibuja su propia mano; data-cell fija el tamaño del píxel
+  document.querySelectorAll('.hand-field').forEach(initHand);
 
-  if (handCanvas && handCanvas.getContext) {
+  function initHand(handCanvas) {
+    if (!handCanvas.getContext) return;
     var hctx = handCanvas.getContext('2d');
-    var HCELL = 7, HDOT = 5;
+    var HCELL = Number(handCanvas.getAttribute('data-cell')) || 7, HDOT = HCELL - 2;
     var HW = 0, HH = 0, hcols = 0, hrows = 0, hRunning = false, hRaf = 0, hLast = 0, hInView = true;
     var hLevels = ['#e8e5fb', '#c9c4f9', '#8f88ff', '#5850ec', '#3f37d6'];
     var hBayer = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5];

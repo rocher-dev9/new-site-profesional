@@ -22,7 +22,7 @@
     href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
 
-  <link rel="stylesheet" href="../css/styles.css?v=20261014" />
+  <link rel="stylesheet" href="../css/styles.css?v=20261017" />
 </head>
 
 <body>
@@ -351,33 +351,46 @@
     </section>
 
     <!-- SOBRE MÍ (teaser) -->
-    <section id="about">
-      <div class="container about-teaser">
-        <div>
-          <span class="section-label">/ about me</span>
-          <h2 style="font-size: clamp(1.8rem, 3.6vw, 2.6rem); font-weight: 700; letter-spacing: -0.03em; margin-top: 10px;">
-            Roger Avellana.
-          </h2>
-          <p style="margin-top: 18px;">
-            Visual and digital designer with over eight years of experience in brand identity, UI/UX and digital communication projects. Currently expanding into digital marketing and communication strategy, with a special interest in the intersection between systems design and AI tools applied to the creative process.
-          </p>
-          <a href="about.html" class="btn-link">More about me, experience and education →</a>
-        </div>
-        <div>
-          <span class="section-label">Tools</span>
-          <div class="skills-wrap" style="margin-top: 16px;">
-            <span class="skill-tag">Adobe Photoshop</span>
-            <span class="skill-tag">Adobe Illustrator</span>
-            <span class="skill-tag">Adobe InDesign</span>
-            <span class="skill-tag">Figma</span>
-            <span class="skill-tag">Branding</span>
-            <span class="skill-tag">UI/UX Design</span>
-            <span class="skill-tag">Digital marketing</span>
-            <span class="skill-tag">Social media</span>
-            <span class="skill-tag">Claude AI</span>
-            <span class="skill-tag">ChatGPT</span>
-            <span class="skill-tag">Gemini</span>
-            <span class="skill-tag">Google Workspace</span>
+    <section id="about" class="me-section">
+      <div class="container">
+        <div class="me-card">
+          <div class="me-intro">
+            <span class="section-label">/ about me</span>
+            <div class="me-name">
+              <h2>Roger Avellana<em>.</em></h2>
+              <canvas class="hand-field me-hand" data-cell="4" role="img" aria-label="Pixel hand waving"></canvas>
+            </div>
+            <p class="me-role">Visual &amp; digital designer · Barcelona</p>
+            <p class="me-bio">
+              Over eight years creating brand identities, interfaces and digital communication. Now
+              expanding into digital marketing and strategy, with a special interest in how AI can
+              improve the creative process.
+            </p>
+            <dl class="me-facts">
+              <div><dt>+8</dt><dd>years of experience</dd></div>
+              <div><dt>4</dt><dd>organizations</dd></div>
+              <div><dt>3</dt><dd>degrees &amp; courses</dd></div>
+            </dl>
+            <div class="me-actions">
+              <a href="about.html" class="btn btn-primary">Get to know me →</a>
+              <a href="about.html#contact" class="btn btn-ghost">Let's talk</a>
+            </div>
+          </div>
+
+          <div class="me-panel">
+            <span class="me-panel-title">Career</span>
+            <ol class="me-timeline">
+              <li><span class="me-dot" aria-hidden="true"></span><div><strong>Intera</strong><span>Visual design &amp; digital strategy</span></div><time>2023–2026</time></li>
+              <li><span class="me-dot" aria-hidden="true"></span><div><strong>nVision Systems</strong><span>International trade fairs</span></div><time>2021–2023</time></li>
+              <li><span class="me-dot" aria-hidden="true"></span><div><strong>Sensing &amp; Control</strong><span>UI/UX · IoT dashboard</span></div><time>2019–2021</time></li>
+              <li><span class="me-dot" aria-hidden="true"></span><div><strong>Igualada City Council</strong><span>Municipal campaigns</span></div><time>2018–2019</time></li>
+            </ol>
+            <span class="me-panel-title">Tools</span>
+            <div class="me-tools">
+              <div class="me-tools-group"><span>Design</span><ul><li>Photoshop</li><li>Illustrator</li><li>InDesign</li><li>Figma</li><li>UI/UX</li></ul></div>
+              <div class="me-tools-group"><span>AI</span><ul><li>Claude</li><li>ChatGPT</li><li>Gemini</li></ul></div>
+              <div class="me-tools-group"><span>Marketing</span><ul><li>Branding</li><li>Digital marketing</li><li>Social media</li><li>Google Workspace</li></ul></div>
+            </div>
           </div>
         </div>
       </div>
@@ -452,8 +465,8 @@
     </div>
   </footer>
 
-  <script src="../js/main.js?v=20261014"></script>
-  <script src="../js/ioi.js?v=20261014"></script>
+  <script src="../js/main.js?v=20261017"></script>
+  <script src="../js/ioi.js?v=20261017"></script>
 </body>
 
 </html>

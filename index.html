@@ -22,7 +22,7 @@
     href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/styles.css?v=20261014" />
+  <link rel="stylesheet" href="css/styles.css?v=20261017" />
 </head>
 
 <body>
@@ -360,37 +360,46 @@
     </section>
 
     <!-- SOBRE MÍ (teaser) -->
-    <section id="sobre-mi">
-      <div class="container about-teaser">
-        <div>
-          <span class="section-label">/ sobre mí</span>
-          <h2 style="font-size: clamp(1.8rem, 3.6vw, 2.6rem); font-weight: 700; letter-spacing: -0.03em; margin-top: 10px;">
-            Roger Avellana.
-          </h2>
-          <p style="margin-top: 18px;">
-            Diseñador visual y digital con más de ocho años de experiencia en proyectos de
-            identidad de marca, UI/UX y comunicación digital. Actualmente ampliando el perfil
-            hacia el marketing digital y la estrategia de comunicación, con especial interés en
-            la intersección entre diseño de sistemas y herramientas de IA aplicadas al proceso
-            creativo.
-          </p>
-          <a href="about.html" class="btn-link">Más sobre mí, experiencia y educación →</a>
-        </div>
-        <div>
-          <span class="section-label">Herramientas</span>
-          <div class="skills-wrap" style="margin-top: 16px;">
-            <span class="skill-tag">Adobe Photoshop</span>
-            <span class="skill-tag">Adobe Illustrator</span>
-            <span class="skill-tag">Adobe InDesign</span>
-            <span class="skill-tag">Figma</span>
-            <span class="skill-tag">Branding</span>
-            <span class="skill-tag">UI/UX Design</span>
-            <span class="skill-tag">Marketing digital</span>
-            <span class="skill-tag">Redes sociales</span>
-            <span class="skill-tag">Claude AI</span>
-            <span class="skill-tag">ChatGPT</span>
-            <span class="skill-tag">Gemini</span>
-            <span class="skill-tag">Google Workspace</span>
+    <section id="sobre-mi" class="me-section">
+      <div class="container">
+        <div class="me-card">
+          <div class="me-intro">
+            <span class="section-label">/ sobre mí</span>
+            <div class="me-name">
+              <h2>Roger Avellana<em>.</em></h2>
+              <canvas class="hand-field me-hand" data-cell="4" role="img" aria-label="Mano pixelada saludando"></canvas>
+            </div>
+            <p class="me-role">Diseñador visual &amp; digital · Barcelona</p>
+            <p class="me-bio">
+              Más de ocho años creando identidades de marca, interfaces y comunicación digital. Ahora
+              amplío el perfil hacia el marketing digital y la estrategia, con un interés especial por
+              cómo la IA puede mejorar el proceso creativo.
+            </p>
+            <dl class="me-facts">
+              <div><dt>+8</dt><dd>años de experiencia</dd></div>
+              <div><dt>4</dt><dd>organizaciones</dd></div>
+              <div><dt>3</dt><dd>formaciones</dd></div>
+            </dl>
+            <div class="me-actions">
+              <a href="about.html" class="btn btn-primary">Conóceme mejor →</a>
+              <a href="about.html#contacto" class="btn btn-ghost">Hablemos</a>
+            </div>
+          </div>
+
+          <div class="me-panel">
+            <span class="me-panel-title">Trayectoria</span>
+            <ol class="me-timeline">
+              <li><span class="me-dot" aria-hidden="true"></span><div><strong>Intera</strong><span>Diseño visual &amp; estrategia digital</span></div><time>2023–2026</time></li>
+              <li><span class="me-dot" aria-hidden="true"></span><div><strong>nVision Systems</strong><span>Ferias internacionales</span></div><time>2021–2023</time></li>
+              <li><span class="me-dot" aria-hidden="true"></span><div><strong>Sensing &amp; Control</strong><span>UI/UX · Dashboard IoT</span></div><time>2019–2021</time></li>
+              <li><span class="me-dot" aria-hidden="true"></span><div><strong>Ayuntamiento de Igualada</strong><span>Campañas municipales</span></div><time>2018–2019</time></li>
+            </ol>
+            <span class="me-panel-title">Herramientas</span>
+            <div class="me-tools">
+              <div class="me-tools-group"><span>Diseño</span><ul><li>Photoshop</li><li>Illustrator</li><li>InDesign</li><li>Figma</li><li>UI/UX</li></ul></div>
+              <div class="me-tools-group"><span>IA</span><ul><li>Claude</li><li>ChatGPT</li><li>Gemini</li></ul></div>
+              <div class="me-tools-group"><span>Marketing</span><ul><li>Branding</li><li>Marketing digital</li><li>Redes sociales</li><li>Google Workspace</li></ul></div>
+            </div>
           </div>
         </div>
       </div>
@@ -474,8 +483,8 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=20261014"></script>
-  <script src="js/ioi.js?v=20261014"></script>
+  <script src="js/main.js?v=20261017"></script>
+  <script src="js/ioi.js?v=20261017"></script>
 </body>
 
 </html>
