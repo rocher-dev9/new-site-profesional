@@ -377,7 +377,7 @@
 .theme-ai .lang-switch a:hover { color: #fff; }
 .theme-ai .lang-switch a[aria-current="true"] { background: #fff; color: #0b0a16; }
 
-/* ─── Bit: criatura pixelada interactiva sentada sobre la consola ─── */
+/* ─── IOI: criatura pixelada interactiva sentada sobre la consola ─── */
 .ai-console-wrap { position: relative; padding-top: 112px; }
 .ai-bot {
   position: absolute; top: 2px; right: 36px; z-index: 2;

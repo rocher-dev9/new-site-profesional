@@ -301,7 +301,7 @@
     }
   }
 
-  // ─── Bit: criatura pixelada interactiva ─────────────────────
+  // ─── IOI: criatura pixelada interactiva ─────────────────────
   var bot = document.getElementById('ai-bot');
   var botCanvas = document.getElementById('ai-bot-canvas');
 
@@ -400,14 +400,14 @@
 
     // Clic: salta, se pone contento y dice algo
     var phrases = LANG === 'en' ? [
-      "Hi! I'm Bit, your AI copilot.",
+      "Hi! I'm IOI, Roger's AI copilot.",
       'AI proposes; you decide.',
       'Shall we automate something today?',
       'Thinking in pixels…',
       'Psst… try moving your cursor.',
       'I never skip the human review step.'
     ] : [
-      '¡Hola! Soy Bit, tu copiloto de IA.',
+      '¡Hola! Soy IOI, el copiloto de IA de Roger.',
       'La IA propone; tú decides.',
       '¿Automatizamos algo hoy?',
       'Pensando en píxeles…',
