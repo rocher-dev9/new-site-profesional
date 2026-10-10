@@ -368,6 +368,55 @@
     });
   }
 
+  // ─── Portada: índice lateral de secciones ───────────────────
+  var pageIndex = document.querySelector('.page-index');
+  if (pageIndex && 'IntersectionObserver' in window) {
+    var indexLinks = pageIndex.querySelectorAll('a');
+    var indexTargets = [];
+    indexLinks.forEach(function (link) {
+      var target = document.getElementById(link.getAttribute('href').slice(1));
+      if (target) indexTargets.push({ link: link, el: target });
+    });
+    // Marca como activa la sección que ocupa la franja central de la pantalla
+    var indexObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        indexTargets.forEach(function (item) {
+          item.link.setAttribute('aria-current', String(item.el === entry.target));
+        });
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    indexTargets.forEach(function (item) { indexObs.observe(item.el); });
+  }
+
+  // ─── Portada: botón volver arriba ───────────────────────────
+  var toTop = document.querySelector('.to-top');
+  if (toTop) {
+    var updateToTop = function () { toTop.classList.toggle('is-visible', window.scrollY > window.innerHeight); };
+    updateToTop();
+    window.addEventListener('scroll', updateToTop, { passive: true });
+  }
+
+  // ─── Carruseles deslizables (flechas) ───────────────────────
+  document.querySelectorAll('[data-carousel-prev], [data-carousel-next]').forEach(function (btn) {
+    var track = document.getElementById(btn.getAttribute('data-carousel-prev') || btn.getAttribute('data-carousel-next'));
+    if (!track) return;
+    var dir = btn.hasAttribute('data-carousel-next') ? 1 : -1;
+    btn.addEventListener('click', function () {
+      var card = track.firstElementChild;
+      var step = card ? card.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 0) : track.clientWidth;
+      track.scrollBy({ left: dir * step, behavior: reduceMotion ? 'auto' : 'smooth' });
+    });
+    // Desactiva la flecha al llegar a cada extremo
+    var sync = function () {
+      var max = track.scrollWidth - track.clientWidth - 2;
+      btn.disabled = dir < 0 ? track.scrollLeft <= 2 : track.scrollLeft >= max;
+    };
+    track.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', sync);
+    sync();
+  });
+
   // ─── Home: brillo del bloque IA que sigue al cursor ─────────
   var iaTeaser = document.querySelector('.ia-teaser');
   if (iaTeaser && !reduceMotion) {
