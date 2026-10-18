@@ -414,6 +414,16 @@
     sync();
   });
 
+  // ─── Home: la terminal de IOI "teclea" al entrar en pantalla ─
+  var ioiTerm = document.getElementById('ioi-term');
+  if (ioiTerm && !reduceMotion && 'IntersectionObserver' in window) {
+    ioiTerm.classList.add('is-ready');
+    var termObs = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) { ioiTerm.classList.add('is-typed'); termObs.disconnect(); }
+    }, { threshold: 0.45 });
+    termObs.observe(ioiTerm);
+  }
+
   // ─── Home: brillo del bloque IA que sigue al cursor ─────────
   var iaTeaser = document.querySelector('.ia-teaser');
   if (iaTeaser && !reduceMotion) {

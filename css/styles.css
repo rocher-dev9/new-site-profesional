@@ -1303,3 +1303,94 @@ a:hover > .px-arrow, a:focus-visible > .px-arrow { animation: px-nudge3 0.6s ste
   .hero-chat { padding: 16px 12px 10px 16px; border-radius: 14px; }
   .hc-mode { display: none; }
 }
+
+/* ─── Home: índice de IOI con aspecto de terminal ──────────── */
+.ioi-term {
+  position: relative; overflow: hidden; display: block;
+  background: #0d0b1e; color: #ece9ff; font-family: var(--mono);
+  border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 12px;
+  box-shadow: 0 30px 70px rgba(13, 10, 50, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+/* Líneas de barrido muy sutiles, como un monitor */
+.ioi-term::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 3px);
+}
+.it-bar {
+  display: flex; align-items: center; gap: 12px; padding: 11px 16px;
+  background: #171433; border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.it-dots { display: flex; gap: 6px; }
+.it-dots i { width: 10px; height: 10px; border-radius: 50%; background: #3a345f; }
+.it-dots i:nth-child(1) { background: #f7b98a; }
+.it-dots i:nth-child(2) { background: #c6a8ff; }
+.it-dots i:nth-child(3) { background: #3fbf8a; }
+.it-title { flex: 1; text-align: center; margin-right: 46px; font-size: 11.5px; color: rgba(236, 233, 255, 0.5); }
+.it-body { padding: 16px 16px 18px; font-size: 13px; line-height: 1.6; }
+.it-line { padding: 2px 6px; }
+.it-prompt { color: #8ff5d2; }
+.it-cmd { color: #fff; display: inline-block; vertical-align: bottom; white-space: nowrap; overflow: hidden; }
+.it-list { list-style: none; margin: 8px 0; }
+.it-list a {
+  position: relative; display: grid; grid-template-columns: 30px 150px 1fr auto; align-items: baseline; gap: 10px;
+  padding: 7px 6px; border-radius: 4px; color: inherit;
+  transition: background 0.15s steps(2);
+}
+.it-n { color: rgba(236, 233, 255, 0.35); }
+.it-dir { color: #c6a8ff; font-weight: 500; }
+.it-desc { color: rgba(236, 233, 255, 0.62); font-size: 12px; }
+.it-open { color: #0d0b1e; font-size: 11.5px; opacity: 0; }
+.it-list a:hover, .it-list a:focus-visible { background: #c6a8ff; outline: none; }
+.it-list a:hover .it-n, .it-list a:hover .it-dir, .it-list a:hover .it-desc,
+.it-list a:focus-visible .it-n, .it-list a:focus-visible .it-dir, .it-list a:focus-visible .it-desc { color: #0d0b1e; }
+.it-list a:hover .it-open, .it-list a:focus-visible .it-open { opacity: 1; }
+.it-cursor {
+  display: inline-block; width: 8px; height: 1.05em; vertical-align: -3px;
+  background: #8ff5d2; animation: caret 1s steps(1) infinite;
+}
+
+/* Tecleo al entrar en pantalla: comando, salida línea a línea y cursor */
+.ioi-term.is-ready .it-cmd { width: 0; }
+.ioi-term.is-ready .it-list li, .ioi-term.is-ready .it-end { opacity: 0; }
+.ioi-term.is-typed .it-cmd { animation: it-type 0.7s steps(var(--chars)) forwards; }
+.ioi-term.is-typed .it-list li { animation: it-show 0.01s steps(1) forwards; animation-delay: calc(0.9s + var(--i) * 0.16s); }
+.ioi-term.is-typed .it-end { animation: it-show 0.01s steps(1) forwards; animation-delay: 1.8s; }
+@keyframes it-type { from { width: 0; } to { width: calc(var(--chars) * 1ch); } }
+@keyframes it-show { to { opacity: 1; } }
+
+@media (max-width: 560px) {
+  .it-list a { grid-template-columns: 26px 1fr; row-gap: 2px; }
+  .it-desc { grid-column: 2; }
+  .it-open { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ioi-term.is-ready .it-cmd { width: auto; }
+  .ioi-term.is-ready .it-list li, .ioi-term.is-ready .it-end { opacity: 1; }
+  .it-cursor { animation: none; }
+}
+/* Ajuste de columnas de la terminal */
+.it-list a { grid-template-columns: 28px 140px minmax(0, 1fr); padding-right: 70px; }
+.it-open { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); }
+@media (max-width: 1150px) {
+  .it-list a { grid-template-columns: 28px minmax(0, 1fr); row-gap: 1px; }
+  .it-desc { grid-column: 2; }
+}
+@media (max-width: 560px) { .it-list a { padding-right: 6px; } }
+/* Terminal de IOI más panorámica */
+.ia-teaser .container { max-width: 1440px; }
+.ia-teaser-grid { grid-template-columns: 0.8fr 1.2fr; gap: 48px; }
+.it-body { padding: 18px 22px 20px; }
+.it-list a { grid-template-columns: 34px 170px minmax(0, 1fr); padding-top: 8px; padding-bottom: 8px; }
+.it-desc { font-size: 12.5px; }
+@media (max-width: 1150px) {
+  .it-list a { grid-template-columns: 34px 150px minmax(0, 1fr); row-gap: 0; }
+  .it-desc { grid-column: auto; }
+}
+@media (max-width: 900px) { .ia-teaser-grid { grid-template-columns: 1fr; } }
+@media (max-width: 620px) {
+  .it-list a { grid-template-columns: 26px minmax(0, 1fr); row-gap: 1px; padding-right: 6px; }
+  .it-desc { grid-column: 2; }
+}
+/* "→ abrir" se superpone al pasar el ratón, sin reservar espacio */
+.it-list a { padding-right: 12px; }
+.it-open { background: #c6a8ff; padding: 0 4px 0 14px; box-shadow: -10px 0 8px #c6a8ff; }
