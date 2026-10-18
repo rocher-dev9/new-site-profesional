@@ -44,6 +44,94 @@
     if (e.key === 'Escape') closeMenu();
   });
 
+  // ─── Cabecera: retícula de puntos que reacciona al cursor ────
+  var dotsCanvas = document.querySelector('.hero-dots');
+
+  if (dotsCanvas && dotsCanvas.getContext) {
+    var dctx = dotsCanvas.getContext('2d');
+    var dHero = dotsCanvas.parentElement;
+    var GAP = 22, RADIUS = 120;
+    var DW = 0, DH = 0, dRunning = false, dInView = true;
+    var dMouse = { x: -9999, y: -9999, s: 0, target: 0 }; // s: intensidad suavizada (0–1)
+    var canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+    function dResize() {
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      DW = dotsCanvas.clientWidth; DH = dotsCanvas.clientHeight;
+      dotsCanvas.width = DW * dpr; dotsCanvas.height = DH * dpr;
+      dctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    // Misma máscara que el CSS original: elipse centrada al 50% / 40% que se desvanece hacia los bordes
+    function maskAt(x, y) {
+      var nx = (x - DW * 0.5) / (DW * 0.5), ny = (y - DH * 0.4) / (DH * 0.6);
+      var r = Math.sqrt(nx * nx + ny * ny);
+      if (r <= 0.35) return 1;
+      if (r >= 0.8) return 0;
+      return 1 - (r - 0.35) / 0.45;
+    }
+
+    function dDraw() {
+      dctx.clearRect(0, 0, DW, DH);
+      var s = dMouse.s;
+      for (var y = GAP / 2; y < DH; y += GAP) {
+        for (var x = GAP / 2; x < DW; x += GAP) {
+          var m = maskAt(x, y);
+          var dx = x - dMouse.x, dy = y - dMouse.y;
+          var d = Math.sqrt(dx * dx + dy * dy);
+          var t = d < RADIUS ? (1 - d / RADIUS) * s : 0;
+          t = t * t * (3 - 2 * t); // suavizado
+          var alpha = Math.max(0.16 * m, (0.16 + t * 0.34) * Math.max(m, t));
+          if (alpha < 0.01) continue;
+          var px = x, py = y;
+          if (t > 0 && d > 0.1) { px += dx / d * t * 3; py += dy / d * t * 3; } // se aparta levemente del cursor
+          dctx.fillStyle = 'rgba(88, 80, 236,' + alpha.toFixed(3) + ')';
+          if (t > 0.4) {
+            // Cerca del cursor el punto se convierte en un píxel cuadrado
+            var size = Math.round(2 + t * 1.6);
+            dctx.fillRect(Math.round(px - size / 2), Math.round(py - size / 2), size, size);
+          } else {
+            dctx.beginPath(); dctx.arc(px, py, 1, 0, 6.283); dctx.fill();
+          }
+        }
+      }
+    }
+
+    function dFrame() {
+      dMouse.s += (dMouse.target - dMouse.s) * 0.12;
+      dDraw();
+      // Sigue animando hasta que la intensidad se estabiliza
+      if (Math.abs(dMouse.target - dMouse.s) > 0.005) requestAnimationFrame(dFrame);
+      else { dMouse.s = dMouse.target; dDraw(); dRunning = false; }
+    }
+    function dWake() { if (!dRunning && dInView) { dRunning = true; requestAnimationFrame(dFrame); } }
+
+    dResize();
+    dDraw();
+    dHero.classList.add('dots-live');
+
+    var dTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(dTimer);
+      dTimer = setTimeout(function () { dResize(); dDraw(); }, 150);
+    });
+
+    if (canHover && !reduceMotion) {
+      dHero.addEventListener('pointermove', function (e) {
+        var r = dotsCanvas.getBoundingClientRect();
+        dMouse.x = e.clientX - r.left; dMouse.y = e.clientY - r.top;
+        dMouse.target = 1;
+        if (dRunning) return;
+        dDraw();          // redibuja al instante con la nueva posición
+        dWake();
+      });
+      dHero.addEventListener('pointerleave', function () { dMouse.target = 0; dWake(); });
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) { dInView = entries[0].isIntersecting; }).observe(dotsCanvas);
+      }
+    }
+  }
+
   // ─── Cabecera: chat con texto de ejemplo que se escribe solo ─
   var chatInput = document.getElementById('hero-chat-input');
 

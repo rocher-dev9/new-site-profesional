@@ -1443,3 +1443,7 @@ a:hover > .px-arrow, a:focus-visible > .px-arrow { animation: px-nudge3 0.6s ste
 @media (min-width: 1440px) {
   .me-section .container, .ia-teaser .container { padding-left: 130px; padding-right: 130px; }
 }
+
+/* Retícula de puntos de la cabecera que reacciona al cursor (canvas) */
+.hero-dots { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+.hero.dots-live::before { display: none; } /* el canvas sustituye a la retícula de CSS */
