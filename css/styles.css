@@ -1394,3 +1394,52 @@ a:hover > .px-arrow, a:focus-visible > .px-arrow { animation: px-nudge3 0.6s ste
 /* "→ abrir" se superpone al pasar el ratón, sin reservar espacio */
 .it-list a { padding-right: 12px; }
 .it-open { background: #c6a8ff; padding: 0 4px 0 14px; box-shadow: -10px 0 8px #c6a8ff; }
+
+/* ─── Índice lateral numerado en estilo pixel ──────────────── */
+.page-index { right: 0; gap: 16px; align-items: flex-end; --pi: 88, 80, 236; }
+.page-index.on-dark { --pi: 255, 255, 255; }
+.page-index a { width: auto; height: auto; display: flex; align-items: center; gap: 10px; }
+.page-index a::after { content: none; }
+.page-index b {
+  font-family: 'Silkscreen', var(--mono); font-weight: 400; font-size: 14px; line-height: 1; letter-spacing: 0.04em;
+  color: rgba(var(--pi), 0.38); transition: color 0.2s steps(2), font-size 0.2s steps(2);
+}
+/* Línea de bloques pixel que crece a saltos */
+.page-index i {
+  display: block; height: 3px; width: 12px;
+  background: repeating-linear-gradient(90deg, currentColor 0 4px, transparent 4px 6px);
+  color: rgba(var(--pi), 0.3); transition: width 0.3s steps(6), color 0.2s steps(2);
+}
+.page-index a:hover b, .page-index a:focus-visible b { color: rgba(var(--pi), 0.8); }
+.page-index a:hover i, .page-index a:focus-visible i { width: 24px; color: rgba(var(--pi), 0.6); }
+.page-index a[aria-current="true"] b { color: rgb(var(--pi)); font-size: 17px; }
+.page-index a[aria-current="true"] i { width: 46px; color: rgb(var(--pi)); }
+.page-index:not(.on-dark) a[aria-current="true"] b, .page-index:not(.on-dark) a[aria-current="true"] i { color: var(--indigo); }
+/* Nombre de la sección al pasar el ratón */
+.page-index span { right: calc(100% + 6px); }
+.page-index a:hover span, .page-index a:focus-visible span { opacity: 1; transform: none; }
+/* Índice numerado algo más grande y visible */
+.page-index { gap: 22px; }
+.page-index b { font-size: 16px; }
+.page-index i { height: 4px; width: 14px; background: repeating-linear-gradient(90deg, currentColor 0 6px, transparent 6px 8px); }
+.page-index a:hover i, .page-index a:focus-visible i { width: 30px; }
+.page-index a[aria-current="true"] b { font-size: 21px; }
+.page-index a[aria-current="true"] i { width: 62px; }
+/* El índice numerado solo aparece donde hay margen libre; los bloques anchos le dejan espacio */
+@media (max-width: 1359px) {
+  .page-index { display: none; }
+  .to-top { display: flex; }
+}
+@media (min-width: 1360px) {
+  .me-section .container, .ia-teaser .container { padding-left: 110px; padding-right: 110px; }
+}
+@media (max-width: 1439px) {
+  .page-index { display: none; }
+  .to-top { display: flex; }
+}
+@media (min-width: 1360px) and (max-width: 1439px) {
+  .me-section .container, .ia-teaser .container { padding-left: 24px; padding-right: 24px; }
+}
+@media (min-width: 1440px) {
+  .me-section .container, .ia-teaser .container { padding-left: 130px; padding-right: 130px; }
+}
