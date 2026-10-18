@@ -159,6 +159,13 @@
   transition: width 1.6s var(--ease);
 }
 .ai-pipeline.is-visible::after { width: calc(100% - 56px); }
+/* Línea del proceso por bloques pixel que avanzan a saltos */
+.ai-pipeline::before, .ai-pipeline::after {
+  height: 4px; top: 72px;
+  -webkit-mask-image: repeating-linear-gradient(90deg, #000 0 8px, transparent 8px 12px);
+  mask-image: repeating-linear-gradient(90deg, #000 0 8px, transparent 8px 12px);
+}
+.ai-pipeline::after { transition: width 1.6s steps(24); }
 .ai-step {
   position: relative; z-index: 1;
   background: var(--ai-surface); border: 1px solid var(--ai-border);
@@ -377,50 +384,6 @@
 .theme-ai .lang-switch a:hover { color: #fff; }
 .theme-ai .lang-switch a[aria-current="true"] { background: #fff; color: #0b0a16; }
 
-/* ─── Bit: criatura pixelada interactiva sentada sobre la consola ─── */
-.ai-console-wrap { position: relative; padding-top: 112px; }
-.ai-bot {
-  position: absolute; top: 2px; right: 36px; z-index: 2;
-  width: 128px; height: 128px; padding: 0; border: none; background: none; cursor: pointer;
-  animation: ai-bot-bob 3.2s ease-in-out infinite;
-  filter: drop-shadow(0 0 18px rgba(143, 136, 255, 0.35));
-}
-.ai-bot-canvas { width: 100%; height: 100%; image-rendering: pixelated; image-rendering: crisp-edges; display: block; }
-.ai-bot:focus-visible { outline: 2px solid #c6a8ff; outline-offset: 6px; border-radius: 12px; }
-@keyframes ai-bot-bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-.ai-bot.is-jumping { animation: ai-bot-jump 0.55s cubic-bezier(.3, .7, .3, 1); }
-@keyframes ai-bot-jump {
-  0% { transform: translateY(0) scale(1, 1); }
-  15% { transform: translateY(4px) scale(1.08, 0.9); }
-  45% { transform: translateY(-34px) scale(0.95, 1.06); }
-  80% { transform: translateY(0) scale(1.05, 0.94); }
-  100% { transform: translateY(0) scale(1, 1); }
-}
-
-/* Bocadillo */
-.ai-bot-bubble {
-  position: absolute; top: -8px; right: 176px; z-index: 3; max-width: 230px;
-  padding: 10px 14px; border-radius: 14px 14px 4px 14px;
-  background: rgba(17, 15, 34, 0.92); border: 1px solid rgba(198, 168, 255, 0.45);
-  font-family: var(--mono); font-size: 12px; line-height: 1.5; color: var(--ai-text);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-  opacity: 0; transform: translateY(6px) scale(0.96); transform-origin: bottom right;
-  transition: opacity 0.25s, transform 0.25s var(--ease); pointer-events: none;
-}
-.ai-bot-bubble.is-visible { opacity: 1; transform: none; }
-
-@media (max-width: 560px) {
-  .ai-console-wrap { padding-top: 96px; }
-  .ai-bot { width: 104px; height: 104px; right: 16px; }
-  .ai-bot-bubble { right: 128px; max-width: 180px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .ai-bot, .ai-bot.is-jumping { animation: none; }
-}
-
 /* Automatización: plataformas y agentes */
 .ai-platforms-head { margin-top: 56px; max-width: 640px; }
 .ai-platforms-head p { margin-top: 10px; color: var(--ai-soft); font-size: 15px; line-height: 1.65; }
@@ -437,3 +400,34 @@
 .ai-platform .ai-platform-tags li::before { content: none; }
 @media (max-width: 1100px) { .ai-platforms { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .ai-platforms { grid-template-columns: 1fr; } }
+
+/* Estética pixel reforzada en tema oscuro */
+.theme-ai .section-label::before, .aip-label::before {
+  content: ''; display: inline-block; width: 6px; height: 6px; margin-right: 8px; vertical-align: 1px;
+  background: #c6a8ff; animation: px-label 1.6s steps(1) infinite;
+}
+.ai-btn:hover { box-shadow: 5px 5px 0 #f7b98a; }
+.ai-btn-ghost:hover { box-shadow: 5px 5px 0 #8f88ff; }
+.ai-pipeline::before, .ai-pipeline::after {
+  height: 6px; top: 71px;
+  -webkit-mask-image: repeating-linear-gradient(90deg, #000 0 10px, transparent 10px 14px);
+  mask-image: repeating-linear-gradient(90deg, #000 0 10px, transparent 10px 14px);
+}
+@media (prefers-reduced-motion: reduce) { .aip-label::before { animation: none; } }
+
+/* Botones con esquinas pixeladas en tema oscuro */
+.ai-btn, .ai-btn:hover { background: transparent; box-shadow: none; --btn-bg: var(--ai-grad); --btn-shadow: #f7b98a; color: #0b0a16; }
+.ai-btn-ghost, .ai-btn-ghost:hover { border: none; box-shadow: none; --btn-bg: rgba(255, 255, 255, 0.1); --btn-shadow: #8f88ff; color: var(--ai-text); }
+.theme-ai .mobile-cta .btn-ghost { --btn-bg: rgba(255, 255, 255, 0.1); --btn-shadow: #8f88ff; color: var(--ai-text); }
+.theme-ai .nav-links a.nav-ai[aria-current="page"]::after { background: #f7b98a; }
+
+/* Textura de píxeles claros en las tarjetas de IOI */
+.ai-tool::after, .ai-step::after, .ai-agent-type::after, .ai-node::after {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: radial-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1.4px) 0 0 / 6px 6px;
+  opacity: 0; transition: opacity 0.25s steps(3);
+}
+.ai-step, .ai-agent-type, .ai-node { position: relative; }
+.ai-tool:hover::after, .ai-step:hover::after, .ai-agent-type:hover::after, .ai-node:hover::after { opacity: 1; }
+/* Fondo sólido para que la sombra pixel no se transparente */
+.ai-btn-ghost, .ai-btn-ghost:hover, .theme-ai .mobile-cta .btn-ghost { --btn-bg: #1d1a38; }
