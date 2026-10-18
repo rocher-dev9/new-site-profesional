@@ -4,6 +4,7 @@
   // Idioma de la página (las versiones en inglés viven en /en/ con lang="en")
   var LANG = document.documentElement.lang === 'en' ? 'en' : 'es';
   function tr(es, en) { return LANG === 'en' ? en : es; }
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // ─── Nav: estado "scrolled" ──────────────────────────────────
   var nav = document.getElementById('nav');
@@ -43,76 +44,72 @@
     if (e.key === 'Escape') closeMenu();
   });
 
-  // ─── Hero: estudio creativo con IA ──────────────────────────
-  var aiText = document.getElementById('ai-text');
-  var aiOutput = document.getElementById('ai-output');
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // ─── Cabecera: chat con texto de ejemplo que se escribe solo ─
+  var chatInput = document.getElementById('hero-chat-input');
 
-  if (aiText && aiOutput && !reduceMotion) {
-    var aiFont = document.getElementById('ai-font');
-    var aiStatus = document.getElementById('ai-status');
-    var prompts = [
-      { text: tr('Diseña una identidad para una marca de café', 'Design an identity for a coffee brand'), font: tr('Serif editorial', 'Editorial serif'),
-        colors: ['#2d1e17', '#b86b3c', '#f2dfc7', '#7a8b5a'] },
-      { text: tr('Crea un pack de posts para el lanzamiento', 'Create a post pack for the launch'), font: tr('Sans geométrica', 'Geometric sans'),
-        colors: ['#5850ec', '#e8834a', '#fbe2c6', '#15121f'] },
-      { text: tr('Prototipa un dashboard IoT accesible', 'Prototype an accessible IoT dashboard'), font: tr('Sans técnica', 'Technical sans'),
-        colors: ['#0e8a5a', '#dcf3e8', '#15121f', '#e0a82e'] },
-      { text: tr('Plantea una campaña para redes sociales', 'Plan a social media campaign'), font: tr('Display rotunda', 'Bold display'),
-        colors: ['#d9482c', '#fbe2c6', '#7a5bd8', '#15121f'] }
-    ];
-    var i = 0;
+  if (chatInput) {
+    var EXAMPLES = LANG === 'en' ? {
+      branding: ['I need a visual identity for my coffee brand', 'I want to refresh the logo and brand guidelines of my studio'],
+      uiux: ['I want to redesign my company’s website', 'I need a clear dashboard for my business data'],
+      marketing: ['I’m looking for a social media campaign for a launch', 'I need a monthly content calendar for Instagram'],
+      ia: ['I’d like to automate my monthly reports with AI', 'I want an AI agent to help with customer replies'],
+      design: ['I need posters and banners for an event', 'I want a stand design for a trade fair']
+    } : {
+      branding: ['Necesito una identidad visual para mi marca de café', 'Quiero renovar el logo y la guía de marca de mi estudio'],
+      uiux: ['Quiero rediseñar la web de mi empresa', 'Necesito un dashboard claro para los datos de mi negocio'],
+      marketing: ['Busco una campaña de redes sociales para un lanzamiento', 'Necesito un calendario de contenidos mensual para Instagram'],
+      ia: ['Me gustaría automatizar los informes mensuales con IA', 'Quiero un agente de IA que ayude a responder a clientes'],
+      design: ['Necesito carteles y banners para un evento', 'Quiero el diseño de un stand para una feria']
+    };
+    var topics = Object.keys(EXAMPLES);
+    var queue = [];
+    topics.forEach(function (k) { queue.push(EXAMPLES[k][0]); });
+    topics.forEach(function (k) { queue.push(EXAMPLES[k][1]); });
+    var qi = 0, typingTimer = 0, paused = false;
 
-    function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+    function setPh(text) { chatInput.setAttribute('placeholder', text); }
 
-    function type(str) {
-      var n = 0;
-      return new Promise(function (resolve) {
-        (function step() {
-          aiText.textContent = str.slice(0, ++n);
-          if (n < str.length) setTimeout(step, 38 + Math.random() * 40);
-          else resolve();
-        })();
+    // Escribe la frase letra a letra, espera, la borra y pasa a la siguiente
+    function typeLoop(text) {
+      clearTimeout(typingTimer);
+      var n = 0, phase = 'type';
+      (function tick() {
+        if (paused) { typingTimer = setTimeout(tick, 400); return; }
+        if (phase === 'type') {
+          setPh(text.slice(0, ++n));
+          if (n >= text.length) { phase = 'hold'; typingTimer = setTimeout(tick, 2200); return; }
+          typingTimer = setTimeout(tick, 38 + Math.random() * 45);
+        } else if (phase === 'hold') {
+          phase = 'erase'; typingTimer = setTimeout(tick, 20);
+        } else {
+          setPh(text.slice(0, --n));
+          if (n <= 0) { qi = (qi + 1) % queue.length; typingTimer = setTimeout(function () { typeLoop(queue[qi]); }, 350); return; }
+          typingTimer = setTimeout(tick, 16);
+        }
+      })();
+    }
+
+    if (reduceMotion) {
+      setPh(queue[0]);
+    } else {
+      typeLoop(queue[0]);
+    }
+
+    // Se detiene mientras el visitante escribe o tiene el foco en el campo
+    chatInput.addEventListener('focus', function () { paused = true; });
+    chatInput.addEventListener('blur', function () { paused = chatInput.value.length > 0; });
+    chatInput.addEventListener('input', function () { paused = true; });
+
+    // Las píldoras cambian el tema de los ejemplos
+    document.querySelectorAll('.hc-chip').forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        var topic = chip.getAttribute('data-topic');
+        document.querySelectorAll('.hc-chip').forEach(function (c) { c.setAttribute('aria-pressed', String(c === chip)); });
+        queue = EXAMPLES[topic].slice();
+        qi = 0;
+        if (!chatInput.value) { paused = false; reduceMotion ? setPh(queue[0]) : typeLoop(queue[0]); }
       });
-    }
-
-    function erase() {
-      return new Promise(function (resolve) {
-        (function step() {
-          var s = aiText.textContent;
-          aiText.textContent = s.slice(0, -2);
-          if (aiText.textContent.length) setTimeout(step, 14);
-          else resolve();
-        })();
-      });
-    }
-
-    function apply(p) {
-      p.colors.forEach(function (c, k) { aiOutput.style.setProperty('--c' + (k + 1), c); });
-      aiFont.textContent = p.font;
-    }
-
-    function loop() {
-      var p = prompts[i];
-      return erase()
-        .then(function () { return type(p.text); })
-        .then(function () {
-          aiOutput.classList.add('is-loading');
-          aiStatus.parentNode.classList.add('is-busy');
-          aiStatus.textContent = tr('generando propuesta…', 'generating proposal…');
-          return wait(1300);
-        })
-        .then(function () {
-          apply(p);
-          aiOutput.classList.remove('is-loading');
-          aiStatus.parentNode.classList.remove('is-busy');
-          aiStatus.textContent = tr('propuesta lista', 'proposal ready');
-          return wait(3600);
-        })
-        .then(function () { i = (i + 1) % prompts.length; return loop(); });
-    }
-
-    wait(2400).then(function () { i = 1; loop(); });
+    });
   }
 
   // ─── Home: planeta de píxeles animado ───────────────────────

@@ -22,7 +22,7 @@
     href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
 
-  <link rel="stylesheet" href="../css/styles.css?v=20261025" />
+  <link rel="stylesheet" href="../css/styles.css?v=20261027" />
 </head>
 
 <body>
@@ -71,97 +71,35 @@
 
     <!-- HERO -->
     <header class="hero" id="top">
-      <div class="container hero-grid">
-        <div>
-          <span class="eyebrow">Design &amp; strategy</span>
-          <h1 class="hero-title">Design that communicates,<br /><em>strategy that connects.</em></h1>
-          <p class="hero-sub">
-            I help brands turn visual noise into clarity: sharp interfaces, consistent identities and communication that connects.
-          </p>
-          <div class="hero-actions">
-            <a href="work.html" class="btn btn-primary">See my work <svg class="px-arrow" viewBox="0 0 8 5" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><rect x="4" y="0" width="1" height="1"/><rect x="4" y="1" width="2" height="1"/><rect x="0" y="2" width="7" height="1"/><rect x="4" y="3" width="2" height="1"/><rect x="4" y="4" width="1" height="1"/></svg></a>
-            <a href="about.html" class="btn btn-ghost">Who am I?</a>
+      <div class="container hero-center">
+        <span class="eyebrow">Design &amp; strategy</span>
+        <h1 class="hero-title">Design that communicates,<br /><em>strategy that connects.</em></h1>
+        <p class="hero-sub">
+          I help brands turn visual noise into clarity: sharp interfaces, consistent identities and communication that connects.
+        </p>
+
+        <form class="hero-chat" id="hero-chat" onsubmit="return false;">
+          <label class="visually-hidden" for="hero-chat-input">Tell me about your project</label>
+          <textarea id="hero-chat-input" class="hc-input" rows="2" placeholder=""></textarea>
+          <div class="hc-toolbar">
+            <button type="button" class="hc-icon-btn" aria-label="Attach a file"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+            <div class="hc-tools-right">
+              <button type="button" class="hc-mode">Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+              <button type="button" class="hc-icon-btn" aria-label="Dictate with your voice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button>
+              <button type="submit" class="hc-send" aria-label="Send brief"><svg class="hc-send-ico" viewBox="0 0 7 7" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><rect x="2" y="0" width="5" height="1"/><rect x="6" y="1" width="1" height="4"/><rect x="4" y="2" width="1" height="1"/><rect x="3" y="3" width="1" height="1"/><rect x="2" y="4" width="1" height="1"/><rect x="1" y="5" width="1" height="1"/><rect x="0" y="6" width="1" height="1"/><rect x="5" y="1" width="1" height="1"/></svg></button>
+            </div>
           </div>
+        </form>
+
+        <div class="hc-chips" role="group" aria-label="Ideas to get started">
+            <button type="button" class="hc-chip" data-topic="branding"><svg viewBox="0 0 8 8" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><rect x="1" y="1" width="6" height="1"/><rect x="0" y="2" width="1" height="1"/><rect x="7" y="2" width="1" height="1"/><rect x="1" y="3" width="6" height="1"/><rect x="1" y="5" width="6" height="1" opacity=".6"/><rect x="1" y="7" width="6" height="1" opacity=".35"/></svg><span>Branding</span></button>
+            <button type="button" class="hc-chip" data-topic="uiux"><svg viewBox="0 0 8 8" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><rect x="0" y="0" width="8" height="1"/><rect x="0" y="1" width="1" height="4"/><rect x="7" y="1" width="1" height="4"/><rect x="0" y="5" width="8" height="1"/><rect x="2" y="2" width="3" height="1" opacity=".6"/><rect x="3" y="6" width="2" height="1"/><rect x="2" y="7" width="4" height="1"/></svg><span>UI/UX</span></button>
+            <button type="button" class="hc-chip" data-topic="marketing"><svg viewBox="0 0 8 8" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><rect x="6" y="0" width="2" height="1"/><rect x="4" y="1" width="4" height="1"/><rect x="2" y="2" width="5" height="1"/><rect x="0" y="3" width="5" height="1"/><rect x="3" y="4" width="2" height="1"/><rect x="3" y="5" width="1" height="2"/></svg><span>Marketing</span></button>
+            <button type="button" class="hc-chip" data-topic="ia"><svg viewBox="0 0 8 8" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><rect x="3" y="0" width="1" height="2"/><rect x="2" y="2" width="3" height="1"/><rect x="0" y="3" width="7" height="1"/><rect x="2" y="4" width="3" height="1"/><rect x="3" y="5" width="1" height="2"/><rect x="6" y="6" width="1" height="1" opacity=".6"/></svg><span>AI</span></button>
+            <button type="button" class="hc-chip" data-topic="design"><svg viewBox="0 0 8 8" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><rect x="6" y="0" width="2" height="1"/><rect x="5" y="1" width="2" height="1"/><rect x="4" y="2" width="2" height="1"/><rect x="3" y="3" width="2" height="1"/><rect x="2" y="4" width="2" height="1"/><rect x="1" y="5" width="2" height="1"/><rect x="0" y="6" width="1" height="1"/><rect x="2" y="7" width="1" height="1" opacity=".6"/><rect x="4" y="7" width="1" height="1" opacity=".6"/></svg><span>Visual design</span></button>
         </div>
 
-        <div class="hero-art" aria-hidden="true">
-          <div class="ai-glow"></div>
-          <div class="ai-card">
-            <div class="ai-bar">
-              <span class="ai-dots"><i></i><i></i><i></i></span>
-              <span class="ai-title">creative studio · AI</span>
-            </div>
-
-            <div class="ai-prompt">
-              <span class="ai-spark">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3l1.8 4.6L18 9l-4.2 1.4L12 15l-1.8-4.6L6 9l4.2-1.4L12 3z" />
-                  <path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8.8-2z" />
-                </svg>
-              </span>
-              <span class="ai-text"><span id="ai-text">Design an identity for a coffee brand</span><span class="ai-caret"></span></span>
-              <span class="ai-send">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M5 12h14M13 6l6 6-6 6" />
-                </svg>
-              </span>
-            </div>
-
-            <div class="ai-output" id="ai-output">
-              <div class="ai-tile ai-palette">
-                <span class="ai-label">palette</span>
-                <div class="sw"><i></i><i></i><i></i><i></i></div>
-              </div>
-              <div class="ai-tile ai-type">
-                <span class="ai-label">typography</span>
-                <strong>Aa</strong>
-                <small id="ai-font">Editorial serif</small>
-              </div>
-              <div class="ai-tile ai-ui">
-                <span class="ai-label">interface</span>
-                <div class="ui-mock"><b></b><b></b><b></b><span></span></div>
-              </div>
-              <div class="ai-tile ai-chart">
-                <span class="ai-label">campaign</span>
-                <div class="bars"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-              </div>
-            </div>
-
-            <div class="ai-status"><span class="pulse"></span><span id="ai-status">proposal ready</span></div>
-          </div>
-          <div class="hero-pills-wrap">
-            <div class="hero-pill hp-1"><span class="dot">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E8834A" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 19l7-7 3 3-7 7-3-3z" />
-                  <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
-                </svg>
-              </span>visual design</div>
-            <div class="hero-pill hp-2"><span class="dot">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5850EC" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 2l9 5-9 5-9-5 9-5z" />
-                  <path d="M3 12l9 5 9-5" />
-                  <path d="M3 17l9 5 9-5" />
-                </svg>
-              </span>branding</div>
-            <div class="hero-pill hp-3"><span class="dot">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E8834A" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4" width="18" height="14" rx="2" />
-                  <path d="M8 21h8M12 18v3" />
-                </svg>
-              </span>ui/ux</div>
-            <div class="hero-pill hp-4"><span class="dot">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5850EC" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 11l18-7-7 18-2-8-9-3z" />
-                </svg>
-              </span>marketing</div>
-          </div>
-        </div>
+        <p class="hero-links"><a href="work.html">See my work</a> <span aria-hidden="true">·</span> <a href="about.html">Who am I?</a></p>
       </div>
     </header>
 
@@ -479,9 +417,9 @@
     </div>
   </footer>
 
-  <script src="../js/main.js?v=20261025"></script>
-  <script src="../js/cursor.js?v=20261025"></script>
-  <script src="../js/ioi.js?v=20261025"></script>
+  <script src="../js/main.js?v=20261027"></script>
+  <script src="../js/cursor.js?v=20261027"></script>
+  <script src="../js/ioi.js?v=20261027"></script>
 </body>
 
 </html>
