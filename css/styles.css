@@ -1070,3 +1070,28 @@ section { padding: clamp(64px, 9vw, 112px) 0; }
   .swipe-hint { display: block; margin: -24px 0 14px; font-family: var(--mono); font-size: 11px; color: var(--muted); }
 }
 @media (prefers-reduced-motion: reduce) { .testi-grid.is-carousel { scroll-behavior: auto; } }
+
+/* ─── Cursor con estela de píxeles (solo con ratón) ─────────── */
+.has-cursor, .has-cursor * { cursor: none; }
+.has-cursor input, .has-cursor textarea, .has-cursor select, .has-cursor [contenteditable="true"] { cursor: auto; }
+.cursor-dot, .cursor-ring, .cursor-trail {
+  position: fixed; top: 0; left: 0; pointer-events: none;
+  opacity: 0; transition: opacity 0.25s; will-change: transform;
+  color: var(--indigo);
+}
+.cursor-light .cursor-dot, .cursor-light .cursor-ring, .cursor-light .cursor-trail { color: #fff; }
+.has-cursor.cursor-visible .cursor-dot, .has-cursor.cursor-visible .cursor-ring { opacity: 1; }
+.has-cursor.cursor-visible .cursor-trail { opacity: var(--trail-o, 0.4); }
+.has-cursor.cursor-text .cursor-dot, .has-cursor.cursor-text .cursor-ring, .has-cursor.cursor-text .cursor-trail { opacity: 0; }
+.cursor-dot { width: 6px; height: 6px; margin: -3px 0 0 -3px; background: currentColor; z-index: 10000; }
+.cursor-ring {
+  width: 30px; height: 30px; margin: -15px 0 0 -15px; z-index: 9999;
+  border: 1px solid; border-radius: 2px;
+  transition: opacity 0.25s, width 0.3s var(--ease), height 0.3s var(--ease), margin 0.3s var(--ease), background-color 0.3s;
+}
+.cursor-ring.is-hover {
+  width: 46px; height: 46px; margin: -23px 0 0 -23px;
+  background-color: color-mix(in srgb, currentColor 10%, transparent);
+}
+.cursor-ring.is-down { width: 22px; height: 22px; margin: -11px 0 0 -11px; }
+.cursor-trail { width: 4px; height: 4px; margin: -2px 0 0 -2px; background: currentColor; z-index: 9998; }
