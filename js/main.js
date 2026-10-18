@@ -453,7 +453,7 @@
         '<div class="deck-body"><strong></strong>' +
         '<div class="deck-steps">' + tr('<span>brief</span><span>concepto</span><span>diseño</span><span>entrega</span>',
           '<span>brief</span><span>concept</span><span>design</span><span>delivery</span>') + '</div>' +
-        '<div class="deck-progress"><i></i></div></div>');
+        '<div class="deck-progress"><i></i>' + pixelSegments(16) + '</div></div>');
       card.querySelector('strong').textContent = project.querySelector('h3').textContent;
       card.addEventListener('click', function () { focusProject(k); });
       deckStage.appendChild(card);
@@ -467,6 +467,13 @@
       deckDots.appendChild(dot);
       dots.push(dot);
     });
+
+    // Barra de progreso por bloques: cada segmento se enciende en su turno
+    function pixelSegments(n) {
+      var html = '';
+      for (var s = 0; s < n; s++) html += '<b style="--s:' + s + '"></b>';
+      return html;
+    }
 
     function show(next) {
       var prev = current;

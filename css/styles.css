@@ -1095,3 +1095,44 @@ section { padding: clamp(64px, 9vw, 112px) 0; }
 }
 .cursor-ring.is-down { width: 22px; height: 22px; margin: -11px 0 0 -11px; }
 .cursor-trail { width: 4px; height: 4px; margin: -2px 0 0 -2px; background: currentColor; z-index: 9998; }
+
+/* ─── Estética pixel en la interfaz ────────────────────────── */
+/* Iconos pixel animados (tarjetas de Servicios): movimiento fotograma a fotograma */
+.icon-badge svg.px-icon { width: 36px; height: 36px; image-rendering: pixelated; overflow: visible; }
+.px-icon .px-draw { opacity: 0; animation: px-draw 2.4s steps(1) infinite; animation-delay: calc(var(--d) * 0.3s); }
+@keyframes px-draw { 0% { opacity: 0; } 8%, 70% { opacity: 1; } 71%, 100% { opacity: 0; } }
+.px-icon .px-hop { animation: px-hop 1.6s steps(1) infinite; }
+@keyframes px-hop { 0%, 49% { transform: translateY(0); } 50%, 100% { transform: translateY(-1px); } }
+.px-icon .px-caret { animation: px-caret 1s steps(1) infinite; }
+@keyframes px-caret { 50% { opacity: 0; } }
+.px-icon .px-fly { animation: px-fly 1.8s steps(1) infinite; }
+@keyframes px-fly { 0%, 33% { transform: translate(0, 0); } 34%, 66% { transform: translate(1px, -1px); } 67%, 100% { transform: translate(0, -1px); } }
+.px-icon .px-trail { animation: px-draw 1.8s steps(1) infinite; animation-delay: calc(var(--d) * 0.25s); opacity: 0; }
+.px-icon .px-beat-icon { transform-box: fill-box; transform-origin: center; animation: px-beat-icon 1.4s steps(1) infinite; }
+@keyframes px-beat-icon { 0%, 49% { transform: scale(1); } 50%, 100% { transform: scale(0.82); } }
+.px-icon .px-spark { animation: px-caret 0.7s steps(1) infinite; }
+
+/* Flecha pixel en botones y enlaces de acción: avanza a saltos de 2 px al pasar el ratón */
+.px-arrow { width: 16px; height: 10px; flex-shrink: 0; vertical-align: -1px; shape-rendering: crispEdges; }
+a:hover > .px-arrow, a:focus-visible > .px-arrow { animation: px-nudge 0.5s steps(1) infinite; }
+@keyframes px-nudge { 0%, 49% { transform: translateX(0); } 50%, 100% { transform: translateX(2px); } }
+
+/* Barra de progreso de la baraja por bloques (16 segmentos que se encienden en su turno) */
+.deck-progress {
+  position: relative; height: 6px; border-radius: 0; background: none; overflow: visible;
+  display: grid; grid-template-columns: repeat(16, 1fr); gap: 2px;
+}
+.deck-progress i { position: absolute; inset: 0; width: 0; opacity: 0; } /* temporizador invisible */
+.deck-progress b { background: var(--lavender); }
+.deck-card.pos-0 .deck-progress b {
+  animation: deck-seg 0.01s steps(1) forwards;
+  animation-delay: calc((var(--s) + 1) * 0.2625s - 0.01s);
+}
+.work-deck:hover .deck-card.pos-0 .deck-progress b,
+.work-deck:focus-within .deck-card.pos-0 .deck-progress b { animation-play-state: paused; }
+@keyframes deck-seg { to { background: var(--deck-color, var(--indigo)); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .px-icon *, a:hover > .px-arrow { animation: none !important; }
+  .px-icon .px-draw, .px-icon .px-trail { opacity: 1; }
+}
