@@ -381,6 +381,8 @@
         indexTargets.forEach(function (item) {
           item.link.setAttribute('aria-current', String(item.el === entry.target));
         });
+        // Sobre el bloque azul de IOI el índice pasa a blanco
+        pageIndex.classList.toggle('on-dark', pageIndex.hasAttribute('data-dark') || entry.target.classList.contains('ia-teaser'));
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
     indexTargets.forEach(function (item) { indexObs.observe(item.el); });

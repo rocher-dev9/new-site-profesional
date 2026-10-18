@@ -431,3 +431,6 @@
 .ai-tool:hover::after, .ai-step:hover::after, .ai-agent-type:hover::after, .ai-node:hover::after { opacity: 1; }
 /* Fondo sólido para que la sombra pixel no se transparente */
 .ai-btn-ghost, .ai-btn-ghost:hover, .theme-ai .mobile-cta .btn-ghost { --btn-bg: #1d1a38; }
+
+/* Botón volver arriba en tema oscuro */
+.theme-ai .to-top { background: #ece9ff; color: #0b0a16; box-shadow: 0 10px 26px rgba(0, 0, 0, 0.4); }
