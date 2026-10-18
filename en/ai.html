@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Artificial intelligence · Roger Avellana</title>
-  <meta name="description" content="How Roger Avellana integrates artificial intelligence into design and marketing: process, tools, automation, AI agents and principles." />
+  <title>IOI · Artificial intelligence · Roger Avellana</title>
+  <meta name="description" content="How Roger Avellana integrates artificial intelligence into design and marketing: process, tools, automation (n8n, Hermes Agent, OpenClaw, OpenAI Dots), AI agents and principles." />
   <meta name="theme-color" content="#0b0a16" />
 
   <link rel="icon" href="../favicon.ico" sizes="32x32" />
@@ -21,8 +21,9 @@
     href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
 
-  <link rel="stylesheet" href="../css/styles.css?v=20261010" />
-  <link rel="stylesheet" href="../css/ia.css?v=20261010" />
+  <link href="https://fonts.googleapis.com/css2?family=Silkscreen&text=0123456789&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css?v=20261038" />
+  <link rel="stylesheet" href="../css/ia.css?v=20261038" />
 </head>
 
 <body class="theme-ai">
@@ -36,7 +37,7 @@
         <a href="index.html" class="nav-home" aria-label="Home" title="Home"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5L12 3l9 7.5" /><path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5" /></svg></a>
         <a href="services.html">Services</a>
         <a href="work.html">Work</a>
-        <a href="ai.html" class="nav-ai active" aria-current="page"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.6L18 9l-4.2 1.4L12 15l-1.8-4.6L6 9l4.2-1.4L12 3z" /><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8.8-2z" /></svg><span>AI</span></a>
+        <a href="ai.html" class="nav-ai active" aria-current="page"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.6L18 9l-4.2 1.4L12 15l-1.8-4.6L6 9l4.2-1.4L12 3z" /><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8.8-2z" /></svg><span>IOI</span></a>
         <a href="about.html">About</a>
         <div class="lang-switch" role="group" aria-label="Language"><a href="../ia.html" hreflang="es" lang="es">ES</a><a href="ai.html" hreflang="en" lang="en" aria-current="true">EN</a></div>
       </div>
@@ -48,7 +49,7 @@
     <a href="index.html" class="mobile-home" aria-label="Home" data-close><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5L12 3l9 7.5" /><path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5" /></svg></a>
     <a href="services.html" data-close>Services</a>
     <a href="work.html" data-close>Work</a>
-    <a href="ai.html" class="mobile-ai" data-close>AI <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.6L18 9l-4.2 1.4L12 15l-1.8-4.6L6 9l4.2-1.4L12 3z" /><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8.8-2z" /></svg></a>
+    <a href="ai.html" class="mobile-ai" data-close>IOI <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.6L18 9l-4.2 1.4L12 15l-1.8-4.6L6 9l4.2-1.4L12 3z" /><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8.8-2z" /></svg></a>
     <a href="about.html" data-close>About</a>
     <div class="mobile-cta">
       <a href="mailto:roger.ar123@gmail.com" class="btn btn-ghost">Email me</a>
@@ -56,21 +57,32 @@
     <div class="lang-switch" role="group" aria-label="Language"><a href="../ia.html" hreflang="es" lang="es">ES</a><a href="ai.html" hreflang="en" lang="en" aria-current="true">EN</a></div>
   </div>
 
+  <nav class="page-index on-dark" data-dark aria-label="Page sections">
+    <a href="#top"><b>01</b><i aria-hidden="true"></i><span>Intro</span></a>
+    <a href="#process"><b>02</b><i aria-hidden="true"></i><span>Process</span></a>
+    <a href="#tools"><b>03</b><i aria-hidden="true"></i><span>Tools</span></a>
+    <a href="#automation"><b>04</b><i aria-hidden="true"></i><span>Automation</span></a>
+    <a href="#agents"><b>05</b><i aria-hidden="true"></i><span>Agents</span></a>
+    <a href="#principles"><b>06</b><i aria-hidden="true"></i><span>Principles</span></a>
+    <a href="#contact"><b>07</b><i aria-hidden="true"></i><span>Contact</span></a>
+  </nav>
+  <a href="#top" class="to-top" aria-label="Back to top"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" /></svg></a>
+
   <main id="main">
 
     <!-- HERO IA -->
-    <header class="ai-hero">
+    <header class="ai-hero" id="top">
       <canvas class="neural-field" id="neural-field" aria-hidden="true"></canvas>
       <div class="ai-hero-grid-bg" aria-hidden="true"></div>
       <div class="container ai-hero-grid">
         <div>
-          <span class="ai-eyebrow"><span class="ai-live"></span>artificial intelligence · active mode</span>
+          <span class="ai-eyebrow"><span class="ai-live"></span>IOI · artificial intelligence · active mode</span>
           <h1 class="aip-title">Design with judgment.<br /><span class="ai-gradient-text">Accelerated by AI.</span></h1>
           <p class="ai-lead">
             I integrate artificial intelligence into the creative process, automate repetitive tasks and design agents that carry out work step by step. AI proposes; judgment decides.
           </p>
           <div class="ai-actions">
-            <a href="#process" class="btn ai-btn">See the process →</a>
+            <a href="#process" class="btn ai-btn">See the process <svg class="px-arrow" viewBox="0 0 8 5" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><rect x="4" y="0" width="1" height="1"/><rect x="4" y="1" width="2" height="1"/><rect x="0" y="2" width="7" height="1"/><rect x="4" y="3" width="2" height="1"/><rect x="4" y="4" width="1" height="1"/></svg></a>
             <a href="about.html#contact" class="btn ai-btn-ghost">Let's talk</a>
           </div>
           <dl class="ai-meta">
@@ -80,10 +92,15 @@
           </dl>
         </div>
 
+        <div class="ioi-perch" data-ioi="lab">
+          <button type="button" class="ioi-bot" aria-label="IOI, Roger's AI copilot. Click to say hi">
+            <canvas class="ioi-canvas" width="16" height="16" aria-hidden="true"></canvas>
+          </button>
+          <p class="ioi-bubble" role="status" aria-live="polite"></p>
         <div class="ai-console" aria-hidden="true">
           <div class="ai-console-bar">
             <span class="ai-dots"><i></i><i></i><i></i></span>
-            <span class="ai-console-title">roger@ai-studio ~</span>
+            <span class="ai-console-title">roger@ioi ~</span>
             <span class="ai-model" id="console-model">claude</span>
           </div>
           <div class="ai-console-body">
@@ -94,6 +111,7 @@
             <span><span class="ai-live"></span><span id="console-status">response ready</span></span>
             <span id="console-tokens">42 tokens</span>
           </div>
+        </div>
         </div>
       </div>
     </header>
@@ -229,6 +247,43 @@
             <li>Task tracking</li>
           </ul>
         </div>
+
+        <div class="ai-platforms-head">
+          <span class="ai-auto-title">Platforms &amp; agents</span>
+          <p>I choose the tool to fit the project: from visual workflows to autonomous agents that work
+            on their own. With all of them I apply the same limits: minimal permissions, isolated
+            environments and human review before acting.</p>
+        </div>
+        <div class="ai-platforms">
+          <article class="ai-tool ai-platform" style="--tool: #f7b98a;">
+            <div class="ai-tool-top"><span class="ai-tool-dot"></span><span class="ai-tool-role">workflow orchestration</span></div>
+            <h3>n8n</h3>
+            <p>Automation platform with a visual node editor. It connects hundreds of apps and services
+              with AI steps, and can be self-hosted.</p>
+            <ul class="ai-platform-tags"><li>low-code</li><li>self-hostable</li></ul>
+          </article>
+          <article class="ai-tool ai-platform" style="--tool: #3fbf8a;">
+            <div class="ai-tool-top"><span class="ai-tool-dot"></span><span class="ai-tool-role">agent that learns</span></div>
+            <h3>Hermes Agent</h3>
+            <p>Open-source agent by Nous Research. It runs on your server, remembers across sessions and
+              turns the tasks it solves into reusable skills.</p>
+            <ul class="ai-platform-tags"><li>open source</li><li>memory</li></ul>
+          </article>
+          <article class="ai-tool ai-platform" style="--tool: #8f88ff;">
+            <div class="ai-tool-top"><span class="ai-tool-dot"></span><span class="ai-tool-role">agent in your apps</span></div>
+            <h3>OpenClaw</h3>
+            <p>Open-source agent that connects to WhatsApp, Telegram, Slack or email and takes real
+              actions from the conversation.</p>
+            <ul class="ai-platform-tags"><li>open source</li><li>messaging</li></ul>
+          </article>
+          <article class="ai-tool ai-platform" style="--tool: #ece9ff;">
+            <div class="ai-tool-top"><span class="ai-tool-dot"></span><span class="ai-tool-role">always-on agents</span></div>
+            <h3>OpenAI Dots</h3>
+            <p>ChatGPT agents that keep working after the conversation ends, with their own cloud
+              computer and rules to ask for approval before acting.</p>
+            <ul class="ai-platform-tags"><li>ChatGPT</li><li>cloud</li></ul>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -315,7 +370,7 @@
           <h2>Shall we bring AI <span class="ai-gradient-text">to your brand?</span></h2>
           <p>Tell me about your project and let's see together where it can add the most: in the creative process, in content or in analysis.</p>
           <div class="ai-actions">
-            <a href="mailto:roger.ar123@gmail.com" class="btn ai-btn">Email me →</a>
+            <a href="mailto:roger.ar123@gmail.com" class="btn ai-btn">Email me <svg class="px-arrow" viewBox="0 0 8 5" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><rect x="4" y="0" width="1" height="1"/><rect x="4" y="1" width="2" height="1"/><rect x="0" y="2" width="7" height="1"/><rect x="4" y="3" width="2" height="1"/><rect x="4" y="4" width="1" height="1"/></svg></a>
             <a href="work.html" class="btn ai-btn-ghost">View projects</a>
           </div>
         </div>
@@ -331,8 +386,10 @@
     </div>
   </footer>
 
-  <script src="../js/main.js?v=20261010"></script>
-  <script src="../js/ia.js?v=20261010"></script>
+  <script src="../js/main.js?v=20261038"></script>
+  <script src="../js/cursor.js?v=20261038"></script>
+  <script src="../js/ia.js?v=20261038"></script>
+  <script src="../js/ioi.js?v=20261038"></script>
 </body>
 
 </html>
