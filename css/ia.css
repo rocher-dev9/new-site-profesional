@@ -400,3 +400,34 @@
 .ai-platform .ai-platform-tags li::before { content: none; }
 @media (max-width: 1100px) { .ai-platforms { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .ai-platforms { grid-template-columns: 1fr; } }
+
+/* Estética pixel reforzada en tema oscuro */
+.theme-ai .section-label::before, .aip-label::before {
+  content: ''; display: inline-block; width: 6px; height: 6px; margin-right: 8px; vertical-align: 1px;
+  background: #c6a8ff; animation: px-label 1.6s steps(1) infinite;
+}
+.ai-btn:hover { box-shadow: 5px 5px 0 #f7b98a; }
+.ai-btn-ghost:hover { box-shadow: 5px 5px 0 #8f88ff; }
+.ai-pipeline::before, .ai-pipeline::after {
+  height: 6px; top: 71px;
+  -webkit-mask-image: repeating-linear-gradient(90deg, #000 0 10px, transparent 10px 14px);
+  mask-image: repeating-linear-gradient(90deg, #000 0 10px, transparent 10px 14px);
+}
+@media (prefers-reduced-motion: reduce) { .aip-label::before { animation: none; } }
+
+/* Botones con esquinas pixeladas en tema oscuro */
+.ai-btn, .ai-btn:hover { background: transparent; box-shadow: none; --btn-bg: var(--ai-grad); --btn-shadow: #f7b98a; color: #0b0a16; }
+.ai-btn-ghost, .ai-btn-ghost:hover { border: none; box-shadow: none; --btn-bg: rgba(255, 255, 255, 0.1); --btn-shadow: #8f88ff; color: var(--ai-text); }
+.theme-ai .mobile-cta .btn-ghost { --btn-bg: rgba(255, 255, 255, 0.1); --btn-shadow: #8f88ff; color: var(--ai-text); }
+.theme-ai .nav-links a.nav-ai[aria-current="page"]::after { background: #f7b98a; }
+
+/* Textura de píxeles claros en las tarjetas de IOI */
+.ai-tool::after, .ai-step::after, .ai-agent-type::after, .ai-node::after {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: radial-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1.4px) 0 0 / 6px 6px;
+  opacity: 0; transition: opacity 0.25s steps(3);
+}
+.ai-step, .ai-agent-type, .ai-node { position: relative; }
+.ai-tool:hover::after, .ai-step:hover::after, .ai-agent-type:hover::after, .ai-node:hover::after { opacity: 1; }
+/* Fondo sólido para que la sombra pixel no se transparente */
+.ai-btn-ghost, .ai-btn-ghost:hover, .theme-ai .mobile-cta .btn-ghost { --btn-bg: #1d1a38; }
