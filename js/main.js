@@ -44,6 +44,94 @@
     if (e.key === 'Escape') closeMenu();
   });
 
+  // ─── Cabecera: retícula de puntos que reacciona al cursor ────
+  var dotsCanvas = document.querySelector('.hero-dots');
+
+  if (dotsCanvas && dotsCanvas.getContext) {
+    var dctx = dotsCanvas.getContext('2d');
+    var dHero = dotsCanvas.parentElement;
+    var GAP = 22, RADIUS = 120;
+    var DW = 0, DH = 0, dRunning = false, dInView = true;
+    var dMouse = { x: -9999, y: -9999, s: 0, target: 0 }; // s: intensidad suavizada (0–1)
+    var canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+    function dResize() {
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      DW = dotsCanvas.clientWidth; DH = dotsCanvas.clientHeight;
+      dotsCanvas.width = DW * dpr; dotsCanvas.height = DH * dpr;
+      dctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    // Misma máscara que el CSS original: elipse centrada al 50% / 40% que se desvanece hacia los bordes
+    function maskAt(x, y) {
+      var nx = (x - DW * 0.5) / (DW * 0.5), ny = (y - DH * 0.4) / (DH * 0.6);
+      var r = Math.sqrt(nx * nx + ny * ny);
+      if (r <= 0.35) return 1;
+      if (r >= 0.8) return 0;
+      return 1 - (r - 0.35) / 0.45;
+    }
+
+    function dDraw() {
+      dctx.clearRect(0, 0, DW, DH);
+      var s = dMouse.s;
+      for (var y = GAP / 2; y < DH; y += GAP) {
+        for (var x = GAP / 2; x < DW; x += GAP) {
+          var m = maskAt(x, y);
+          var dx = x - dMouse.x, dy = y - dMouse.y;
+          var d = Math.sqrt(dx * dx + dy * dy);
+          var t = d < RADIUS ? (1 - d / RADIUS) * s : 0;
+          t = t * t * (3 - 2 * t); // suavizado
+          var alpha = Math.max(0.16 * m, (0.16 + t * 0.34) * Math.max(m, t));
+          if (alpha < 0.01) continue;
+          var px = x, py = y;
+          if (t > 0 && d > 0.1) { px += dx / d * t * 3; py += dy / d * t * 3; } // se aparta levemente del cursor
+          dctx.fillStyle = 'rgba(88, 80, 236,' + alpha.toFixed(3) + ')';
+          if (t > 0.4) {
+            // Cerca del cursor el punto se convierte en un píxel cuadrado
+            var size = Math.round(2 + t * 1.6);
+            dctx.fillRect(Math.round(px - size / 2), Math.round(py - size / 2), size, size);
+          } else {
+            dctx.beginPath(); dctx.arc(px, py, 1, 0, 6.283); dctx.fill();
+          }
+        }
+      }
+    }
+
+    function dFrame() {
+      dMouse.s += (dMouse.target - dMouse.s) * 0.12;
+      dDraw();
+      // Sigue animando hasta que la intensidad se estabiliza
+      if (Math.abs(dMouse.target - dMouse.s) > 0.005) requestAnimationFrame(dFrame);
+      else { dMouse.s = dMouse.target; dDraw(); dRunning = false; }
+    }
+    function dWake() { if (!dRunning && dInView) { dRunning = true; requestAnimationFrame(dFrame); } }
+
+    dResize();
+    dDraw();
+    dHero.classList.add('dots-live');
+
+    var dTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(dTimer);
+      dTimer = setTimeout(function () { dResize(); dDraw(); }, 150);
+    });
+
+    if (canHover && !reduceMotion) {
+      dHero.addEventListener('pointermove', function (e) {
+        var r = dotsCanvas.getBoundingClientRect();
+        dMouse.x = e.clientX - r.left; dMouse.y = e.clientY - r.top;
+        dMouse.target = 1;
+        if (dRunning) return;
+        dDraw();          // redibuja al instante con la nueva posición
+        dWake();
+      });
+      dHero.addEventListener('pointerleave', function () { dMouse.target = 0; dWake(); });
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) { dInView = entries[0].isIntersecting; }).observe(dotsCanvas);
+      }
+    }
+  }
+
   // ─── Cabecera: chat con texto de ejemplo que se escribe solo ─
   var chatInput = document.getElementById('hero-chat-input');
 
@@ -367,25 +455,34 @@
 
   // ─── Portada: índice lateral de secciones ───────────────────
   var pageIndex = document.querySelector('.page-index');
-  if (pageIndex && 'IntersectionObserver' in window) {
+  if (pageIndex) {
     var indexLinks = pageIndex.querySelectorAll('a');
     var indexTargets = [];
     indexLinks.forEach(function (link) {
       var target = document.getElementById(link.getAttribute('href').slice(1));
       if (target) indexTargets.push({ link: link, el: target });
     });
-    // Marca como activa la sección que ocupa la franja central de la pantalla
-    var indexObs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        indexTargets.forEach(function (item) {
-          item.link.setAttribute('aria-current', String(item.el === entry.target));
-        });
-        // Sobre el bloque azul de IOI el índice pasa a blanco
-        pageIndex.classList.toggle('on-dark', pageIndex.hasAttribute('data-dark') || entry.target.classList.contains('ia-teaser'));
+    // Marca como activa la última sección (en orden) que cruza el centro de la pantalla;
+    // así funciona también con secciones anidadas (p. ej. Automatización dentro de Herramientas)
+    var indexTicking = false;
+    var updateIndex = function () {
+      indexTicking = false;
+      var mid = window.innerHeight * 0.5, active = null;
+      indexTargets.forEach(function (item) {
+        var r = item.el.getBoundingClientRect();
+        if (r.top <= mid && r.bottom > mid) active = item;
       });
-    }, { rootMargin: '-45% 0px -50% 0px' });
-    indexTargets.forEach(function (item) { indexObs.observe(item.el); });
+      if (window.scrollY < 80 && indexTargets.length) active = indexTargets[0]; // arriba del todo: siempre 01
+      if (!active) return;
+      indexTargets.forEach(function (item) { item.link.setAttribute('aria-current', String(item === active)); });
+      // Sobre fondos oscuros el índice pasa a blanco
+      pageIndex.classList.toggle('on-dark', pageIndex.hasAttribute('data-dark') || active.el.classList.contains('ia-teaser'));
+    };
+    window.addEventListener('scroll', function () {
+      if (!indexTicking) { indexTicking = true; requestAnimationFrame(updateIndex); }
+    }, { passive: true });
+    window.addEventListener('resize', updateIndex);
+    updateIndex();
   }
 
   // ─── Portada: botón volver arriba ───────────────────────────
@@ -424,6 +521,48 @@
       if (entries[0].isIntersecting) { ioiTerm.classList.add('is-typed'); termObs.disconnect(); }
     }, { threshold: 0.45 });
     termObs.observe(ioiTerm);
+  }
+
+  // ─── Servicios: demo de automatización con pestañas ─────────
+  var autoDemo = document.getElementById('auto-demo');
+  if (autoDemo) {
+    var ICON = function (slug) { return 'url(https://cdn.jsdelivr.net/npm/simple-icons@16.35.0/icons/' + slug + '.svg)'; };
+    var FLOWS = LANG === 'en' ? [
+      { n: [['googleforms', 'Google Forms', '1 · a brief comes in'], ['n8n', 'n8n + Claude', '2 · summarizes and sorts it'], ['notion', 'Notion', '3 · creates the project card']],
+        cap: 'Every incoming brief is summarized with AI and turned into a project card in Notion, with tasks and deadlines.' },
+      { n: [['googlesheets', 'Google Sheets', '1 · campaign metrics'], ['n8n', 'n8n + ChatGPT', '2 · analyzes and writes'], ['gmail', 'Gmail', '3 · sends the report']],
+        cap: 'Every Monday the campaign data is analyzed with AI and the client receives a clear report by email.' },
+      { n: [['figma', 'Figma', '1 · design approved'], ['n8n', 'n8n + Gemini', '2 · writes the copy'], ['instagram', 'Instagram', '3 · schedules the post']],
+        cap: 'When a design is approved, AI writes the copy for each channel and the post is left scheduled for review.' }
+    ] : [
+      { n: [['googleforms', 'Google Forms', '1 · llega un brief'], ['n8n', 'n8n + Claude', '2 · lo resume y clasifica'], ['notion', 'Notion', '3 · crea la ficha del proyecto']],
+        cap: 'Cada brief que llega se resume con IA y se convierte en una ficha de proyecto en Notion, con tareas y plazos.' },
+      { n: [['googlesheets', 'Google Sheets', '1 · métricas de la campaña'], ['n8n', 'n8n + ChatGPT', '2 · analiza y redacta'], ['gmail', 'Gmail', '3 · envía el informe']],
+        cap: 'Cada lunes los datos de la campaña se analizan con IA y el cliente recibe un informe claro por email.' },
+      { n: [['figma', 'Figma', '1 · diseño aprobado'], ['n8n', 'n8n + Gemini', '2 · escribe los copys'], ['instagram', 'Instagram', '3 · programa la publicación']],
+        cap: 'Cuando se aprueba un diseño, la IA redacta los copys por canal y la publicación queda programada para revisar.' }
+    ];
+    var adNodes = autoDemo.querySelectorAll('.ad-node');
+    var adFlow = autoDemo.querySelector('.ad-flow');
+    var adCap = autoDemo.querySelector('.ad-caption');
+    var adTabs = autoDemo.querySelectorAll('.ad-tab');
+
+    adTabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        var f = FLOWS[Number(tab.getAttribute('data-flow'))];
+        adTabs.forEach(function (x) { x.setAttribute('aria-selected', String(x === tab)); });
+        adFlow.classList.add('is-switching'); adCap.classList.add('is-switching');
+        setTimeout(function () {
+          adNodes.forEach(function (node, k) {
+            node.querySelector('.ad-ico').style.setProperty('--logo', ICON(f.n[k][0]));
+            node.querySelector('strong').textContent = f.n[k][1];
+            node.querySelector('small').textContent = f.n[k][2];
+          });
+          adCap.querySelector('.ad-caption-text').textContent = f.cap;
+          adFlow.classList.remove('is-switching'); adCap.classList.remove('is-switching');
+        }, reduceMotion ? 0 : 200);
+      });
+    });
   }
 
   // ─── Home: brillo del bloque IA que sigue al cursor ─────────
