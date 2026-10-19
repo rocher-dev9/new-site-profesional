@@ -1569,3 +1569,69 @@ a:hover > .px-arrow, a:focus-visible > .px-arrow { animation: px-nudge3 0.6s ste
 }
 .tools-base { margin-top: 32px; }
 .tools-base + .logo-band { margin-top: 12px; }
+
+/* ─── Servicios: demo de automatización (origen → n8n + IA → destino) ─── */
+.auto-demo {
+  margin-top: 40px; padding: clamp(24px, 3vw, 36px);
+  background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg);
+}
+.ad-head h3 { margin-top: 10px; font-size: clamp(1.4rem, 2.4vw, 1.8rem); font-weight: 800; letter-spacing: -0.03em; }
+.ad-head p { margin-top: 8px; max-width: 620px; color: var(--ink-soft); font-size: 15px; line-height: 1.6; }
+.ad-tabs { display: inline-flex; gap: 4px; padding: 4px; margin-top: 20px; background: var(--bg-soft); border: 1px solid var(--line); border-radius: 10px; }
+.ad-tab {
+  border: none; background: transparent; cursor: pointer; padding: 8px 16px; border-radius: 7px;
+  font: 600 13px var(--sans); color: var(--ink-soft); transition: background 0.2s, color 0.2s;
+}
+.ad-tab:hover { color: var(--ink); }
+.ad-tab[aria-selected="true"] { background: var(--indigo); color: #fff; }
+
+.ad-flow { display: flex; align-items: center; margin-top: 26px; }
+.ad-node {
+  flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px;
+  padding: 20px 14px; border-radius: 14px; background: var(--bg-soft); border: 1px solid var(--line);
+  animation: ad-step 4.5s steps(1) infinite;
+}
+.ad-node[data-step="2"] { animation-delay: 1.5s; }
+.ad-node[data-step="3"] { animation-delay: 3s; }
+/* Cada paso se ilumina en su turno */
+@keyframes ad-step {
+  0%, 33% { border-color: var(--indigo); box-shadow: 4px 4px 0 var(--indigo); background: #fff; }
+  34%, 100% { border-color: var(--line); box-shadow: none; background: var(--bg-soft); }
+}
+.ad-node--hub { background: var(--lavender); }
+.ad-ico {
+  width: 34px; height: 34px; background: var(--ink);
+  -webkit-mask: var(--logo) center / contain no-repeat; mask: var(--logo) center / contain no-repeat;
+}
+.ad-node--hub .ad-ico { background: #EA4B71; }
+.ad-node strong { font-size: 15px; letter-spacing: -0.01em; }
+.ad-node small { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); }
+
+/* Conexión con paquetes pixel que viajan */
+.ad-link { position: relative; flex: 0 0 70px; height: 4px; align-self: center;
+  background: repeating-linear-gradient(90deg, var(--lavender-deep) 0 6px, transparent 6px 9px); }
+.ad-link i {
+  position: absolute; top: -3px; left: 0; width: 10px; height: 10px; background: var(--indigo);
+  animation: ad-packet 1.5s steps(8) infinite;
+}
+.ad-link i:nth-child(2) { animation-delay: 0.5s; opacity: 0.6; }
+.ad-link i:nth-child(3) { animation-delay: 1s; opacity: 0.35; }
+@keyframes ad-packet { from { left: 0; } to { left: calc(100% - 10px); } }
+
+.ad-caption { margin-top: 20px; font-family: var(--mono); font-size: 13px; color: var(--ink); line-height: 1.6; }
+.ad-caption .tv-prompt { color: var(--indigo); }
+.ad-flow.is-switching .ad-node strong, .ad-flow.is-switching .ad-node small, .ad-caption.is-switching { opacity: 0; }
+.ad-node strong, .ad-node small, .ad-caption { transition: opacity 0.2s; }
+.ad-more { margin-top: 16px; font-size: 14px; }
+
+@media (max-width: 700px) {
+  .ad-flow { flex-direction: column; align-items: stretch; }
+  .ad-link { flex: 0 0 36px; width: 4px; height: auto; align-self: center;
+    background: repeating-linear-gradient(180deg, var(--lavender-deep) 0 6px, transparent 6px 9px); }
+  .ad-link i { top: 0; left: -3px; animation-name: ad-packet-v; }
+  @keyframes ad-packet-v { from { top: 0; } to { top: calc(100% - 10px); } }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ad-node, .ad-link i { animation: none; }
+  .ad-link i:nth-child(n+2) { display: none; }
+}

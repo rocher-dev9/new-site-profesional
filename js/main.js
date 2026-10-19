@@ -514,6 +514,48 @@
     termObs.observe(ioiTerm);
   }
 
+  // ─── Servicios: demo de automatización con pestañas ─────────
+  var autoDemo = document.getElementById('auto-demo');
+  if (autoDemo) {
+    var ICON = function (slug) { return 'url(https://cdn.jsdelivr.net/npm/simple-icons@16.35.0/icons/' + slug + '.svg)'; };
+    var FLOWS = LANG === 'en' ? [
+      { n: [['googleforms', 'Google Forms', '1 · a brief comes in'], ['n8n', 'n8n + Claude', '2 · summarizes and sorts it'], ['notion', 'Notion', '3 · creates the project card']],
+        cap: 'Every incoming brief is summarized with AI and turned into a project card in Notion, with tasks and deadlines.' },
+      { n: [['googlesheets', 'Google Sheets', '1 · campaign metrics'], ['n8n', 'n8n + ChatGPT', '2 · analyzes and writes'], ['gmail', 'Gmail', '3 · sends the report']],
+        cap: 'Every Monday the campaign data is analyzed with AI and the client receives a clear report by email.' },
+      { n: [['figma', 'Figma', '1 · design approved'], ['n8n', 'n8n + Gemini', '2 · writes the copy'], ['instagram', 'Instagram', '3 · schedules the post']],
+        cap: 'When a design is approved, AI writes the copy for each channel and the post is left scheduled for review.' }
+    ] : [
+      { n: [['googleforms', 'Google Forms', '1 · llega un brief'], ['n8n', 'n8n + Claude', '2 · lo resume y clasifica'], ['notion', 'Notion', '3 · crea la ficha del proyecto']],
+        cap: 'Cada brief que llega se resume con IA y se convierte en una ficha de proyecto en Notion, con tareas y plazos.' },
+      { n: [['googlesheets', 'Google Sheets', '1 · métricas de la campaña'], ['n8n', 'n8n + ChatGPT', '2 · analiza y redacta'], ['gmail', 'Gmail', '3 · envía el informe']],
+        cap: 'Cada lunes los datos de la campaña se analizan con IA y el cliente recibe un informe claro por email.' },
+      { n: [['figma', 'Figma', '1 · diseño aprobado'], ['n8n', 'n8n + Gemini', '2 · escribe los copys'], ['instagram', 'Instagram', '3 · programa la publicación']],
+        cap: 'Cuando se aprueba un diseño, la IA redacta los copys por canal y la publicación queda programada para revisar.' }
+    ];
+    var adNodes = autoDemo.querySelectorAll('.ad-node');
+    var adFlow = autoDemo.querySelector('.ad-flow');
+    var adCap = autoDemo.querySelector('.ad-caption');
+    var adTabs = autoDemo.querySelectorAll('.ad-tab');
+
+    adTabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        var f = FLOWS[Number(tab.getAttribute('data-flow'))];
+        adTabs.forEach(function (x) { x.setAttribute('aria-selected', String(x === tab)); });
+        adFlow.classList.add('is-switching'); adCap.classList.add('is-switching');
+        setTimeout(function () {
+          adNodes.forEach(function (node, k) {
+            node.querySelector('.ad-ico').style.setProperty('--logo', ICON(f.n[k][0]));
+            node.querySelector('strong').textContent = f.n[k][1];
+            node.querySelector('small').textContent = f.n[k][2];
+          });
+          adCap.querySelector('.ad-caption-text').textContent = f.cap;
+          adFlow.classList.remove('is-switching'); adCap.classList.remove('is-switching');
+        }, reduceMotion ? 0 : 200);
+      });
+    });
+  }
+
   // ─── Home: brillo del bloque IA que sigue al cursor ─────────
   var iaTeaser = document.querySelector('.ia-teaser');
   if (iaTeaser && !reduceMotion) {
