@@ -455,25 +455,34 @@
 
   // ─── Portada: índice lateral de secciones ───────────────────
   var pageIndex = document.querySelector('.page-index');
-  if (pageIndex && 'IntersectionObserver' in window) {
+  if (pageIndex) {
     var indexLinks = pageIndex.querySelectorAll('a');
     var indexTargets = [];
     indexLinks.forEach(function (link) {
       var target = document.getElementById(link.getAttribute('href').slice(1));
       if (target) indexTargets.push({ link: link, el: target });
     });
-    // Marca como activa la sección que ocupa la franja central de la pantalla
-    var indexObs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        indexTargets.forEach(function (item) {
-          item.link.setAttribute('aria-current', String(item.el === entry.target));
-        });
-        // Sobre el bloque azul de IOI el índice pasa a blanco
-        pageIndex.classList.toggle('on-dark', pageIndex.hasAttribute('data-dark') || entry.target.classList.contains('ia-teaser'));
+    // Marca como activa la última sección (en orden) que cruza el centro de la pantalla;
+    // así funciona también con secciones anidadas (p. ej. Automatización dentro de Herramientas)
+    var indexTicking = false;
+    var updateIndex = function () {
+      indexTicking = false;
+      var mid = window.innerHeight * 0.5, active = null;
+      indexTargets.forEach(function (item) {
+        var r = item.el.getBoundingClientRect();
+        if (r.top <= mid && r.bottom > mid) active = item;
       });
-    }, { rootMargin: '-45% 0px -50% 0px' });
-    indexTargets.forEach(function (item) { indexObs.observe(item.el); });
+      if (window.scrollY < 80 && indexTargets.length) active = indexTargets[0]; // arriba del todo: siempre 01
+      if (!active) return;
+      indexTargets.forEach(function (item) { item.link.setAttribute('aria-current', String(item === active)); });
+      // Sobre fondos oscuros el índice pasa a blanco
+      pageIndex.classList.toggle('on-dark', pageIndex.hasAttribute('data-dark') || active.el.classList.contains('ia-teaser'));
+    };
+    window.addEventListener('scroll', function () {
+      if (!indexTicking) { indexTicking = true; requestAnimationFrame(updateIndex); }
+    }, { passive: true });
+    window.addEventListener('resize', updateIndex);
+    updateIndex();
   }
 
   // ─── Portada: botón volver arriba ───────────────────────────
