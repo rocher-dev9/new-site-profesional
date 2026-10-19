@@ -1645,3 +1645,45 @@ a:hover > .px-arrow, a:focus-visible > .px-arrow { animation: px-nudge3 0.6s ste
 .brand:hover .brand-hand, .brand:focus-visible .brand-hand { animation: bh-tap 0.5s steps(1) infinite; }
 @keyframes bh-tap { 0%, 49% { transform: translateY(0); } 50%, 100% { transform: translateY(2px); } }
 @media (prefers-reduced-motion: reduce) { .brand:hover .brand-hand { animation: none; } }
+
+/* ─── Menú en cápsula con iconos minimalistas ──────────────── */
+.nav-links { gap: 14px; }
+.nav-pill {
+  display: flex; align-items: center; gap: 2px; padding: 5px;
+  background: #fff; border: 1px solid rgba(21, 18, 31, 0.06); border-radius: 999px;
+  box-shadow: 0 14px 40px rgba(52, 44, 140, 0.12), 0 1px 3px rgba(21, 18, 31, 0.06);
+}
+.nav-links .nv-item {
+  display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px 8px 14px; border-radius: 999px;
+  font: 500 14px var(--sans); color: var(--ink); opacity: 1;
+  transition: background 0.2s, color 0.2s;
+}
+.nv-ico { width: 18px; height: 18px; flex-shrink: 0; }
+.nav-links .nv-item:hover { background: var(--bg-soft); }
+.nav-links .nv-item.is-active { background: var(--lavender); }
+.nav-links .nv-item.is-active .nv-ico { color: var(--indigo); }
+/* IOI mantiene su degradado */
+.nv-ai .nv-ico { color: var(--orange); }
+.nv-ai span {
+  font-weight: 700; background: linear-gradient(90deg, var(--indigo), var(--orange));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+/* Menú móvil con iconos */
+.mobile-menu a.mobile-item { display: inline-flex; align-items: center; gap: 14px; }
+.mv-ico { width: 26px; height: 26px; flex-shrink: 0; color: var(--indigo); }
+.mobile-menu a.mobile-ai .mv-ico { color: var(--orange); }
+@media (max-width: 1080px) {
+  .nav-links .nv-item { padding: 8px 12px 8px 11px; gap: 7px; }
+}
+
+/* Índice numerado compacto en portátiles (1280–1439 px): visible sin solapar el contenido */
+@media (min-width: 1280px) and (max-width: 1439px) {
+  .page-index { display: flex; gap: 16px; }
+  .to-top { display: none; }
+  .page-index b { font-size: 13px; }
+  .page-index i { width: 0; }
+  .page-index a:hover i, .page-index a:focus-visible i { width: 14px; }
+  .page-index a[aria-current="true"] b { font-size: 16px; }
+  .page-index a[aria-current="true"] i { width: 26px; }
+  .me-section .container, .ia-teaser .container { padding-left: 24px; padding-right: 84px; }
+}

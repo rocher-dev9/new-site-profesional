@@ -434,3 +434,16 @@
 
 /* Botón volver arriba en tema oscuro */
 .theme-ai .to-top { background: #ece9ff; color: #0b0a16; box-shadow: 0 10px 26px rgba(0, 0, 0, 0.4); }
+
+/* Menú en cápsula sobre tema oscuro */
+.theme-ai .nav-pill {
+  background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+}
+.theme-ai .nav-links .nv-item { color: var(--ai-text); }
+.theme-ai .nav-links .nv-item:hover { background: rgba(255, 255, 255, 0.08); }
+.theme-ai .nav-links .nv-item.is-active { background: rgba(198, 168, 255, 0.2); }
+.theme-ai .nav-links .nv-item.is-active .nv-ico { color: #c6a8ff; }
+.theme-ai .nv-ai span { background: var(--ai-grad); -webkit-background-clip: text; background-clip: text; }
+.theme-ai .mv-ico { color: #c6a8ff; }
