@@ -16,7 +16,7 @@
   var HOVER_SEL = 'a, button, [role="button"], label, summary, .project-card, .deck-card, .feature-card, .ai-tool, .ai-agent-type, .ioi-bot, [tabindex]:not([tabindex="-1"])';
   var TEXT_SEL = 'input, textarea, select, [contenteditable="true"]';
   // Zonas oscuras donde el cursor pasa a ser claro
-  var DARK_SEL = '.theme-ai, .ia-teaser, .project-cover, .btn-primary, .ai-btn, .to-top';
+  var DARK_SEL = '.theme-ai, .ia-teaser, .project-cover, .btn-primary, .ai-btn, .to-top, .case-back-float, .case-quote, .cg-type';
 
   function make(cls) {
     var el = document.createElement('div');

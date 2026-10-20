@@ -493,6 +493,14 @@
     window.addEventListener('scroll', updateToTop, { passive: true });
   }
 
+  // ─── Casos de estudio: botón flotante para volver a Trabajo ──
+  var caseBack = document.querySelector('.case-back-float');
+  if (caseBack) {
+    var updateCaseBack = function () { caseBack.classList.toggle('is-visible', window.scrollY > 420); };
+    updateCaseBack();
+    window.addEventListener('scroll', updateCaseBack, { passive: true });
+  }
+
   // ─── Carruseles deslizables (flechas) ───────────────────────
   document.querySelectorAll('[data-carousel-prev], [data-carousel-next]').forEach(function (btn) {
     var track = document.getElementById(btn.getAttribute('data-carousel-prev') || btn.getAttribute('data-carousel-next'));
