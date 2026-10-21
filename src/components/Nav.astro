@@ -1,0 +1,48 @@
+---
+// Menú principal (cápsula con iconos) y menú móvil, comunes a todas las páginas
+import BrandHand from './BrandHand.astro';
+import NavIcon from './NavIcon.astro';
+import LangSwitch from './LangSwitch.astro';
+import { rutas, rel, type Lang, type Seccion } from '../i18n/rutas';
+import { useT } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  pagina: string;                 // ruta de la página actual, p. ej. "en/work.html"
+  activa?: Seccion;               // apartado marcado en el menú
+  actual?: boolean;               // false en subpáginas (casos): se marca sin aria-current
+  cambio: Record<Lang, string>;   // destino del selector ES/EN
+}
+const { lang, pagina, activa, actual = true, cambio } = Astro.props;
+const t = useT(lang);
+const items: Seccion[] = ['inicio', 'entorno', 'trabajo', 'ioi', 'sobreMi'];
+const href = (s: Seccion) => rel(pagina, rutas[s][lang]);
+const mail = 'mailto:roger.ar123@gmail.com';
+// En la portada el logo sube al principio de la página
+const enPortada = activa === 'inicio';
+---
+<!-- NAV -->
+<nav class="nav" id="nav" aria-label={t('nav.aria')}>
+  <div class="container nav-row">
+    <a href={enPortada ? '#top' : href('inicio')} class="brand" id={enPortada ? 'brand-link' : undefined} aria-label={t('nav.marca')} title="Roger Avellana"><BrandHand /></a>
+    <div class="nav-links">
+      <div class="nav-pill">
+        {items.map((s) => (
+          <a href={href(s)} class:list={['nv-item', { 'nv-ai': s === 'ioi', 'is-active': s === activa }]} aria-current={s === activa && actual ? 'page' : undefined}><NavIcon name={s} class="nv-ico" /><span>{t(`nav.${s}`)}</span></a>
+        ))}
+      </div>
+      <LangSwitch lang={lang} pagina={pagina} cambio={cambio} />
+    </div>
+    <button class="nav-burger" id="burger" aria-expanded="false" aria-controls="mobile-menu">{t('nav.menu')}</button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  {items.map((s) => (
+    <a href={href(s)} class:list={['mobile-item', { 'mobile-ai': s === 'ioi' }]} data-close><NavIcon name={s} class="mv-ico" />{t(`nav.${s}`)}</a>
+  ))}
+  <div class="mobile-cta">
+    <a href={mail} class="btn btn-ghost">{t('nav.email')}</a>
+  </div>
+  <LangSwitch lang={lang} pagina={pagina} cambio={cambio} />
+</div>

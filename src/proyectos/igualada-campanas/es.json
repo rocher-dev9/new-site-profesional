@@ -1,0 +1,106 @@
+{
+  "url": "igualada-campanas",
+  "num": 2,
+  "color": "#D9482C",
+  "titulo": "Ayuntamiento de Igualada, campañas · Roger Avellana",
+  "descripcion": "Caso de estudio: campañas municipales para el Ayuntamiento de Igualada. Reto, proceso, entregables y resultados.",
+  "categoria": "Marketing",
+  "h1": "Ayuntamiento de Igualada: campañas que",
+  "h1Destacado": "la ciudad entiende.",
+  "entradilla": "Durante dos años diseñé las campañas municipales del Ayuntamiento de Igualada, de la cartelería en la calle a los banners y las redes sociales. El reto: hablar a toda la ciudadanía con mensajes claros y una imagen institucional coherente.",
+  "etiquetas": [
+    "campañas",
+    "cartelería",
+    "banners digitales",
+    "redes sociales"
+  ],
+  "ficha": [
+    {
+      "dt": "Cliente",
+      "dd": "Ayuntamiento de Igualada"
+    },
+    {
+      "dt": "Años",
+      "dd": "2018–2019"
+    },
+    {
+      "dt": "Mi papel",
+      "dd": "Diseño gráfico de campañas"
+    },
+    {
+      "dt": "Alcance",
+      "dd": "+15 campañas municipales"
+    },
+    {
+      "dt": "Herramientas",
+      "dd": "Illustrator, InDesign, Photoshop"
+    }
+  ],
+  "resumen": {
+    "reto": "Cada campaña se diseñaba desde cero y con plazos muy cortos. Los mensajes competían entre sí en la calle y en redes, y no siempre se reconocía que venían del Ayuntamiento.",
+    "solucion": "Un sistema gráfico común para todas las campañas: retícula, jerarquía tipográfica, uso del color y un bloque institucional fijo, adaptable a cualquier formato en poco tiempo.",
+    "resultado": "Campañas más legibles y reconocibles, producidas más rápido y con el mismo tono institucional en la calle, la web y las redes sociales."
+  },
+  "proceso": {
+    "titulo": "Del brief a la calle.",
+    "intro": "Un flujo pensado para plazos cortos: cada campaña pasaba por las mismas cuatro fases, así se podía ir rápido sin perder calidad.",
+    "pasos": [
+      {
+        "titulo": "Brief",
+        "texto": "Reunión con cada área municipal para definir el objetivo, el público y el mensaje principal de la campaña.",
+        "entregable": "brief de campaña"
+      },
+      {
+        "titulo": "Concepto",
+        "texto": "Idea gráfica y titular, con dos o tres propuestas que se validaban con el departamento de Comunicación.",
+        "entregable": "propuesta creativa"
+      },
+      {
+        "titulo": "Diseño",
+        "texto": "Pieza principal sobre el sistema gráfico común y adaptaciones a todos los formatos: cartel, mupi, banner y redes.",
+        "entregable": "piezas finales"
+      },
+      {
+        "titulo": "Difusión",
+        "texto": "Artes finales para imprenta y publicación en la web y las redes municipales, con seguimiento de la respuesta.",
+        "entregable": "artes finales + publicación"
+      }
+    ]
+  },
+  "entregables": {
+    "titulo": "Una voz gráfica para toda la ciudad.",
+    "intro": "El mismo sistema se adaptaba a cada formato, de un cartel A3 a una story de Instagram."
+  },
+  "resultados": {
+    "cifras": [
+      {
+        "cifra": "+15",
+        "texto": "campañas municipales diseñadas sobre el mismo sistema"
+      },
+      {
+        "cifra": "+120",
+        "texto": "piezas entre cartelería, banners y publicaciones en redes"
+      },
+      {
+        "cifra": "48 h",
+        "texto": "para adaptar una campaña nueva a todos los formatos"
+      }
+    ],
+    "testimonio": {
+      "texto": "Las campañas que diseñó para el ayuntamiento funcionaron porque no eran solo bonitas: eran legibles, claras y respetaban el tono institucional.",
+      "autor": "Colaboración · Ayuntamiento",
+      "cargo": "Comunicación"
+    }
+  },
+  "siguiente": {
+    "num": 3,
+    "titulo": "Sensing & Control — dashboard IoT",
+    "color": "#0E8A5A"
+  },
+  "contacto": {
+    "titulo": "¿Necesitas una campaña?",
+    "texto": "Cuéntame qué quieres comunicar y a quién, y te respondo en cuanto pueda."
+  },
+  "portadaAlt": "Carteles y publicación en redes de una campaña municipal",
+  "pendienteRevisar": "Contenido provisional: textos, cifras, fechas, herramientas e ilustraciones inventados. Sustituir por los reales."
+}

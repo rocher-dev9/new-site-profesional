@@ -1,0 +1,80 @@
+---
+// ────────────────────────────────────────────────────────────────
+// Plantilla común de todas las páginas: <head>, menú, pie y scripts.
+// Cada página solo aporta su contenido (índice lateral + <main>).
+// ────────────────────────────────────────────────────────────────
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { rutas, rel, urlAbsoluta, type Lang, type Seccion, type Alternas } from '../i18n/rutas';
+import { useT } from '../i18n/ui';
+import { VERSION } from '../version';
+
+interface Props {
+  lang: Lang;
+  pagina: string;             // ruta de esta página: "trabajo.html", "en/work.html"…
+  titulo: string;
+  descripcion: string;
+  activa?: Seccion;           // apartado del menú marcado
+  subpagina?: boolean;        // casos de estudio: Trabajo marcado sin aria-current
+  alternas?: Alternas;        // versiones en cada idioma (hreflang); por defecto, las de "activa"
+  colorTema?: string;
+  claseBody?: string;
+  silkscreen?: boolean;       // fuente pixel de las cifras (índice lateral, contadores…)
+  css?: string[];             // hojas de estilo extra, después de styles.css
+  js?: string[];              // scripts extra, después de main.js y cursor.js
+}
+const {
+  lang, pagina, titulo, descripcion, activa, subpagina = false,
+  colorTema = '#5850EC', claseBody, silkscreen = false, css = [], js = [],
+} = Astro.props;
+const t = useT(lang);
+
+// Versiones de esta página en cada idioma
+const alternas: Alternas = Astro.props.alternas ?? (activa ? { ...rutas[activa] } : { [lang]: pagina });
+// Si falta la traducción, el selector lleva a la sección equivalente (o a la portada)
+const respaldo = rutas[activa ?? 'inicio'];
+const cambio = { es: alternas.es ?? respaldo.es, en: alternas.en ?? respaldo.en };
+const a = (ruta: string) => rel(pagina, ruta);
+const v = `?v=${VERSION}`;
+---
+<!DOCTYPE html>
+<html lang={lang}>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{titulo}</title>
+  <meta name="description" content={descripcion} />
+  <meta name="theme-color" content={colorTema} />
+
+  <link rel="icon" href={a('favicon.ico') + '?v=2'} sizes="32x32" />
+  <link rel="icon" href={a('img/favicon.svg') + '?v=2'} type="image/svg+xml" />
+  <link rel="apple-touch-icon" href={a('img/apple-touch-icon.png') + '?v=2'} />
+  {alternas.es && <link rel="alternate" hreflang="es" href={urlAbsoluta(alternas.es)} />}
+  {alternas.en && <link rel="alternate" hreflang="en" href={urlAbsoluta(alternas.en)} />}
+  <link rel="alternate" hreflang="x-default" href={urlAbsoluta(alternas.es ?? alternas.en ?? pagina)} />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+
+  {silkscreen && <link href="https://fonts.googleapis.com/css2?family=Silkscreen&text=0123456789&display=swap" rel="stylesheet" />}
+  <link rel="stylesheet" href={a('css/styles.css') + v} />
+  {css.map((hoja) => <link rel="stylesheet" href={a(hoja) + v} />)}
+</head>
+
+<body class={claseBody}>
+  <a class="skip-link" href="#main">{t('skip')}</a>
+
+  <Nav lang={lang} pagina={pagina} activa={activa} actual={!subpagina} cambio={cambio} />
+
+  <slot />
+
+  <Footer lang={lang} />
+
+  {['js/main.js', 'js/cursor.js', ...js].map((src) => <script is:inline src={a(src) + v}></script>)}
+</body>
+
+</html>

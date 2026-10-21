@@ -1,0 +1,9 @@
+---
+// Selector ES / EN (al final del menú y en el menú móvil)
+import { rel, type Lang } from '../i18n/rutas';
+import { useT } from '../i18n/ui';
+interface Props { lang: Lang; pagina: string; cambio: Record<Lang, string> }
+const { lang, pagina, cambio } = Astro.props;
+const t = useT(lang);
+---
+<div class="lang-switch" role="group" aria-label={t('nav.idioma')}><a href={rel(pagina, cambio.es)} hreflang="es" lang="es" aria-current={lang === 'es' ? 'true' : undefined}>ES</a><a href={rel(pagina, cambio.en)} hreflang="en" lang="en" aria-current={lang === 'en' ? 'true' : undefined}>EN</a></div>

@@ -1,0 +1,12 @@
+---
+// Case studies in English: one page for each src/proyectos/<clave>/en.json
+import { getCollection } from 'astro:content';
+import Caso from '../../layouts/Caso.astro';
+
+export async function getStaticPaths() {
+  const proyectos = await getCollection('proyectos', (p) => p.id.endsWith('/en'));
+  return proyectos.map((proyecto) => ({ params: { slug: proyecto.data.url }, props: { proyecto } }));
+}
+const { proyecto } = Astro.props;
+---
+<Caso proyecto={proyecto} />

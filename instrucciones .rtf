@@ -1,0 +1,96 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2761
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\froman\fcharset0 Times-Roman;\f1\froman\fcharset0 Times-Bold;\f2\fmodern\fcharset0 Courier;
+\f3\fmodern\fcharset0 Courier-Bold;\f4\froman\fcharset0 Times-Italic;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red0\green0\blue233;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c0\c0\c93333;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}}{\leveltext\leveltemplateid1\'01\'00;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Te dejo el servidor de desarrollo funcionando en una pesta\'f1a de la Terminal, igual que har\'edas t\'fa, para que puedas verlo y pararlo.\
+Ya tienes la web en local. Est\'e1 funcionando en la pesta\'f1a {\field{\*\fldinst{HYPERLINK "https://claude.ai/epitaxy/local_511b6628-7fe2-4113-bd60-87c906fd8f62#terminal/c1"}}{\fldrslt \cf3 \ul \ulc3 \strokec3 web local (Astro)}} de la Terminal.\
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f1\b\fs36 \cf0 C\'f3mo verla\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 Abre en tu navegador (Chrome, Safari\'85):\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b \cf0 http://localhost:4321/new-site-profesional/
+\f0\b0 \
+La diferencia con antes es que 
+\f1\b se actualiza sola
+\f0\b0 . Cuando cambio un archivo (una p\'e1gina, un texto de un caso, el CSS\'85), el navegador recarga sin que tengas que hacer nada. La versi\'f3n inglesa est\'e1 en 
+\f2\fs26 \'85/new-site-profesional/en/
+\f0\fs24 .\
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f1\b\fs36 \cf0 C\'f3mo arrancarla t\'fa otro d\'eda\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 En la Terminal, dentro de la carpeta del proyecto:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 - export PATH="$HOME/.local/node/bin:$PATH" && npm run dev\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 \
+Para pararla, pulsa 
+\f1\b Ctrl + C
+\f0\b0  en esa pesta\'f1a.\
+Si en alg\'fan momento el comando dice que el servidor queda "en segundo plano" y no ves nada, a\'f1ade 
+\f2\fs26 -- --ignore-lock
+\f0\fs24  al final.\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b \cf0 Para que te baste con 
+\f3\fs26 npm run dev
+\f1\fs24 :
+\f0\b0  he visto que la primera l\'ednea de tu 
+\f2\fs26 ~/.zshrc
+\f0\fs24  tiene un error. Junta dos instrucciones en una (
+\f2\fs26 export PATH=\'85 source ~/.zshrc
+\f0\fs24 ), y por eso cada pesta\'f1a nueva muestra el aviso 
+\f4\i "not valid in this context"
+\f0\i0 . Si quieres, la corrijo y a\'f1ado la ruta de Node para que 
+\f2\fs26 npm run dev
+\f0\fs24  funcione directamente. Solo toco esa l\'ednea y a\'f1ado una nueva.\
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f1\b\fs36 \cf0 Lo siguiente: GitHub\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 Antes sub\'edas los archivos HTML a mano. Con Astro, lo que se guarda en el repositorio es el 
+\f1\b c\'f3digo fuente
+\f0\b0  (
+\f2\fs26 src/
+\f0\fs24 , 
+\f2\fs26 public/
+\f0\fs24 , la configuraci\'f3n\'85), y la web final se genera a partir de \'e9l.\
+Lo m\'e1s c\'f3modo para guardar y publicar a la vez es la 
+\f1\b opci\'f3n A
+\f0\b0 : subes el proyecto con 
+\f2\fs26 git push
+\f0\fs24  y GitHub genera y publica la web solo, en un minuto.\
+Para eso:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls1\ilvl0\cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Hago el commit en la rama 
+\f2\fs26 astro
+\f0\fs24 .\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Conectamos esta carpeta con tu repositorio 
+\f2\fs26 new-site-profesional
+\f0\fs24 . Te gu\'edo; solo hace falta una vez.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	3	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 T\'fa activas en GitHub 
+\f4\i Settings \uc0\u8594  Pages \u8594  Source: GitHub Actions
+\f0\i0 .\
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 \'bfCorrijo el 
+\f2\fs26 ~/.zshrc
+\f0\fs24  y hago el commit?}

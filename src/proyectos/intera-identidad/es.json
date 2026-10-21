@@ -1,0 +1,106 @@
+{
+  "url": "intera-identidad",
+  "num": 1,
+  "color": "#504FED",
+  "titulo": "Intera, identidad corporativa · Roger Avellana",
+  "descripcion": "Caso de estudio: rediseño de la identidad visual de Intera. Reto, proceso, entregables y resultados.",
+  "categoria": "Branding",
+  "h1": "Intera: una marca que",
+  "h1Destacado": "se entiende a la primera.",
+  "entradilla": "Intera había crecido más rápido que su imagen. Rediseñé su identidad visual para que una empresa tecnológica compleja se presentara con una marca clara, coherente y fácil de aplicar en cualquier soporte.",
+  "etiquetas": [
+    "identidad visual",
+    "sistema de marca",
+    "manual",
+    "plantillas"
+  ],
+  "ficha": [
+    {
+      "dt": "Cliente",
+      "dd": "Intera"
+    },
+    {
+      "dt": "Año",
+      "dd": "2024"
+    },
+    {
+      "dt": "Mi papel",
+      "dd": "Dirección de arte y diseño de marca"
+    },
+    {
+      "dt": "Duración",
+      "dd": "10 semanas"
+    },
+    {
+      "dt": "Herramientas",
+      "dd": "Illustrator, Figma, InDesign"
+    }
+  ],
+  "resumen": {
+    "reto": "Cada departamento usaba su propia versión del logo, colores distintos y plantillas improvisadas. La marca no transmitía la solidez técnica de la empresa y costaba reconocerla.",
+    "solucion": "Un sistema de marca completo: logotipo simplificado, paleta reducida, una sola familia tipográfica y plantillas para que cualquier persona del equipo creara materiales coherentes.",
+    "resultado": "Una identidad reconocible y fácil de mantener. El equipo produce sus materiales en la mitad de tiempo y la marca se ve igual en web, redes, ferias y documentos."
+  },
+  "proceso": {
+    "titulo": "Del diagnóstico al sistema.",
+    "intro": "Cuatro fases con un mismo objetivo: una marca que el equipo pueda usar con autonomía, sin depender de mí para cada pieza.",
+    "pasos": [
+      {
+        "titulo": "Escuchar",
+        "texto": "Entrevistas con dirección y equipos, y auditoría de todos los materiales existentes para entender qué funcionaba y qué no.",
+        "entregable": "auditoría de marca"
+      },
+      {
+        "titulo": "Explorar",
+        "texto": "Tres rutas creativas con moodboards y primeros bocetos, evaluadas con el cliente según claridad, diferenciación y facilidad de uso.",
+        "entregable": "rutas creativas"
+      },
+      {
+        "titulo": "Construir",
+        "texto": "Desarrollo de la ruta elegida: retícula del logotipo, paleta, tipografía, iconografía y pruebas a tamaño real.",
+        "entregable": "sistema visual"
+      },
+      {
+        "titulo": "Aplicar",
+        "texto": "Manual de marca, plantillas editables y aplicación a papelería, presentaciones, web y redes sociales.",
+        "entregable": "manual + plantillas"
+      }
+    ]
+  },
+  "entregables": {
+    "titulo": "Un sistema, no piezas sueltas.",
+    "intro": "Cada elemento se diseñó para funcionar con los demás, del logotipo a la última plantilla de redes."
+  },
+  "resultados": {
+    "cifras": [
+      {
+        "cifra": "+60",
+        "texto": "piezas aplicadas con el nuevo sistema de marca"
+      },
+      {
+        "cifra": "50%",
+        "texto": "menos tiempo para producir materiales gracias a las plantillas"
+      },
+      {
+        "cifra": "40",
+        "texto": "páginas de manual de marca, con ejemplos de uso correcto e incorrecto"
+      }
+    ],
+    "testimonio": {
+      "texto": "Roger combina criterio visual y estratégico de una forma poco habitual. Entiende la marca como sistema, no como una colección de piezas sueltas.",
+      "autor": "Cliente · INTERA",
+      "cargo": "Marketing Manager"
+    }
+  },
+  "siguiente": {
+    "num": 2,
+    "titulo": "Ayuntamiento de Igualada — campañas",
+    "color": "#D9482C"
+  },
+  "contacto": {
+    "titulo": "¿Un proyecto parecido?",
+    "texto": "Cuéntame qué necesita tu marca y te respondo en cuanto pueda."
+  },
+  "portadaAlt": "Tarjetas con el nuevo logotipo de Intera",
+  "pendienteRevisar": "Contenido provisional: textos, cifras, fechas, herramientas e ilustraciones inventados. Sustituir por los reales."
+}

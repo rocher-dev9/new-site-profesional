@@ -1,0 +1,96 @@
+// ────────────────────────────────────────────────────────────────
+// Textos cortos de la interfaz en los dos idiomas.
+// Uso en un componente:  const t = useT(lang);  t('nav.trabajo')
+// Los textos largos de cada página viven en la propia página o en
+// su archivo de contenido, no aquí.
+// ────────────────────────────────────────────────────────────────
+import type { Lang } from './rutas';
+
+export const ui = {
+  es: {
+    'skip': 'saltar al contenido',
+    'nav.aria': 'Principal',
+    'nav.marca': 'Roger Avellana — Inicio',
+    'nav.inicio': 'Inicio',
+    'nav.entorno': 'Entorno',
+    'nav.trabajo': 'Trabajo',
+    'nav.ioi': 'IOI',
+    'nav.sobreMi': 'Sobre mí',
+    'nav.idioma': 'Idioma',
+    'nav.menu': 'menú',
+    'nav.email': 'Escríbeme por email',
+    'pie.copy': '© 2026 Roger Avellana · Barcelona · Catalunya',
+    'indice.aria': 'Secciones de la página',
+    'arriba': 'Volver arriba',
+    'caso.ruta': 'Ruta de navegación',
+    'caso.volver': 'Volver a Trabajo',
+    'caso.trabajo': 'Trabajo',
+    'caso.caso': 'Caso',
+    'caso.eyebrow': 'Caso de estudio',
+    'caso.disciplinas': 'Disciplinas',
+    'caso.inicio': 'Inicio',
+    'caso.resumen': 'Resumen',
+    'caso.proceso': 'Proceso',
+    'caso.entregables': 'Entregables',
+    'caso.resultados': 'Resultados',
+    'caso.contacto': 'Contacto',
+    'caso.resumen.titulo': 'El proyecto en tres claves.',
+    'caso.reto': 'Reto',
+    'caso.solucion': 'Solución',
+    'caso.resultado': 'Resultado',
+    'caso.resultados.titulo': 'Lo que cambió.',
+    'caso.mas': 'Más proyectos',
+    'caso.todos': 'Todos los proyectos',
+    'caso.siguiente': 'Siguiente proyecto',
+    'caso.escribeme': 'Escríbeme',
+    'caso.linkedin.titulo': 'Hablemos por LinkedIn',
+    'caso.linkedin.texto': 'Si prefieres conectar primero, aquí me encuentras.',
+    'caso.linkedin.boton': 'Ver LinkedIn',
+  },
+  en: {
+    'skip': 'skip to content',
+    'nav.aria': 'Main',
+    'nav.marca': 'Roger Avellana — Home',
+    'nav.inicio': 'Home',
+    'nav.entorno': 'Workspace',
+    'nav.trabajo': 'Work',
+    'nav.ioi': 'IOI',
+    'nav.sobreMi': 'About',
+    'nav.idioma': 'Language',
+    'nav.menu': 'menu',
+    'nav.email': 'Email me',
+    'pie.copy': '© 2026 Roger Avellana · Barcelona · Catalonia',
+    'indice.aria': 'Page sections',
+    'arriba': 'Back to top',
+    'caso.ruta': 'Breadcrumb',
+    'caso.volver': 'Back to Work',
+    'caso.trabajo': 'Work',
+    'caso.caso': 'Case',
+    'caso.eyebrow': 'Case study',
+    'caso.disciplinas': 'Disciplines',
+    'caso.inicio': 'Home',
+    'caso.resumen': 'Summary',
+    'caso.proceso': 'Process',
+    'caso.entregables': 'Deliverables',
+    'caso.resultados': 'Results',
+    'caso.contacto': 'Contact',
+    'caso.resumen.titulo': 'The project in three keys.',
+    'caso.reto': 'Challenge',
+    'caso.solucion': 'Solution',
+    'caso.resultado': 'Result',
+    'caso.resultados.titulo': 'What changed.',
+    'caso.mas': 'More projects',
+    'caso.todos': 'All projects',
+    'caso.siguiente': 'Next project',
+    'caso.escribeme': 'Email me',
+    'caso.linkedin.titulo': "Let's talk on LinkedIn",
+    'caso.linkedin.texto': "If you'd rather connect first, you'll find me here.",
+    'caso.linkedin.boton': 'View LinkedIn',
+  },
+} as const;
+
+export type ClaveUI = keyof typeof ui.es;
+
+export function useT(lang: Lang) {
+  return (clave: ClaveUI): string => ui[lang][clave] ?? ui.es[clave];
+}

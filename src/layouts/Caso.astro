@@ -1,0 +1,218 @@
+---
+// ────────────────────────────────────────────────────────────────
+// Plantilla de caso de estudio (común a todos los proyectos y a los dos idiomas).
+// Cada proyecto vive en src/proyectos/<clave>/:
+//   es.json / en.json  → textos, cifras y color del proyecto (uno por idioma)
+//   Portada.astro      → ilustración de la portada (SVG 1200×500)
+//   Galeria.astro      → piezas del mosaico de entregables
+// Para crear un caso nuevo: copia una carpeta de proyecto y cambia su contenido.
+// ────────────────────────────────────────────────────────────────
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Base from './Base.astro';
+import PixelArrow from '../components/PixelArrow.astro';
+import { rutas, rel, type Lang } from '../i18n/rutas';
+import { useT } from '../i18n/ui';
+
+interface Props { proyecto: CollectionEntry<'proyectos'> }
+const { proyecto } = Astro.props;
+const p = proyecto.data;
+const [clave, lang] = proyecto.id.split('/') as [string, Lang];
+const t = useT(lang);
+
+// Número total de proyectos en Trabajo (contador "Caso 01 / 06")
+const TOTAL = 6;
+const dos = (n: number) => String(n).padStart(2, '0');
+
+// Rutas de los casos según el idioma
+const rutaCaso = (l: Lang, slug: string) => (l === 'es' ? `proyecto-${slug}.html` : `en/project-${slug}.html`);
+const pagina = rutaCaso(lang, p.url);
+const todos = await getCollection('proyectos');
+const delIdioma = (l: Lang) => todos.filter((e) => e.id.endsWith(`/${l}`));
+
+// Versiones en cada idioma (hreflang y selector ES/EN)
+const alternas: Partial<Record<Lang, string>> = {};
+for (const l of ['es', 'en'] as Lang[]) {
+  const e = todos.find((x) => x.id === `${clave}/${l}`);
+  if (e) alternas[l] = rutaCaso(l, e.data.url);
+}
+
+// Enlaces de vuelta a la cuadrícula de proyectos de Trabajo
+const ancla = lang === 'es' ? '#proyectos' : '#projects';
+const trabajo = rel(pagina, rutas.trabajo[lang]) + ancla;
+// Siguiente proyecto: su página si ya existe en este idioma; si no, Trabajo
+const sig = delIdioma(lang).find((e) => e.data.num === p.siguiente.num);
+const sigHref = sig ? rel(pagina, rutaCaso(lang, sig.data.url)) : trabajo;
+
+// Ilustraciones propias de cada proyecto
+const portadas = import.meta.glob<{ default: any }>('../proyectos/*/Portada.astro', { eager: true });
+const galerias = import.meta.glob<{ default: any }>('../proyectos/*/Galeria.astro', { eager: true });
+const Portada = portadas[`../proyectos/${clave}/Portada.astro`]?.default;
+const Galeria = galerias[`../proyectos/${clave}/Galeria.astro`]?.default;
+
+const indice = ['inicio', 'resumen', 'proceso', 'entregables', 'resultados', 'contacto'] as const;
+const anclas = { inicio: 'top', resumen: 'resumen', proceso: 'proceso', entregables: 'entregables', resultados: 'resultados', contacto: 'contacto' };
+const resumen = [
+  { titulo: t('caso.reto'), texto: p.resumen.reto },
+  { titulo: t('caso.solucion'), texto: p.resumen.solucion },
+  { titulo: t('caso.resultado'), texto: p.resumen.resultado, acento: true },
+];
+---
+<Base
+  lang={lang}
+  pagina={pagina}
+  titulo={p.titulo}
+  descripcion={p.descripcion}
+  activa="trabajo"
+  subpagina
+  alternas={alternas}
+  silkscreen
+  css={['css/caso.css']}
+>
+  <nav class="page-index" aria-label={t('indice.aria')}>
+    {indice.map((s, i) => <a href={`#${anclas[s]}`}><b>{dos(i + 1)}</b><i aria-hidden="true"></i><span>{t(`caso.${s}`)}</span></a>)}
+  </nav>
+  <a href="#top" class="to-top" aria-label={t('arriba')}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" /></svg></a>
+  <a href={trabajo} class="case-back-float" aria-label={t('caso.volver')}><PixelArrow back /><span>{t('caso.trabajo')}</span></a>
+
+  <main id="main" class="case" style={`--case-color: ${p.color};`}>
+
+    <!-- 01 · CABECERA DEL CASO -->
+    <header class="case-hero" id="top">
+      <div class="container">
+        <nav class="case-crumbs" aria-label={t('caso.ruta')}>
+          <a href={trabajo} class="case-back"><PixelArrow back />{t('caso.volver')}</a>
+          <span class="case-count">{t('caso.caso')} <b>{dos(p.num)}</b> / {dos(TOTAL)}</span>
+        </nav>
+
+        <div class="case-hero-grid">
+          <div>
+            <span class="eyebrow">{t('caso.eyebrow')} · {p.categoria}</span>
+            <h1>{p.h1} <em>{p.h1Destacado}</em></h1>
+            <p class="case-lead">{p.entradilla}</p>
+            <ul class="case-tags" aria-label={t('caso.disciplinas')}>
+              {p.etiquetas.map((e) => <li>{e}</li>)}
+            </ul>
+          </div>
+
+          <dl class="case-meta">
+            {p.ficha.map((f) => <div><dt>{f.dt}</dt><dd>{f.dd}</dd></div>)}
+          </dl>
+        </div>
+
+        <figure class="case-cover">
+          <span class="p-num" aria-hidden="true">{dos(p.num)}</span>
+          <svg class="case-cover-art" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label={p.portadaAlt} font-family="Plus Jakarta Sans, sans-serif">
+            {Portada && <Portada lang={lang} />}
+          </svg>
+        </figure>
+      </div>
+    </header>
+
+    <!-- 02 · RESUMEN: reto, solución y resultado -->
+    <section id="resumen" class="case-section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-label">/ {t('caso.resumen').toLowerCase()}</span>
+          <h2>{t('caso.resumen.titulo')}</h2>
+        </div>
+        <div class="case-summary">
+          {resumen.map((r, i) => (
+            <article class:list={['cs-card', { 'cs-card--accent': r.acento }]}>
+              <span class="cs-num">{dos(i + 1)}</span>
+              <h3>{r.titulo}</h3>
+              <p>{r.texto}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 · PROCESO -->
+    <section id="proceso" class="case-section case-section--soft">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-label">/ {t('caso.proceso').toLowerCase()}</span>
+          <h2>{p.proceso.titulo}</h2>
+          <p>{p.proceso.intro}</p>
+        </div>
+        <ol class="case-steps">
+          {p.proceso.pasos.map((paso, i) => (
+            <li>
+              <span class="st-num">{dos(i + 1)}</span>
+              <h3>{paso.titulo}</h3>
+              <p>{paso.texto}</p>
+              <span class="st-out">{paso.entregable}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- 04 · ENTREGABLES (galería) -->
+    <section id="entregables" class="case-section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-label">/ {t('caso.entregables').toLowerCase()}</span>
+          <h2>{p.entregables.titulo}</h2>
+          <p>{p.entregables.intro}</p>
+        </div>
+
+        <div class="case-gallery">
+          {Galeria && <Galeria lang={lang} />}
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 · RESULTADOS -->
+    <section id="resultados" class="case-section case-section--soft">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-label">/ {t('caso.resultados').toLowerCase()}</span>
+          <h2>{t('caso.resultados.titulo')}</h2>
+        </div>
+        <div class="case-results">
+          <dl class="work-stats case-stats">
+            {p.resultados.cifras.map((c) => <div><dt>{c.cifra}</dt><dd>{c.texto}</dd></div>)}
+          </dl>
+          <blockquote class="case-quote">
+            <p>{p.resultados.testimonio.texto}</p>
+            <footer><strong>{p.resultados.testimonio.autor}</strong><span>{p.resultados.testimonio.cargo}</span></footer>
+          </blockquote>
+        </div>
+
+        <nav class="case-next" aria-label={t('caso.mas')}>
+          <a href={trabajo} class="cn-all"><PixelArrow back />{t('caso.todos')}</a>
+          <a href={sigHref} class="cn-card" style={`--cn-color: ${p.siguiente.color};`}>
+            <span class="cn-label">{t('caso.siguiente')} · {dos(p.siguiente.num)}</span>
+            <strong>{p.siguiente.titulo}</strong>
+            <PixelArrow />
+          </a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- 06 · CONTACTO -->
+    <section id="contacto">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-card c-lav">
+            <div>
+              <h3>{p.contacto.titulo}</h3>
+              <p>{p.contacto.texto}</p>
+            </div>
+            <a href="mailto:roger.ar123@gmail.com" class="btn btn-primary">{t('caso.escribeme')} <PixelArrow /></a>
+          </div>
+          <div class="contact-card c-peach">
+            <div>
+              <h3>{t('caso.linkedin.titulo')}</h3>
+              <p>{t('caso.linkedin.texto')}</p>
+            </div>
+            <a href="https://www.linkedin.com/in/roger-avellana/" target="_blank" rel="noopener"
+              class="btn btn-ghost" style="--btn-bg: #fff;">{t('caso.linkedin.boton')} <PixelArrow /></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</Base>
