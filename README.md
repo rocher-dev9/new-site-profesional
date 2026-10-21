@@ -43,11 +43,16 @@ public/                 CSS, JS, imágenes y favicon (se copian tal cual)
 src/
   layouts/Base.astro    <head>, menú, pie y scripts de todas las páginas
   layouts/Caso.astro    plantilla de caso de estudio
-  components/           menú, selector ES/EN, pie, iconos…
+  components/           bloques reutilizables: menú, selector ES/EN, pie, iconos,
+                        ContactCards (contacto), PageIndex (índice lateral),
+                        ProjectCard (tarjeta de proyecto), Testimonials, PixelArrow
+  datos/                datos comunes: email y LinkedIn (sitio.ts), testimonios.ts
   i18n/rutas.ts         equivalencias de páginas ES ↔ EN (menú, selector y hreflang)
   i18n/ui.ts            textos cortos de la interfaz en los dos idiomas
   pages/                páginas en español (por carpetas) y en inglés (en/)
-  proyectos/<clave>/    un caso de estudio: es.json / en.json + Portada.astro + Galeria.astro
+  proyectos/tarjetas.ts tarjetas de Trabajo y de la portada (orden, textos ES/EN, color)
+  proyectos/<clave>/    Tarjeta.astro (ilustración de la tarjeta) y, si tiene caso de estudio,
+                        es.json / en.json + Portada.astro + Galeria.astro
 ```
 
 ## Añadir un caso de estudio
@@ -55,7 +60,7 @@ src/
 1. Copia una carpeta de `src/proyectos/` y renómbrala (p. ej. `nvision-ferias`).
 2. Edita `es.json` (textos, cifras, color, `url`, `num`) y las ilustraciones.
 3. Para la versión inglesa, añade `en.json` en la misma carpeta.
-4. En `src/pages/trabajo/index.astro`, enlaza su tarjeta («Ver caso») a `<url>/`.
+4. El «Ver caso» de su tarjeta (en Trabajo y en la portada) se enlaza solo.
 
 ## Publicación
 

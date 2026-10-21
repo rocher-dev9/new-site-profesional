@@ -1,0 +1,14 @@
+---
+// Tarjetas de testimonios (carrusel de la portada). Textos en src/datos/testimonios.ts
+import type { Lang } from '../i18n/rutas';
+import { testimonios } from '../datos/testimonios';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+---
+{testimonios[lang].map((x) => (
+  <div class="testi-card">
+    <p class="testi-quote">{x.texto}</p>
+    <div class="testi-meta"><strong>{x.autor}</strong><span>{x.cargo}</span></div>
+  </div>
+))}

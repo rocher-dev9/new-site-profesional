@@ -1,0 +1,33 @@
+---
+// Tarjeta de proyecto (Trabajo y portada). Los datos están en src/proyectos/tarjetas.ts
+// y la ilustración en src/proyectos/<clave>/Tarjeta.astro.
+import { getCollection } from 'astro:content';
+import PixelArrow from './PixelArrow.astro';
+import { rel, rutaCaso, type Lang } from '../i18n/rutas';
+import { useT } from '../i18n/ui';
+import type { Tarjeta } from '../proyectos/tarjetas';
+
+interface Props { tarjeta: Tarjeta; lang: Lang; pagina: string }
+const { tarjeta, lang, pagina } = Astro.props;
+const t = useT(lang);
+
+// «Ver caso» enlaza al caso de estudio si ya existe en este idioma
+const caso = (await getCollection('proyectos')).find((e) => e.id === `${tarjeta.clave}/${lang}`);
+const href = caso ? rel(pagina, rutaCaso(lang, caso.data.url)) : '#';
+
+const artes = import.meta.glob<{ default: any }>('../proyectos/*/Tarjeta.astro', { eager: true });
+const Arte = artes[`../proyectos/${tarjeta.clave}/Tarjeta.astro`]?.default;
+---
+<article class="project-card">
+  <div class="project-cover" style={`background:${tarjeta.fondo};`}>
+    <span class="p-tag">{tarjeta.etiqueta[lang]}</span>
+    <span class="p-year">{tarjeta.anio}</span>
+    <span class="p-num">{String(tarjeta.num).padStart(2, '0')}</span>
+    {Arte && <Arte />}
+  </div>
+  <div class="project-body">
+    <h3>{tarjeta.titulo[lang]}</h3>
+    <p>{tarjeta.texto[lang]}</p>
+    <a href={href} class="btn-link">{t('proyecto.ver')} <PixelArrow /></a>
+  </div>
+</article>

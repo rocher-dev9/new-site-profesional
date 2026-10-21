@@ -1,0 +1,30 @@
+---
+// Tarjetas de contacto (email + LinkedIn), comunes a todas las páginas.
+// Textos por defecto en src/i18n/ui.ts. Se pueden cambiar con props (titulo, texto)
+// o, si el texto lleva formato, con los slots "proyecto" y "linkedin".
+import PixelArrow from './PixelArrow.astro';
+import type { Lang } from '../i18n/rutas';
+import { useT } from '../i18n/ui';
+import { EMAIL, LINKEDIN } from '../datos/sitio';
+
+interface Props { lang: Lang; titulo?: string; texto?: string }
+const { lang, titulo, texto } = Astro.props;
+const t = useT(lang);
+---
+<div class="contact-grid">
+  <div class="contact-card c-lav">
+    <div>
+      <h3>{titulo ?? t('contacto.titulo')}</h3>
+      <p><slot name="proyecto">{texto ?? t('contacto.texto')}</slot></p>
+    </div>
+    <a href={`mailto:${EMAIL}`} class="btn btn-primary">{t('contacto.escribeme')} <PixelArrow /></a>
+  </div>
+  <div class="contact-card c-peach">
+    <div>
+      <h3>{t('contacto.linkedin.titulo')}</h3>
+      <p><slot name="linkedin">{t('contacto.linkedin.texto')}</slot></p>
+    </div>
+    <a href={LINKEDIN} target="_blank" rel="noopener"
+      class="btn btn-ghost" style="--btn-bg: #fff;">{t('contacto.linkedin.boton')} <PixelArrow /></a>
+  </div>
+</div>

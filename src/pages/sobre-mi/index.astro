@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import ContactCards from '../../components/ContactCards.astro';
 ---
 <Base
   lang="es"
@@ -110,24 +111,10 @@ import Base from '../../layouts/Base.astro';
             lanzar? Cuéntame en qué estás trabajando y te respondo en cuanto pueda.</p>
         </div>
 
-        <div class="contact-grid">
-          <div class="contact-card c-lav">
-            <div>
-              <h3>¿Tienes un proyecto?</h3>
-              <p>Escríbeme a <strong>roger.ar123@gmail.com</strong> y te respondo en cuanto pueda.</p>
-            </div>
-            <a href="mailto:roger.ar123@gmail.com" class="btn btn-primary">Escríbeme <svg class="px-arrow" viewBox="0 0 8 5" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><rect x="4" y="0" width="1" height="1"/><rect x="4" y="1" width="2" height="1"/><rect x="0" y="2" width="7" height="1"/><rect x="4" y="3" width="2" height="1"/><rect x="4" y="4" width="1" height="1"/></svg></a>
-          </div>
-          <div class="contact-card c-peach">
-            <div>
-              <h3>Hablemos por LinkedIn</h3>
-              <p>Si prefieres conectar primero, me encuentras en
-                <strong>linkedin.com/in/roger-avellana</strong>.</p>
-            </div>
-            <a href="https://www.linkedin.com/in/roger-avellana/" target="_blank" rel="noopener"
-              class="btn btn-ghost" style="--btn-bg: #fff;">Ver LinkedIn <svg class="px-arrow" viewBox="0 0 8 5" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><rect x="4" y="0" width="1" height="1"/><rect x="4" y="1" width="2" height="1"/><rect x="0" y="2" width="7" height="1"/><rect x="4" y="3" width="2" height="1"/><rect x="4" y="4" width="1" height="1"/></svg></a>
-          </div>
-        </div>
+        <ContactCards lang="es">
+          <Fragment slot="proyecto">Escríbeme a <strong>roger.ar123@gmail.com</strong> y te respondo en cuanto pueda.</Fragment>
+          <Fragment slot="linkedin">Si prefieres conectar primero, me encuentras en <strong>linkedin.com/in/roger-avellana</strong>.</Fragment>
+        </ContactCards>
 
         <p class="about-contact-meta">Barcelona · Catalunya</p>
       </div>
