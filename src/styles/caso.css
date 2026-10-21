@@ -152,6 +152,13 @@
 .cg-type strong { display: block; font-size: 17px; font-weight: 700; }
 .cg-type span:not(.cg-type-aa) { display: block; margin-top: 4px; font-family: var(--mono); font-size: 11.5px; color: rgba(255, 255, 255, 0.6); }
 .cg-type .cg-type-chars { color: var(--peach); }
+/* Tarjeta de sensor (dashboards) */
+.cg-sensor { gap: 10px; }
+.cg-type span.cg-sensor-value {
+  margin: 0; font-family: var(--sans); font-size: 3.4rem; font-weight: 800; letter-spacing: -0.04em; line-height: 1; color: #fff;
+}
+.cg-sensor-value small { margin-left: 4px; font-size: 0.42em; color: var(--peach); }
+.cg-sensor svg { width: 100%; height: 50px; }
 /* Titulares de campaña */
 .cg-headlines { justify-content: space-between; }
 .cg-headlines ul { list-style: none; display: grid; gap: 14px; }

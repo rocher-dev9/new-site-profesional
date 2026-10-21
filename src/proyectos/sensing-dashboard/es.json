@@ -1,0 +1,106 @@
+{
+  "url": "sensing-dashboard",
+  "num": 3,
+  "color": "#0E8A5A",
+  "titulo": "Sensing & Control, dashboard IoT · Roger Avellana",
+  "descripcion": "Caso de estudio: diseño de interfaz para una plataforma de monitorización IoT. Reto, proceso, entregables y resultados.",
+  "categoria": "UI/UX",
+  "h1": "Sensing & Control: datos en tiempo real",
+  "h1Destacado": "que se leen de un vistazo.",
+  "entradilla": "Sensing & Control desarrolla sensores para monitorizar instalaciones industriales. Diseñé la interfaz de su plataforma web para que los operarios entendieran el estado de cada equipo en segundos y pudieran actuar antes de que hubiera una incidencia.",
+  "etiquetas": [
+    "ui/ux",
+    "dashboard",
+    "visualización de datos",
+    "sistema de diseño"
+  ],
+  "ficha": [
+    {
+      "dt": "Cliente",
+      "dd": "Sensing & Control"
+    },
+    {
+      "dt": "Años",
+      "dd": "2019–2021"
+    },
+    {
+      "dt": "Mi papel",
+      "dd": "Diseño UI/UX"
+    },
+    {
+      "dt": "Equipo",
+      "dd": "2 desarrolladores y 1 product owner"
+    },
+    {
+      "dt": "Herramientas",
+      "dd": "Figma, Illustrator"
+    }
+  ],
+  "resumen": {
+    "reto": "La plataforma mostraba cientos de lecturas en tablas difíciles de interpretar. Los operarios tardaban en detectar las alarmas y cada pantalla seguía una lógica distinta.",
+    "solucion": "Un dashboard por niveles (planta, equipo y sensor) con alertas priorizadas, un sistema de componentes común y un código de color reservado solo para los estados.",
+    "resultado": "Las incidencias se detectan antes y el equipo de desarrollo crea pantallas nuevas con los mismos componentes, sin tener que rediseñar cada vez."
+  },
+  "proceso": {
+    "titulo": "De la tabla al panel de control.",
+    "intro": "Diseño centrado en quien usa la herramienta cada día, con pruebas en la planta en cada iteración.",
+    "pasos": [
+      {
+        "titulo": "Observar",
+        "texto": "Visitas a la planta y entrevistas con operarios y técnicos de mantenimiento para entender qué miran primero y qué decisiones toman.",
+        "entregable": "mapa de tareas"
+      },
+      {
+        "titulo": "Estructurar",
+        "texto": "Arquitectura de la información en tres niveles (planta, equipo y sensor) y wireframes de las pantallas clave.",
+        "entregable": "wireframes"
+      },
+      {
+        "titulo": "Diseñar",
+        "texto": "Interfaz visual, gráficos de series temporales, estados de alarma y librería de componentes en Figma.",
+        "entregable": "sistema de componentes"
+      },
+      {
+        "titulo": "Validar",
+        "texto": "Prototipos probados con operarios, ajustes de legibilidad para las pantallas de planta y entrega documentada al equipo de desarrollo.",
+        "entregable": "prototipo + handoff"
+      }
+    ]
+  },
+  "entregables": {
+    "titulo": "Una interfaz pensada para la planta.",
+    "intro": "Del panel general a cada componente, todo responde a una pregunta: ¿qué necesita saber el operario ahora?"
+  },
+  "resultados": {
+    "cifras": [
+      {
+        "cifra": "−40%",
+        "texto": "de tiempo para detectar una alarma en las pruebas con operarios"
+      },
+      {
+        "cifra": "+45",
+        "texto": "componentes en la librería de diseño compartida con desarrollo"
+      },
+      {
+        "cifra": "3",
+        "texto": "niveles de navegación: planta, equipo y sensor"
+      }
+    ],
+    "testimonio": {
+      "texto": "Atento al detalle, ordenado y proactivo. Aporta soluciones cuando los demás solo ven problemas, y siempre con calma.",
+      "autor": "Compañero · Sensing & Control",
+      "cargo": "Project Manager"
+    }
+  },
+  "siguiente": {
+    "num": 4,
+    "titulo": "nVision — ferias internacionales",
+    "color": "#E0A82E"
+  },
+  "contacto": {
+    "titulo": "¿Una herramienta difícil de usar?",
+    "texto": "Cuéntame qué tiene que entender tu equipo y te respondo en cuanto pueda."
+  },
+  "portadaAlt": "Dashboard de monitorización IoT en un portátil y una alarma en el móvil",
+  "pendienteRevisar": "Contenido provisional: textos, cifras, fechas, herramientas e ilustraciones inventados. Sustituir por los reales."
+}

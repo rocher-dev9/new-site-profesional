@@ -1,0 +1,106 @@
+{
+  "url": "sensing-dashboard",
+  "num": 3,
+  "color": "#0E8A5A",
+  "titulo": "Sensing & Control, IoT dashboard · Roger Avellana",
+  "descripcion": "Case study: interface design for an IoT monitoring platform. Challenge, process, deliverables and results.",
+  "categoria": "UI/UX",
+  "h1": "Sensing & Control: real-time data",
+  "h1Destacado": "you can read at a glance.",
+  "entradilla": "Sensing & Control builds sensors to monitor industrial facilities. I designed the interface of its web platform so that operators could understand the status of every machine in seconds and act before an incident happened.",
+  "etiquetas": [
+    "ui/ux",
+    "dashboard",
+    "data visualization",
+    "design system"
+  ],
+  "ficha": [
+    {
+      "dt": "Client",
+      "dd": "Sensing & Control"
+    },
+    {
+      "dt": "Years",
+      "dd": "2019–2021"
+    },
+    {
+      "dt": "My role",
+      "dd": "UI/UX design"
+    },
+    {
+      "dt": "Team",
+      "dd": "2 developers and 1 product owner"
+    },
+    {
+      "dt": "Tools",
+      "dd": "Figma, Illustrator"
+    }
+  ],
+  "resumen": {
+    "reto": "The platform showed hundreds of readings in tables that were hard to interpret. Operators were slow to spot alarms, and every screen followed a different logic.",
+    "solucion": "A layered dashboard (plant, machine and sensor) with prioritized alerts, a shared component system and a color code reserved for statuses only.",
+    "resultado": "Incidents are spotted sooner, and the development team builds new screens with the same components, without redesigning every time."
+  },
+  "proceso": {
+    "titulo": "From the table to the control panel.",
+    "intro": "Design centered on the people who use the tool every day, with tests on the plant floor at every iteration.",
+    "pasos": [
+      {
+        "titulo": "Observe",
+        "texto": "Plant visits and interviews with operators and maintenance technicians to understand what they look at first and which decisions they make.",
+        "entregable": "task map"
+      },
+      {
+        "titulo": "Structure",
+        "texto": "Information architecture in three levels (plant, machine and sensor) and wireframes of the key screens.",
+        "entregable": "wireframes"
+      },
+      {
+        "titulo": "Design",
+        "texto": "Visual interface, time-series charts, alarm states and a component library in Figma.",
+        "entregable": "component system"
+      },
+      {
+        "titulo": "Validate",
+        "texto": "Prototypes tested with operators, legibility tweaks for plant-floor screens and a documented handoff to the development team.",
+        "entregable": "prototype + handoff"
+      }
+    ]
+  },
+  "entregables": {
+    "titulo": "An interface built for the plant floor.",
+    "intro": "From the overview to every component, everything answers one question: what does the operator need to know right now?"
+  },
+  "resultados": {
+    "cifras": [
+      {
+        "cifra": "−40%",
+        "texto": "time to spot an alarm in tests with operators"
+      },
+      {
+        "cifra": "+45",
+        "texto": "components in the design library shared with development"
+      },
+      {
+        "cifra": "3",
+        "texto": "navigation levels: plant, machine and sensor"
+      }
+    ],
+    "testimonio": {
+      "texto": "Detail-oriented, organized and proactive. Brings solutions when others only see problems, and always calmly.",
+      "autor": "Colleague · Sensing & Control",
+      "cargo": "Project Manager"
+    }
+  },
+  "siguiente": {
+    "num": 4,
+    "titulo": "nVision — international trade fairs",
+    "color": "#E0A82E"
+  },
+  "contacto": {
+    "titulo": "A tool that's hard to use?",
+    "texto": "Tell me what your team needs to understand and I’ll get back to you as soon as I can."
+  },
+  "portadaAlt": "IoT monitoring dashboard on a laptop and an alarm on a phone",
+  "pendienteRevisar": "Provisional content: invented texts, figures, dates, tools and illustrations. Replace with the real ones."
+}
