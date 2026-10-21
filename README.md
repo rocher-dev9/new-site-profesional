@@ -36,11 +36,12 @@ redirigen a las nuevas conservando el ancla.
 ## Estructura
 
 ```
-public/                 CSS, JS, imágenes y favicon (se copian tal cual)
-  css/styles.css        estilos comunes de toda la web
-  css/ia.css            página IOI
-  css/caso.css          casos de estudio
+public/                 JS, imágenes y favicon (se copian tal cual)
 src/
+  styles/global.css     estilos comunes de toda la web
+  styles/ia.css         página IOI (solo clases .theme-ai, .ai-…)
+  styles/caso.css       casos de estudio (solo clases .case, .cs-, .cg-…)
+                        → Astro los combina en un único CSS minificado (_astro/estilos.<huella>.css)
   layouts/Base.astro    <head>, menú, pie y scripts de todas las páginas
   layouts/Caso.astro    plantilla de caso de estudio
   components/           bloques reutilizables: menú, selector ES/EN, pie, iconos,

@@ -8,6 +8,12 @@ import Footer from '../components/Footer.astro';
 import { rutas, rel, urlAbsoluta, type Lang, type Seccion, type Alternas } from '../i18n/rutas';
 import { useT } from '../i18n/ui';
 import { VERSION } from '../version';
+// Estilos: tres archivos separados para editarlos con orden, que Astro combina en un
+// único CSS minificado con huella en el nombre (caché automática), siempre en este orden.
+// ia.css y caso.css solo afectan a sus propias clases (.theme-ai, .case…).
+import '../styles/global.css';
+import '../styles/ia.css';
+import '../styles/caso.css';
 
 interface Props {
   lang: Lang;
@@ -20,12 +26,11 @@ interface Props {
   colorTema?: string;
   claseBody?: string;
   silkscreen?: boolean;       // fuente pixel de las cifras (índice lateral, contadores…)
-  css?: string[];             // hojas de estilo extra, después de styles.css
   js?: string[];              // scripts extra, después de main.js y cursor.js
 }
 const {
   lang, pagina, titulo, descripcion, activa, subpagina = false,
-  colorTema = '#5850EC', claseBody, silkscreen = false, css = [], js = [],
+  colorTema = '#5850EC', claseBody, silkscreen = false, js = [],
 } = Astro.props;
 const t = useT(lang);
 
@@ -35,7 +40,7 @@ const alternas: Alternas = Astro.props.alternas ?? (activa ? { ...rutas[activa] 
 const respaldo = rutas[activa ?? 'inicio'];
 const cambio = { es: alternas.es ?? respaldo.es, en: alternas.en ?? respaldo.en };
 const a = (ruta: string) => rel(pagina, ruta);
-const v = `?v=${VERSION}`;
+const v = `?v=${VERSION}`; // solo para los scripts de public/js
 ---
 <!DOCTYPE html>
 <html lang={lang}>
@@ -50,8 +55,8 @@ const v = `?v=${VERSION}`;
   <link rel="icon" href={a('favicon.ico') + '?v=2'} sizes="32x32" />
   <link rel="icon" href={a('img/favicon.svg') + '?v=2'} type="image/svg+xml" />
   <link rel="apple-touch-icon" href={a('img/apple-touch-icon.png') + '?v=2'} />
-  {alternas.es && <link rel="alternate" hreflang="es" href={urlAbsoluta(alternas.es)} />}
-  {alternas.en && <link rel="alternate" hreflang="en" href={urlAbsoluta(alternas.en)} />}
+  {alternas.es !== undefined && <link rel="alternate" hreflang="es" href={urlAbsoluta(alternas.es)} />}
+  {alternas.en !== undefined && <link rel="alternate" hreflang="en" href={urlAbsoluta(alternas.en)} />}
   <link rel="alternate" hreflang="x-default" href={urlAbsoluta(alternas.es ?? alternas.en ?? pagina)} />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -61,8 +66,6 @@ const v = `?v=${VERSION}`;
     rel="stylesheet" />
 
   {silkscreen && <link href="https://fonts.googleapis.com/css2?family=Silkscreen&text=0123456789&display=swap" rel="stylesheet" />}
-  <link rel="stylesheet" href={a('css/styles.css') + v} />
-  {css.map((hoja) => <link rel="stylesheet" href={a(hoja) + v} />)}
 </head>
 
 <body class={claseBody}>
