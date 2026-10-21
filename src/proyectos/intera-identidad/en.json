@@ -1,0 +1,106 @@
+{
+  "url": "intera-identity",
+  "num": 1,
+  "color": "#504FED",
+  "titulo": "Intera, corporate identity · Roger Avellana",
+  "descripcion": "Case study: redesign of Intera’s visual identity. Challenge, process, deliverables and results.",
+  "categoria": "Branding",
+  "h1": "Intera: a brand that",
+  "h1Destacado": "makes sense at first glance.",
+  "entradilla": "Intera had grown faster than its image. I redesigned its visual identity so that a complex technology company could present itself with a clear, consistent brand that is easy to apply on any medium.",
+  "etiquetas": [
+    "visual identity",
+    "brand system",
+    "guidelines",
+    "templates"
+  ],
+  "ficha": [
+    {
+      "dt": "Client",
+      "dd": "Intera"
+    },
+    {
+      "dt": "Year",
+      "dd": "2024"
+    },
+    {
+      "dt": "My role",
+      "dd": "Art direction and brand design"
+    },
+    {
+      "dt": "Duration",
+      "dd": "10 weeks"
+    },
+    {
+      "dt": "Tools",
+      "dd": "Illustrator, Figma, InDesign"
+    }
+  ],
+  "resumen": {
+    "reto": "Each department used its own version of the logo, different colors and makeshift templates. The brand didn’t convey the company’s technical strength and was hard to recognize.",
+    "solucion": "A complete brand system: a simplified logo, a reduced palette, a single type family and templates so that anyone on the team could create consistent materials.",
+    "resultado": "A recognizable identity that is easy to maintain. The team now produces its materials in half the time, and the brand looks the same on the web, social media, trade fairs and documents."
+  },
+  "proceso": {
+    "titulo": "From diagnosis to system.",
+    "intro": "Four phases with one goal: a brand the team can use on its own, without depending on me for every piece.",
+    "pasos": [
+      {
+        "titulo": "Listen",
+        "texto": "Interviews with management and teams, plus an audit of all existing materials to understand what worked and what didn’t.",
+        "entregable": "brand audit"
+      },
+      {
+        "titulo": "Explore",
+        "texto": "Three creative routes with moodboards and first sketches, assessed with the client for clarity, differentiation and ease of use.",
+        "entregable": "creative routes"
+      },
+      {
+        "titulo": "Build",
+        "texto": "Development of the chosen route: logo grid, palette, typography, iconography and full-size tests.",
+        "entregable": "visual system"
+      },
+      {
+        "titulo": "Apply",
+        "texto": "Brand guidelines, editable templates and rollout to stationery, presentations, web and social media.",
+        "entregable": "guidelines + templates"
+      }
+    ]
+  },
+  "entregables": {
+    "titulo": "A system, not loose pieces.",
+    "intro": "Every element was designed to work with the others, from the logo to the last social media template."
+  },
+  "resultados": {
+    "cifras": [
+      {
+        "cifra": "+60",
+        "texto": "pieces produced with the new brand system"
+      },
+      {
+        "cifra": "50%",
+        "texto": "less time to produce materials thanks to the templates"
+      },
+      {
+        "cifra": "40",
+        "texto": "pages of brand guidelines, with examples of correct and incorrect use"
+      }
+    ],
+    "testimonio": {
+      "texto": "Roger combines visual and strategic judgment in an unusual way, understanding the brand as a system rather than a collection of loose pieces.",
+      "autor": "Client · INTERA",
+      "cargo": "Marketing Manager"
+    }
+  },
+  "siguiente": {
+    "num": 2,
+    "titulo": "Igualada City Council — campaigns",
+    "color": "#D9482C"
+  },
+  "contacto": {
+    "titulo": "A similar project?",
+    "texto": "Tell me what your brand needs and I’ll get back to you as soon as I can."
+  },
+  "portadaAlt": "Cards with the new Intera logo",
+  "pendienteRevisar": "Provisional content: invented texts, figures, dates, tools and illustrations. Replace with the real ones."
+}

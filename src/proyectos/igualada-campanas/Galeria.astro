@@ -1,11 +1,13 @@
 ---
 // Entregables del proyecto: piezas del mosaico (cg-item, cg-wide, cg-full).
-// Los pies de foto están en español; en la versión inglesa se traducen con la prop lang.
+// Textos en los dos idiomas con t('español', 'inglés'), según la página.
 interface Props { lang?: 'es' | 'en' }
+const { lang = 'es' } = Astro.props;
+const t = (es: string, en: string) => (lang === 'en' ? en : es);
 ---
 <figure class="cg-item cg-wide">
   <div class="cg-media cg-media--soft">
-    <svg viewBox="0 0 520 300" role="img" aria-label="Serie de tres carteles de campaña" font-family="Plus Jakarta Sans, sans-serif">
+    <svg viewBox="0 0 520 300" role="img" aria-label={t('Serie de tres carteles de campaña', 'Series of three campaign posters')} font-family="Plus Jakarta Sans, sans-serif">
       <defs><filter id="cg-sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#15121f" flood-opacity=".18" /></filter></defs>
       <g filter="url(#cg-sh)">
         <g>
@@ -36,17 +38,17 @@ interface Props { lang?: 'es' | 'en' }
       <text x="50" y="270" font-family="JetBrains Mono, monospace" font-size="11" fill="#837f99">A3 · A2 · mupi 120×176</text>
     </svg>
   </div>
-  <figcaption>Cartelería · serie de campaña</figcaption>
+  <figcaption>{t('Cartelería · serie de campaña', 'Posters · campaign series')}</figcaption>
 </figure>
 
 <figure class="cg-item">
   <div class="cg-media cg-palette">
-    <span style="--sw:#D9482C; --tx:#fff;"><b>Rojo ciudad</b>#D9482C</span>
-    <span style="--sw:#15121F; --tx:#fff;"><b>Tinta</b>#15121F</span>
-    <span style="--sw:#FBE2C6;"><b>Crema</b>#FBE2C6</span>
-    <span style="--sw:#FFFFFF;"><b>Blanco</b>#FFFFFF</span>
+    <span style="--sw:#D9482C; --tx:#fff;"><b>{t('Rojo ciudad', 'City red')}</b>#D9482C</span>
+    <span style="--sw:#15121F; --tx:#fff;"><b>{t('Tinta', 'Ink')}</b>#15121F</span>
+    <span style="--sw:#FBE2C6;"><b>{t('Crema', 'Cream')}</b>#FBE2C6</span>
+    <span style="--sw:#FFFFFF;"><b>{t('Blanco', 'White')}</b>#FFFFFF</span>
   </div>
-  <figcaption>Sistema de color</figcaption>
+  <figcaption>{t('Sistema de color', 'Color system')}</figcaption>
 </figure>
 
 <figure class="cg-item">
@@ -56,14 +58,14 @@ interface Props { lang?: 'es' | 'en' }
       <li>Igualada recicla. I tu?</li>
       <li>La teva ciutat, el teu pla.</li>
     </ul>
-    <span>titulares cortos · en catalán · verbo + ciudad</span>
+    <span>{t('titulares cortos · en catalán · verbo + ciudad', 'short headlines · in Catalan · verb + city')}</span>
   </div>
-  <figcaption>Titulares · tono de campaña</figcaption>
+  <figcaption>{t('Titulares · tono de campaña', 'Headlines · campaign tone')}</figcaption>
 </figure>
 
 <figure class="cg-item cg-wide">
   <div class="cg-media cg-media--grid">
-    <svg viewBox="0 0 520 300" role="img" aria-label="Banners digitales en varios formatos" font-family="Plus Jakarta Sans, sans-serif">
+    <svg viewBox="0 0 520 300" role="img" aria-label={t('Banners digitales en varios formatos', 'Digital banners in several formats')} font-family="Plus Jakarta Sans, sans-serif">
       <g>
         <rect x="40" y="36" width="440" height="56" rx="4" fill="#D9482C" />
         <text x="58" y="70" font-size="18" font-weight="800" fill="#fff">Fem barri, fem ciutat.</text>
@@ -95,7 +97,7 @@ interface Props { lang?: 'es' | 'en' }
       </g>
     </svg>
   </div>
-  <figcaption>Banners digitales · formatos</figcaption>
+  <figcaption>{t('Banners digitales · formatos', 'Digital banners · formats')}</figcaption>
 </figure>
 
 <figure class="cg-item cg-full">
@@ -105,5 +107,5 @@ interface Props { lang?: 'es' | 'en' }
     <div class="cg-post" style="--pb:#15121f; --pt:#fff;"><span>Consulta<br />l'agenda →</span><i></i></div>
     <div class="cg-post" style="--pb:#fff; --pt:#15121f;"><span class="cg-post-logo" aria-hidden="true"></span><span>Ajuntament<br />d'Igualada</span></div>
   </div>
-  <figcaption>Redes sociales · plantillas</figcaption>
+  <figcaption>{t('Redes sociales · plantillas', 'Social media · templates')}</figcaption>
 </figure>

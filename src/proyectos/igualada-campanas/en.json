@@ -1,0 +1,106 @@
+{
+  "url": "igualada-campaigns",
+  "num": 2,
+  "color": "#D9482C",
+  "titulo": "Igualada City Council, campaigns · Roger Avellana",
+  "descripcion": "Case study: municipal campaigns for Igualada City Council. Challenge, process, deliverables and results.",
+  "categoria": "Marketing",
+  "h1": "Igualada City Council: campaigns",
+  "h1Destacado": "the whole city understands.",
+  "entradilla": "For two years I designed the municipal campaigns of Igualada City Council, from street posters to banners and social media. The challenge: speaking to every resident with clear messages and a consistent institutional image.",
+  "etiquetas": [
+    "campaigns",
+    "posters",
+    "digital banners",
+    "social media"
+  ],
+  "ficha": [
+    {
+      "dt": "Client",
+      "dd": "Igualada City Council"
+    },
+    {
+      "dt": "Years",
+      "dd": "2018–2019"
+    },
+    {
+      "dt": "My role",
+      "dd": "Campaign graphic design"
+    },
+    {
+      "dt": "Scope",
+      "dd": "15+ municipal campaigns"
+    },
+    {
+      "dt": "Tools",
+      "dd": "Illustrator, InDesign, Photoshop"
+    }
+  ],
+  "resumen": {
+    "reto": "Every campaign was designed from scratch and on very tight deadlines. Messages competed with each other on the street and on social media, and people didn’t always recognize that they came from the City Council.",
+    "solucion": "A shared graphic system for every campaign: grid, type hierarchy, use of color and a fixed institutional block, adaptable to any format in little time.",
+    "resultado": "More legible, recognizable campaigns, produced faster and with the same institutional tone on the street, on the web and on social media."
+  },
+  "proceso": {
+    "titulo": "From brief to street.",
+    "intro": "A workflow built for tight deadlines: every campaign went through the same four phases, so we could move fast without losing quality.",
+    "pasos": [
+      {
+        "titulo": "Brief",
+        "texto": "A meeting with each municipal department to define the campaign’s goal, audience and main message.",
+        "entregable": "campaign brief"
+      },
+      {
+        "titulo": "Concept",
+        "texto": "Graphic idea and headline, with two or three proposals validated with the Communications department.",
+        "entregable": "creative proposal"
+      },
+      {
+        "titulo": "Design",
+        "texto": "Key piece on the shared graphic system and adaptations to every format: poster, street panel, banner and social media.",
+        "entregable": "final pieces"
+      },
+      {
+        "titulo": "Rollout",
+        "texto": "Print-ready artwork and publication on the municipal website and social media, with follow-up on the response.",
+        "entregable": "artwork + publication"
+      }
+    ]
+  },
+  "entregables": {
+    "titulo": "One graphic voice for the whole city.",
+    "intro": "The same system adapted to every format, from an A3 poster to an Instagram story."
+  },
+  "resultados": {
+    "cifras": [
+      {
+        "cifra": "+15",
+        "texto": "municipal campaigns designed on the same system"
+      },
+      {
+        "cifra": "+120",
+        "texto": "pieces across posters, banners and social media posts"
+      },
+      {
+        "cifra": "48 h",
+        "texto": "to adapt a new campaign to every format"
+      }
+    ],
+    "testimonio": {
+      "texto": "The campaigns designed for the city council worked because they weren't just pretty: they were legible, clear and respected the institutional tone.",
+      "autor": "Collaboration · City Council",
+      "cargo": "Communications"
+    }
+  },
+  "siguiente": {
+    "num": 3,
+    "titulo": "Sensing & Control — IoT dashboard",
+    "color": "#0E8A5A"
+  },
+  "contacto": {
+    "titulo": "Need a campaign?",
+    "texto": "Tell me what you want to communicate and to whom, and I’ll get back to you as soon as I can."
+  },
+  "portadaAlt": "Posters and a social media post from a municipal campaign",
+  "pendienteRevisar": "Provisional content: invented texts, figures, dates, tools and illustrations. Replace with the real ones."
+}

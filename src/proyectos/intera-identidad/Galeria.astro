@@ -1,11 +1,13 @@
 ---
 // Entregables del proyecto: piezas del mosaico (cg-item, cg-wide, cg-full).
-// Los pies de foto están en español; en la versión inglesa se traducen con la prop lang.
+// Textos en los dos idiomas con t('español', 'inglés'), según la página.
 interface Props { lang?: 'es' | 'en' }
+const { lang = 'es' } = Astro.props;
+const t = (es: string, en: string) => (lang === 'en' ? en : es);
 ---
 <figure class="cg-item cg-wide">
   <div class="cg-media cg-media--grid">
-    <svg viewBox="0 0 520 300" role="img" aria-label="Logotipo de Intera sobre su retícula de construcción" font-family="Plus Jakarta Sans, sans-serif">
+    <svg viewBox="0 0 520 300" role="img" aria-label={t('Logotipo de Intera sobre su retícula de construcción', 'Intera logo on its construction grid')} font-family="Plus Jakarta Sans, sans-serif">
       <g fill="none" stroke="#504FED" stroke-width="1" opacity=".35" stroke-dasharray="4 4">
         <circle cx="150" cy="150" r="70" /><circle cx="166" cy="134" r="28" />
         <line x1="40" y1="150" x2="480" y2="150" /><line x1="150" y1="40" x2="150" y2="260" />
@@ -16,21 +18,21 @@ interface Props { lang?: 'es' | 'en' }
       <text x="232" y="172" font-size="64" font-weight="800" letter-spacing="-3" fill="#15121f">intera</text>
       <g font-family="JetBrains Mono, monospace" font-size="11" fill="#837f99">
         <text x="40" y="74">x</text><text x="40" y="244">x</text>
-        <text x="232" y="214">altura de x · 0,5 r</text>
+        <text x="232" y="214">{t('altura de x · 0,5 r', 'x-height · 0.5 r')}</text>
       </g>
     </svg>
   </div>
-  <figcaption>Logotipo · retícula de construcción</figcaption>
+  <figcaption>{t('Logotipo · retícula de construcción', 'Logo · construction grid')}</figcaption>
 </figure>
 
 <figure class="cg-item">
   <div class="cg-media cg-palette">
-    <span style="--sw:#504FED; --tx:#fff;"><b>Índigo</b>#504FED</span>
-    <span style="--sw:#15121F; --tx:#fff;"><b>Tinta</b>#15121F</span>
-    <span style="--sw:#FBE2C6;"><b>Melocotón</b>#FBE2C6</span>
-    <span style="--sw:#F4F3FB;"><b>Niebla</b>#F4F3FB</span>
+    <span style="--sw:#504FED; --tx:#fff;"><b>{t('Índigo', 'Indigo')}</b>#504FED</span>
+    <span style="--sw:#15121F; --tx:#fff;"><b>{t('Tinta', 'Ink')}</b>#15121F</span>
+    <span style="--sw:#FBE2C6;"><b>{t('Melocotón', 'Peach')}</b>#FBE2C6</span>
+    <span style="--sw:#F4F3FB;"><b>{t('Niebla', 'Mist')}</b>#F4F3FB</span>
   </div>
-  <figcaption>Paleta cromática</figcaption>
+  <figcaption>{t('Paleta cromática', 'Color palette')}</figcaption>
 </figure>
 
 <figure class="cg-item">
@@ -42,12 +44,12 @@ interface Props { lang?: 'es' | 'en' }
       <span class="cg-type-chars" aria-hidden="true">ABC abc 123 &amp; @</span>
     </div>
   </div>
-  <figcaption>Tipografía</figcaption>
+  <figcaption>{t('Tipografía', 'Typography')}</figcaption>
 </figure>
 
 <figure class="cg-item cg-wide">
   <div class="cg-media cg-media--soft">
-    <svg viewBox="0 0 520 300" role="img" aria-label="Papelería corporativa: tarjetas de visita y hoja de carta" font-family="Plus Jakarta Sans, sans-serif">
+    <svg viewBox="0 0 520 300" role="img" aria-label={t('Papelería corporativa: tarjetas de visita y hoja de carta', 'Corporate stationery: business cards and letterhead')} font-family="Plus Jakarta Sans, sans-serif">
       <defs><filter id="cg-sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#15121f" flood-opacity=".16" /></filter></defs>
       <g filter="url(#cg-sh)">
         <g transform="rotate(-4 160 150)">
@@ -65,23 +67,23 @@ interface Props { lang?: 'es' | 'en' }
         </g>
         <g transform="rotate(-3 380 220)">
           <rect x="280" y="170" width="190" height="110" rx="8" fill="#fff" />
-          <text x="302" y="212" font-size="16" font-weight="800" fill="#15121f">Nombre Apellido</text>
-          <text x="302" y="232" font-size="11" fill="#837f99">Cargo · Intera</text>
+          <text x="302" y="212" font-size="16" font-weight="800" fill="#15121f">{t('Nombre Apellido', 'Full Name')}</text>
+          <text x="302" y="232" font-size="11" fill="#837f99">{t('Cargo · Intera', 'Role · Intera')}</text>
           <rect x="302" y="252" width="80" height="4" rx="2" fill="#dbd6f9" />
           <circle cx="444" cy="196" r="9" fill="#504FED" /><circle cx="448" cy="192" r="3.5" fill="#fff" />
         </g>
       </g>
     </svg>
   </div>
-  <figcaption>Papelería corporativa</figcaption>
+  <figcaption>{t('Papelería corporativa', 'Corporate stationery')}</figcaption>
 </figure>
 
 <figure class="cg-item cg-full">
   <div class="cg-media cg-posts">
-    <div class="cg-post" style="--pb:#504FED; --pt:#fff;"><span>Tecnología<br />que se entiende.</span><i></i></div>
-    <div class="cg-post" style="--pb:#FBE2C6; --pt:#15121f;"><span class="cg-post-big">+30</span><span>nuevos clientes<br />este año</span></div>
-    <div class="cg-post" style="--pb:#15121f; --pt:#fff;"><span>Conoce al<br />equipo →</span><i></i></div>
+    <div class="cg-post" style="--pb:#504FED; --pt:#fff;"><span>{t('Tecnología', 'Technology')}<br />{t('que se entiende.', 'that makes sense.')}</span><i></i></div>
+    <div class="cg-post" style="--pb:#FBE2C6; --pt:#15121f;"><span class="cg-post-big">+30</span><span>{t('nuevos clientes', 'new clients')}<br />{t('este año', 'this year')}</span></div>
+    <div class="cg-post" style="--pb:#15121f; --pt:#fff;"><span>{t('Conoce al', 'Meet the')}<br />{t('equipo →', 'team →')}</span><i></i></div>
     <div class="cg-post" style="--pb:#fff; --pt:#15121f;"><span class="cg-post-logo" aria-hidden="true"></span><span>intera</span></div>
   </div>
-  <figcaption>Redes sociales · plantillas</figcaption>
+  <figcaption>{t('Redes sociales · plantillas', 'Social media · templates')}</figcaption>
 </figure>
