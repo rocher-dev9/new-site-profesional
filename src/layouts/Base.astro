@@ -1,13 +1,13 @@
 ---
 // ────────────────────────────────────────────────────────────────
 // Plantilla común de todas las páginas: <head>, menú, pie y scripts.
+// Las páginas pueden añadir scripts propios con <Fragment slot="scripts">.
 // Cada página solo aporta su contenido (índice lateral + <main>).
 // ────────────────────────────────────────────────────────────────
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { rutas, rel, urlAbsoluta, type Lang, type Seccion, type Alternas } from '../i18n/rutas';
 import { useT } from '../i18n/ui';
-import { VERSION } from '../version';
 // Estilos: tres archivos separados para editarlos con orden, que Astro combina en un
 // único CSS minificado con huella en el nombre (caché automática), siempre en este orden.
 // ia.css y caso.css solo afectan a sus propias clases (.theme-ai, .case…).
@@ -26,11 +26,10 @@ interface Props {
   colorTema?: string;
   claseBody?: string;
   silkscreen?: boolean;       // fuente pixel de las cifras (índice lateral, contadores…)
-  js?: string[];              // scripts extra, después de main.js y cursor.js
 }
 const {
   lang, pagina, titulo, descripcion, activa, subpagina = false,
-  colorTema = '#5850EC', claseBody, silkscreen = false, js = [],
+  colorTema = '#5850EC', claseBody, silkscreen = false,
 } = Astro.props;
 const t = useT(lang);
 
@@ -40,7 +39,6 @@ const alternas: Alternas = Astro.props.alternas ?? (activa ? { ...rutas[activa] 
 const respaldo = rutas[activa ?? 'inicio'];
 const cambio = { es: alternas.es ?? respaldo.es, en: alternas.en ?? respaldo.en };
 const a = (ruta: string) => rel(pagina, ruta);
-const v = `?v=${VERSION}`; // solo para los scripts de public/js
 ---
 <!DOCTYPE html>
 <html lang={lang}>
@@ -77,7 +75,12 @@ const v = `?v=${VERSION}`; // solo para los scripts de public/js
 
   <Footer lang={lang} />
 
-  {['js/main.js', 'js/cursor.js', ...js].map((src) => <script is:inline src={a(src) + v}></script>)}
+  <!-- Script común (src/scripts/global.ts): Astro lo compila y minifica -->
+  <script>
+    import '../scripts/global.ts';
+  </script>
+  <!-- Scripts propios de algunas páginas (IOI, robot…), después del común -->
+  <slot name="scripts" />
 </body>
 
 </html>

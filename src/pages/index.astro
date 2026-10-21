@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import ScriptIoi from '../components/scripts/ScriptIoi.astro';
 import PageIndex from '../components/PageIndex.astro';
 import ContactCards from '../components/ContactCards.astro';
 import ProjectCard from '../components/ProjectCard.astro';
@@ -14,7 +15,6 @@ import { tarjetas } from '../proyectos/tarjetas';
   descripcion={"Roger Avellana — Diseño que comunica, estrategia que conecta. Diseño visual, branding, UI/UX y marketing digital en Barcelona."}
   activa="inicio"
   silkscreen
-  js={["js/ioi.js"]}
 >
   <PageIndex lang="es" secciones={[['top', 'Inicio'], ['servicios', 'Lo que hago'], ['trabajo', 'Proyectos'], ['ia', 'IOI'], ['sobre-mi', 'Sobre mí'], ['testimonios', 'Testimonios'], ['contacto', 'Contacto']]} />
 
@@ -211,4 +211,5 @@ import { tarjetas } from '../proyectos/tarjetas';
     </section>
 
   </main>
+  <Fragment slot="scripts"><ScriptIoi /></Fragment>
 </Base>

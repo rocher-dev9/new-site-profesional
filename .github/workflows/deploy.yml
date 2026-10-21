@@ -24,6 +24,8 @@ jobs:
       - uses: withastro/action@v6
         with:
           node-version: 24
+          # Comprueba los tipos (TypeScript) antes de compilar: si hay errores, no se publica
+          build-cmd: npm run check && npm run build
 
   deploy:
     needs: build

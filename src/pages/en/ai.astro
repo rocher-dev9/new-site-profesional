@@ -1,5 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
+import ScriptIa from '../../components/scripts/ScriptIa.astro';
+import ScriptIoi from '../../components/scripts/ScriptIoi.astro';
 import PageIndex from '../../components/PageIndex.astro';
 import PixelArrow from '../../components/PixelArrow.astro';
 ---
@@ -12,7 +14,6 @@ import PixelArrow from '../../components/PixelArrow.astro';
   colorTema="#0b0a16"
   claseBody="theme-ai"
   silkscreen
-  js={["js/ia.js", "js/ioi.js"]}
 >
   <PageIndex lang="en" secciones={[['top', 'Intro'], ['process', 'Process'], ['tools', 'Tools'], ['automation', 'Automation'], ['agents', 'Agents'], ['principles', 'Principles'], ['contact', 'Contact']]} oscuro />
 
@@ -326,4 +327,5 @@ import PixelArrow from '../../components/PixelArrow.astro';
     </section>
 
   </main>
+  <Fragment slot="scripts"><ScriptIa /><ScriptIoi /></Fragment>
 </Base>
