@@ -18,6 +18,21 @@ export PATH="$HOME/.local/node/bin:$PATH"
 | `npm run build`   | Genera la web final en `dist/`                            |
 | `npm run preview` | Sirve `dist/` para revisarla antes de publicar            |
 
+## URL
+
+| Página   | Español                      | Inglés                          |
+| -------- | ---------------------------- | ------------------------------- |
+| Inicio   | `/`                          | `/en/`                          |
+| Entorno  | `/entorno/`                  | `/en/services.html`             |
+| Trabajo  | `/trabajo/`                  | `/en/work.html`                 |
+| Caso     | `/trabajo/intera-identidad/` | `/en/project-<url>.html`        |
+| IOI      | `/ioi/`                      | `/en/ai.html`                   |
+| Sobre mí | `/sobre-mi/`                 | `/en/about.html`                |
+
+Las URL antiguas en español (`servicios.html`, `trabajo.html`, `ia.html`, `about.html`,
+`proyecto-*.html`, `contacto.html`) siguen funcionando: son páginas en `public/` que
+redirigen a las nuevas conservando el ancla.
+
 ## Estructura
 
 ```
@@ -31,7 +46,7 @@ src/
   components/           menú, selector ES/EN, pie, iconos…
   i18n/rutas.ts         equivalencias de páginas ES ↔ EN (menú, selector y hreflang)
   i18n/ui.ts            textos cortos de la interfaz en los dos idiomas
-  pages/                páginas en español (raíz) y en inglés (en/)
+  pages/                páginas en español (por carpetas) y en inglés (en/)
   proyectos/<clave>/    un caso de estudio: es.json / en.json + Portada.astro + Galeria.astro
 ```
 
@@ -40,7 +55,7 @@ src/
 1. Copia una carpeta de `src/proyectos/` y renómbrala (p. ej. `nvision-ferias`).
 2. Edita `es.json` (textos, cifras, color, `url`, `num`) y las ilustraciones.
 3. Para la versión inglesa, añade `en.json` en la misma carpeta.
-4. Enlaza la tarjeta de Trabajo a `proyecto-<url>.html`.
+4. En `src/pages/trabajo/index.astro`, enlaza su tarjeta («Ver caso») a `<url>/`.
 
 ## Publicación
 

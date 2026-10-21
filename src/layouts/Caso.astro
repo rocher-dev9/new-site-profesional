@@ -3,6 +3,7 @@
 // Plantilla de caso de estudio (común a todos los proyectos y a los dos idiomas).
 // Cada proyecto vive en src/proyectos/<clave>/:
 //   es.json / en.json  → textos, cifras y color del proyecto (uno por idioma)
+// URL: /trabajo/<url>/ en español y /en/project-<url>.html en inglés.
 //   Portada.astro      → ilustración de la portada (SVG 1200×500)
 //   Galeria.astro      → piezas del mosaico de entregables
 // Para crear un caso nuevo: copia una carpeta de proyecto y cambia su contenido.
@@ -10,7 +11,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import Base from './Base.astro';
 import PixelArrow from '../components/PixelArrow.astro';
-import { rutas, rel, type Lang } from '../i18n/rutas';
+import { rutas, rel, rutaCaso, type Lang } from '../i18n/rutas';
 import { useT } from '../i18n/ui';
 
 interface Props { proyecto: CollectionEntry<'proyectos'> }
@@ -23,8 +24,6 @@ const t = useT(lang);
 const TOTAL = 6;
 const dos = (n: number) => String(n).padStart(2, '0');
 
-// Rutas de los casos según el idioma
-const rutaCaso = (l: Lang, slug: string) => (l === 'es' ? `proyecto-${slug}.html` : `en/project-${slug}.html`);
 const pagina = rutaCaso(lang, p.url);
 const todos = await getCollection('proyectos');
 const delIdioma = (l: Lang) => todos.filter((e) => e.id.endsWith(`/${l}`));
@@ -38,7 +37,7 @@ for (const l of ['es', 'en'] as Lang[]) {
 
 // Enlaces de vuelta a la cuadrícula de proyectos de Trabajo
 const ancla = lang === 'es' ? '#proyectos' : '#projects';
-const trabajo = rel(pagina, rutas.trabajo[lang]) + ancla;
+const trabajo = rel(pagina, rutas.trabajo[lang]).replace(/^\.\/$/, '') + ancla;
 // Siguiente proyecto: su página si ya existe en este idioma; si no, Trabajo
 const sig = delIdioma(lang).find((e) => e.data.num === p.siguiente.num);
 const sigHref = sig ? rel(pagina, rutaCaso(lang, sig.data.url)) : trabajo;

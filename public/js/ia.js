@@ -1,7 +1,7 @@
 // ────────────────────────────────────────────────────────────────
 // Roger Avellana — Página de Inteligencia Artificial
 // Red neuronal, consola generativa, proceso y brillo de herramientas.
-// Se carga solo en ia.html, después de main.js.
+// Se carga solo en la página IOI (ioi/ y en/ai.html), después de main.js.
 // ────────────────────────────────────────────────────────────────
 (function () {
   'use strict';
