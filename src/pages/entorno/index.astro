@@ -1,5 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
+import ToolCards from '../../components/ToolCards.astro';
+import { herramientasIA } from '../../datos/herramientas';
 import PageIndex from '../../components/PageIndex.astro';
 import ContactCards from '../../components/ContactCards.astro';
 import PixelArrow from '../../components/PixelArrow.astro';
@@ -119,14 +121,7 @@ import PixelArrow from '../../components/PixelArrow.astro';
             <span class="tools-kicker">01 · IA generativa</span>
             <h3>IA generativa</h3>
             <p>Texto, imagen, vídeo y voz para idear, explorar y producir más rápido.</p>
-            <ul class="tg-list">
-              <li class="tg-tool" style="--c:#10a37f"><span class="tg-badge" aria-hidden="true">CH</span><span><strong>ChatGPT</strong><small>OpenAI · texto e imagen</small></span></li>
-              <li class="tg-tool" style="--c:#d97757"><span class="tg-badge" aria-hidden="true">CL</span><span><strong>Claude</strong><small>Anthropic · escritura y análisis</small></span></li>
-              <li class="tg-tool" style="--c:#4285f4"><span class="tg-badge" aria-hidden="true">GE</span><span><strong>Gemini</strong><small>Google · investigación</small></span></li>
-              <li class="tg-tool" style="--c:#15121f"><span class="tg-badge" aria-hidden="true">MI</span><span><strong>Midjourney</strong><small>imagen generativa</small></span></li>
-              <li class="tg-tool" style="--c:#e8834a"><span class="tg-badge" aria-hidden="true">AF</span><span><strong>Adobe Firefly</strong><small>imagen dentro de Adobe</small></span></li>
-              <li class="tg-tool" style="--c:#7a5bd8"><span class="tg-badge" aria-hidden="true">HI</span><span><strong>Higgsfield</strong><small>vídeo e imagen con IA</small></span></li>
-            </ul>
+            <ToolCards lang="es" pagina="entorno/" herramientas={herramientasIA} />
           </article>
 
           <article class="tools-vibe">

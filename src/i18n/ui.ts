@@ -57,6 +57,7 @@ export const ui = {
     'deck.proceso': 'del brief a la entrega',
     'deck.pasos': 'brief|concepto|diseño|entrega',
     'fila.comentarios': 'Comentarios de revisión del proyecto',
+    'herramientas.ver': 'Ver cómo la uso',
   },
   en: {
     'skip': 'skip to content',
@@ -108,6 +109,7 @@ export const ui = {
     'deck.proceso': 'from brief to delivery',
     'deck.pasos': 'brief|concept|design|delivery',
     'fila.comentarios': 'Project review comments',
+    'herramientas.ver': 'See how I use it',
   },
 } as const;
 

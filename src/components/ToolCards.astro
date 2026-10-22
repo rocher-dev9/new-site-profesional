@@ -1,0 +1,29 @@
+---
+// Tarjetas de herramientas (logo en una placa sobre el borde, nombre, uso y enlace).
+// Datos en src/datos/herramientas.ts. El enlace lleva a las herramientas de la página IOI.
+import PixelArrow from './PixelArrow.astro';
+import { rutas, rel, type Lang } from '../i18n/rutas';
+import { useT } from '../i18n/ui';
+import type { Herramienta } from '../datos/herramientas';
+
+interface Props { lang: Lang; pagina: string; herramientas: Herramienta[] }
+const { lang, pagina, herramientas } = Astro.props;
+const t = useT(lang);
+const href = rel(pagina, rutas.ioi[lang]) + (lang === 'es' ? '#herramientas' : '#tools');
+const ICONOS = 'https://cdn.jsdelivr.net/npm/simple-icons@16.35.0/icons/';
+---
+<ul class="tc-grid">
+  {herramientas.map((h) => (
+    <li class="tc-card" style={`--c: ${h.color};`}>
+      <span class="tc-badge" aria-hidden="true">
+        {h.imagen ? <img src={rel(pagina, h.imagen)} alt="" width="28" height="28" loading="lazy" />
+          : h.logo ? <span class="tc-logo" style={`--logo: url(${ICONOS}${h.logo}.svg);`}></span>
+          : <span class="tc-mono">{h.monograma}</span>}
+      </span>
+      <h4>{h.nombre}</h4>
+      {h.empresa && <small>{h.empresa}</small>}
+      <p>{h.uso[lang]}</p>
+      <a href={href} class="btn-link">{t('herramientas.ver')} <PixelArrow /></a>
+    </li>
+  ))}
+</ul>
