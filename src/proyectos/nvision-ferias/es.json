@@ -1,0 +1,106 @@
+{
+  "url": "nvision-ferias",
+  "num": 4,
+  "color": "#E0A82E",
+  "titulo": "nVision, ferias internacionales · Roger Avellana",
+  "descripcion": "Caso de estudio: materiales para las ferias internacionales de I+D de nVision Systems. Reto, proceso, entregables y resultados.",
+  "categoria": "Diseño",
+  "h1": "nVision: tecnología compleja",
+  "h1Destacado": "explicada en tres segundos.",
+  "entradilla": "nVision Systems presenta sus desarrollos de I+D en ferias internacionales, donde cada visitante dedica unos segundos a cada stand. Diseñé el stand, los roll-ups, los folletos técnicos y las presentaciones para que su tecnología se entendiera de lejos y convenciera de cerca.",
+  "etiquetas": [
+    "stands",
+    "roll-ups",
+    "folletos técnicos",
+    "presentaciones"
+  ],
+  "ficha": [
+    {
+      "dt": "Cliente",
+      "dd": "nVision Systems"
+    },
+    {
+      "dt": "Años",
+      "dd": "2021–2023"
+    },
+    {
+      "dt": "Mi papel",
+      "dd": "Diseño gráfico y de stands"
+    },
+    {
+      "dt": "Ferias",
+      "dd": "6 ferias en 4 países"
+    },
+    {
+      "dt": "Herramientas",
+      "dd": "Illustrator, InDesign, Photoshop"
+    }
+  ],
+  "resumen": {
+    "reto": "Cada feria se preparaba con materiales distintos y muy técnicos. El stand no explicaba qué hacía la empresa y los folletos estaban pensados para ingenieros, no para posibles clientes.",
+    "solucion": "Un kit de feria reutilizable: stand modular, roll-ups con un mensaje por pieza, folletos técnicos con dos niveles de lectura y una plantilla de presentación común.",
+    "resultado": "Un stand reconocible en cualquier feria, que se prepara en menos tiempo, y materiales que el equipo comercial también usa fuera de las ferias."
+  },
+  "proceso": {
+    "titulo": "Del laboratorio al stand.",
+    "intro": "Traducir la I+D a mensajes claros sin perder rigor, con un sistema que sirviera para cualquier feria y cualquier país.",
+    "pasos": [
+      {
+        "titulo": "Entender",
+        "texto": "Sesiones con el equipo de I+D para identificar qué hace cada producto, a quién le importa y qué se puede demostrar en la feria.",
+        "entregable": "mapa de mensajes"
+      },
+      {
+        "titulo": "Jerarquizar",
+        "texto": "Un mensaje principal por pieza, según la distancia: lo que se lee a 5 metros, a 2 metros y en la mano.",
+        "entregable": "niveles de lectura"
+      },
+      {
+        "titulo": "Diseñar",
+        "texto": "Stand modular, roll-ups, folletos técnicos e infografías con la misma retícula y el mismo estilo visual.",
+        "entregable": "kit de feria"
+      },
+      {
+        "titulo": "Producir",
+        "texto": "Artes finales para imprenta en gran formato, adaptaciones por idioma y plantilla de presentación para el equipo.",
+        "entregable": "artes finales + plantillas"
+      }
+    ]
+  },
+  "entregables": {
+    "titulo": "Un kit para cualquier feria.",
+    "intro": "Las mismas piezas se adaptaban a cada evento, a cada idioma y a cada tamaño de stand."
+  },
+  "resultados": {
+    "cifras": [
+      {
+        "cifra": "6",
+        "texto": "ferias internacionales en 4 países con el mismo sistema"
+      },
+      {
+        "cifra": "3",
+        "texto": "niveles de lectura: a 5 metros, a 2 metros y en la mano"
+      },
+      {
+        "cifra": "−30%",
+        "texto": "de tiempo para preparar los materiales de cada feria"
+      }
+    ],
+    "testimonio": {
+      "texto": "Trabajar con Roger en las ferias internacionales fue clave. Capaz de traducir tecnología compleja en materiales que cualquiera entendía.",
+      "autor": "Equipo · nVision Systems",
+      "cargo": "R&D Lead"
+    }
+  },
+  "siguiente": {
+    "num": 5,
+    "titulo": "Intera — estrategia digital",
+    "color": "#7A5BD8"
+  },
+  "contacto": {
+    "titulo": "¿Preparas una feria?",
+    "texto": "Cuéntame qué tienes que explicar y a quién, y te respondo en cuanto pueda."
+  },
+  "portadaAlt": "Stand de feria con pared de fondo, roll-ups, mostrador y pantalla",
+  "pendienteRevisar": "Contenido provisional: textos, cifras, fechas, herramientas e ilustraciones inventados. Sustituir por los reales."
+}

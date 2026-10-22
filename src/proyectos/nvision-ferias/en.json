@@ -1,0 +1,106 @@
+{
+  "url": "nvision-trade-fairs",
+  "num": 4,
+  "color": "#E0A82E",
+  "titulo": "nVision, international trade fairs · Roger Avellana",
+  "descripcion": "Case study: materials for nVision Systems’ international R&D trade fairs. Challenge, process, deliverables and results.",
+  "categoria": "Design",
+  "h1": "nVision: complex technology",
+  "h1Destacado": "explained in three seconds.",
+  "entradilla": "nVision Systems presents its R&D work at international trade fairs, where each visitor spends only a few seconds at every booth. I designed the stand, roll-ups, technical brochures and presentations so that its technology could be understood from afar and convince up close.",
+  "etiquetas": [
+    "stands",
+    "roll-ups",
+    "technical brochures",
+    "presentations"
+  ],
+  "ficha": [
+    {
+      "dt": "Client",
+      "dd": "nVision Systems"
+    },
+    {
+      "dt": "Years",
+      "dd": "2021–2023"
+    },
+    {
+      "dt": "My role",
+      "dd": "Graphic and stand design"
+    },
+    {
+      "dt": "Trade fairs",
+      "dd": "6 fairs in 4 countries"
+    },
+    {
+      "dt": "Tools",
+      "dd": "Illustrator, InDesign, Photoshop"
+    }
+  ],
+  "resumen": {
+    "reto": "Every fair was prepared with different, highly technical materials. The stand didn’t explain what the company did, and the brochures were written for engineers, not for potential clients.",
+    "solucion": "A reusable trade fair kit: a modular stand, roll-ups with one message each, technical brochures with two reading levels and a shared presentation template.",
+    "resultado": "A stand that is recognizable at any fair and takes less time to prepare, plus materials the sales team also uses outside the fairs."
+  },
+  "proceso": {
+    "titulo": "From the lab to the booth.",
+    "intro": "Turning R&D into clear messages without losing rigor, with a system that worked for any fair and any country.",
+    "pasos": [
+      {
+        "titulo": "Understand",
+        "texto": "Sessions with the R&D team to identify what each product does, who cares about it and what can be demonstrated at the fair.",
+        "entregable": "message map"
+      },
+      {
+        "titulo": "Prioritize",
+        "texto": "One main message per piece, depending on distance: what you read at 5 meters, at 2 meters and in your hand.",
+        "entregable": "reading levels"
+      },
+      {
+        "titulo": "Design",
+        "texto": "Modular stand, roll-ups, technical brochures and infographics with the same grid and the same visual style.",
+        "entregable": "trade fair kit"
+      },
+      {
+        "titulo": "Produce",
+        "texto": "Large-format print-ready artwork, language adaptations and a presentation template for the team.",
+        "entregable": "artwork + templates"
+      }
+    ]
+  },
+  "entregables": {
+    "titulo": "A kit for any trade fair.",
+    "intro": "The same pieces adapted to every event, every language and every stand size."
+  },
+  "resultados": {
+    "cifras": [
+      {
+        "cifra": "6",
+        "texto": "international trade fairs in 4 countries with the same system"
+      },
+      {
+        "cifra": "3",
+        "texto": "reading levels: at 5 meters, at 2 meters and in your hand"
+      },
+      {
+        "cifra": "−30%",
+        "texto": "time to prepare the materials for each fair"
+      }
+    ],
+    "testimonio": {
+      "texto": "Working with Roger on international trade fairs was key: complex technology turned into materials anyone could understand.",
+      "autor": "Team · nVision Systems",
+      "cargo": "R&D Lead"
+    }
+  },
+  "siguiente": {
+    "num": 5,
+    "titulo": "Intera — digital strategy",
+    "color": "#7A5BD8"
+  },
+  "contacto": {
+    "titulo": "Preparing for a trade fair?",
+    "texto": "Tell me what you need to explain and to whom, and I’ll get back to you as soon as I can."
+  },
+  "portadaAlt": "Trade fair stand with back wall, roll-ups, counter and screen",
+  "pendienteRevisar": "Provisional content: invented texts, figures, dates, tools and illustrations. Replace with the real ones."
+}

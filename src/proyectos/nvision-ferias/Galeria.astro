@@ -1,0 +1,89 @@
+---
+// Entregables del proyecto: piezas del mosaico (cg-item, cg-wide, cg-full).
+// Textos en los dos idiomas con t('español', 'inglés'), según la página.
+interface Props { lang?: 'es' | 'en' }
+const { lang = 'es' } = Astro.props;
+const t = (es: string, en: string) => (lang === 'en' ? en : es);
+---
+<figure class="cg-item cg-wide">
+  <div class="cg-media cg-media--grid">
+    <svg viewBox="0 0 520 300" role="img" aria-label={t('Alzado del stand modular con sus medidas', 'Front elevation of the modular stand with its dimensions')} font-family="Plus Jakarta Sans, sans-serif">
+      <g font-family="JetBrains Mono, monospace" font-size="10" fill="#837f99">
+        <line x1="90" y1="40" x2="430" y2="40" stroke="#837f99" stroke-dasharray="3 3" /><text x="240" y="34">6 m</text>
+        <line x1="70" y1="60" x2="70" y2="250" stroke="#837f99" stroke-dasharray="3 3" /><text x="48" y="160">3 m</text>
+      </g>
+      <rect x="90" y="60" width="340" height="190" rx="3" fill="#15121f" />
+      <rect x="90" y="60" width="340" height="36" rx="3" fill="#fff" stroke="#15121f" stroke-opacity=".1" />
+      <circle cx="112" cy="78" r="9" fill="#E0A82E" />
+      <text x="128" y="84" font-size="15" font-weight="800" fill="#15121f">nVision</text>
+      <text x="112" y="140" font-size="20" font-weight="800" fill="#fff">{t('Ver más.', 'See more.')}</text>
+      <text x="112" y="166" font-size="20" font-weight="800" fill="#E0A82E">{t('Fallar menos.', 'Fail less.')}</text>
+      <rect x="290" y="116" width="116" height="74" rx="3" fill="#fbf3e2" />
+      <rect x="200" y="200" width="120" height="50" rx="3" fill="#E0A82E" />
+      <rect x="448" y="110" width="34" height="140" rx="2" fill="#fff" stroke="#15121f" stroke-opacity=".15" />
+      <circle cx="465" cy="132" r="10" fill="#E0A82E" />
+      <g font-family="JetBrains Mono, monospace" font-size="9" fill="#837f99">
+        <text x="290" y="206">{t('pantalla', 'screen')}</text><text x="206" y="268">{t('mostrador', 'counter')}</text><text x="440" y="268">roll-up</text>
+      </g>
+    </svg>
+  </div>
+  <figcaption>{t('Stand modular · alzado', 'Modular stand · front elevation')}</figcaption>
+</figure>
+
+<figure class="cg-item">
+  <div class="cg-media cg-palette">
+    <span style="--sw:#E0A82E;"><b>{t('Ámbar', 'Amber')}</b>#E0A82E</span>
+    <span style="--sw:#15121F; --tx:#fff;"><b>{t('Tinta', 'Ink')}</b>#15121F</span>
+    <span style="--sw:#FBF3E2;"><b>{t('Arena', 'Sand')}</b>#FBF3E2</span>
+    <span style="--sw:#FFFFFF;"><b>{t('Blanco', 'White')}</b>#FFFFFF</span>
+  </div>
+  <figcaption>{t('Paleta de feria', 'Trade fair palette')}</figcaption>
+</figure>
+
+<figure class="cg-item">
+  <div class="cg-media cg-type cg-headlines">
+    <ul>
+      <li>{t('A 5 m: el mensaje.', 'At 5 m: the message.')}</li>
+      <li>{t('A 2 m: el beneficio.', 'At 2 m: the benefit.')}</li>
+      <li>{t('En la mano: el dato técnico.', 'In hand: the technical detail.')}</li>
+    </ul>
+    <span>{t('una idea por pieza · de lejos a cerca', 'one idea per piece · from far to near')}</span>
+  </div>
+  <figcaption>{t('Niveles de lectura', 'Reading levels')}</figcaption>
+</figure>
+
+<figure class="cg-item cg-wide">
+  <div class="cg-media cg-media--soft">
+    <svg viewBox="0 0 520 300" role="img" aria-label={t('Folleto técnico tríptico abierto con una infografía', 'Open technical tri-fold brochure with an infographic')} font-family="Plus Jakarta Sans, sans-serif">
+      <defs><filter id="cg-sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#15121f" flood-opacity=".16" /></filter></defs>
+      <g filter="url(#cg-sh)">
+        <rect x="50" y="50" width="140" height="200" fill="#fff" />
+        <rect x="190" y="50" width="140" height="200" fill="#fbf3e2" />
+        <rect x="330" y="50" width="140" height="200" fill="#15121f" />
+      </g>
+      <text x="64" y="84" font-size="14" font-weight="800" fill="#15121f">{t('Cómo funciona', 'How it works')}</text>
+      <g fill="#15121f" opacity=".3"><rect x="64" y="98" width="110" height="5" rx="2.5" /><rect x="64" y="110" width="96" height="5" rx="2.5" /><rect x="64" y="122" width="104" height="5" rx="2.5" /></g>
+      <circle cx="90" cy="180" r="18" fill="#E0A82E" /><circle cx="150" cy="180" r="18" fill="none" stroke="#E0A82E" stroke-width="4" />
+      <line x1="108" y1="180" x2="132" y2="180" stroke="#15121f" stroke-width="2" />
+      <text x="206" y="84" font-size="14" font-weight="800" fill="#15121f">{t('El dato', 'The figure')}</text>
+      <text x="206" y="150" font-size="44" font-weight="800" letter-spacing="-2" fill="#E0A82E">0,1</text>
+      <text x="206" y="172" font-size="11" fill="#15121f">{t('mm de precisión', 'mm precision')}</text>
+      <g fill="#15121f" opacity=".3"><rect x="206" y="196" width="104" height="5" rx="2.5" /><rect x="206" y="208" width="80" height="5" rx="2.5" /></g>
+      <circle cx="356" cy="80" r="10" fill="#E0A82E" /><circle cx="359" cy="77" r="3.5" fill="#15121f" />
+      <text x="372" y="85" font-size="13" font-weight="800" fill="#fff">nVision</text>
+      <text x="346" y="200" font-size="15" font-weight="800" fill="#fff">{t('Pide una', 'Book a')}</text>
+      <text x="346" y="220" font-size="15" font-weight="800" fill="#E0A82E">{t('demo →', 'demo →')}</text>
+    </svg>
+  </div>
+  <figcaption>{t('Folleto técnico · tríptico', 'Technical brochure · tri-fold')}</figcaption>
+</figure>
+
+<figure class="cg-item cg-full">
+  <div class="cg-media cg-posts">
+    <div class="cg-post" style="--pb:#15121f; --pt:#fff;"><span>{t('Ver más.', 'See more.')}<br />{t('Fallar menos.', 'Fail less.')}</span><i></i></div>
+    <div class="cg-post" style="--pb:#E0A82E; --pt:#15121f;"><span class="cg-post-big" style="color:#15121f">0,1</span><span>{t('mm de', 'mm')}<br />{t('precisión', 'precision')}</span></div>
+    <div class="cg-post" style="--pb:#FBF3E2; --pt:#15121f;"><span>{t('Pide una', 'Book a')}<br />{t('demo →', 'demo →')}</span><i></i></div>
+    <div class="cg-post" style="--pb:#fff; --pt:#15121f;"><span class="cg-post-logo" aria-hidden="true"></span><span>nVision<br />Systems</span></div>
+  </div>
+  <figcaption>{t('Roll-ups y pantallas · un mensaje por pieza', 'Roll-ups and screens · one message per piece')}</figcaption>
+</figure>
