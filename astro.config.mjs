@@ -5,7 +5,8 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   // Se publica en GitHub Pages: https://rocher-dev9.github.io/new-site-profesional/
   site: 'https://rocher-dev9.github.io',
-  base: '/new-site-profesional',
+  // En Vercel (que define VERCEL al compilar) la web va en la raíz
+  base: process.env.VERCEL ? '/' : '/new-site-profesional',
   // Genera archivos .html con el mismo nombre que la página (trabajo.html, en/work.html…),
   // así se mantienen las URL de la web anterior
   build: {
