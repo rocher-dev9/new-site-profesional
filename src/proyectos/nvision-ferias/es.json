@@ -1,6 +1,6 @@
 {
   "url": "nvision-ferias",
-  "num": 4,
+  "num": 3,
   "color": "#E0A82E",
   "titulo": "nVision, ferias internacionales · Roger Avellana",
   "descripcion": "Caso de estudio: materiales para las ferias internacionales de I+D de nVision Systems. Reto, proceso, entregables y resultados.",
@@ -93,9 +93,9 @@
     }
   },
   "siguiente": {
-    "num": 5,
-    "titulo": "Intera — estrategia digital",
-    "color": "#7A5BD8"
+    "num": 1,
+    "titulo": "Intera — identidad y estrategia digital",
+    "color": "#504FED"
   },
   "contacto": {
     "titulo": "¿Preparas una feria?",

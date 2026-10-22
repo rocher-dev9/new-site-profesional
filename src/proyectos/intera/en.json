@@ -1,0 +1,106 @@
+{
+  "url": "intera",
+  "num": 1,
+  "color": "#504FED",
+  "titulo": "Intera, identity and digital strategy · Roger Avellana",
+  "descripcion": "Case study: visual identity and digital content strategy for Intera. Challenge, process, deliverables and results.",
+  "categoria": "Branding & strategy",
+  "h1": "Intera: a brand that",
+  "h1Destacado": "makes sense and gets heard.",
+  "entradilla": "Intera had grown faster than its image. First I redesigned its visual identity so that a complex technology company could present itself with a clear, consistent brand; then I took that system to social media with a steady, measurable content strategy.",
+  "etiquetas": [
+    "visual identity",
+    "brand system",
+    "content strategy",
+    "social media"
+  ],
+  "ficha": [
+    {
+      "dt": "Client",
+      "dd": "Intera"
+    },
+    {
+      "dt": "Years",
+      "dd": "2023–2026"
+    },
+    {
+      "dt": "My role",
+      "dd": "Visual design and digital strategy"
+    },
+    {
+      "dt": "Scope",
+      "dd": "Identity, templates and social content"
+    },
+    {
+      "dt": "Tools",
+      "dd": "Illustrator, Figma, InDesign, Metricool"
+    }
+  ],
+  "resumen": {
+    "reto": "Each department used its own version of the logo, and social media was published without a plan: loose pieces, different tones and no data to know what worked.",
+    "solucion": "A complete brand system (logo, palette, typography and templates) and, on top of it, a content strategy with an editorial calendar, post packs and a monthly metrics report.",
+    "resultado": "A brand that is recognizable on every medium, and social channels that publish consistently, with the same tone and data-driven decisions."
+  },
+  "proceso": {
+    "titulo": "From brand to content.",
+    "intro": "Two linked stages: first, put the identity in order; then give it a voice on social media with a system the team could maintain.",
+    "pasos": [
+      {
+        "titulo": "Audit",
+        "texto": "Interviews with management and teams, plus a review of all materials and social channels to understand what worked and what didn’t.",
+        "entregable": "brand audit"
+      },
+      {
+        "titulo": "Build",
+        "texto": "A simplified logo, palette, typography and iconography, tested at full size on paper and on screen.",
+        "entregable": "visual system"
+      },
+      {
+        "titulo": "Plan",
+        "texto": "Content pillars, tone per channel and a monthly editorial calendar, with templates ready for every format.",
+        "entregable": "calendar + templates"
+      },
+      {
+        "titulo": "Measure",
+        "texto": "A monthly metrics report with conclusions and adjustments for the following month.",
+        "entregable": "monthly report"
+      }
+    ]
+  },
+  "entregables": {
+    "titulo": "One system, from the brand to the last post.",
+    "intro": "Every element was designed to work with the others: the logo, the stationery, the social media templates and the editorial calendar."
+  },
+  "resultados": {
+    "cifras": [
+      {
+        "cifra": "+60",
+        "texto": "pieces produced with the new brand system"
+      },
+      {
+        "cifra": "12",
+        "texto": "posts a month with an editorial calendar, up from an average of 4"
+      },
+      {
+        "cifra": "+38%",
+        "texto": "social media reach in the first year of the strategy"
+      }
+    ],
+    "testimonio": {
+      "texto": "Roger combines visual and strategic judgment in an unusual way, understanding the brand as a system rather than a collection of loose pieces.",
+      "autor": "Client · INTERA",
+      "cargo": "Marketing Manager"
+    }
+  },
+  "siguiente": {
+    "num": 2,
+    "titulo": "Sensing & Control — IoT dashboard",
+    "color": "#0E8A5A"
+  },
+  "contacto": {
+    "titulo": "A similar project?",
+    "texto": "Tell me what your brand needs and I’ll get back to you as soon as I can."
+  },
+  "portadaAlt": "Cards with the new Intera logo",
+  "pendienteRevisar": "Provisional content: invented texts, figures, dates, tools and illustrations. Replace with the real ones."
+}

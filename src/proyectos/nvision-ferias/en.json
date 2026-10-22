@@ -1,6 +1,6 @@
 {
   "url": "nvision-trade-fairs",
-  "num": 4,
+  "num": 3,
   "color": "#E0A82E",
   "titulo": "nVision, international trade fairs · Roger Avellana",
   "descripcion": "Case study: materials for nVision Systems’ international R&D trade fairs. Challenge, process, deliverables and results.",
@@ -93,9 +93,9 @@
     }
   },
   "siguiente": {
-    "num": 5,
-    "titulo": "Intera — digital strategy",
-    "color": "#7A5BD8"
+    "num": 1,
+    "titulo": "Intera — identity and digital strategy",
+    "color": "#504FED"
   },
   "contacto": {
     "titulo": "Preparing for a trade fair?",

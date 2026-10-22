@@ -1,0 +1,106 @@
+{
+  "url": "intera",
+  "num": 1,
+  "color": "#504FED",
+  "titulo": "Intera, identidad y estrategia digital · Roger Avellana",
+  "descripcion": "Caso de estudio: identidad visual y estrategia de contenido digital para Intera. Reto, proceso, entregables y resultados.",
+  "categoria": "Branding y estrategia",
+  "h1": "Intera: una marca que",
+  "h1Destacado": "se entiende y se hace oír.",
+  "entradilla": "Intera había crecido más rápido que su imagen. Primero rediseñé su identidad visual para que una empresa tecnológica compleja se presentara con una marca clara y coherente; después llevé ese sistema a las redes con una estrategia de contenido constante y medible.",
+  "etiquetas": [
+    "identidad visual",
+    "sistema de marca",
+    "estrategia de contenido",
+    "redes sociales"
+  ],
+  "ficha": [
+    {
+      "dt": "Cliente",
+      "dd": "Intera"
+    },
+    {
+      "dt": "Años",
+      "dd": "2023–2026"
+    },
+    {
+      "dt": "Mi papel",
+      "dd": "Diseño visual y estrategia digital"
+    },
+    {
+      "dt": "Alcance",
+      "dd": "Identidad, plantillas y contenido para redes"
+    },
+    {
+      "dt": "Herramientas",
+      "dd": "Illustrator, Figma, InDesign, Metricool"
+    }
+  ],
+  "resumen": {
+    "reto": "Cada departamento usaba su propia versión del logo y las redes se publicaban sin plan: piezas sueltas, tonos distintos y ningún dato para saber qué funcionaba.",
+    "solucion": "Un sistema de marca completo (logotipo, paleta, tipografía y plantillas) y, sobre él, una estrategia de contenido con calendario editorial, packs de posts y un informe de métricas cada mes.",
+    "resultado": "Una marca reconocible en todos los soportes y unas redes que publican con constancia, con el mismo tono y decisiones basadas en datos."
+  },
+  "proceso": {
+    "titulo": "De la marca al contenido.",
+    "intro": "Dos etapas encadenadas: primero ordenar la identidad, después darle voz en las redes con un sistema que el equipo pudiera mantener.",
+    "pasos": [
+      {
+        "titulo": "Auditar",
+        "texto": "Entrevistas con dirección y equipos, y revisión de todos los materiales y de las redes para entender qué funcionaba y qué no.",
+        "entregable": "auditoría de marca"
+      },
+      {
+        "titulo": "Construir",
+        "texto": "Logotipo simplificado, paleta, tipografía e iconografía, con pruebas a tamaño real en papel y en pantalla.",
+        "entregable": "sistema visual"
+      },
+      {
+        "titulo": "Planificar",
+        "texto": "Pilares de contenido, tono por canal y calendario editorial mensual, con plantillas listas para cada formato.",
+        "entregable": "calendario + plantillas"
+      },
+      {
+        "titulo": "Medir",
+        "texto": "Informe mensual de métricas con conclusiones y ajustes para el mes siguiente.",
+        "entregable": "informe mensual"
+      }
+    ]
+  },
+  "entregables": {
+    "titulo": "Un sistema, de la marca al último post.",
+    "intro": "Cada elemento se diseñó para funcionar con los demás: el logotipo, la papelería, las plantillas de redes y el calendario editorial."
+  },
+  "resultados": {
+    "cifras": [
+      {
+        "cifra": "+60",
+        "texto": "piezas aplicadas con el nuevo sistema de marca"
+      },
+      {
+        "cifra": "12",
+        "texto": "publicaciones al mes con calendario editorial, frente a una media de 4 antes"
+      },
+      {
+        "cifra": "+38%",
+        "texto": "de alcance en redes durante el primer año de estrategia"
+      }
+    ],
+    "testimonio": {
+      "texto": "Roger combina criterio visual y estratégico de una forma poco habitual. Entiende la marca como sistema, no como una colección de piezas sueltas.",
+      "autor": "Cliente · INTERA",
+      "cargo": "Marketing Manager"
+    }
+  },
+  "siguiente": {
+    "num": 2,
+    "titulo": "Sensing & Control — dashboard IoT",
+    "color": "#0E8A5A"
+  },
+  "contacto": {
+    "titulo": "¿Un proyecto parecido?",
+    "texto": "Cuéntame qué necesita tu marca y te respondo en cuanto pueda."
+  },
+  "portadaAlt": "Tarjetas con el nuevo logotipo de Intera",
+  "pendienteRevisar": "Contenido provisional: textos, cifras, fechas, herramientas e ilustraciones inventados. Sustituir por los reales."
+}

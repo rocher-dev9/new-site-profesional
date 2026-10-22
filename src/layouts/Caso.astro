@@ -15,6 +15,7 @@ import PageIndex from '../components/PageIndex.astro';
 import ContactCards from '../components/ContactCards.astro';
 import { rutas, rel, rutaCaso, type Lang } from '../i18n/rutas';
 import { useT } from '../i18n/ui';
+import { tarjetas } from '../proyectos/tarjetas';
 
 interface Props { proyecto: CollectionEntry<'proyectos'> }
 const { proyecto } = Astro.props;
@@ -22,8 +23,8 @@ const p = proyecto.data;
 const [clave, lang] = proyecto.id.split('/') as [string, Lang];
 const t = useT(lang);
 
-// Número total de proyectos en Trabajo (contador "Caso 01 / 06")
-const TOTAL = 6;
+// Número total de proyectos en Trabajo (contador "Caso 01 / 03")
+const TOTAL = tarjetas.length;
 const dos = (n: number) => String(n).padStart(2, '0');
 
 const pagina = rutaCaso(lang, p.url);

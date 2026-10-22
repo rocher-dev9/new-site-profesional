@@ -1,6 +1,6 @@
 {
   "url": "sensing-dashboard",
-  "num": 3,
+  "num": 2,
   "color": "#0E8A5A",
   "titulo": "Sensing & Control, IoT dashboard · Roger Avellana",
   "descripcion": "Case study: interface design for an IoT monitoring platform. Challenge, process, deliverables and results.",
@@ -93,7 +93,7 @@
     }
   },
   "siguiente": {
-    "num": 4,
+    "num": 3,
     "titulo": "nVision — international trade fairs",
     "color": "#E0A82E"
   },

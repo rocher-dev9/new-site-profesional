@@ -1,0 +1,65 @@
+---
+// Fila de proyecto en Trabajo: nombre y descripción a la izquierda; a la derecha, un panel
+// enmarcado con la ilustración y dos comentarios de revisión con cursores, y debajo el pie
+// («Título. texto») con el botón «Ver caso». Datos en src/proyectos/tarjetas.ts.
+import PixelArrow from './PixelArrow.astro';
+import ProjectCover from './ProjectCover.astro';
+import type { Lang } from '../i18n/rutas';
+import { useT } from '../i18n/ui';
+import type { Tarjeta } from '../proyectos/tarjetas';
+import { enlaceCaso } from '../proyectos/enlaces';
+
+interface Props { tarjeta: Tarjeta; lang: Lang; pagina: string }
+const { tarjeta: p, lang, pagina } = Astro.props;
+const t = useT(lang);
+const href = await enlaceCaso(p.clave, lang, pagina);
+const [c1, c2] = p.comentarios;
+// Texto oscuro sobre colores de proyecto claros (p. ej. ámbar), blanco sobre los oscuros
+const [r, g, b] = [1, 3, 5].map((i) => parseInt(p.fondo.slice(i, i + 2), 16) / 255);
+const textoSobreColor = 0.2126 * r + 0.7152 * g + 0.0722 * b > 0.55 ? '#15121f' : '#fff';
+// Cursor pixel (8×11)
+const cursor = 'M0 0h1v1H0zM0 1h2v1H0zM0 2h3v1H0zM0 3h4v1H0zM0 4h5v1H0zM0 5h6v1H0zM0 6h7v1H0zM0 7h4v1H0zM0 8h2v1H0zM4 8h1v1H4zM0 9h1v1H0zM4 9h2v1H4zM5 10h1v1H5z';
+---
+<article class="wk-row" id={`p-${p.clave}`} style={`--wk-color: ${p.fondo}; --wk-on: ${textoSobreColor};`}>
+  <div class="wk-info">
+    <span class="wk-num">{String(p.num).padStart(2, '0')}</span>
+    <h2 class="wk-title">{p.cliente}</h2>
+    <p class="wk-sub">{p.subtitulo[lang]}</p>
+    <p class="wk-text">{p.texto[lang]}</p>
+    <ul class="wk-meta"><li>{p.etiqueta[lang]}</li><li>{p.anio}</li></ul>
+  </div>
+
+  <div class="wk-show">
+    <div class="wk-panel">
+      <div class="wk-canvas">
+        <a href={href} class="wk-cover" aria-label={`${t('proyecto.ver')}: ${p.cliente}`} tabindex="-1">
+          <ProjectCover tarjeta={p} lang={lang} />
+        </a>
+        <div class="wk-notes" role="group" aria-label={t('fila.comentarios')}>
+          <div class="wk-comment wk-c1">
+            <span class="wk-who"><i class="wk-avatar wk-avatar--client" aria-hidden="true">{c1.autor.charAt(0)}</i>{c1.autor}</span>
+            <p>{c1.texto[lang]}</p>
+          </div>
+          <div class="wk-comment wk-c2">
+            <span class="wk-who"><i class="wk-avatar" aria-hidden="true">{c2.autor.charAt(0)}</i>{c2.autor}</span>
+            <p>{c2.texto[lang]}</p>
+          </div>
+        </div>
+        <span class="wk-cursor wk-k1" aria-hidden="true"><svg viewBox="0 0 7 11" shape-rendering="crispEdges"><path d={cursor} /></svg><b>{c1.autor}</b></span>
+        <span class="wk-cursor wk-k2" aria-hidden="true"><svg viewBox="0 0 7 11" shape-rendering="crispEdges"><path d={cursor} /></svg><b>{c2.autor}</b></span>
+        <div class="wk-toolbar" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z" /></svg>
+          <svg viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z" /><circle cx="12" cy="12" r="3" /></svg>
+          <span class="wk-sep"></span>
+          <i class="wk-avatar wk-avatar--client">{c1.autor.charAt(0)}</i><i class="wk-avatar">{c2.autor.charAt(0)}</i>
+          <span class="wk-sep"></span>
+          <svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 21h14" /></svg>
+        </div>
+      </div>
+    </div>
+    <div class="wk-caption">
+      <p><strong>{p.pie[lang].titulo}</strong> {p.pie[lang].texto}</p>
+      <a href={href} class="btn btn-ghost wk-btn">{t('proyecto.ver')} <PixelArrow /></a>
+    </div>
+  </div>
+</article>

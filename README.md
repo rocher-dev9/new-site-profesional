@@ -26,7 +26,7 @@ export PATH="$HOME/.local/node/bin:$PATH"
 | Inicio   | `/`                          | `/en/`                          |
 | Entorno  | `/entorno/`                  | `/en/services.html`             |
 | Trabajo  | `/trabajo/`                  | `/en/work.html`                 |
-| Caso     | `/trabajo/intera-identidad/` | `/en/project-<url>.html`        |
+| Caso     | `/trabajo/intera/`           | `/en/project-<url>.html`        |
 | IOI      | `/ioi/`                      | `/en/ai.html`                   |
 | Sobre mí | `/sobre-mi/`                 | `/en/about.html`                |
 
@@ -58,17 +58,19 @@ src/
   i18n/rutas.ts         equivalencias de páginas ES ↔ EN (menú, selector y hreflang)
   i18n/ui.ts            textos cortos de la interfaz en los dos idiomas
   pages/                páginas en español (por carpetas) y en inglés (en/)
-  proyectos/tarjetas.ts tarjetas de Trabajo y de la portada (orden, textos ES/EN, color)
+  proyectos/tarjetas.ts proyectos de Trabajo (filas con panel y comentarios), tarjetas de la
+                        portada y baraja de la cabecera: orden, textos ES/EN y color
   proyectos/<clave>/    Tarjeta.astro (ilustración de la tarjeta) y, si tiene caso de estudio,
                         es.json / en.json + Portada.astro + Galeria.astro
 ```
 
 ## Añadir un caso de estudio
 
-1. Copia una carpeta de `src/proyectos/` y renómbrala (p. ej. `nvision-ferias`).
+1. Añade el proyecto a `src/proyectos/tarjetas.ts` y copia una carpeta de `src/proyectos/`
+   con el mismo nombre que su `clave` (p. ej. `nvision-ferias`).
 2. Edita `es.json` (textos, cifras, color, `url`, `num`) y las ilustraciones.
 3. Para la versión inglesa, añade `en.json` en la misma carpeta.
-4. El «Ver caso» de su tarjeta (en Trabajo y en la portada) se enlaza solo.
+4. Su fila en Trabajo, su tarjeta en la portada y el «Ver caso» se crean y se enlazan solos.
 
 ## Publicación
 

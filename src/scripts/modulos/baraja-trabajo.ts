@@ -1,18 +1,16 @@
-// Trabajo: baraja de proyectos de la cabecera (se construye a partir de las tarjetas)
-import { reduceMotion, tr } from '../utilidades';
-
-// Barra de progreso por bloques: cada segmento se enciende en su turno
-const segmentosPixel = (n: number) => Array.from({ length: n }, (_, s) => `<b style="--s:${s}"></b>`).join('');
+// Trabajo: baraja de proyectos de la cabecera.
+// Las cartas y los puntos vienen ya en el HTML (src/components/WorkDeck.astro);
+// aquí solo se gestiona el avance y el salto a la fila de cada proyecto.
+import { reduceMotion } from '../utilidades';
 
 export function iniciarBarajaTrabajo(): void {
   const escenario = document.getElementById('deck-stage');
-  const puntos = document.getElementById('deck-dots');
-  const proyectos = document.querySelectorAll<HTMLElement>('.work-grid .project-card');
-  if (!escenario || !puntos || !proyectos.length) return;
+  if (!escenario) return;
+  const cartas = Array.from(escenario.querySelectorAll<HTMLElement>('.deck-card'));
+  const botones = Array.from(document.querySelectorAll<HTMLButtonElement>('#deck-dots button'));
+  if (!cartas.length) return;
 
-  const cartas: HTMLDivElement[] = [];
-  const botones: HTMLButtonElement[] = [];
-  const total = proyectos.length;
+  const total = cartas.length;
   let actual = 0;
 
   const mostrar = (siguiente: number) => {
@@ -27,44 +25,17 @@ export function iniciarBarajaTrabajo(): void {
     botones.forEach((boton, k) => boton.setAttribute('aria-current', String(k === actual)));
   };
 
-  const enfocarProyecto = (k: number) => {
-    const destino = proyectos[k];
-    destino.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+  // Al pulsar una carta, baja a la fila de su proyecto y la resalta un momento
+  const enfocarProyecto = (carta: HTMLElement) => {
+    const destino = document.getElementById(carta.dataset.proyecto ?? '');
+    if (!destino) return;
+    destino.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
     destino.classList.add('is-highlight');
     setTimeout(() => destino.classList.remove('is-highlight'), 1800);
   };
 
-  proyectos.forEach((proyecto, k) => {
-    const portada = proyecto.querySelector<HTMLElement>('.project-cover');
-    if (!portada) return;
-    const color = portada.style.background;
-    const solido = /^#|^rgb/.test(color) ? color : '#5850EC';
-    const titulo = proyecto.querySelector('h3')?.textContent ?? '';
-
-    const carta = document.createElement('div');
-    carta.className = 'deck-card';
-    carta.style.setProperty('--deck-color', solido);
-    carta.appendChild(portada.cloneNode(true));
-    carta.insertAdjacentHTML('beforeend',
-      '<div class="deck-body"><strong></strong>' +
-      '<div class="deck-steps">' + tr('<span>brief</span><span>concepto</span><span>diseño</span><span>entrega</span>',
-        '<span>brief</span><span>concept</span><span>design</span><span>delivery</span>') + '</div>' +
-      '<div class="deck-progress"><i></i>' + segmentosPixel(16) + '</div></div>');
-    const fuerte = carta.querySelector('strong');
-    if (fuerte) fuerte.textContent = titulo;
-    carta.addEventListener('click', () => enfocarProyecto(k));
-    escenario.appendChild(carta);
-    cartas.push(carta);
-
-    const boton = document.createElement('button');
-    boton.type = 'button';
-    boton.style.setProperty('--dot-color', solido);
-    boton.setAttribute('aria-label', tr('Ver proyecto ', 'View project ') + (k + 1) + ': ' + titulo);
-    boton.addEventListener('click', () => mostrar(k));
-    puntos.appendChild(boton);
-    botones.push(boton);
-  });
-
+  cartas.forEach((carta) => carta.addEventListener('click', () => enfocarProyecto(carta)));
+  botones.forEach((boton, k) => boton.addEventListener('click', () => mostrar(k)));
   document.getElementById('deck-prev')?.addEventListener('click', () => mostrar(actual - 1));
   document.getElementById('deck-next')?.addEventListener('click', () => mostrar(actual + 1));
 
