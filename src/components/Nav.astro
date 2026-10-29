@@ -3,6 +3,8 @@
 import BrandHand from './BrandHand.astro';
 import NavIcon from './NavIcon.astro';
 import LangSwitch from './LangSwitch.astro';
+import GithubIcon from './GithubIcon.astro';
+import { GITHUB } from '../datos/sitio';
 import { rutas, rel, type Lang, type Seccion } from '../i18n/rutas';
 import { useT } from '../i18n/ui';
 
@@ -33,6 +35,7 @@ const enPortada = activa === 'inicio';
           <a href={href(s)} class:list={['nv-item', { 'nv-ai': s === 'ioi', 'is-active': s === activa }]} aria-current={s === activa && actual ? 'page' : undefined}><NavIcon name={s} class="nv-ico" /><span>{t(`nav.${s}`)}</span></a>
         ))}
       </div>
+      <a href={GITHUB} class="nav-gh" target="_blank" rel="noopener" aria-label={t('nav.github')} title="GitHub"><GithubIcon class="nav-gh-ico" /></a>
       <LangSwitch lang={lang} pagina={pagina} cambio={cambio} />
     </div>
     <button class="nav-burger" id="burger" aria-expanded="false" aria-controls="mobile-menu">{t('nav.menu')}</button>
@@ -43,6 +46,7 @@ const enPortada = activa === 'inicio';
   {items.map((s) => (
     <a href={href(s)} class:list={['mobile-item', { 'mobile-ai': s === 'ioi' }]} data-close><NavIcon name={s} class="mv-ico" />{t(`nav.${s}`)}</a>
   ))}
+  <a href={GITHUB} class="mobile-item" target="_blank" rel="noopener"><GithubIcon class="mv-ico" />GitHub</a>
   <div class="mobile-cta">
     <a href={mail} class="btn btn-ghost">{t('nav.email')}</a>
   </div>

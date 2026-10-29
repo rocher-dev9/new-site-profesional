@@ -382,6 +382,8 @@
 
 /* Selector de idioma en tema oscuro */
 .theme-ai .lang-switch { border-color: rgba(255, 255, 255, 0.2); }
+.theme-ai .nav-gh { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.12); color: #fff; box-shadow: none; }
+.theme-ai .nav-gh:hover, .theme-ai .nav-gh:focus-visible { color: #c6a8ff; }
 .theme-ai .lang-switch a, .theme-ai .nav-links .lang-switch a { color: var(--ai-soft); }
 .theme-ai .lang-switch a:hover { color: #fff; }
 .theme-ai .lang-switch a[aria-current="true"] { background: #fff; color: #0b0a16; }
