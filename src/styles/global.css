@@ -739,6 +739,11 @@ section { padding: clamp(64px, 9vw, 112px) 0; }
   flex-wrap: wrap; gap: 12px;
   font-family: var(--mono); font-size: 12px; color: var(--muted);
 }
+/* Redes en el pie */
+.footer-social { display: flex; gap: 18px; }
+.footer-social a { display: inline-flex; align-items: center; gap: 6px; color: var(--ink-soft); }
+.footer-social a:hover, .footer-social a:focus-visible { color: var(--indigo); }
+.footer-social .px-arrow { width: 12px; height: 8px; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -1539,6 +1544,16 @@ a:hover > .px-arrow, a:focus-visible > .px-arrow { animation: px-nudge3 0.6s ste
 .tv-list li:hover { background: #c6a8ff; }
 .tv-list li:hover strong, .tv-list li:hover small, .tv-list li:hover .tv-prompt { color: #0d0b1e; }
 .tv-note { margin-top: 18px; font-family: var(--mono); font-size: 12.5px; color: rgba(236, 233, 255, 0.8); }
+/* Enlace a GitHub en forma de comando */
+.tv-link {
+  display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; margin-top: 16px; padding: 6px 10px;
+  border: 1px dashed rgba(143, 245, 210, 0.35); border-radius: 4px;
+  font-family: var(--mono); font-size: 12.5px; color: rgba(236, 233, 255, 0.8);
+  transition: background 0.15s steps(2), color 0.15s steps(2);
+}
+.tv-link strong { color: #8ff5d2; font-weight: 500; }
+.tv-link:hover, .tv-link:focus-visible { background: #8ff5d2; color: #0d0b1e; border-color: #8ff5d2; }
+.tv-link:hover strong, .tv-link:focus-visible strong, .tv-link:hover .tv-prompt, .tv-link:focus-visible .tv-prompt { color: #0d0b1e; }
 
 /* Diseño y productividad: fila secundaria */
 .tools-base { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin-top: 24px; }

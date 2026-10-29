@@ -31,6 +31,8 @@
 .theme-ai .mobile-menu a.mobile-ai { color: #c6a8ff; }
 .theme-ai .mobile-cta .btn-ghost { color: var(--ai-text); border-color: rgba(255, 255, 255, 0.2); }
 .theme-ai .footer { border-top-color: var(--ai-border); color: var(--ai-muted); }
+.theme-ai .footer-social a { color: var(--ai-soft); }
+.theme-ai .footer-social a:hover, .theme-ai .footer-social a:focus-visible { color: #c6a8ff; }
 
 /* Elementos comunes */
 .ai-gradient-text {
