@@ -66,6 +66,7 @@ const resumen = [
   descripcion={p.descripcion}
   activa="trabajo"
   subpagina
+  og={`caso-${clave}-${lang}`}
   alternas={alternas}
 >
   <PageIndex lang={lang} secciones={indice.map((k) => [anclas[k], t(`caso.${k}`)] as [string, string])} />

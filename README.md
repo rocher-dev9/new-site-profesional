@@ -73,6 +73,12 @@ src/
 3. Para la versión inglesa, añade `en.json` en la misma carpeta.
 4. Su fila en Trabajo, su tarjeta en la portada y el «Ver caso» se crean y se enlazan solos.
 
+## Vista previa al compartir
+
+Cada página tiene etiquetas Open Graph y Twitter y su imagen de 1200×630, que se genera sola
+al compilar (`src/pages/og/[imagen].png.ts`, con satori + resvg). Los textos de las páginas
+están en `src/datos/og.ts`; los de los casos de estudio salen de sus datos.
+
 ## Privacidad
 
 La web no usa cookies, formularios ni analítica, y no carga nada de terceros: las fuentes
