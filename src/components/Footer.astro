@@ -1,10 +1,11 @@
 ---
 import PixelArrow from './PixelArrow.astro';
-import type { Lang } from '../i18n/rutas';
+import { rutas, rel, type Lang } from '../i18n/rutas';
 import { useT } from '../i18n/ui';
 import { LINKEDIN, GITHUB } from '../datos/sitio';
-interface Props { lang: Lang }
-const t = useT(Astro.props.lang);
+interface Props { lang: Lang; pagina: string }
+const { lang, pagina } = Astro.props;
+const t = useT(lang);
 ---
 <footer class="footer">
   <div class="container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; width:100%;">
@@ -13,6 +14,7 @@ const t = useT(Astro.props.lang);
       <a href={LINKEDIN} target="_blank" rel="noopener">LinkedIn <PixelArrow /></a>
       <a href={GITHUB} target="_blank" rel="noopener">GitHub <PixelArrow /></a>
     </nav>
+    <a class="footer-legal" href={rel(pagina, rutas.privacidad[lang])}>{t('pie.privacidad')}</a>
     <span>Roger<span class="slash">/</span>Marketing</span>
   </div>
 </footer>

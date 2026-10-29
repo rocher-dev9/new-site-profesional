@@ -15,8 +15,10 @@ interface Props {
 }
 const { lang, pagina, activa, actual = true, cambio } = Astro.props;
 const t = useT(lang);
-const items: Seccion[] = ['inicio', 'entorno', 'trabajo', 'ioi', 'sobreMi'];
-const href = (s: Seccion) => rel(pagina, rutas[s][lang]);
+// Apartados del menú (privacidad solo aparece en el pie)
+type Apartado = Exclude<Seccion, 'privacidad'>;
+const items: Apartado[] = ['inicio', 'entorno', 'trabajo', 'ioi', 'sobreMi'];
+const href = (s: Apartado) => rel(pagina, rutas[s][lang]);
 const mail = 'mailto:roger.ar123@gmail.com';
 // En la portada el logo sube al principio de la página
 const enPortada = activa === 'inicio';

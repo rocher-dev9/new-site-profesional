@@ -15,6 +15,7 @@ export const rutas = {
   trabajo: { es: 'trabajo/',  en: 'en/work.html' },
   ioi:     { es: 'ioi/',      en: 'en/ai.html' },
   sobreMi: { es: 'sobre-mi/', en: 'en/about.html' },
+  privacidad: { es: 'privacidad/', en: 'en/privacy.html' }, // solo en el pie, no en el menú
 } as const;
 
 export type Seccion = keyof typeof rutas;

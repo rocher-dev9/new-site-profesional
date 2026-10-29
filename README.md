@@ -37,7 +37,8 @@ redirigen a las nuevas conservando el ancla.
 ## Estructura
 
 ```
-public/                 imágenes, favicon y redirecciones (se copian tal cual)
+public/                 imágenes, logos de herramientas (img/iconos, Simple Icons CC0),
+                        favicon y redirecciones (se copian tal cual)
 src/
   scripts/global.ts     JavaScript común (TypeScript): carga un módulo por funcionalidad
   scripts/modulos/      menú, cabecera, planeta, mano, índice, carruseles, baraja, cursor…
@@ -71,6 +72,12 @@ src/
 2. Edita `es.json` (textos, cifras, color, `url`, `num`) y las ilustraciones.
 3. Para la versión inglesa, añade `en.json` en la misma carpeta.
 4. Su fila en Trabajo, su tarjeta en la portada y el «Ver caso» se crean y se enlazan solos.
+
+## Privacidad
+
+La web no usa cookies, formularios ni analítica, y no carga nada de terceros: las fuentes
+(paquetes @fontsource) y los logos se sirven desde la propia web. Si se añaden estadísticas,
+un formulario o el envío del chat, hay que actualizar `src/components/Legal.astro`.
 
 ## Publicación
 

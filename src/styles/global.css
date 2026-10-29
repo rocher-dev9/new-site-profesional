@@ -1829,3 +1829,18 @@ a:hover > .px-arrow, a:focus-visible > .px-arrow { animation: px-nudge3 0.6s ste
   .wk-toolbar { display: none; }
   .wk-caption { flex-direction: column; align-items: flex-start; }
 }
+
+/* ─── Aviso legal y privacidad ─────────────────────────────── */
+.legal-section { padding-top: clamp(24px, 4vw, 40px); }
+.legal { max-width: 720px; }
+.legal-updated { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.legal h2 { margin-top: 36px; font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; }
+.legal p, .legal li { margin-top: 10px; color: var(--ink-soft); font-size: 15.5px; line-height: 1.7; }
+.legal ul { list-style: none; margin-top: 6px; }
+.legal li { position: relative; padding-left: 18px; margin-top: 6px; }
+.legal li::before { content: ''; position: absolute; left: 0; top: 0.72em; width: 6px; height: 6px; background: var(--indigo); }
+.legal strong { color: var(--ink); }
+.legal a { color: var(--indigo); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.footer-legal { color: var(--ink-soft); }
+.footer-legal:hover, .footer-legal:focus-visible { color: var(--indigo); }
+.theme-ai .footer-legal { color: var(--ai-soft); }

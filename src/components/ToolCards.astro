@@ -10,7 +10,8 @@ interface Props { lang: Lang; pagina: string; herramientas: Herramienta[] }
 const { lang, pagina, herramientas } = Astro.props;
 const t = useT(lang);
 const href = rel(pagina, rutas.ioi[lang]) + (lang === 'es' ? '#herramientas' : '#tools');
-const ICONOS = 'https://cdn.jsdelivr.net/npm/simple-icons@16.35.0/icons/';
+// Logos de Simple Icons (CC0) guardados en public/img/iconos/
+const ICONOS = rel(pagina, 'img/iconos/');
 ---
 <ul class="tc-grid">
   {herramientas.map((h) => (

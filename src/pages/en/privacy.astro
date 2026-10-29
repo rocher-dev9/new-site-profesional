@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import Legal from '../../components/Legal.astro';
+---
+<Base
+  lang="en"
+  pagina="en/privacy.html"
+  titulo="Legal notice & privacy · Roger Avellana"
+  descripcion="Legal notice and privacy policy for Roger Avellana’s website: what data is processed, why and how to exercise your rights."
+  alternas={{ es: 'privacidad/', en: 'en/privacy.html' }}
+>
+  <main id="main">
+    <header class="about-hero page-hero">
+      <div class="container">
+        <span class="eyebrow">Legal</span>
+        <h1>Legal notice &amp; <em>privacy.</em></h1>
+        <p class="about-hero-bio">What data this website processes, why, and how you can exercise your rights. In short: no cookies, no forms.</p>
+      </div>
+    </header>
+    <section class="legal-section">
+      <div class="container">
+        <Legal lang="en" />
+      </div>
+    </section>
+  </main>
+</Base>

@@ -4,8 +4,9 @@ import { LANG, reduceMotion } from '../utilidades';
 type Nodo = [logo: string, nombre: string, paso: string];
 interface Flujo { n: [Nodo, Nodo, Nodo]; cap: string }
 
-// Logos de Simple Icons (versión fija)
-const ICONO = (slug: string) => `url(https://cdn.jsdelivr.net/npm/simple-icons@16.35.0/icons/${slug}.svg)`;
+// Logos de Simple Icons (CC0) guardados en public/img/iconos/
+const BASE = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const ICONO = (slug: string) => `url(${BASE}img/iconos/${slug}.svg)`;
 
 const FLUJOS: Flujo[] = LANG === 'en' ? [
   { n: [['googleforms', 'Google Forms', '1 · a brief comes in'], ['n8n', 'n8n + Claude', '2 · summarizes and sorts it'], ['notion', 'Notion', '3 · creates the project card']],

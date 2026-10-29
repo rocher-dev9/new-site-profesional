@@ -11,6 +11,15 @@ import { useT } from '../i18n/ui';
 // Estilos: tres archivos separados para editarlos con orden, que Astro combina en un
 // único CSS minificado con huella en el nombre (caché automática), siempre en este orden.
 // ia.css y caso.css solo afectan a sus propias clases (.theme-ai, .case…).
+// Fuentes servidas desde la propia web (sin Google Fonts: ninguna visita envía datos a terceros)
+import '@fontsource/plus-jakarta-sans/400.css';
+import '@fontsource/plus-jakarta-sans/500.css';
+import '@fontsource/plus-jakarta-sans/600.css';
+import '@fontsource/plus-jakarta-sans/700.css';
+import '@fontsource/plus-jakarta-sans/800.css';
+import '@fontsource/jetbrains-mono/400.css';
+import '@fontsource/jetbrains-mono/500.css';
+import '@fontsource/silkscreen/400.css';
 import '../styles/global.css';
 import '../styles/ia.css';
 import '../styles/caso.css';
@@ -25,11 +34,10 @@ interface Props {
   alternas?: Alternas;        // versiones en cada idioma (hreflang); por defecto, las de "activa"
   colorTema?: string;
   claseBody?: string;
-  silkscreen?: boolean;       // fuente pixel de las cifras (índice lateral, contadores…)
 }
 const {
   lang, pagina, titulo, descripcion, activa, subpagina = false,
-  colorTema = '#5850EC', claseBody, silkscreen = false,
+  colorTema = '#5850EC', claseBody,
 } = Astro.props;
 const t = useT(lang);
 
@@ -57,13 +65,7 @@ const a = (ruta: string) => rel(pagina, ruta);
   {alternas.en !== undefined && <link rel="alternate" hreflang="en" href={urlAbsoluta(alternas.en)} />}
   <link rel="alternate" hreflang="x-default" href={urlAbsoluta(alternas.es ?? alternas.en ?? pagina)} />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
-    rel="stylesheet" />
 
-  {silkscreen && <link href="https://fonts.googleapis.com/css2?family=Silkscreen&text=0123456789&display=swap" rel="stylesheet" />}
 </head>
 
 <body class={claseBody}>
@@ -73,7 +75,7 @@ const a = (ruta: string) => rel(pagina, ruta);
 
   <slot />
 
-  <Footer lang={lang} />
+  <Footer lang={lang} pagina={pagina} />
 
   <!-- Script común (src/scripts/global.ts): Astro lo compila y minifica -->
   <script>

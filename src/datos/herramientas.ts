@@ -1,6 +1,6 @@
 // ────────────────────────────────────────────────────────────────
 // Herramientas de IA generativa (Entorno → Mi caja de herramientas).
-// logo: nombre del icono en Simple Icons (si existe); si no, se muestra el monograma.
+// logo: nombre del icono de Simple Icons guardado en public/img/iconos/; si no hay, se muestra el monograma.
 // Para usar un logo propio, guárdalo en public/img/herramientas/ y pon su ruta en «imagen».
 // CONTENIDO PROVISIONAL: las frases de uso son una propuesta; revisarlas.
 // ────────────────────────────────────────────────────────────────
