@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import ContactCards from '../../components/ContactCards.astro';
 import WorkDeck from '../../components/WorkDeck.astro';
 import WorkRow from '../../components/WorkRow.astro';
+import WorkRowManual from '../../components/WorkRowManual.astro';
 import { tarjetas } from '../../proyectos/tarjetas';
 ---
 <Base
@@ -45,6 +46,7 @@ import { tarjetas } from '../../proyectos/tarjetas';
 
         <div class="wk-list">
           {tarjetas.map((t) => <WorkRow tarjeta={t} lang="en" pagina="en/work.html" />)}
+          <WorkRowManual lang="en" pagina="en/work.html" />
         </div>
       </div>
     </section>

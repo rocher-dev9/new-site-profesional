@@ -29,6 +29,8 @@ export PATH="$HOME/.local/node/bin:$PATH"
 | Caso     | `/trabajo/intera/`           | `/en/project-<url>.html`        |
 | IOI      | `/ioi/`                      | `/en/ai.html`                   |
 | Sobre mí | `/sobre-mi/`                 | `/en/about.html`                |
+| Ficha del manual | `/trabajo/manual-vercel/` | `/en/project-vercel-manual.html` |
+| Manual de Vercel | `/manual-vercel/` (solo en español) | |
 
 Las URL antiguas en español (`servicios.html`, `trabajo.html`, `ia.html`, `about.html`,
 `proyecto-*.html`, `contacto.html`) siguen funcionando: son páginas en `public/` que
@@ -72,6 +74,17 @@ src/
 2. Edita `es.json` (textos, cifras, color, `url`, `num`) y las ilustraciones.
 3. Para la versión inglesa, añade `en.json` en la misma carpeta.
 4. Su fila en Trabajo, su tarjeta en la portada y el «Ver caso» se crean y se enlazan solos.
+
+## Manual de Vercel
+
+Es una página estática en `public/manual-vercel/`, con el mismo aspecto que la web y fuentes propias.
+Como la web se publica en dos sitios con distinta base, el manual solo usa rutas relativas.
+Para cambiar su contenido, edita el `.docx` de `_manual-vercel-fuente/` y regenera el HTML
+(`styles.css` y `app.js` se editan directamente):
+
+```bash
+python3 _manual-vercel-fuente/scripts/build_manual.py
+```
 
 ## Vista previa al compartir
 

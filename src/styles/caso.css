@@ -226,3 +226,11 @@
   .case-next { flex-direction: column-reverse; align-items: stretch; }
   .cn-all { align-self: flex-start; }
 }
+
+/* ─── Ficha del manual de Vercel ───────────────────────────────── */
+.mv-cta { margin-top: 26px; }
+.mv-partes .cs-card h3 a::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
+.mv-partes .cs-card:hover h3 a { color: var(--indigo); }
+.mv-partes .cs-card .st-out::before { content: none; }
+.mv-anexos { grid-column: 1 / -1; background: var(--bg-soft); }
+.mv-uso { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; color: var(--ink-soft); font-size: 16px; line-height: 1.65; }

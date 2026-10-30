@@ -1,0 +1,43 @@
+---
+// Fila del manual de Vercel en Trabajo: misma maqueta que WorkRow, sin comentarios de revisión,
+// porque no es un proyecto para un cliente. Enlaza con su ficha.
+import ManualArte from './ManualArte.astro';
+import PixelArrow from './PixelArrow.astro';
+import { rel, type Lang } from '../i18n/rutas';
+import { COLOR_MANUAL, fichaManual } from '../datos/manual';
+
+interface Props { lang: Lang; pagina: string }
+const { lang, pagina } = Astro.props;
+const es = lang === 'es';
+const href = rel(pagina, fichaManual[lang]);
+const ver = es ? 'Ver ficha' : 'View details';
+---
+<article class="wk-row" id="p-manual-vercel" style={`--wk-color: ${COLOR_MANUAL}; --wk-on: #fff;`}>
+  <div class="wk-info">
+    <span class="wk-num">{es ? 'recurso' : 'resource'}</span>
+    <h2 class="wk-title">Vercel</h2>
+    <p class="wk-sub">{es ? 'manual de usuario' : 'user manual'}</p>
+    <p class="wk-text">{es
+      ? 'Guía de la plataforma en español: despliegue, configuración, rendimiento, seguridad, observabilidad y costes.'
+      : 'A guide to the platform, in Spanish: deployment, configuration, performance, security, observability and costs.'}</p>
+    <ul class="wk-meta"><li>{es ? 'documentación' : 'documentation'}</li><li>2026</li></ul>
+  </div>
+
+  <div class="wk-show">
+    <div class="wk-panel">
+      <div class="wk-canvas">
+        <a href={href} class="wk-cover" aria-label={`${ver}: ${es ? 'manual de usuario de Vercel' : 'Vercel user manual'}`} tabindex="-1">
+          <div class="project-cover" style={`background:${COLOR_MANUAL};`}>
+            <span class="p-tag">{es ? 'guía' : 'guide'}</span>
+            <span class="p-year">2026</span>
+            <ManualArte />
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="wk-caption">
+      <p><strong>{es ? 'Para consultar, no para leer de corrido.' : 'Made to look things up.'}</strong> {es ? 'Con buscador, índice por capítulos y enlaces a las fuentes oficiales.' : 'With search, a chapter index and links to the official sources.'}</p>
+      <a href={href} class="btn btn-ghost wk-btn">{ver} <PixelArrow /></a>
+    </div>
+  </div>
+</article>

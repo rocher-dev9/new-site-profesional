@@ -32,4 +32,6 @@ export const imagenesPaginas: Record<string, ImagenOG> = {
   'sobreMi-en': { lang: 'en', etiqueta: 'About', titulo: "Hi, I'm", destacado: 'Roger.', texto: PIE.en },
   'privacidad-es': { lang: 'es', etiqueta: 'Legal', titulo: 'Aviso legal y', destacado: 'privacidad.', texto: 'Sin cookies ni formularios.' },
   'privacidad-en': { lang: 'en', etiqueta: 'Legal', titulo: 'Legal notice &', destacado: 'privacy.', texto: 'No cookies, no forms.' },
+  'manual-es': { lang: 'es', etiqueta: 'Recurso · Documentación', titulo: 'Manual de usuario de', destacado: 'Vercel.', texto: '24 capítulos y 11 anexos, con enlaces a las fuentes oficiales.' },
+  'manual-en': { lang: 'en', etiqueta: 'Resource · Documentation', titulo: 'User manual for', destacado: 'Vercel.', texto: '24 chapters and 11 appendices, in Spanish, with official sources.' },
 };

@@ -1,0 +1,29 @@
+---
+// Ilustración del manual: tres hojas apiladas (SVG 400×300). La usan su ficha y su fila en Trabajo.
+interface Props { class?: string; ajuste?: 'meet' | 'slice' }
+const { class: clase = 'p-art', ajuste = 'slice' } = Astro.props;
+// En la tarjeta las hojas se apartan a la derecha para dejar sitio a la etiqueta
+const caja = ajuste === 'slice' ? '-36 -12 400 300' : '0 0 400 300';
+---
+<svg class={clase} viewBox={caja} preserveAspectRatio={`xMidYMid ${ajuste}`} aria-hidden="true">
+  <rect x="118" y="46" width="176" height="226" rx="8" fill="#dbd6f9" transform="rotate(8 206 159)" />
+  <rect x="112" y="42" width="176" height="226" rx="8" fill="#fbe2c6" transform="rotate(3 200 155)" />
+  <rect x="106" y="36" width="176" height="226" rx="8" fill="#fff" />
+  <rect x="122" y="54" width="36" height="8" fill="#5850ec" />
+  <rect x="122" y="72" width="118" height="12" rx="2" fill="#15121f" />
+  <rect x="122" y="92" width="144" height="4" rx="2" fill="#15121f" opacity=".25" />
+  <rect x="122" y="102" width="130" height="4" rx="2" fill="#15121f" opacity=".25" />
+  <rect x="122" y="112" width="138" height="4" rx="2" fill="#15121f" opacity=".25" />
+  <rect x="122" y="130" width="144" height="46" rx="5" fill="#15121f" />
+  <rect x="132" y="141" width="62" height="4" fill="#dbd6f9" />
+  <rect x="132" y="151" width="92" height="4" fill="#fff" opacity=".7" />
+  <rect x="132" y="161" width="48" height="4" fill="#f7d3aa" />
+  <rect x="122" y="192" width="44" height="4" fill="#5850ec" />
+  <rect x="176" y="192" width="90" height="4" fill="#15121f" opacity=".25" />
+  <rect x="122" y="202" width="144" height="1" fill="#15121f" opacity=".15" />
+  <rect x="122" y="210" width="36" height="4" fill="#5850ec" />
+  <rect x="176" y="210" width="74" height="4" fill="#15121f" opacity=".25" />
+  <rect x="122" y="220" width="144" height="1" fill="#15121f" opacity=".15" />
+  <rect x="122" y="228" width="40" height="4" fill="#5850ec" />
+  <rect x="176" y="228" width="82" height="4" fill="#15121f" opacity=".25" />
+</svg>

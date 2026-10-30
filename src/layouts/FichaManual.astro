@@ -1,0 +1,125 @@
+---
+// Ficha del manual de Vercel (ES y EN). Presenta el manual y enlaza con él;
+// el manual está en public/manual-vercel/ y vuelve aquí con rutas relativas.
+import Base from './Base.astro';
+import ContactCards from '../components/ContactCards.astro';
+import ManualArte from '../components/ManualArte.astro';
+import PixelArrow from '../components/PixelArrow.astro';
+import { rutas, rel, type Lang } from '../i18n/rutas';
+import { useT } from '../i18n/ui';
+import { MANUAL, COLOR_MANUAL, fichaManual, cifrasManual, partesManual, anexosManual } from '../datos/manual';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useT(lang);
+const es = lang === 'es';
+const pagina = fichaManual[lang];
+const manual = rel(pagina, MANUAL);
+const trabajo = rel(pagina, rutas.trabajo[lang]) + '#p-manual-vercel';
+const partes = [...partesManual, anexosManual];
+
+const ficha = es
+  ? [['Tipo', 'Manual de usuario'], ['Idioma', 'Español'], ['Versión', '1.0'], ['Extensión', '24 capítulos y 11 anexos'], ['Fuentes', 'Documentación oficial de Vercel, consultada el 29 de octubre de 2026']]
+  : [['Type', 'User manual'], ['Language', 'Spanish only'], ['Version', '1.0'], ['Length', '24 chapters and 11 appendices'], ['Sources', 'Official Vercel documentation, checked on 29 October 2026']];
+const etiquetas = es ? ['despliegue', 'rendimiento', 'seguridad', 'costes'] : ['deployment', 'performance', 'security', 'costs'];
+const abrir = es ? 'Abrir el manual' : 'Open the manual';
+---
+<Base
+  lang={lang}
+  pagina={pagina}
+  titulo={es ? 'Manual de usuario de Vercel · Roger Avellana' : 'Vercel user manual · Roger Avellana'}
+  descripcion={es
+    ? 'Guía de Vercel en español: despliegue, configuración, rendimiento, seguridad, observabilidad y costes, con enlaces a la documentación oficial.'
+    : 'A guide to Vercel in Spanish: deployment, configuration, performance, security, observability and costs, with links to the official documentation.'}
+  activa="trabajo"
+  subpagina
+  og={`manual-${lang}`}
+  alternas={fichaManual}
+>
+  <a href={trabajo} class="case-back-float" aria-label={t('caso.volver')}><PixelArrow back /><span>{t('caso.trabajo')}</span></a>
+
+  <main id="main" class="case" style={`--case-color: ${COLOR_MANUAL};`}>
+
+    <header class="case-hero" id="top">
+      <div class="container">
+        <nav class="case-crumbs" aria-label={t('caso.ruta')}>
+          <a href={trabajo} class="case-back"><PixelArrow back />{t('caso.volver')}</a>
+        </nav>
+
+        <div class="case-hero-grid">
+          <div>
+            <span class="eyebrow">{es ? 'Recurso · Documentación' : 'Resource · Documentation'}</span>
+            <h1>{es ? 'Manual de usuario de' : 'User manual for'} <em>Vercel.</em></h1>
+            <p class="case-lead">{es
+              ? 'Guía completa de la plataforma: despliegue, configuración, rendimiento, seguridad, observabilidad y costes, con enlaces a la documentación oficial.'
+              : 'A complete guide to the platform: deployment, configuration, performance, security, observability and costs, with links to the official documentation. The manual is written in Spanish.'}</p>
+            <ul class="case-tags" aria-label={es ? 'Temas' : 'Topics'}>
+              {etiquetas.map((e) => <li>{e}</li>)}
+            </ul>
+            <div class="mv-cta"><a href={manual} class="btn btn-primary">{abrir} <PixelArrow /></a></div>
+          </div>
+
+          <dl class="case-meta">
+            {ficha.map(([dt, dd]) => <div><dt>{dt}</dt><dd>{dd}</dd></div>)}
+          </dl>
+        </div>
+
+        <figure class="case-cover">
+          <ManualArte class="case-cover-art" ajuste="meet" />
+        </figure>
+      </div>
+    </header>
+
+    <section id="contenido" class="case-section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-label">/ {es ? 'contenido' : 'contents'}</span>
+          <h2>{es ? 'Nueve partes y once anexos.' : 'Nine parts and eleven appendices.'}</h2>
+          <p>{es
+            ? 'De los conceptos básicos a la automatización. Cada parte se abre directamente desde aquí.'
+            : 'From the basics to automation. Each part opens directly from here.'}</p>
+        </div>
+        <div class="case-summary mv-partes">
+          {partes.map((p) => (
+            <article class:list={['cs-card', { 'mv-anexos': p === anexosManual }]}>
+              <span class="cs-num">{p.num}</span>
+              <h3><a href={`${manual}#${p.ancla}`}>{p.titulo[lang]}</a></h3>
+              <p>{p.texto[lang]}</p>
+              <span class="st-out">{p.alcance[lang]}</span>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="uso" class="case-section case-section--soft">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-label">/ {es ? 'cómo se usa' : 'how to use it'}</span>
+          <h2>{es ? 'Para consultar, no para leer de corrido.' : 'Made to look things up.'}</h2>
+        </div>
+        <div class="case-results">
+          <dl class="work-stats case-stats">
+            {cifrasManual.map((c) => <div><dt>{c.cifra}</dt><dd>{c.texto[lang]}</dd></div>)}
+          </dl>
+          <div class="mv-uso">
+            <p>{es
+              ? 'Busca cualquier término con la tecla /, salta entre apartados con el índice de cada capítulo y copia los ejemplos de código con un clic. Las tablas se adaptan al móvil.'
+              : 'Search for any term with the / key, move between sections with each chapter’s index and copy code samples in one click. Tables adapt to mobile.'}</p>
+            <p>{es
+              ? 'Es un manual propio elaborado a partir de la documentación oficial; no es un documento de Vercel.'
+              : 'This is an independent manual based on the official documentation; it is not a Vercel document.'}</p>
+            <a href={manual} class="btn btn-ghost">{abrir} <PixelArrow /></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="container">
+        <ContactCards lang={lang} />
+      </div>
+    </section>
+
+  </main>
+</Base>
