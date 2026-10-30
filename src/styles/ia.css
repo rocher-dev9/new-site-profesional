@@ -449,5 +449,11 @@
 .theme-ai .nav-links .nv-item:hover { background: rgba(255, 255, 255, 0.08); }
 .theme-ai .nav-links .nv-item.is-active { background: rgba(198, 168, 255, 0.2); }
 .theme-ai .nav-links .nv-item.is-active .nv-ico { color: #c6a8ff; }
+.theme-ai .nv-grupo:hover, .theme-ai .nv-grupo.open { background: rgba(255, 255, 255, 0.08); }
+.theme-ai .nv-caret { color: var(--ai-text); }
+.theme-ai .nv-sub { background: var(--ai-bg); border-color: var(--ai-border); box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35); }
+.theme-ai .nav-links .nv-sub a { color: var(--ai-text); }
+.theme-ai .nav-links .nv-sub a:hover, .theme-ai .nav-links .nv-sub a:focus-visible { background: rgba(255, 255, 255, 0.08); color: #c6a8ff; }
+.theme-ai .mobile-menu .mobile-sub a { color: var(--ai-soft); }
 .theme-ai .nv-ai span { background: var(--ai-grad); -webkit-background-clip: text; background-clip: text; }
 .theme-ai .mv-ico { color: #c6a8ff; }

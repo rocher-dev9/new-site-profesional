@@ -7,6 +7,8 @@ import GithubIcon from './GithubIcon.astro';
 import { GITHUB } from '../datos/sitio';
 import { rutas, rel, type Lang, type Seccion } from '../i18n/rutas';
 import { useT } from '../i18n/ui';
+import { fichaManual } from '../datos/manual';
+import { rutaDelCaso } from '../proyectos/enlaces';
 
 interface Props {
   lang: Lang;
@@ -21,6 +23,13 @@ const t = useT(lang);
 type Apartado = Exclude<Seccion, 'privacidad'>;
 const items: Apartado[] = ['inicio', 'entorno', 'trabajo', 'ioi', 'sobreMi'];
 const href = (s: Apartado) => rel(pagina, rutas[s][lang]);
+// Desplegable de Trabajo: los proyectos y el manual de Vercel
+const proyectos = [
+  { nombre: 'Intera', ruta: await rutaDelCaso('intera', lang) ?? rutas.trabajo[lang] },
+  { nombre: 'Sensing', ruta: await rutaDelCaso('sensing-dashboard', lang) ?? rutas.trabajo[lang] },
+  { nombre: 'nVision', ruta: await rutaDelCaso('nvision-ferias', lang) ?? rutas.trabajo[lang] },
+  { nombre: 'Vercel', ruta: fichaManual[lang] },
+];
 const mail = 'mailto:roger.ar123@gmail.com';
 // En la portada el logo sube al principio de la página
 const enPortada = activa === 'inicio';
@@ -31,7 +40,19 @@ const enPortada = activa === 'inicio';
     <a href={enPortada ? '#top' : href('inicio')} class="brand" id={enPortada ? 'brand-link' : undefined} aria-label={t('nav.marca')} title="Roger Avellana"><BrandHand /></a>
     <div class="nav-links">
       <div class="nav-pill">
-        {items.map((s) => (
+        {items.map((s) => s === 'trabajo' ? (
+          <div class:list={['nv-grupo', { 'is-active': s === activa }]} id="nv-trabajo">
+            <a href={href(s)} class="nv-item" aria-current={s === activa && actual ? 'page' : undefined}><NavIcon name={s} class="nv-ico" /><span>{t(`nav.${s}`)}</span></a>
+            <button type="button" class="nv-caret" aria-expanded="false" aria-controls="nv-sub" aria-label={t('nav.proyectos')}>
+              <svg viewBox="0 0 12 6" width="10" height="5" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><path d="M0 0h2v2H0zM10 0h2v2h-2zM2 2h2v2H2zM8 2h2v2H8zM4 4h4v2H4z" /></svg>
+            </button>
+            <ul class="nv-sub" id="nv-sub">
+              {proyectos.map((p) => (
+                <li><a href={rel(pagina, p.ruta)} aria-current={p.ruta === pagina ? 'page' : undefined}>{p.nombre}</a></li>
+              ))}
+            </ul>
+          </div>
+        ) : (
           <a href={href(s)} class:list={['nv-item', { 'nv-ai': s === 'ioi', 'is-active': s === activa }]} aria-current={s === activa && actual ? 'page' : undefined}><NavIcon name={s} class="nv-ico" /><span>{t(`nav.${s}`)}</span></a>
         ))}
       </div>
@@ -44,7 +65,16 @@ const enPortada = activa === 'inicio';
 
 <div class="mobile-menu" id="mobile-menu">
   {items.map((s) => (
-    <a href={href(s)} class:list={['mobile-item', { 'mobile-ai': s === 'ioi' }]} data-close><NavIcon name={s} class="mv-ico" />{t(`nav.${s}`)}</a>
+    <>
+      <a href={href(s)} class:list={['mobile-item', { 'mobile-ai': s === 'ioi' }]} data-close><NavIcon name={s} class="mv-ico" />{t(`nav.${s}`)}</a>
+      {s === 'trabajo' && (
+        <div class="mobile-sub">
+          {proyectos.map((p) => (
+            <a href={rel(pagina, p.ruta)} aria-current={p.ruta === pagina ? 'page' : undefined} data-close>{p.nombre}</a>
+          ))}
+        </div>
+      )}
+    </>
   ))}
   <a href={GITHUB} class="mobile-item" target="_blank" rel="noopener"><GithubIcon class="mv-ico" />GitHub</a>
   <div class="mobile-cta">

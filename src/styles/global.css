@@ -1729,8 +1729,40 @@ a:hover > .px-arrow, a:focus-visible > .px-arrow { animation: px-nudge3 0.6s ste
   font-weight: 700; background: linear-gradient(90deg, var(--indigo), var(--orange));
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
+/* Desplegable de Trabajo: enlace y flecha comparten el fondo */
+.nv-grupo { position: relative; display: inline-flex; align-items: center; border-radius: 999px; transition: background 0.2s; }
+.nv-grupo:hover, .nv-grupo.open { background: var(--bg-soft); }
+.nv-grupo.is-active { background: var(--lavender); }
+.nv-grupo.is-active .nv-ico { color: var(--indigo); }
+.nav-links .nv-grupo .nv-item { padding-right: 4px; background: none; }
+.nv-caret {
+  display: inline-grid; place-items: center; align-self: stretch; padding: 0 12px 0 6px;
+  background: none; border: 0; border-radius: 0 999px 999px 0; color: var(--ink);
+}
+.nv-caret svg { transition: transform 0.15s steps(2); }
+.nv-grupo.open .nv-caret svg { transform: rotate(180deg); }
+.nv-sub {
+  position: absolute; top: calc(100% + 10px); left: 0; z-index: 1; min-width: 160px; padding: 6px;
+  list-style: none; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-sm);
+  box-shadow: 0 14px 40px rgba(52, 44, 140, 0.12), 0 1px 3px rgba(21, 18, 31, 0.06);
+  visibility: hidden; opacity: 0; transform: translateY(-4px);
+  transition: opacity 0.15s steps(2), transform 0.15s steps(2), visibility 0.15s;
+}
+/* Puente invisible para no perder el ratón entre la cápsula y la lista */
+.nv-sub::before { content: ''; position: absolute; left: 0; right: 0; bottom: 100%; height: 12px; }
+.nv-grupo.open .nv-sub { visibility: visible; opacity: 1; transform: none; }
+.nav-links .nv-sub a { display: block; padding: 8px 12px; border-radius: 8px; font: 500 14px var(--sans); color: var(--ink); opacity: 1; }
+.nav-links .nv-sub a:hover, .nav-links .nv-sub a:focus-visible { background: var(--bg-soft); color: var(--indigo); }
+.nav-links .nv-sub a[aria-current="page"] { background: var(--lavender); }
+@media (prefers-reduced-motion: reduce) {
+  .nv-sub, .nv-caret svg { transition: none; }
+}
 /* Menú móvil con iconos */
+.mobile-menu { overflow-y: auto; }
 .mobile-menu a.mobile-item { display: inline-flex; align-items: center; gap: 14px; }
+.mobile-sub { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; margin-top: -10px; padding-left: 40px; }
+.mobile-menu .mobile-sub a { font-size: 18px; font-weight: 600; letter-spacing: -0.01em; color: var(--ink-soft); }
+.mobile-menu .mobile-sub a[aria-current="page"] { color: var(--indigo); }
 .mv-ico { width: 26px; height: 26px; flex-shrink: 0; color: var(--indigo); }
 .mobile-menu a.mobile-ai .mv-ico { color: var(--orange); }
 @media (max-width: 1080px) {
