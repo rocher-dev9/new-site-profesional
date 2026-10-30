@@ -99,8 +99,8 @@
     input.focus();
   };
 
-  document.getElementById("finder-open").addEventListener("click", open);
-  document.getElementById("here").addEventListener("click", open);
+  const here = document.getElementById("here");
+  here.addEventListener("click", open);
   input.addEventListener("input", render);
   // Intro va al primer resultado; las flechas recorren la lista.
   dialog.addEventListener("keydown", (event) => {
@@ -182,6 +182,7 @@
     hereTab.textContent = tab;
     hereTab.hidden = tab === title;
     hereTitle.textContent = title;
+    here.setAttribute("aria-label", `Índice y búsqueda. Estás en: ${tab === title ? "" : `${tab}, `}${title}`);
     requestUpdate();
   };
 

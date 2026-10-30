@@ -63,7 +63,7 @@ a:hover { color: var(--indigo-dark); }
 }
 .skip:focus { top: 12px; }
 
-/* Barra superior: logo, vuelta a la ficha, portada y buscador */
+/* Barra superior: logo, vuelta a la ficha, portada y capítulo actual */
 .bar {
   position: fixed; top: 0; left: 0; right: var(--rail); z-index: 200;
   display: flex; align-items: center; gap: 20px;
@@ -77,7 +77,7 @@ a:hover { color: var(--indigo-dark); }
 .bar__brand img { display: block; width: 28px; height: auto; image-rendering: pixelated; }
 .bar__links { display: flex; align-items: center; gap: 8px; min-width: 0; font-size: 14px; font-weight: 600; }
 /* Botones de la barra: cuadrados con curva de 6px y sombra pixel al pasar el ratón */
-.bar__links a, .finder-open, .here {
+.bar__links a, .here {
   transition: transform 0.12s steps(2), box-shadow 0.12s steps(2), background 0.2s steps(2), border-color 0.2s steps(2);
 }
 .bar__links a {
@@ -85,25 +85,11 @@ a:hover { color: var(--indigo-dark); }
   border: 1px solid var(--line); border-radius: 6px; background: #fff; color: var(--ink); white-space: nowrap;
 }
 .bar__links a:hover { border-color: var(--ink); color: var(--ink); transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--indigo); }
-.bar__links a:active, .finder-open:active, .here:active { transform: none; box-shadow: none; }
+.bar__links a:active, .here:active { transform: none; box-shadow: none; }
 .px-arrow { width: 16px; height: 10px; flex: none; color: var(--indigo); }
 .px-arrow--back { transform: scaleX(-1); }
 .px-ico { width: 16px; height: 16px; flex: none; }
 .bar__home .px-ico { color: var(--indigo); }
-
-/* Acción principal de la barra */
-.finder-open {
-  display: inline-flex; align-items: center; gap: 8px;
-  flex: none; margin-left: auto; min-height: 40px; padding: 0 12px 0 14px;
-  border: 1px solid var(--indigo); border-radius: 6px;
-  background: var(--indigo); color: #fff;
-  font: 600 14px/1 var(--sans); cursor: pointer;
-}
-.finder-open:hover { background: var(--indigo-dark); border-color: var(--indigo-dark); transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
-.finder-open kbd {
-  display: none; min-width: 20px; padding: 3px 5px; border-radius: 4px;
-  background: rgba(255, 255, 255, 0.18); font: 500 11px/1.2 var(--mono); text-align: center;
-}
 
 /* Capítulo actual: abre el índice y la búsqueda */
 .here {
@@ -323,12 +309,10 @@ td:first-child code { font-weight: 500; }
   :root { --rail: 44px; --here: 0px; --gutter: max(24px, calc((100vw - var(--rail) - 1200px) / 2)); }
   .here {
     position: static; flex: 0 1 auto; width: auto; min-width: 0; max-width: 460px; height: 40px;
-    margin: 0 auto; padding: 0 12px 0 6px; background: var(--bg-soft); border: 1px solid var(--line); border-radius: 6px;
+    margin: 0 0 0 auto; padding: 0 12px 0 6px; background: var(--bg-soft); border: 1px solid var(--line); border-radius: 6px;
   }
   .here:hover { border-color: var(--ink); color: var(--ink); transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--indigo); }
   .here__caret { margin-left: 2px; }
-  .finder-open { margin-left: 0; }
-  .finder-open kbd { display: inline-block; }
   .cover, main, .end { padding-right: var(--rail); }
   .sheet__inner { grid-template-columns: 220px minmax(0, 780px); column-gap: 56px; max-width: none; }
   .sheet__toc {
@@ -362,7 +346,6 @@ td:first-child code { font-weight: 500; }
   :root { --bar: 60px; --gutter: 16px; }
   .bar { gap: 14px; }
   .bar__home { display: none !important; }
-  .finder-open { font-size: 13px; }
   .strips { grid-template-columns: minmax(0, 1fr); }
   .strip__chapters a { padding: 6px 0; }
   .sheet a { overflow-wrap: anywhere; }
@@ -370,13 +353,11 @@ td:first-child code { font-weight: 500; }
 }
 @media (max-width: 420px) {
   .bar__back span { font-size: 13px; }
-  .finder-open { justify-content: center; width: 40px; padding: 0; }
-  .finder-open__text { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .bar__links a, .finder-open, .here { transition: none; }
-  .bar__links a:hover, .finder-open:hover, .here:hover { transform: none; }
+  .bar__links a, .here { transition: none; }
+  .bar__links a:hover, .here:hover { transform: none; }
 }
 
 @media print {
