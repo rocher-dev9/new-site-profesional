@@ -3,6 +3,12 @@
   const input = document.getElementById("finder-input");
   const results = document.getElementById("finder-results");
   const sheets = [...document.querySelectorAll(".sheet")];
+  const railLinks = [...document.querySelectorAll("[data-rail]")];
+  const hereTab = document.getElementById("here-tab");
+  const hereTitle = document.getElementById("here-title");
+  const progress = document.getElementById("progress");
+  let currentSheet = null;
+  let currentLink = null;
 
   const normalize = (text) =>
     text.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
@@ -21,11 +27,12 @@
   const entries = sheets.flatMap((sheet) => {
     const chapter = sheet.querySelector("h2").textContent;
     const tab = sheet.querySelector(".sheet__tab").textContent;
-    const list = [{ id: sheet.id, title: chapter, where: tab, level: 1, text: "" }];
+    const base = { sheet: sheet.id, part: sheet.dataset.part };
+    const list = [{ ...base, id: sheet.id, title: chapter, where: tab, level: 1, text: "" }];
     for (const node of sheet.querySelector(".sheet__body").children) {
       if (node.tagName === "H2") continue;
       if (node.tagName === "H3") {
-        list.push({ id: node.id, title: node.textContent, where: chapter, level: 2, text: "" });
+        list.push({ ...base, id: node.id, title: node.textContent, where: chapter, level: 2, text: "" });
       } else {
         list[list.length - 1].text += ` ${textOf(node)}`;
       }
@@ -45,13 +52,31 @@
     )}</mark>${escapeHtml(raw.slice(hit + term.length))} …`;
   };
 
+  // Sin texto: los apartados del capítulo actual y luego todo el manual, por partes.
+  const renderIndex = () => {
+    const group = (name, items) => `<div class="finder__group">${escapeHtml(name)}</div><ul>${items.join("")}</ul>`;
+    const here = entries.filter((e) => e.level === 2 && e.sheet === currentSheet?.id);
+    const parts = new Map();
+    for (const e of entries.filter((entry) => entry.level === 1)) {
+      const name = e.id === "control-del-documento"
+        ? e.where
+        : railLinks.find((link) => link.dataset.rail === e.part).getAttribute("aria-label");
+      const mark = e.sheet === currentSheet?.id ? ' aria-current="true"' : "";
+      // El grupo ya dice la parte: aquí basta con el capítulo o el anexo.
+      const where = e.where === name || e.where === e.title ? "" : e.where.replace(/^Parte \w+, c/, "C");
+      const item = `<li><a href="#${e.id}"${mark}>${where ? `<small>${escapeHtml(where)}</small>` : ""}<strong>${escapeHtml(e.title)}</strong></a></li>`;
+      parts.set(name, [...(parts.get(name) ?? []), item]);
+    }
+    results.innerHTML = [
+      here.length ? group("En este capítulo", here.map((e) => `<li><a href="#${e.id}"><strong>${escapeHtml(e.title)}</strong></a></li>`)) : "",
+      ...[...parts].map(([name, items]) => group(name, items)),
+    ].join("");
+  };
+
   const render = () => {
     const term = normalize(input.value.trim());
     if (!term) {
-      results.innerHTML = `<ul>${entries
-        .filter((e) => e.level === 1)
-        .map((e) => `<li><a href="#${e.id}"><small>${escapeHtml(e.where)}</small><strong>${escapeHtml(e.title)}</strong></a></li>`)
-        .join("")}</ul>`;
+      renderIndex();
       return;
     }
     const matches = entries
@@ -75,7 +100,23 @@
   };
 
   document.getElementById("finder-open").addEventListener("click", open);
+  document.getElementById("here").addEventListener("click", open);
   input.addEventListener("input", render);
+  // Intro va al primer resultado; las flechas recorren la lista.
+  dialog.addEventListener("keydown", (event) => {
+    const links = [...results.querySelectorAll("a")];
+    const at = links.indexOf(document.activeElement);
+    if (event.key === "Enter" && event.target === input) {
+      event.preventDefault();
+      links[0]?.click();
+    } else if (event.key === "ArrowDown") {
+      event.preventDefault();
+      links[at + 1]?.focus();
+    } else if (event.key === "ArrowUp") {
+      event.preventDefault();
+      (at > 0 ? links[at - 1] : input).focus();
+    }
+  });
   results.addEventListener("click", (event) => {
     if (event.target.closest("a")) dialog.close();
   });
@@ -102,12 +143,54 @@
     setTimeout(() => { button.textContent = "Copiar"; }, 1600);
   });
 
+  // Barra de avance y apartado que se está leyendo en el índice lateral.
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.transform = `scaleX(${max > 0 ? Math.min(window.scrollY / max, 1) : 0})`;
+
+    let link = null;
+    if (currentSheet) {
+      const line = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) + 8;
+      const passed = [...currentSheet.querySelectorAll(".sheet__body > h3")].filter((h) => h.getBoundingClientRect().top <= line);
+      const last = passed[passed.length - 1];
+      if (last) link = currentSheet.querySelector(`.sheet__toc a[href="#${last.id}"]`);
+    }
+    if (link === currentLink) return;
+    currentLink?.removeAttribute("aria-current");
+    link?.setAttribute("aria-current", "true");
+    currentLink = link;
+    const toc = link?.closest(".sheet__toc");
+    if (toc && (link.offsetTop < toc.scrollTop || link.offsetTop + link.offsetHeight > toc.scrollTop + toc.clientHeight)) {
+      toc.scrollTop = link.offsetTop - toc.clientHeight / 2;
+    }
+  };
+  const requestUpdate = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  };
+  window.addEventListener("scroll", requestUpdate, { passive: true });
+  window.addEventListener("resize", requestUpdate);
+
+  // Indica en la barra el capítulo actual; en la portada, el índice.
+  const setCurrent = (sheet) => {
+    currentSheet = sheet;
+    const tab = sheet ? sheet.querySelector(".sheet__tab").textContent.replace(/^Parte \w+, capítulo /, "Cap. ") : "Manual";
+    const title = sheet ? sheet.querySelector("h2").textContent : "Índice";
+    hereTab.textContent = tab;
+    hereTab.hidden = tab === title;
+    hereTitle.textContent = title;
+    requestUpdate();
+  };
+
   // Marca en el canto derecho la parte que se está leyendo.
-  const railLinks = [...document.querySelectorAll("[data-rail]")];
   const observer = new IntersectionObserver(
     (changes) => {
       for (const change of changes) {
         if (!change.isIntersecting) continue;
+        setCurrent(change.target.classList.contains("sheet") ? change.target : null);
         const part = change.target.id === "control-del-documento" ? null : change.target.dataset.part;
         railLinks.forEach((link) => {
           if (link.dataset.rail === part) link.setAttribute("aria-current", "true");
@@ -118,4 +201,6 @@
     { rootMargin: "-45% 0px -50% 0px" },
   );
   sheets.forEach((sheet) => observer.observe(sheet));
+  observer.observe(document.querySelector(".cover"));
+  requestUpdate();
 })();

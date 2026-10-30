@@ -36,6 +36,9 @@ PARTS = [
     ("IX", "Automatización y buenas prácticas", "REST API, SDK, AI Gateway y recomendaciones.", 23, 24, 330),
 ]
 ANNEX_HUE = 295
+_PX_ARROW_RECTS = '<rect x="4" y="0" width="1" height="1"/><rect x="4" y="1" width="2" height="1"/><rect x="0" y="2" width="7" height="1"/><rect x="4" y="3" width="2" height="1"/><rect x="4" y="4" width="1" height="1"/>'
+PX_ARROW = f'<svg class="px-arrow" viewBox="0 0 8 5" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true">{_PX_ARROW_RECTS}</svg>'
+PX_ARROW_BACK = PX_ARROW.replace('class="px-arrow"', 'class="px-arrow px-arrow--back"')
 ANNEX_DESC = "Referencias de consulta: CLI, vercel.json, variables, límites, regiones, precios, errores, glosario y fuentes."
 
 
@@ -291,17 +294,29 @@ def parse(body):
     return cover, sections
 
 
-def render_section(section):
+def render_pager_link(kind, label, target, title):
+    arrow = PX_ARROW_BACK if kind == "prev" else PX_ARROW
+    return (
+        f'<a class="pager__link pager__link--{kind}" href="#{target}">'
+        f"<small>{arrow}{label}</small><strong>{esc(title)}</strong></a>"
+    )
+
+
+def render_section(section, prev, nxt):
     toc = ""
     if section.toc:
         links = "".join(f'<li><a href="#{hid}">{esc(text)}</a></li>' for hid, text in section.toc)
         toc = f'<nav class="sheet__toc" aria-label="Apartados de {html.escape(section.heading)}"><ul>{links}</ul></nav>'
+    # Al principio y al final, el enlace que falta lleva al índice de la portada
+    before = render_pager_link("prev", "Anterior", prev.id, prev.heading) if prev else render_pager_link("prev", "Volver", "indice", "Índice del manual")
+    after = render_pager_link("next", "Siguiente", nxt.id, nxt.heading) if nxt else render_pager_link("next", "Volver", "indice", "Índice del manual")
+    pager = f'<nav class="pager" aria-label="Capítulo anterior y siguiente">{before}{after}</nav>'
     return (
         f'<section class="sheet" id="{section.id}" data-part="{section.step}">'
         f'<div class="sheet__tab">{section.tab}</div>'
         f'<div class="sheet__inner">{toc}<div class="sheet__body">'
         f"<h2>{esc(section.heading)}</h2>{''.join(section.blocks)}"
-        f"</div></div></section>"
+        f"</div>{pager}</div></section>"
     )
 
 
@@ -345,10 +360,12 @@ def render_page(cover, sections):
 <header class="bar">
   <a class="bar__brand" href="../" title="Roger Avellana" aria-label="Roger Avellana, ir a la portada"><img src="../img/brand-hand.svg" alt="" width="17" height="21"></a>
   <nav class="bar__links" aria-label="Volver a la web">
-    <a class="bar__back" href="../trabajo/manual-vercel/"><svg class="px-arrow px-arrow--back" viewBox="0 0 8 5" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><rect x="4" y="0" width="1" height="1"/><rect x="4" y="1" width="2" height="1"/><rect x="0" y="2" width="7" height="1"/><rect x="4" y="3" width="2" height="1"/><rect x="4" y="4" width="1" height="1"/></svg><span>Ficha del manual</span></a>
+    <a class="bar__back" href="../trabajo/manual-vercel/">{PX_ARROW_BACK}<span>Ficha del manual</span></a>
     <a class="bar__home" href="../">Portada</a>
   </nav>
+  <button type="button" class="here" id="here" aria-haspopup="dialog"><span class="here__tab" id="here-tab">Manual</span><span class="here__title" id="here-title">Índice</span><svg class="here__caret" viewBox="0 0 12 6" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><path d="M0 0h2v2H0zM10 0h2v2h-2zM2 2h2v2H2zM8 2h2v2H8zM4 4h4v2H4z"/></svg></button>
   <button type="button" class="finder-open" id="finder-open" aria-haspopup="dialog">Índice y búsqueda</button>
+  <span class="progress" id="progress" aria-hidden="true"></span>
 </header>
 <nav class="rail" aria-label="Partes del manual"><ol>{''.join(rail)}</ol></nav>
 
@@ -359,11 +376,11 @@ def render_page(cover, sections):
     <p class="cover__lead">{esc(subtitle)}.</p>
     <p class="cover__meta">{esc(meta[2])}. {esc(meta[0])}. {esc(meta[1])}.</p>
   </div>
-  <nav aria-label="Índice del manual"><ol class="strips">{''.join(strips)}</ol></nav>
+  <nav id="indice" aria-label="Índice del manual"><ol class="strips">{''.join(strips)}</ol></nav>
 </header>
 
 <main>
-{''.join(render_section(s) for s in sections)}
+{''.join(render_section(s, sections[i - 1] if i else None, sections[i + 1] if i + 1 < len(sections) else None) for i, s in enumerate(sections))}
 </main>
 
 <footer class="end">
