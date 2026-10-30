@@ -8,7 +8,7 @@ Roger escribe en español: respóndele en español. Comandos, URL y estructura d
 ## Stack
 
 - Astro 7, salida estática, TypeScript. Sin framework de UI ni CSS externo.
-- Node 24 en `~/.local/node`. Una shell no interactiva necesita antes de `npm`:
+- Node 24, fijado en `engines` de `package.json` (`24.x`) e instalado en `~/.local/node`. Una shell no interactiva necesita antes de `npm`:
   `export PATH="$HOME/.local/node/bin:$PATH"`.
 - Web en local, desde una pestaña de la Terminal: `npm run dev -- --ignore-lock` →
   http://localhost:4321/. El panel de vista previa no puede arrancar servidores en esta carpeta
@@ -94,10 +94,8 @@ _manual-vercel-fuente/  .docx y generador del manual (no se publica)
    (ChatGPT, Midjourney, Firefly y Higgsfield van con monograma; los logos irían en `public/img/herramientas/`).
 2. **Botón de enviar del chat de la portada:** no hace nada por orden de Roger. Propuesta: abrir el correo del visitante con
    el texto escrito. Preguntar antes.
-3. **Node en Vercel:** `engines` es `>=22.22.0` y Vercel avisa de que usa 26.x. Propuesta: fijar `"24.x"` en
-   `package.json`. Falta su confirmación.
-4. **Confirmar con Roger** la frase de la ficha del manual «Es un manual propio… no es un documento de Vercel».
-5. **Auditoría de calidad** con Lighthouse.
-6. **Cuarto proyecto:** el que hace con un compañero (falta tema, nombre, permiso y si puede ser público), o Agentic AI.
-7. **Cuando compre el dominio:** añadirlo en Vercel; cambiar `site`, `SITE_URL` (`src/i18n/rutas.ts`) y los canonical de
+3. **Confirmar con Roger** la frase de la ficha del manual «Es un manual propio… no es un documento de Vercel».
+4. **Auditoría de calidad** con Lighthouse.
+5. **Cuarto proyecto:** el que hace con un compañero (falta tema, nombre, permiso y si puede ser público), o Agentic AI.
+6. **Cuando compre el dominio:** añadirlo en Vercel; cambiar `site`, `SITE_URL` (`src/i18n/rutas.ts`) y los canonical de
    `public/*.html`. Ofrecer entonces analítica y cabeceras de seguridad.
