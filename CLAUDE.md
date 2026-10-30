@@ -11,7 +11,7 @@ Roger escribe en español: respóndele en español. Comandos, URL y estructura d
 - Node 24 en `~/.local/node`. Una shell no interactiva necesita antes de `npm`:
   `export PATH="$HOME/.local/node/bin:$PATH"`.
 - Web en local, desde una pestaña de la Terminal: `npm run dev -- --ignore-lock` →
-  http://localhost:4321/new-site-profesional/. El panel de vista previa no puede arrancar servidores en esta carpeta
+  http://localhost:4321/. El panel de vista previa no puede arrancar servidores en esta carpeta
   (permisos de macOS).
 - Imágenes de vista previa al compartir: satori + resvg, al compilar (`src/pages/og/[imagen].png.ts`).
 
@@ -33,8 +33,7 @@ _manual-vercel-fuente/  .docx y generador del manual (no se publica)
 ## Convenciones de código
 
 - Código, comentarios y nombres en español, con el estilo del archivo que se toca.
-- Enlaces internos siempre con `rel(pagina, destino)`: la web se publica con dos `base` distintas. Nunca rutas con `/`
-  inicial. El manual estático usa solo rutas relativas.
+- Enlaces internos siempre con `rel(pagina, destino)`, sin `/` inicial. El manual estático usa solo rutas relativas.
 - Toda página o texto nuevo va en ES y EN. Al añadir una página: `alternas`, y su imagen en `src/datos/og.ts`.
 - Textos cortos de interfaz en `ui.ts`; las claves que faltan dan error en `npm run check`.
 - Colección `proyectos`: no usar un campo llamado `slug` (Astro lo toma como id); el campo es `url`.
@@ -67,16 +66,13 @@ _manual-vercel-fuente/  .docx y generador del manual (no se publica)
 
 ## Despliegue
 
-- Repositorio `rocher-dev9/new-site-profesional`. **`main` despliega a producción en los dos sitios con cada push:**
-  - Vercel: https://rocher-ai.vercel.app/ (`base` `/`, detectado por la variable `VERCEL`).
-  - GitHub Pages: https://rocher-dev9.github.io/new-site-profesional/ (`.github/workflows/deploy.yml`, `base`
-    `/new-site-profesional`).
-- Ambos ejecutan `npm run check && npm run build`; si hay errores de tipos, no se publica.
+- Repositorio `rocher-dev9/new-site-profesional`. **`main` despliega a producción en Vercel con cada push:**
+  https://rocher-ai.vercel.app/. Es la única web; GitHub Pages está retirado.
+- Vercel ejecuta `npm run check && npm run build`; si hay errores de tipos, no se publica.
 - Flujo con Roger: propone un cambio, lo revisa y pide «haz un git y súbelo». No subir nada sin esa orden.
   1. Trabajar en una rama, con `npm run check` y `npm run build`.
-  2. Para cambios de rutas o estáticos, compilar también con `VERCEL=1`.
-  3. Commit, `git merge --ff-only` a `main`, borrar la rama, `git push`.
-  4. Vigilar con `gh run watch` y comprobar las páginas publicadas en los dos sitios.
+  2. Commit, `git merge --ff-only` a `main`, borrar la rama, `git push`.
+  3. Comprobar las páginas publicadas en Vercel.
 
 ## Decisiones cerradas
 
@@ -88,6 +84,7 @@ _manual-vercel-fuente/  .docx y generador del manual (no se publica)
 - GitHub en el menú con el Octocat, en el pie y en Sobre mí. Aviso legal solo enlazado desde el pie; solo se tratan nombre y
   email.
 - Manual de Vercel: va como «recurso», fuera de `tarjetas.ts` para no alterar contador ni baraja; solo en español.
+- Una sola web, en Vercel. GitHub Pages no se recupera.
 - No proponer temas de dominio ni de Vercel hasta terminar el contenido, salvo que Roger los saque.
 
 ## Pendiente
@@ -103,4 +100,4 @@ _manual-vercel-fuente/  .docx y generador del manual (no se publica)
 5. **Auditoría de calidad** con Lighthouse.
 6. **Cuarto proyecto:** el que hace con un compañero (falta tema, nombre, permiso y si puede ser público), o Agentic AI.
 7. **Cuando compre el dominio:** añadirlo en Vercel; cambiar `site`, `SITE_URL` (`src/i18n/rutas.ts`) y los canonical de
-   `public/*.html`; quitar `base`; retirar GitHub Pages. Ofrecer entonces analítica y cabeceras de seguridad.
+   `public/*.html`. Ofrecer entonces analítica y cabeceras de seguridad.

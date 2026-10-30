@@ -1,7 +1,7 @@
 # Roger Avellana — web profesional
 
 Web estática bilingüe (ES/EN) hecha con [Astro](https://astro.build) y publicada en
-GitHub Pages: https://rocher-dev9.github.io/new-site-profesional/
+Vercel: https://rocher-ai.vercel.app/
 
 ## Comandos
 
@@ -14,7 +14,7 @@ export PATH="$HOME/.local/node/bin:$PATH"
 | Comando           | Qué hace                                                  |
 | ----------------- | --------------------------------------------------------- |
 | `npm install`     | Instala las dependencias (solo la primera vez)            |
-| `npm run dev`     | Web en local: http://localhost:4321/new-site-profesional/ |
+| `npm run dev`     | Web en local: http://localhost:4321/                      |
 | `npm run check`   | Comprueba los tipos (TypeScript) y avisa de errores       |
 | `npm run build`   | Genera la web final en `dist/`                            |
 | `npm run preview` | Sirve `dist/` para revisarla antes de publicar            |
@@ -77,8 +77,8 @@ src/
 
 ## Manual de Vercel
 
-Es una página estática en `public/manual-vercel/`, con el mismo aspecto que la web y fuentes propias.
-Como la web se publica en dos sitios con distinta base, el manual solo usa rutas relativas.
+Es una página estática en `public/manual-vercel/`, con el mismo aspecto que la web, fuentes propias
+y solo rutas relativas.
 Para cambiar su contenido, edita el `.docx` de `_manual-vercel-fuente/` y regenera el HTML
 (`styles.css` y `app.js` se editan directamente):
 
@@ -100,6 +100,5 @@ un formulario o el envío del chat, hay que actualizar `src/components/Legal.ast
 
 ## Publicación
 
-Cada `push` a `main` publica la web automáticamente (`.github/workflows/deploy.yml`).
+Cada `push` a `main` publica la web en Vercel automáticamente.
 Antes de publicar se ejecuta `npm run check`: si hay errores de tipos, no se publica.
-Requisito único: en GitHub, *Settings → Pages → Source: GitHub Actions*.

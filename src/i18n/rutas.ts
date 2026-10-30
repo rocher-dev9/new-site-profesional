@@ -7,10 +7,10 @@
 export type Lang = 'es' | 'en';
 export type Alternas = Partial<Record<Lang, string>>;
 
-// Dirección pública de la web según dónde se compile: en Vercel, su dominio de producción;
-// en GitHub Pages, la de github.io (hreflang, vista previa al compartir…)
+// Dirección pública de la web (hreflang, vista previa al compartir…): el dominio de producción
+// de Vercel al compilar allí, y la dirección actual al compilar en local
 const vercel = typeof process !== 'undefined' ? process.env.VERCEL_PROJECT_PRODUCTION_URL : undefined;
-export const SITE_URL = vercel ? `https://${vercel}/` : 'https://rocher-dev9.github.io/new-site-profesional/';
+export const SITE_URL = vercel ? `https://${vercel}/` : 'https://rocher-ai.vercel.app/';
 
 export const rutas = {
   inicio:  { es: '',          en: 'en/index.html' },
