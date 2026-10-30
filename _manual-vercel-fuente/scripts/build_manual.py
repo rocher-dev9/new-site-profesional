@@ -39,6 +39,8 @@ ANNEX_HUE = 295
 _PX_ARROW_RECTS = '<rect x="4" y="0" width="1" height="1"/><rect x="4" y="1" width="2" height="1"/><rect x="0" y="2" width="7" height="1"/><rect x="4" y="3" width="2" height="1"/><rect x="4" y="4" width="1" height="1"/>'
 PX_ARROW = f'<svg class="px-arrow" viewBox="0 0 8 5" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true">{_PX_ARROW_RECTS}</svg>'
 PX_ARROW_BACK = PX_ARROW.replace('class="px-arrow"', 'class="px-arrow px-arrow--back"')
+PX_HOME = '<svg class="px-ico" viewBox="0 0 8 8" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><path d="M3 0h2v1H3zM2 1h1v1H2zM5 1h1v1H5zM1 2h1v1H1zM6 2h1v1H6zM0 3h1v1H0zM7 3h1v1H7zM1 4h1v4H1zM6 4h1v4H6zM2 7h4v1H2z"/></svg>'
+PX_SEARCH = '<svg class="px-ico" viewBox="0 0 8 8" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><path d="M2 0h3v1H2zM1 1h1v1H1zM5 1h1v1H5zM0 2h1v2H0zM6 2h1v2H6zM1 4h1v1H1zM5 4h1v1H5zM2 5h3v1H2zM5 5h1v1H5zM6 6h1v1H6zM7 7h1v1H7z"/></svg>'
 ANNEX_DESC = "Referencias de consulta: CLI, vercel.json, variables, límites, regiones, precios, errores, glosario y fuentes."
 
 
@@ -361,10 +363,10 @@ def render_page(cover, sections):
   <a class="bar__brand" href="../" title="Roger Avellana" aria-label="Roger Avellana, ir a la portada"><img src="../img/brand-hand.svg" alt="" width="17" height="21"></a>
   <nav class="bar__links" aria-label="Volver a la web">
     <a class="bar__back" href="../trabajo/manual-vercel/">{PX_ARROW_BACK}<span>Ficha del manual</span></a>
-    <a class="bar__home" href="../">Portada</a>
+    <a class="bar__home" href="../">{PX_HOME}<span>Portada</span></a>
   </nav>
   <button type="button" class="here" id="here" aria-haspopup="dialog"><span class="here__tab" id="here-tab">Manual</span><span class="here__title" id="here-title">Índice</span><svg class="here__caret" viewBox="0 0 12 6" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><path d="M0 0h2v2H0zM10 0h2v2h-2zM2 2h2v2H2zM8 2h2v2H8zM4 4h4v2H4z"/></svg></button>
-  <button type="button" class="finder-open" id="finder-open" aria-haspopup="dialog">Índice y búsqueda</button>
+  <button type="button" class="finder-open" id="finder-open" aria-haspopup="dialog" aria-label="Índice y búsqueda" aria-keyshortcuts="/">{PX_SEARCH}<span class="finder-open__text">Índice y búsqueda</span><kbd aria-hidden="true">/</kbd></button>
   <span class="progress" id="progress" aria-hidden="true"></span>
 </header>
 <nav class="rail" aria-label="Partes del manual"><ol>{''.join(rail)}</ol></nav>
