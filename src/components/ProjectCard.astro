@@ -1,12 +1,12 @@
 ---
-// Tarjeta de proyecto (portada). Los datos están en src/proyectos/tarjetas.ts
-// y la ilustración en src/proyectos/<clave>/Tarjeta.astro.
+// Tarjeta de proyecto (portada): panel con icono, nombre, descripción, etiquetas y enlace.
+// Los datos están en src/proyectos/tarjetas.ts y las etiquetas en el caso de cada proyecto.
+import { getCollection } from 'astro:content';
 import PixelArrow from './PixelArrow.astro';
-import ProjectCover from './ProjectCover.astro';
 import type { Lang } from '../i18n/rutas';
 import { enlaceCaso } from '../proyectos/enlaces';
 import { useT } from '../i18n/ui';
-import { nombreProyecto, type Tarjeta } from '../proyectos/tarjetas';
+import type { Tarjeta } from '../proyectos/tarjetas';
 
 interface Props { tarjeta: Tarjeta; lang: Lang; pagina: string }
 const { tarjeta, lang, pagina } = Astro.props;
@@ -14,12 +14,28 @@ const t = useT(lang);
 
 // «Ver caso» enlaza al caso de estudio si ya existe en este idioma
 const href = await enlaceCaso(tarjeta.clave, lang, pagina);
+const caso = (await getCollection('proyectos')).find((e) => e.id === `${tarjeta.clave}/${lang}`);
+const etiquetas = caso?.data.etiquetas.slice(0, 3) ?? [];
+
+// Icono de cada proyecto, con el trazo de los iconos del menú
+const iconos: Record<string, string> = {
+  intera: '<path d="m12 3 9 5-9 5-9-5 9-5Z" /><path d="m3 12 9 5 9-5" /><path d="m3 16 9 5 9-5" />',
+  'sensing-dashboard': '<rect x="3" y="4" width="18" height="16" rx="2.5" /><path d="m7 14 3-4 3 3 4-5" />',
+  'nvision-ferias': '<path d="M3 4h18" /><rect x="5" y="4" width="14" height="11" rx="1.5" /><path d="M12 15v5" /><path d="M8.5 20h7" />',
+};
 ---
 <article class="project-card">
-  <ProjectCover tarjeta={tarjeta} lang={lang} />
-  <div class="project-body">
-    <h3>{nombreProyecto(tarjeta, lang)}</h3>
+  <div class="pj-panel">
+    <span class="pj-num">{String(tarjeta.num).padStart(2, '0')}</span>
+    <span class="pj-year">{tarjeta.anio}</span>
+    <span class="pj-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={iconos[tarjeta.clave]} /></span>
+  </div>
+  <div class="pj-body">
+    <h3>{tarjeta.cliente}</h3>
     <p>{tarjeta.texto[lang]}</p>
-    <a href={href} class="btn-link">{t('proyecto.ver')} <PixelArrow /></a>
+    <ul class="pj-tags">
+      {etiquetas.map((e) => <li>{e}</li>)}
+    </ul>
+    <a href={href} class="pj-link" aria-label={`${t('proyecto.ver')}: ${tarjeta.cliente}`}>{t('proyecto.ver')} <PixelArrow /></a>
   </div>
 </article>
