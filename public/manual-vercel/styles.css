@@ -28,8 +28,8 @@
   --sans: "Plus Jakarta Sans", system-ui, sans-serif;
   --mono: "JetBrains Mono", monospace;
   --pixel: "Silkscreen", var(--mono);
-  --radius-md: 20px;
-  --radius-sm: 14px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
   --gutter: max(24px, calc((100vw - 1200px) / 2));
   --rail: 0px;
   --bar: 68px;

@@ -167,7 +167,7 @@
 /* Redes sociales */
 .cg-posts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; height: auto; padding: 24px; background: var(--bg-soft); border: 0; }
 .cg-post {
-  position: relative; overflow: hidden; aspect-ratio: 1; border-radius: 12px; padding: 18px;
+  position: relative; overflow: hidden; aspect-ratio: 1; border-radius: 8px; padding: 18px;
   display: flex; flex-direction: column; justify-content: flex-end; gap: 6px;
   background: var(--pb); color: var(--pt); border: 1px solid var(--line);
   font-size: clamp(14px, 1.6vw, 19px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.2;
