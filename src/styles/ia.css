@@ -271,13 +271,17 @@
   100% { left: calc(100% - 8px); opacity: 0; }
 }
 
-.ai-auto-list { margin-top: 36px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px; }
-.ai-auto-title { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ai-muted); }
-.ai-auto-list ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
-.ai-auto-list li {
-  font-size: 13px; color: var(--ai-soft);
-  border: 1px solid var(--ai-border); border-radius: 999px; padding: 7px 14px;
+/* Qué se puede automatizar: panel con la lista a la vista, sin aspecto de botones */
+.ai-auto-list {
+  margin-top: 36px; padding: 26px;
+  background: var(--ai-surface); border: 1px solid var(--ai-border); border-radius: var(--radius-md);
 }
+.ai-auto-title { font-size: clamp(1.15rem, 2vw, 1.35rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.25; color: var(--ai-text); }
+.ai-auto-list ul { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 24px; margin-top: 18px; }
+.ai-auto-list li { display: flex; align-items: baseline; gap: 10px; font-size: 15px; line-height: 1.4; color: var(--ai-text); }
+.ai-auto-list li::before { content: ''; flex: none; width: 6px; height: 6px; background: #c6a8ff; transform: translateY(-2px); }
+@media (max-width: 860px) { .ai-auto-list ul { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) { .ai-auto-list ul { grid-template-columns: minmax(0, 1fr); } }
 
 /* Agentes: consola de ejecución por pasos */
 .ai-agents-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 24px; align-items: start; }
@@ -389,8 +393,9 @@
 .theme-ai .lang-switch a[aria-current="true"] { background: #fff; color: #0b0a16; }
 
 /* Automatización: plataformas y agentes */
-.ai-platforms-head { margin-top: 44px; max-width: 640px; }
-.ai-platforms-head p { margin-top: 10px; color: var(--ai-soft); font-size: 15px; line-height: 1.65; }
+.ai-platforms-head { margin-top: 44px; max-width: 720px; }
+.ai-platforms-head p { margin-top: 10px; color: var(--ai-soft); font-size: 16px; line-height: 1.65; }
+.ai-platforms-head strong { color: var(--ai-text); font-weight: 600; }
 .ai-platforms { margin-top: 24px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
 .ai-platform { display: flex; flex-direction: column; padding: 22px; }
 .ai-platform .ai-tool-top { margin-bottom: 18px; }
