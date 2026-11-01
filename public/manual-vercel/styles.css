@@ -115,11 +115,11 @@ a:hover { color: var(--indigo-dark); }
 /* Portada del manual */
 .cover { background: linear-gradient(180deg, var(--lavender) 0%, var(--bg) 62%); }
 .cover__title { padding: clamp(48px, 8vw, 88px) var(--gutter) clamp(32px, 5vw, 48px); }
-.cover__eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  font: 500 12px/1.5 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--indigo);
+.cover__eyebrow, .sheet__tab {
+  display: inline-flex; align-items: center; padding: 6px 10px;
+  border: 1px solid var(--line); border-radius: 4px; background: #fff;
+  font: 500 12px/1.3 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink);
 }
-.cover__eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--indigo); }
 h1 {
   margin: 14px 0 0;
   font-size: clamp(2.3rem, 5vw, 3.6rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.035em;
@@ -156,8 +156,7 @@ h1 em { font-style: normal; color: var(--indigo); }
   scroll-margin-top: -40px;
 }
 .sheet:nth-child(even) { background: var(--bg-soft); }
-.sheet__tab { margin-bottom: 10px; font: 400 12px/1.5 var(--mono); letter-spacing: 0.06em; color: var(--indigo); }
-.sheet__tab::before { content: "/ "; }
+.sheet__tab { margin-bottom: 12px; }
 .sheet__inner { display: grid; grid-template-columns: minmax(0, 1fr); max-width: 780px; }
 .sheet__toc { display: none; }
 .sheet__body > :first-child { margin-top: 0; }

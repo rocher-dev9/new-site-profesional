@@ -54,7 +54,7 @@ _manual-vercel-fuente/  .docx y generador del manual (no se publica)
   detalles pixel).
 - **Componentes:** botones `.btn` cuadrados con curva de 6px; tarjetas con `--radius-*` y borde `--line`; sombras pixel
   sólidas (`6px 6px 0`) al pasar el ratón y transiciones con `steps()`; flecha `PixelArrow`; mano pixel `BrandHand`.
-- **Encabezados:** etiqueta `.eyebrow` o `/ sección`, y h1 con la parte final en índigo dentro de `<em>`, con punto final.
+- **Encabezados:** etiqueta `.eyebrow` en cabeceras y `.section-label` en secciones (`<b>02</b><span>trabajo</span>`, con el número de su sección en `PageIndex`; la cabecera es 00), y h1 con la parte final en índigo dentro de `<em>`, con punto final.
 - **Interacción:** sutil y siempre respetando `prefers-reduced-motion`. Sin indicador cuadrado bajo el menú.
 - Todo lo nuevo debe seguir este aspecto y no destacar sobre el resto. Reutilizar clases antes de crear otras.
 

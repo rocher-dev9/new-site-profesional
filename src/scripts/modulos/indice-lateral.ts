@@ -19,7 +19,7 @@ export function iniciarIndiceLateral(): void {
         const r = item.seccion.getBoundingClientRect();
         if (r.top <= medio && r.bottom > medio) activa = item;
       }
-      if (window.scrollY < 80 && objetivos.length) activa = objetivos[0]; // arriba del todo: siempre 01
+      if (window.scrollY < 80 && objetivos.length) activa = objetivos[0]; // arriba del todo: siempre la cabecera
       if (!activa) return;
       for (const item of objetivos) item.enlace.setAttribute('aria-current', String(item === activa));
       // Sobre fondos oscuros el índice pasa a blanco
