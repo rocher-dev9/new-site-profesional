@@ -11,11 +11,20 @@ export function iniciarPuntosCabecera(): void {
   let W = 0, H = 0, enMarcha = false, visible = true;
   const raton = { x: -9999, y: -9999, s: 0, objetivo: 0 }; // s: intensidad suavizada (0–1)
 
-  const redimensionar = () => ({ w: W, h: H } = ajustarCanvas(canvas, ctx));
+  // Centro de la máscara: la ventana del chat, o el 50% / 40% si no la hay
+  const ventana = cabecera.querySelector<HTMLElement>('.hero-win');
+  let cx = 0.5, cy = 0.4;
+  const redimensionar = () => {
+    ({ w: W, h: H } = ajustarCanvas(canvas, ctx));
+    if (!ventana || !W || !H) return;
+    const r = ventana.getBoundingClientRect(), c = canvas.getBoundingClientRect();
+    cx = (r.left + r.width / 2 - c.left) / W;
+    cy = (r.top + r.height / 2 - c.top) / H;
+  };
 
-  // Máscara: elipse centrada al 50% / 40% que se desvanece hacia los bordes
+  // Máscara: elipse centrada en (cx, cy) que se desvanece hacia los bordes
   const mascara = (x: number, y: number) => {
-    const nx = (x - W * 0.5) / (W * 0.5), ny = (y - H * 0.4) / (H * 0.6);
+    const nx = (x - W * cx) / (W * 0.5), ny = (y - H * cy) / (H * 0.6);
     const r = Math.sqrt(nx * nx + ny * ny);
     if (r <= 0.35) return 1;
     if (r >= 0.8) return 0;

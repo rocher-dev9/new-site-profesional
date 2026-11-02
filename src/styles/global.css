@@ -1253,75 +1253,102 @@ a:hover > .px-arrow, a:focus-visible > .px-arrow { animation: px-nudge3 0.6s ste
 /* Sin indicador bajo la sección actual en el menú */
 .nav-links a.active:not(.nav-home)::after, .nav-links a.nav-ai[aria-current="page"]::after { content: none; }
 
-/* ─── Cabecera centrada con chat (estilo Base44) ───────────── */
+/* ─── Cabecera en dos columnas: texto y chat en una ventana ── */
 .visually-hidden {
   position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
 .hero { position: relative; isolation: isolate; }
-/* Retícula de puntos muy sutil de fondo */
+/* Retícula de puntos muy sutil de fondo, más presente alrededor de la ventana */
 .hero::before {
   content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
   background: radial-gradient(rgba(88, 80, 236, 0.16) 1px, transparent 1.4px) 0 0 / 22px 22px;
-  -webkit-mask-image: radial-gradient(ellipse at 50% 40%, #000 35%, transparent 80%);
-  mask-image: radial-gradient(ellipse at 50% 40%, #000 35%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at 72% 50%, #000 35%, transparent 80%);
+  mask-image: radial-gradient(ellipse at 72% 50%, #000 35%, transparent 80%);
 }
-.hero-center { display: flex; flex-direction: column; align-items: center; text-align: center; }
-.hero-center .hero-title { font-size: clamp(2.7rem, 7vw, 5.4rem); max-width: 16ch; }
-.hero-center .hero-sub { margin-left: auto; margin-right: auto; max-width: 600px; font-size: clamp(1.05rem, 1.6vw, 1.25rem); }
+.hero-split {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
+  gap: clamp(36px, 5vw, 72px); align-items: center;
+}
+/* El titular se ajusta al ancho de su columna: cada frase cabe en una línea */
+.hero-copy { container-type: inline-size; }
+.hero-split .hero-title { font-size: clamp(2.1rem, 7.9cqi, 3.6rem); }
+.hero-split .hero-sub { max-width: 500px; font-size: clamp(1.02rem, 1.4vw, 1.15rem); }
+.hero-split .hero-actions { margin-top: 30px; }
 
-/* Caja de chat */
-.hero-chat {
-  width: min(100%, 760px); margin-top: 40px; text-align: left;
-  background: #fff; border: 1px solid var(--line); border-radius: 12px;
-  box-shadow: 0 24px 60px rgba(52, 44, 140, 0.12), 0 2px 6px rgba(21, 18, 31, 0.04);
-  padding: 20px 18px 14px 24px;
-  transition: box-shadow 0.25s, border-color 0.25s;
+/* Ventana del chat: barra de título y cuerpo con aspecto de terminal */
+.hero-win {
+  background: #fff; border: 1px solid var(--line); border-radius: 4px;
+  font-family: var(--mono); transition: border-color 0.2s steps(2);
 }
-.hero-chat:focus-within { border-color: var(--lavender-deep); box-shadow: 0 0 0 4px rgba(88, 80, 236, 0.1), 0 24px 60px rgba(52, 44, 140, 0.14); }
+.hero-win:focus-within { border-color: var(--indigo); }
+.hw-bar {
+  position: relative; display: flex; align-items: center; height: 36px; padding: 0 14px;
+  background: var(--bg-soft); border-bottom: 1px solid var(--line); border-radius: 3px 3px 0 0;
+}
+.hw-sq { display: flex; gap: 5px; }
+.hw-sq i { width: 8px; height: 8px; background: var(--lavender-deep); }
+.hw-title { position: absolute; left: 50%; transform: translateX(-50%); font-size: 12px; color: var(--muted); }
+
+.hero-chat { padding: 18px 16px 14px 18px; }
+.hc-campo { display: flex; gap: 10px; }
+.hc-prompt { color: var(--indigo); font: 500 15px/1.6 var(--mono); }
+.hc-area { position: relative; flex: 1; min-width: 0; }
 .hc-input {
-  display: block; width: 100%; min-height: 64px; resize: none; border: none; outline: none; background: transparent;
-  font: 500 clamp(1rem, 1.6vw, 1.15rem)/1.55 var(--sans); color: var(--ink);
+  display: block; width: 100%; min-height: 76px; resize: none; border: none; outline: none; background: transparent;
+  font: 400 15px/1.6 var(--mono); color: var(--ink); padding: 0;
 }
-.hc-input::placeholder { color: var(--muted); opacity: 1; }
-.hc-toolbar { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; }
+.hc-input::placeholder { color: transparent; }
+/* Ejemplo que se escribe solo; desaparece cuando el visitante escribe */
+.hc-ghost { position: absolute; inset: 0; pointer-events: none; font: 400 15px/1.6 var(--mono); color: var(--muted); }
+.hc-input:not(:placeholder-shown) + .hc-ghost { display: none; }
+.hc-cursor {
+  display: inline-block; width: 0.55em; height: 1.15em; margin-left: 2px; vertical-align: -0.2em;
+  background: var(--indigo); animation: hc-parpadeo 1s steps(1) infinite;
+}
+.hc-input:focus + .hc-ghost .hc-cursor { display: none; }
+@keyframes hc-parpadeo { 50% { opacity: 0; } }
+
+.hc-toolbar { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; }
 .hc-tools-right { display: flex; align-items: center; gap: 6px; }
 .hc-icon-btn, .hc-mode {
-  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-  height: 40px; border: none; background: transparent; color: var(--ink); cursor: pointer;
-  border-radius: 6px; transition: background 0.2s;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: 32px; border: 1px solid var(--line); border-radius: 2px; background: #fff; color: var(--ink-soft); cursor: pointer;
+  transition: border-color 0.2s steps(2), color 0.2s steps(2);
 }
-.hc-icon-btn { width: 40px; }
-.hc-icon-btn svg { width: 22px; height: 22px; }
-.hc-mode { padding: 0 12px; font: 600 15px var(--sans); }
-.hc-mode svg { width: 16px; height: 16px; }
-.hc-icon-btn:hover, .hc-mode:hover { background: var(--bg-soft); }
+.hc-icon-btn { width: 32px; }
+.hc-icon-btn svg { width: 16px; height: 16px; }
+.hc-mode { padding: 0 10px; font: 500 12px var(--mono); }
+.hc-icon-btn:hover, .hc-mode:hover { border-color: var(--indigo); color: var(--ink); }
 .hc-send {
-  width: 48px; height: 48px; margin-left: 6px; border: none; border-radius: 8px; cursor: pointer;
+  width: 32px; height: 32px; border: none; border-radius: 2px; cursor: pointer;
   display: inline-flex; align-items: center; justify-content: center;
   background: var(--indigo); color: #fff; transition: background 0.2s, transform 0.12s steps(2), box-shadow 0.12s steps(2);
 }
-.hc-send:hover { background: var(--indigo-dark); transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
-.hc-send-ico { width: 18px; height: 18px; }
+.hc-send:hover { background: var(--indigo-dark); transform: translate(-2px, -2px); box-shadow: 3px 3px 0 var(--ink); }
+.hc-send-ico { width: 14px; height: 14px; }
 
-/* Píldoras de ideas bajo el chat */
-.hc-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 22px; }
+/* Temas, en la franja final de la ventana */
+.hc-chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 12px 16px 14px 18px; border-top: 1px solid var(--line); }
 .hc-chip {
-  display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
-  padding: 8px 14px; border-radius: 6px; border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.8); color: var(--ink); font: 500 14px var(--sans);
-  transition: border-color 0.2s, background 0.2s, transform 0.12s steps(2);
+  padding: 5px 10px; border: 1px solid var(--line); border-radius: 2px; cursor: pointer;
+  background: #fff; color: var(--ink-soft); font: 500 12px var(--mono);
+  transition: border-color 0.2s steps(2), background 0.2s steps(2), color 0.2s steps(2);
 }
-.hc-chip svg { width: 14px; height: 14px; color: var(--indigo); }
-.hc-chip:hover, .hc-chip[aria-pressed="true"] { border-color: var(--indigo); background: #fff; transform: translateY(-2px); }
-.hero-links { margin-top: 26px; font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
-.hero-links a { color: var(--indigo); font-weight: 500; border-bottom: 1px solid transparent; }
-.hero-links a:hover { border-bottom-color: currentColor; }
-.hero-links span { margin: 0 8px; }
+.hc-chip:hover { border-color: var(--indigo); color: var(--ink); }
+.hc-chip[aria-pressed="true"] { background: var(--indigo); border-color: var(--indigo); color: #fff; }
 
+@media (max-width: 960px) {
+  .hero-split { grid-template-columns: 1fr; }
+  .hero-win { max-width: 620px; }
+}
 @media (max-width: 560px) {
-  .hero-chat { padding: 16px 12px 10px 16px; border-radius: 8px; }
+  .hero-chat { padding: 14px 12px 12px 14px; }
+  .hc-chips { padding: 10px 12px 12px 14px; }
   .hc-mode { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hc-cursor { animation: none; }
 }
 
 /* ─── Home: índice de IOI con aspecto de terminal ──────────── */

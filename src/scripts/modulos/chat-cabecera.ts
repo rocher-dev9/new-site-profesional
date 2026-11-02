@@ -19,18 +19,22 @@ const EJEMPLOS: Record<Tema, [string, string]> = LANG === 'en' ? {
 
 export function iniciarChatCabecera(): void {
   const campo = document.querySelector<HTMLTextAreaElement>('#hero-chat-input');
-  if (!campo) return;
+  const fantasma = document.querySelector<HTMLElement>('.hc-ghost-txt');
+  if (!campo || !fantasma) return;
 
   const temas = Object.keys(EJEMPLOS) as Tema[];
-  // Primero el primer ejemplo de cada tema y luego el segundo
-  let cola: string[] = [...temas.map((k) => EJEMPLOS[k][0]), ...temas.map((k) => EJEMPLOS[k][1])];
-  let indice = 0, timer = 0, pausado = false;
+  const pildoras = document.querySelectorAll<HTMLElement>('.hc-chip');
+  // Tema a tema: los dos ejemplos de cada uno y pasa al siguiente
+  let tema = 0, ejemplo = 0, timer = 0, pausado = false;
 
-  const ponerTexto = (texto: string) => campo.setAttribute('placeholder', texto);
+  const ponerTexto = (texto: string) => { fantasma.textContent = texto; };
+  const marcarTema = () => pildoras.forEach((p) => p.setAttribute('aria-pressed', String(p.dataset.topic === temas[tema])));
 
   // Escribe la frase letra a letra, espera, la borra y pasa a la siguiente
-  const escribir = (texto: string) => {
+  const escribir = () => {
     clearTimeout(timer);
+    marcarTema();
+    const texto = EJEMPLOS[temas[tema]][ejemplo];
     let n = 0;
     let fase: 'escribir' | 'esperar' | 'borrar' = 'escribir';
     const paso = () => {
@@ -43,14 +47,21 @@ export function iniciarChatCabecera(): void {
         fase = 'borrar'; timer = window.setTimeout(paso, 20);
       } else {
         ponerTexto(texto.slice(0, --n));
-        if (n <= 0) { indice = (indice + 1) % cola.length; timer = window.setTimeout(() => escribir(cola[indice]), 350); return; }
+        if (n <= 0) {
+          if (++ejemplo > 1) { ejemplo = 0; tema = (tema + 1) % temas.length; }
+          timer = window.setTimeout(escribir, 350);
+          return;
+        }
         timer = window.setTimeout(paso, 16);
       }
     };
     paso();
   };
 
-  const empezar = () => (reduceMotion ? ponerTexto(cola[0]) : escribir(cola[0]));
+  const empezar = () => {
+    if (reduceMotion) { marcarTema(); ponerTexto(EJEMPLOS[temas[tema]][ejemplo]); }
+    else escribir();
+  };
   empezar();
 
   // Se detiene mientras el visitante escribe o tiene el foco en el campo
@@ -58,15 +69,13 @@ export function iniciarChatCabecera(): void {
   campo.addEventListener('blur', () => { pausado = campo.value.length > 0; });
   campo.addEventListener('input', () => { pausado = true; });
 
-  // Las píldoras cambian el tema de los ejemplos
-  const pildoras = document.querySelectorAll<HTMLElement>('.hc-chip');
+  // Las píldoras saltan a su tema y desde ahí sigue el recorrido
   pildoras.forEach((pildora) => {
     pildora.addEventListener('click', () => {
-      const tema = pildora.getAttribute('data-topic') as Tema;
-      pildoras.forEach((p) => p.setAttribute('aria-pressed', String(p === pildora)));
-      cola = EJEMPLOS[tema].slice();
-      indice = 0;
-      if (!campo.value) { pausado = false; empezar(); }
+      tema = Math.max(0, temas.indexOf(pildora.dataset.topic as Tema));
+      ejemplo = 0;
+      if (!campo.value) pausado = false;
+      empezar();
     });
   });
 }

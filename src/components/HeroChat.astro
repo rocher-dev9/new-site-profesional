@@ -1,0 +1,45 @@
+---
+// Portada: chat de la cabecera dentro de una ventana con aspecto de terminal.
+// Los ejemplos que se escriben solos y los temas los mueve scripts/modulos/chat-cabecera.ts
+import type { Lang } from '../i18n/rutas';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const es = lang === 'es';
+
+const textos = es
+  ? { ventana: 'nuevo-proyecto', etiqueta: 'Cuéntame tu proyecto', adjuntar: 'Adjuntar archivo', modo: 'proyecto', voz: 'Dictar con la voz', enviar: 'Enviar encargo', ideas: 'Ideas para empezar' }
+  : { ventana: 'new-project', etiqueta: 'Tell me about your project', adjuntar: 'Attach a file', modo: 'project', voz: 'Dictate with your voice', enviar: 'Send brief', ideas: 'Ideas to get started' };
+
+const temas = es
+  ? [['branding', 'Branding'], ['uiux', 'UI/UX'], ['marketing', 'Marketing'], ['ia', 'IA'], ['design', 'Diseño visual']]
+  : [['branding', 'Branding'], ['uiux', 'UI/UX'], ['marketing', 'Marketing'], ['ia', 'AI'], ['design', 'Visual design']];
+---
+<div class="hero-win">
+  <div class="hw-bar" aria-hidden="true"><span class="hw-sq"><i></i><i></i><i></i></span><span class="hw-title">{textos.ventana}</span></div>
+
+  <form class="hero-chat" id="hero-chat" onsubmit="return false;">
+    <label class="visually-hidden" for="hero-chat-input">{textos.etiqueta}</label>
+    <div class="hc-campo">
+      <span class="hc-prompt" aria-hidden="true">›</span>
+      <div class="hc-area">
+        <textarea id="hero-chat-input" class="hc-input" rows="2" placeholder=" "></textarea>
+        <span class="hc-ghost" aria-hidden="true"><span class="hc-ghost-txt"></span><span class="hc-cursor"></span></span>
+      </div>
+    </div>
+    <div class="hc-toolbar">
+      <button type="button" class="hc-icon-btn" aria-label={textos.adjuntar}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+      <div class="hc-tools-right">
+        <button type="button" class="hc-mode">{textos.modo} <svg viewBox="0 0 12 6" width="10" height="5" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><path d="M0 0h2v2H0zM10 0h2v2h-2zM2 2h2v2H2zM8 2h2v2H8zM4 4h4v2H4z" /></svg></button>
+        <button type="button" class="hc-icon-btn" aria-label={textos.voz}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button>
+        <button type="submit" class="hc-send" aria-label={textos.enviar}><svg class="hc-send-ico" viewBox="0 0 7 7" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><rect x="6" y="0" width="1" height="4"/><rect x="0" y="4" width="7" height="1"/><rect x="1" y="3" width="1" height="1"/><rect x="1" y="5" width="1" height="1"/><rect x="2" y="2" width="1" height="1"/><rect x="2" y="6" width="1" height="1"/></svg></button>
+      </div>
+    </div>
+  </form>
+
+  <div class="hc-chips" role="group" aria-label={textos.ideas}>
+    {temas.map(([clave, nombre]) => (
+      <button type="button" class="hc-chip" data-topic={clave} aria-pressed="false">{nombre}</button>
+    ))}
+  </div>
+</div>
