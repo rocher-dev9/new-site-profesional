@@ -361,7 +361,7 @@ def render_page(cover, sections):
 <header class="bar">
   <a class="bar__brand" href="../" title="Roger Avellana" aria-label="Roger Avellana, ir a la portada"><img src="../img/brand-hand.svg" alt="" width="17" height="21"></a>
   <nav class="bar__links" aria-label="Volver a la web">
-    <a class="bar__back" href="../trabajo/manual-vercel/">{PX_ARROW_BACK}<span>Ficha del manual</span></a>
+    <a class="bar__back" href="../entorno/manual-vercel/">{PX_ARROW_BACK}<span>Ficha del manual</span></a>
     <a class="bar__home" href="../">{PX_HOME}<span>Portada</span></a>
   </nav>
   <button type="button" class="here" id="here" aria-haspopup="dialog" aria-label="Índice y búsqueda. Estás en: Índice" aria-keyshortcuts="/" title="Índice y búsqueda"><span class="here__tab" id="here-tab">Manual</span><span class="here__title" id="here-title">Índice</span><svg class="here__caret" viewBox="0 0 12 6" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><path d="M0 0h2v2H0zM10 0h2v2h-2zM2 2h2v2H2zM8 2h2v2H8zM4 4h4v2H4z"/></svg></button>
@@ -385,7 +385,7 @@ def render_page(cover, sections):
 
 <footer class="end">
   <span>© Roger Avellana</span>
-  <a href="../trabajo/manual-vercel/">Ficha del manual</a>
+  <a href="../entorno/manual-vercel/">Ficha del manual</a>
   <a href="../">Portada</a>
 </footer>
 

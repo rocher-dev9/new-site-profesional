@@ -564,6 +564,10 @@ section { padding: clamp(64px, 9vw, 112px) 0; }
   .project-card, .pj-tile { transition: none; }
   .project-card:hover, .project-card:hover .pj-tile { transform: none; }
 }
+/* Guías de Entorno: texto a la izquierda y tarjeta a la derecha */
+.guides { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 400px); gap: clamp(32px, 6vw, 72px); align-items: center; }
+.guides .section-head { margin-bottom: 0; }
+@media (max-width: 860px) { .guides { grid-template-columns: minmax(0, 1fr); } .guides .project-card { max-width: 440px; } }
 .project-cover {
   position: relative;
   aspect-ratio: 4/3;

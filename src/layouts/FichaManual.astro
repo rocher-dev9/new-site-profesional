@@ -7,7 +7,7 @@ import ManualArte from '../components/ManualArte.astro';
 import PixelArrow from '../components/PixelArrow.astro';
 import { rutas, rel, type Lang } from '../i18n/rutas';
 import { useT } from '../i18n/ui';
-import { MANUAL, COLOR_MANUAL, fichaManual, cifrasManual, partesManual, anexosManual } from '../datos/manual';
+import { MANUAL, COLOR_MANUAL, fichaManual, temasManual, cifrasManual, partesManual, anexosManual } from '../datos/manual';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -15,13 +15,13 @@ const t = useT(lang);
 const es = lang === 'es';
 const pagina = fichaManual[lang];
 const manual = rel(pagina, MANUAL);
-const trabajo = rel(pagina, rutas.trabajo[lang]) + '#p-manual-vercel';
+// Vuelve a la sección Guías de Entorno
+const entorno = rel(pagina, rutas.entorno[lang]) + (es ? '#guias' : '#guides');
 const partes = [...partesManual, anexosManual];
 
 const ficha = es
   ? [['Tipo', 'Manual de usuario'], ['Idioma', 'Español'], ['Versión', '1.0'], ['Extensión', '24 capítulos y 11 anexos'], ['Fuentes', 'Documentación oficial de Vercel, consultada el 29 de octubre de 2026']]
   : [['Type', 'User manual'], ['Language', 'Spanish only'], ['Version', '1.0'], ['Length', '24 chapters and 11 appendices'], ['Sources', 'Official Vercel documentation, checked on 29 October 2026']];
-const etiquetas = es ? ['despliegue', 'rendimiento', 'seguridad', 'costes'] : ['deployment', 'performance', 'security', 'costs'];
 const abrir = es ? 'Abrir el manual' : 'Open the manual';
 ---
 <Base
@@ -31,30 +31,30 @@ const abrir = es ? 'Abrir el manual' : 'Open the manual';
   descripcion={es
     ? 'Guía de Vercel en español: despliegue, configuración, rendimiento, seguridad, observabilidad y costes, con enlaces a la documentación oficial.'
     : 'A guide to Vercel in Spanish: deployment, configuration, performance, security, observability and costs, with links to the official documentation.'}
-  activa="trabajo"
+  activa="entorno"
   subpagina
   og={`manual-${lang}`}
   alternas={fichaManual}
 >
-  <a href={trabajo} class="case-back-float" aria-label={t('caso.volver')}><PixelArrow back /><span>{t('caso.trabajo')}</span></a>
+  <a href={entorno} class="case-back-float" aria-label={t('ficha.volver')}><PixelArrow back /><span>{t('nav.entorno')}</span></a>
 
   <main id="main" class="case" style={`--case-color: ${COLOR_MANUAL};`}>
 
     <header class="case-hero" id="top">
       <div class="container">
         <nav class="case-crumbs" aria-label={t('caso.ruta')}>
-          <a href={trabajo} class="case-back"><PixelArrow back />{t('caso.volver')}</a>
+          <a href={entorno} class="case-back"><PixelArrow back />{t('ficha.volver')}</a>
         </nav>
 
         <div class="case-hero-grid">
           <div>
-            <span class="eyebrow">{es ? 'Recurso · Documentación' : 'Resource · Documentation'}</span>
+            <span class="eyebrow">{es ? 'Guía · Documentación' : 'Guide · Documentation'}</span>
             <h1>{es ? 'Manual de usuario de' : 'User manual for'} <em>Vercel.</em></h1>
             <p class="case-lead">{es
               ? 'Guía completa de la plataforma: despliegue, configuración, rendimiento, seguridad, observabilidad y costes, con enlaces a la documentación oficial.'
               : 'A complete guide to the platform: deployment, configuration, performance, security, observability and costs, with links to the official documentation. The manual is written in Spanish.'}</p>
             <ul class="case-tags" aria-label={es ? 'Temas' : 'Topics'}>
-              {etiquetas.map((e) => <li>{e}</li>)}
+              {temasManual[lang].map((e) => <li>{e}</li>)}
             </ul>
             <div class="mv-cta"><a href={manual} class="btn btn-primary">{abrir} <PixelArrow /></a></div>
           </div>

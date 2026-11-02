@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import ToolCards from '../../components/ToolCards.astro';
 import { herramientasIA } from '../../datos/herramientas';
 import PageIndex from '../../components/PageIndex.astro';
+import GuideCard from '../../components/GuideCard.astro';
 import ContactCards from '../../components/ContactCards.astro';
 import PixelArrow from '../../components/PixelArrow.astro';
 ---
@@ -13,7 +14,7 @@ import PixelArrow from '../../components/PixelArrow.astro';
   descripcion={"Servicios de Roger Avellana — diseño visual, branding, UI/UX, marketing digital e IA aplicada al diseño."}
   activa="entorno"
 >
-  <PageIndex lang="es" secciones={[['top', 'Inicio'], ['lista-servicios', 'Servicios'], ['herramientas', 'Herramientas'], ['auto-demo', 'Automatización'], ['contacto', 'Contacto']]} />
+  <PageIndex lang="es" secciones={[['top', 'Inicio'], ['lista-servicios', 'Servicios'], ['herramientas', 'Herramientas'], ['auto-demo', 'Automatización'], ['guias', 'Guías'], ['contacto', 'Contacto']]} />
 
   <main id="main">
 
@@ -169,6 +170,18 @@ import PixelArrow from '../../components/PixelArrow.astro';
           <p class="ad-caption"><span class="tv-prompt" aria-hidden="true">›</span> <span class="ad-caption-text">Cada brief que llega se resume con IA y se convierte en una ficha de proyecto en Notion, con tareas y plazos.</span></p>
           <a href="../ioi/#automatizacion" class="btn-link ad-more">Ver cómo trabajo la automatización <PixelArrow /></a>
         </div>
+      </div>
+    </section>
+
+    <section id="guias">
+      <div class="container guides">
+        <div class="section-head">
+          <span class="section-label"><b>04</b><span>guías</span></span>
+          <h2>Lo que aprendo, lo <em>documento.</em></h2>
+          <p>Cuando adopto una herramienta, la estudio a fondo y la pongo por escrito. Esta web se
+            publica en Vercel: este manual es lo que aprendí por el camino.</p>
+        </div>
+        <GuideCard lang="es" pagina="entorno/" />
       </div>
     </section>
 

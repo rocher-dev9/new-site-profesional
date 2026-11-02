@@ -83,7 +83,8 @@ _manual-vercel-fuente/  .docx y generador del manual (no se publica)
 - Proyectos actuales: Intera → Sensing & Control → nVision (y vuelta a Intera).
 - GitHub en el menú con el Octocat, en el pie y en Sobre mí. Aviso legal solo enlazado desde el pie; solo se tratan nombre y
   email.
-- Manual de Vercel: va como «recurso», fuera de `tarjetas.ts` para no alterar contador ni baraja; solo en español.
+- Manual de Vercel: no es trabajo para un cliente. Va en Entorno, sección Guías (`GuideCard`), con su ficha en
+  `entorno/manual-vercel/` (EN `en/services-vercel-manual.html`); fuera de Trabajo y de `tarjetas.ts`. Solo en español.
 - Una sola web, en Vercel. GitHub Pages no se recupera.
 - No proponer temas de dominio ni de Vercel hasta terminar el contenido, salvo que Roger los saque.
 

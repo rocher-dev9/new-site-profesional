@@ -1,5 +1,5 @@
 // ────────────────────────────────────────────────────────────────
-// Manual de usuario de Vercel: textos de su ficha y de su fila en Trabajo.
+// Manual de usuario de Vercel: textos de su ficha y de su tarjeta en Entorno (sección Guías).
 // El manual en sí es estático (public/manual-vercel/, solo en español) y se genera
 // con _manual-vercel-fuente/scripts/build_manual.py a partir del .docx de esa carpeta.
 // ────────────────────────────────────────────────────────────────
@@ -12,11 +12,17 @@ export const MANUAL = 'manual-vercel/';
 
 /** Ruta de la ficha según el idioma */
 export const fichaManual: Record<Lang, string> = {
-  es: 'trabajo/manual-vercel/',
-  en: 'en/project-vercel-manual.html',
+  es: 'entorno/manual-vercel/',
+  en: 'en/services-vercel-manual.html',
 };
 
 export const COLOR_MANUAL = '#5850ec';
+
+/** Temas del manual (etiquetas de la ficha y de la tarjeta) */
+export const temasManual: Record<Lang, string[]> = {
+  es: ['despliegue', 'rendimiento', 'seguridad', 'costes'],
+  en: ['deployment', 'performance', 'security', 'costs'],
+};
 
 export const cifrasManual: { cifra: string; texto: Textos }[] = [
   { cifra: '24', texto: { es: 'capítulos repartidos en nueve partes', en: 'chapters across nine parts' } },

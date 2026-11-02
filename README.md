@@ -29,7 +29,7 @@ export PATH="$HOME/.local/node/bin:$PATH"
 | Caso     | `/trabajo/intera/`           | `/en/project-<url>.html`        |
 | IOI      | `/ioi/`                      | `/en/ai.html`                   |
 | Sobre mí | `/sobre-mi/`                 | `/en/about.html`                |
-| Ficha del manual | `/trabajo/manual-vercel/` | `/en/project-vercel-manual.html` |
+| Ficha del manual | `/entorno/manual-vercel/` | `/en/services-vercel-manual.html` |
 | Manual de Vercel | `/manual-vercel/` (solo en español) | |
 
 Las URL antiguas en español (`servicios.html`, `trabajo.html`, `ia.html`, `about.html`,

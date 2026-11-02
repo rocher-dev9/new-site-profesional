@@ -1,0 +1,30 @@
+---
+// Tarjeta del manual de Vercel en la sección Guías de Entorno.
+// Mismo aspecto que las tarjetas de proyecto de la portada; enlaza con la ficha del manual.
+import PixelArrow from './PixelArrow.astro';
+import { rel, type Lang } from '../i18n/rutas';
+import { fichaManual, temasManual } from '../datos/manual';
+
+interface Props { lang: Lang; pagina: string }
+const { lang, pagina } = Astro.props;
+const es = lang === 'es';
+const href = rel(pagina, fichaManual[lang]);
+const ver = es ? 'Ver ficha' : 'View details';
+---
+<article class="project-card">
+  <div class="pj-panel">
+    <span class="pj-num">01</span>
+    <span class="pj-year">2026</span>
+    <span class="pj-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5Z" /><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5" /><path d="M9 8h7" /></svg></span>
+  </div>
+  <div class="pj-body">
+    <h3>{es ? 'Manual de Vercel' : 'Vercel manual'}</h3>
+    <p>{es
+      ? 'Guía de la plataforma en español: despliegue, configuración, rendimiento, seguridad, observabilidad y costes. 24 capítulos y 11 anexos.'
+      : 'A guide to the platform, in Spanish: deployment, configuration, performance, security, observability and costs. 24 chapters and 11 appendices.'}</p>
+    <ul class="pj-tags">
+      {temasManual[lang].slice(0, 3).map((e) => <li>{e}</li>)}
+    </ul>
+    <a href={href} class="pj-link" aria-label={`${ver}: ${es ? 'manual de Vercel' : 'Vercel manual'}`}>{ver} <PixelArrow /></a>
+  </div>
+</article>

@@ -7,7 +7,6 @@ import GithubIcon from './GithubIcon.astro';
 import { GITHUB } from '../datos/sitio';
 import { rutas, rel, type Lang, type Seccion } from '../i18n/rutas';
 import { useT } from '../i18n/ui';
-import { fichaManual } from '../datos/manual';
 import { rutaDelCaso } from '../proyectos/enlaces';
 
 interface Props {
@@ -23,12 +22,11 @@ const t = useT(lang);
 type Apartado = Exclude<Seccion, 'privacidad'>;
 const items: Apartado[] = ['inicio', 'entorno', 'trabajo', 'ioi', 'sobreMi'];
 const href = (s: Apartado) => rel(pagina, rutas[s][lang]);
-// Desplegable de Trabajo: los proyectos y el manual de Vercel
+// Desplegable de Trabajo: los proyectos
 const proyectos = [
   { nombre: 'Intera', ruta: await rutaDelCaso('intera', lang) ?? rutas.trabajo[lang] },
   { nombre: 'Sensing', ruta: await rutaDelCaso('sensing-dashboard', lang) ?? rutas.trabajo[lang] },
   { nombre: 'nVision', ruta: await rutaDelCaso('nvision-ferias', lang) ?? rutas.trabajo[lang] },
-  { nombre: 'Vercel', ruta: fichaManual[lang] },
 ];
 const mail = 'mailto:roger.ar123@gmail.com';
 // En la portada el logo sube al principio de la página
