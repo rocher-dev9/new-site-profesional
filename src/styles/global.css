@@ -1267,7 +1267,7 @@ a:hover > .px-arrow, a:focus-visible > .px-arrow { animation: px-nudge3 0.6s ste
   mask-image: radial-gradient(ellipse at 72% 50%, #000 35%, transparent 80%);
 }
 .hero-split {
-  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
+  display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
   gap: clamp(36px, 5vw, 72px); align-items: center;
 }
 /* El titular se ajusta al ancho de su columna: cada frase cabe en una línea */
@@ -1275,6 +1275,26 @@ a:hover > .px-arrow, a:focus-visible > .px-arrow { animation: px-nudge3 0.6s ste
 .hero-split .hero-title { font-size: clamp(2.1rem, 7.9cqi, 3.6rem); }
 .hero-split .hero-sub { max-width: 500px; font-size: clamp(1.02rem, 1.4vw, 1.15rem); }
 .hero-split .hero-actions { margin-top: 30px; }
+/* Saludo, titular y oficio: «Hola, soy…» encima y una línea mono que va cambiando debajo */
+.hero-hola { font: 500 clamp(1.25rem, 4.2cqi, 1.9rem)/1.2 var(--sans); letter-spacing: -0.02em; color: var(--ink-soft); }
+.hero-hola em, .hero-oficio em { font-style: normal; color: var(--indigo); }
+.hero-split .hero-title { margin-top: 14px; }
+.hero-oficio {
+  margin-top: 22px; font: 500 14px/1.4 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft);
+}
+.hero-oficio-rot { transition: opacity 0.18s steps(2); }
+.hero-oficio-rot.fuera { opacity: 0; }
+.hero-split .hero-sub { margin-top: 18px; }
+/* Enlace mono a IOI junto a los botones */
+.hero-ioi {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 49px; padding: 0 16px;
+  border: 1px solid var(--line); border-radius: 4px; background: rgba(255, 255, 255, 0.6);
+  font: 500 12px var(--mono); letter-spacing: 0.06em; color: var(--indigo);
+  transition: border-color 0.2s steps(2), background 0.2s steps(2);
+}
+.hero-ioi span { color: var(--ink-soft); letter-spacing: 0.02em; }
+.hero-ioi i { width: 7px; height: 7px; background: var(--indigo); animation: hc-parpadeo 1.6s steps(1) infinite; }
+.hero-ioi:hover { border-color: var(--indigo); background: #fff; }
 
 /* Ventana del chat: barra de título y cuerpo con aspecto de terminal */
 .hero-win {
@@ -1348,7 +1368,7 @@ a:hover > .px-arrow, a:focus-visible > .px-arrow { animation: px-nudge3 0.6s ste
   .hc-mode { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .hc-cursor { animation: none; }
+  .hc-cursor, .hero-ioi i { animation: none; }
 }
 
 /* ─── Home: índice de IOI con aspecto de terminal ──────────── */

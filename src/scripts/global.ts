@@ -6,6 +6,7 @@
 import { iniciarMenu } from './modulos/menu';
 import { iniciarPuntosCabecera } from './modulos/puntos-cabecera';
 import { iniciarChatCabecera } from './modulos/chat-cabecera';
+import { iniciarOficioCabecera } from './modulos/oficio-cabecera';
 import { iniciarPlaneta } from './modulos/planeta';
 import { iniciarManos } from './modulos/mano';
 import { iniciarIndiceLateral } from './modulos/indice-lateral';
@@ -19,6 +20,7 @@ import { iniciarCursor } from './modulos/cursor';
 iniciarMenu();                 // todas las páginas
 iniciarPuntosCabecera();       // portada: retícula de puntos de la cabecera
 iniciarChatCabecera();         // portada: chat con ejemplos que se escriben solos
+iniciarOficioCabecera();       // portada: línea «Diseño …» que va cambiando de oficio
 iniciarPlaneta();              // portada: planeta de píxeles ("Lo que hago")
 iniciarManos();                // portada y Sobre mí: mano pixelada saludando
 iniciarIndiceLateral();        // índice numerado, volver arriba y volver a Trabajo
