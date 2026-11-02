@@ -401,18 +401,51 @@ section { padding: clamp(64px, 9vw, 112px) 0; }
 }
 .pixel-field { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; }
 .pixel-section .container { position: relative; }
-.pixel-section { min-height: clamp(480px, 46vw, 600px); display: flex; align-items: center; }
 .pixel-section > .container { width: 100%; }
-.pixel-content { max-width: 480px; }
-.pixel-content p { margin: 18px 0 22px; color: var(--ink-soft); font-size: 15.5px; line-height: 1.7; }
-.pixel-content .skills-wrap { margin-bottom: 26px; }
-.pixel-section .skill-tag {
-  background: rgba(255, 255, 255, 0.82);
-  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+/* Presentación a la izquierda; el planeta se centra a su altura (planeta.ts) */
+.pixel-content {
+  max-width: 480px; min-height: clamp(360px, 36vw, 480px);
+  display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
 }
-.pixel-section .skill-tag:hover { background: var(--lavender); }
+.pixel-content p { margin: 18px 0 22px; color: var(--ink-soft); font-size: 15.5px; line-height: 1.7; }
 @media (max-width: 700px) {
-  .pixel-section { align-items: flex-start; padding-bottom: 350px; }
+  .pixel-content { min-height: 0; margin-bottom: 330px; }
+}
+
+/* Tarjetas de servicio de la portada */
+.svc-grid {
+  list-style: none; margin: clamp(32px, 4vw, 48px) 0 0; padding: 0;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;
+}
+.svc-card {
+  position: relative; display: flex; flex-direction: column;
+  padding: 20px 20px 18px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-sm);
+  transition: transform 0.12s steps(2), box-shadow 0.12s steps(2), border-color 0.2s steps(2);
+}
+.svc-card:hover, .svc-card:focus-within { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--indigo); border-color: var(--indigo); }
+.svc-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 18px; }
+.svc-ico {
+  display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px;
+  background: var(--lavender); color: var(--indigo); border-radius: 4px;
+}
+.svc-ico svg { width: 16px; height: 16px; }
+.svc-num { font: 400 13px/1 'Silkscreen', var(--mono); color: var(--muted); }
+.svc-card h3 { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
+.svc-card p { margin-top: 8px; font-size: 14px; line-height: 1.6; color: var(--ink-soft); }
+.svc-tags { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.svc-tags li {
+  padding: 3px 8px; border: 1px solid var(--line); border-radius: 2px;
+  font: 500 11px var(--mono); color: var(--ink-soft);
+}
+.svc-link {
+  margin-top: auto; padding-top: 18px; display: inline-flex; align-items: center; gap: 8px;
+  font: 500 12px var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--indigo);
+}
+/* Toda la tarjeta es clicable */
+.svc-link::after { content: ''; position: absolute; inset: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .svc-card { transition: none; }
+  .svc-card:hover, .svc-card:focus-within { transform: none; }
 }
 
 /* ─── Feature / service cards ──────────────────────────────── */
@@ -1093,7 +1126,7 @@ section { padding: clamp(64px, 9vw, 112px) 0; }
     margin: 0 -24px; padding: 0 24px 6px; scroll-padding: 0 24px; scrollbar-width: none;
   }
   .work-grid--swipe::-webkit-scrollbar { display: none; }
-  .work-grid--swipe .project-card { scroll-snap-align: start; }
+  .work-grid--swipe .project-card, .work-grid--swipe .svc-card { scroll-snap-align: start; }
   .swipe-hint { display: block; margin: -24px 0 14px; font-family: var(--mono); font-size: 11px; color: var(--muted); }
 }
 @media (prefers-reduced-motion: reduce) { .testi-grid.is-carousel { scroll-behavior: auto; } }
@@ -1301,6 +1334,13 @@ a:hover > .px-arrow, a:focus-visible > .px-arrow { animation: px-nudge3 0.6s ste
 .hero-ioi span { color: var(--ink-soft); letter-spacing: 0.02em; }
 .hero-ioi i { width: 7px; height: 7px; background: var(--indigo); animation: hc-parpadeo 1.6s steps(1) infinite; }
 .hero-ioi:hover { border-color: var(--indigo); background: #fff; }
+/* Código muy tenue detrás de la ventana del chat */
+.hero-code {
+  position: absolute; z-index: -1; top: clamp(96px, 13vh, 130px); margin: 0; pointer-events: none;
+  right: max(24px, calc((100% - var(--container)) / 2 + 24px));
+  font: 400 13px/2.2 var(--mono); color: rgba(88, 80, 236, 0.2); white-space: pre;
+}
+@media (max-width: 960px) { .hero-code { display: none; } }
 
 /* Ventana del chat: barra de título y cuerpo con aspecto de terminal */
 .hero-win {

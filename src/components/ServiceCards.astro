@@ -1,0 +1,50 @@
+---
+// Portada ("Lo que hago"): una tarjeta por servicio, con icono pixel, número,
+// frase corta, etiquetas y enlace a su detalle en Entorno.
+import PixelArrow from './PixelArrow.astro';
+import { rutas, rel, type Lang } from '../i18n/rutas';
+
+interface Props { lang: Lang; pagina: string }
+const { lang, pagina } = Astro.props;
+const es = lang === 'es';
+const destino = rel(pagina, rutas.entorno[lang]) + (es ? '#lista-servicios' : '#services-list');
+const ver = es ? 'Ver más' : 'Learn more';
+
+// Iconos pixel de 8×8 (los mismos de los temas del chat de la cabecera)
+const iconos: Record<string, string> = {
+  design: '<rect x="6" y="0" width="2" height="1"/><rect x="5" y="1" width="2" height="1"/><rect x="4" y="2" width="2" height="1"/><rect x="3" y="3" width="2" height="1"/><rect x="2" y="4" width="2" height="1"/><rect x="1" y="5" width="2" height="1"/><rect x="0" y="6" width="1" height="1"/><rect x="2" y="7" width="1" height="1" opacity=".6"/><rect x="4" y="7" width="1" height="1" opacity=".6"/>',
+  branding: '<rect x="1" y="1" width="6" height="1"/><rect x="0" y="2" width="1" height="1"/><rect x="7" y="2" width="1" height="1"/><rect x="1" y="3" width="6" height="1"/><rect x="1" y="5" width="6" height="1" opacity=".6"/><rect x="1" y="7" width="6" height="1" opacity=".35"/>',
+  uiux: '<rect x="0" y="0" width="8" height="1"/><rect x="0" y="1" width="1" height="4"/><rect x="7" y="1" width="1" height="4"/><rect x="0" y="5" width="8" height="1"/><rect x="2" y="2" width="3" height="1" opacity=".6"/><rect x="3" y="6" width="2" height="1"/><rect x="2" y="7" width="4" height="1"/>',
+  marketing: '<rect x="6" y="0" width="2" height="1"/><rect x="4" y="1" width="4" height="1"/><rect x="2" y="2" width="5" height="1"/><rect x="0" y="3" width="5" height="1"/><rect x="3" y="4" width="2" height="1"/><rect x="3" y="5" width="1" height="2"/>',
+  ia: '<rect x="3" y="0" width="1" height="2"/><rect x="2" y="2" width="3" height="1"/><rect x="0" y="3" width="7" height="1"/><rect x="2" y="4" width="3" height="1"/><rect x="3" y="5" width="1" height="2"/><rect x="6" y="6" width="1" height="1" opacity=".6"/>',
+};
+
+// Frases resumidas de los textos de Entorno
+const servicios = es ? [
+  { icono: 'design', titulo: 'Diseño visual', texto: 'Del concepto a la pieza final: tipografía, color y sistema gráfico que hablan el mismo idioma.', etiquetas: ['dirección creativa', 'sistema gráfico'] },
+  { icono: 'branding', titulo: 'Branding', texto: 'Identidades que escalan, del símbolo a la guía de marca completa.', etiquetas: ['símbolo', 'guía de marca'] },
+  { icono: 'uiux', titulo: 'UI/UX', texto: 'Wireframes, prototipos y diseño final en Figma, con jerarquía y flujos claros.', etiquetas: ['Figma', 'dashboards'] },
+  { icono: 'marketing', titulo: 'Marketing digital', texto: 'Campañas y contenido para redes, pensando en el feed y no solo en la pieza.', etiquetas: ['calendario', 'métricas'] },
+  { icono: 'ia', titulo: 'IA aplicada', texto: 'Claude, ChatGPT y Gemini para acelerar el proceso, sin sustituir el criterio.', etiquetas: ['Claude', 'ChatGPT', 'Gemini'] },
+] : [
+  { icono: 'design', titulo: 'Visual design', texto: 'From concept to final piece: typography, color and a graphic system that speak the same language.', etiquetas: ['art direction', 'graphic system'] },
+  { icono: 'branding', titulo: 'Branding', texto: 'Identities that scale, from the symbol to complete brand guidelines.', etiquetas: ['symbol', 'brand guidelines'] },
+  { icono: 'uiux', titulo: 'UI/UX', texto: 'Wireframes, prototypes and final design in Figma, with clear hierarchy and flows.', etiquetas: ['Figma', 'dashboards'] },
+  { icono: 'marketing', titulo: 'Digital marketing', texto: 'Campaigns and social content, designed for the feed and not just the single piece.', etiquetas: ['calendar', 'metrics'] },
+  { icono: 'ia', titulo: 'Applied AI', texto: 'Claude, ChatGPT and Gemini to speed up the process, without replacing judgment.', etiquetas: ['Claude', 'ChatGPT', 'Gemini'] },
+];
+---
+<ul class="svc-grid work-grid--swipe">
+  {servicios.map((s, i) => (
+    <li class="svc-card">
+      <div class="svc-top">
+        <span class="svc-ico"><svg viewBox="0 0 8 8" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true" set:html={iconos[s.icono]} /></span>
+        <span class="svc-num">{String(i + 1).padStart(2, '0')}</span>
+      </div>
+      <h3>{s.titulo}</h3>
+      <p>{s.texto}</p>
+      <ul class="svc-tags">{s.etiquetas.map((e) => <li>{e}</li>)}</ul>
+      <a href={destino} class="svc-link">{ver}<span class="visually-hidden">: {s.titulo}</span> <PixelArrow /></a>
+    </li>
+  ))}
+</ul>

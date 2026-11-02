@@ -7,6 +7,8 @@ import ProjectCard from '../../components/ProjectCard.astro';
 import Testimonials from '../../components/Testimonials.astro';
 import PixelArrow from '../../components/PixelArrow.astro';
 import HeroChat from '../../components/HeroChat.astro';
+import HeroCodigo from '../../components/HeroCodigo.astro';
+import ServiceCards from '../../components/ServiceCards.astro';
 import { tarjetas } from '../../proyectos/tarjetas';
 ---
 <Base
@@ -23,6 +25,7 @@ import { tarjetas } from '../../proyectos/tarjetas';
     <!-- HERO -->
     <header class="hero" id="top">
       <canvas class="hero-dots" aria-hidden="true"></canvas>
+      <HeroCodigo lang="en" />
       <div class="container hero-split">
         <div class="hero-copy">
           <p class="hero-hola">Hi, I’m <em>Roger Avellana</em></p>
@@ -55,15 +58,9 @@ import { tarjetas } from '../../proyectos/tarjetas';
           <p>
             Five directions where I combine visual design with strategic thinking. They aren't silos: they overlap, feed each other and, in the end, speak about the same project from different angles.
           </p>
-          <div class="skills-wrap">
-            <span class="skill-tag">Visual design &amp; art direction</span>
-            <span class="skill-tag">Branding &amp; corporate identity</span>
-            <span class="skill-tag">UI/UX &amp; interface design</span>
-            <span class="skill-tag">Digital marketing &amp; content</span>
-            <span class="skill-tag">AI applied to design</span>
-          </div>
           <a href="services.html" class="btn-link">See all services <PixelArrow /></a>
         </div>
+        <ServiceCards lang="en" pagina="en/index.html" />
       </div>
     </section>
 

@@ -7,6 +7,8 @@ import ProjectCard from '../components/ProjectCard.astro';
 import Testimonials from '../components/Testimonials.astro';
 import PixelArrow from '../components/PixelArrow.astro';
 import HeroChat from '../components/HeroChat.astro';
+import HeroCodigo from '../components/HeroCodigo.astro';
+import ServiceCards from '../components/ServiceCards.astro';
 import { tarjetas } from '../proyectos/tarjetas';
 ---
 <Base
@@ -23,6 +25,7 @@ import { tarjetas } from '../proyectos/tarjetas';
     <!-- HERO -->
     <header class="hero" id="top">
       <canvas class="hero-dots" aria-hidden="true"></canvas>
+      <HeroCodigo lang="es" />
       <div class="container hero-split">
         <div class="hero-copy">
           <p class="hero-hola">Hola, soy <em>Roger Avellana</em></p>
@@ -57,15 +60,9 @@ import { tarjetas } from '../proyectos/tarjetas';
             silos: se solapan, se nutren entre sí, y al final hablan del mismo proyecto desde
             ángulos distintos.
           </p>
-          <div class="skills-wrap">
-            <span class="skill-tag">Diseño visual &amp; dirección creativa</span>
-            <span class="skill-tag">Branding &amp; identidad corporativa</span>
-            <span class="skill-tag">UI/UX &amp; diseño de interfaces</span>
-            <span class="skill-tag">Marketing digital &amp; contenido</span>
-            <span class="skill-tag">IA aplicada al diseño</span>
-          </div>
           <a href="entorno/" class="btn-link">Ver todos los servicios <PixelArrow /></a>
         </div>
+        <ServiceCards lang="es" pagina="" />
       </div>
     </section>
 

@@ -1,0 +1,48 @@
+---
+// Portada: líneas de código muy tenues detrás de la ventana del chat (solo decoración)
+import type { Lang } from '../i18n/rutas';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+
+const lineas = lang === 'es' ? [
+  '// brief dentro, diseño fuera',
+  "import { criterio } from 'roger'",
+  '',
+  'const marca = crear({',
+  "  color: 'índigo',",
+  "  tipo: 'Plus Jakarta Sans',",
+  "  tono: 'directo',",
+  '})',
+  '',
+  "marca.aplicar(['web', 'redes', 'stand'])",
+  "  .revisar(criterio)",
+  "  .entregar()",
+  '',
+  '// sistema',
+  'tokens.espaciado = [4, 8, 12, 16, 24]',
+  'tokens.radio = 4',
+  '',
+  'export default marca',
+] : [
+  '// brief in, design out',
+  "import { judgment } from 'roger'",
+  '',
+  'const brand = create({',
+  "  color: 'indigo',",
+  "  type: 'Plus Jakarta Sans',",
+  "  tone: 'direct',",
+  '})',
+  '',
+  "brand.apply(['web', 'social', 'stand'])",
+  "  .review(judgment)",
+  "  .ship()",
+  '',
+  '// system',
+  'tokens.spacing = [4, 8, 12, 16, 24]',
+  'tokens.radius = 4',
+  '',
+  'export default brand',
+];
+---
+<pre class="hero-code" aria-hidden="true">{lineas.join('\n')}</pre>

@@ -19,19 +19,25 @@ export function iniciarPlaneta(): void {
   const ctx = canvas?.getContext('2d');
   if (!canvas || !ctx) return;
 
-  let W = 0, H = 0, cols = 0, filas = 0;
+  // El planeta se coloca a la altura de la presentación, no en el centro de toda la sección
+  const ancla = canvas.parentElement?.querySelector<HTMLElement>('.pixel-content');
+  let W = 0, H = 0, cols = 0, filas = 0, anclaY = 0, anclaAlto = 0, anclaFin = 0;
   const redimensionar = () => {
     ({ w: W, h: H } = ajustarCanvas(canvas, ctx));
     cols = Math.ceil(W / CELDA);
     filas = Math.ceil(H / CELDA);
+    const c = canvas.getBoundingClientRect(), r = ancla?.getBoundingClientRect();
+    anclaY = r ? r.top - c.top + r.height / 2 : H / 2;
+    anclaAlto = r ? r.height + 2 * (r.top - c.top) : H;
+    anclaFin = r ? r.bottom - c.top : H;
   };
 
   const dibujar = (tiempo: number) => {
     const t = tiempo / 1000;
     const movil = W < 700;
     const cx = W * (movil ? 0.56 : 0.73);
-    const cy = movil ? H - 175 : H * 0.5;
-    const R = movil ? Math.min(135, W * 0.37) : Math.min(H * 0.38, W * 0.2);
+    const cy = movil ? anclaFin + 175 : anclaY;
+    const R = movil ? Math.min(135, W * 0.37) : Math.min(anclaAlto * 0.38, W * 0.2);
     const ra = R * 2.3, rb = R * 0.55;
     ctx.clearRect(0, 0, W, H);
 
