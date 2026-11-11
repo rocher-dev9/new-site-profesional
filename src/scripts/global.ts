@@ -17,6 +17,7 @@ import { iniciarBrilloIa } from './modulos/brillo-ia';
 import { iniciarBarajaTrabajo } from './modulos/baraja-trabajo';
 import { iniciarCursor } from './modulos/cursor';
 import { iniciarEtiquetasSeccion } from './modulos/etiquetas-seccion';
+import { iniciarReticulaPixel } from './modulos/reticula-pixel';
 
 iniciarMenu();                 // todas las páginas
 iniciarEtiquetasSeccion();     // etiquetas de sección con el total («01 / 06»)
@@ -29,6 +30,7 @@ iniciarIndiceLateral();        // índice numerado, volver arriba y volver a Tra
 iniciarCarruseles();           // portada: testimonios
 iniciarTerminalIoi();          // portada: terminal del bloque IOI
 iniciarDemoAutomatizacion();   // Entorno: demo de automatización
+iniciarReticulaPixel();        // Entorno: arte pixel tras el titular de la cabecera
 iniciarBrilloIa();             // portada: brillo del bloque IOI
 iniciarBarajaTrabajo();        // Trabajo: baraja de proyectos
 iniciarCursor();               // todas las páginas (solo con ratón)

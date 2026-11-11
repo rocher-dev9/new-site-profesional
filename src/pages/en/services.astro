@@ -18,19 +18,28 @@ import PixelArrow from '../../components/PixelArrow.astro';
 
   <main id="main">
 
-    <header class="about-hero" id="top">
+    <header class="about-hero rt-hero" id="top">
       <div class="container">
-        <span class="eyebrow">Workspace</span>
-        <h1>What I <em>do.</em></h1>
-        <p class="about-hero-bio">
-          Five directions where I combine visual design with strategic thinking. They aren't silos: they overlap, feed each other and, in the end, speak about the same project from different angles.
-        </p>
+        <div class="rt">
+          <div class="rt-row rt-hero-row">
+            <canvas class="rt-pixel" aria-hidden="true"></canvas>
+            <div class="rt-hero-txt">
+              <span class="eyebrow">Workspace</span>
+              <h1>What I <em>do.</em></h1>
+              <p class="about-hero-bio">
+                Five directions where I combine visual design with strategic thinking. They aren't silos: they overlap, feed each other and, in the end, speak about the same project from different angles.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </header>
 
-    <section id="services-list">
+    <section id="services-list" class="rt-section">
       <div class="container">
-        <div class="card-grid services-bento">
+        <div class="rt">
+        <div class="rt-row rt-label"><span class="section-label"><b>01</b><span>services</span></span></div>
+        <div class="card-grid services-bento rt-row rt-cells">
           <div class="feature-card">
             <div class="icon-badge i-lav">
               <svg class="px-icon" viewBox="0 0 12 12" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><rect x="9" y="1" width="1" height="1"/><rect x="10" y="1" width="1" height="1"/><rect x="8" y="2" width="1" height="1"/><rect x="9" y="2" width="1" height="1"/><rect x="10" y="2" width="1" height="1"/><rect x="7" y="3" width="1" height="1"/><rect x="8" y="3" width="1" height="1"/><rect x="9" y="3" width="1" height="1"/><rect x="6" y="4" width="1" height="1"/><rect x="7" y="4" width="1" height="1"/><rect x="8" y="4" width="1" height="1"/><rect x="5" y="5" width="1" height="1"/><rect x="6" y="5" width="1" height="1"/><rect x="7" y="5" width="1" height="1"/><rect x="4" y="6" width="1" height="1"/><rect x="5" y="6" width="1" height="1"/><rect x="6" y="6" width="1" height="1"/><rect x="3" y="7" width="1" height="1"/><rect x="4" y="7" width="1" height="1"/><rect x="5" y="7" width="1" height="1"/><rect x="2" y="8" width="1" height="1"/><rect x="3" y="8" width="1" height="1"/><rect x="1" y="9" width="1" height="1"/><rect class="px-draw" style="--d:0" x="3" y="10" width="1" height="1"/><rect class="px-draw" style="--d:1" x="5" y="10" width="1" height="1"/><rect class="px-draw" style="--d:2" x="7" y="10" width="1" height="1"/><rect class="px-draw" style="--d:3" x="9" y="10" width="1" height="1"/></svg>
@@ -91,6 +100,8 @@ import PixelArrow from '../../components/PixelArrow.astro';
               </ul>
             </div>
           </div>
+        </div>
+        <div class="rt-gap" aria-hidden="true"></div>
         </div>
       </div>
     </section>
