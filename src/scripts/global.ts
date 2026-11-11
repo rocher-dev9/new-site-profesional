@@ -16,8 +16,10 @@ import { iniciarDemoAutomatizacion } from './modulos/demo-automatizacion';
 import { iniciarBrilloIa } from './modulos/brillo-ia';
 import { iniciarBarajaTrabajo } from './modulos/baraja-trabajo';
 import { iniciarCursor } from './modulos/cursor';
+import { iniciarEtiquetasSeccion } from './modulos/etiquetas-seccion';
 
 iniciarMenu();                 // todas las páginas
+iniciarEtiquetasSeccion();     // etiquetas de sección con el total («01 / 06»)
 iniciarPuntosCabecera();       // portada: retícula de puntos de la cabecera
 iniciarChatCabecera();         // portada: chat con ejemplos que se escriben solos
 iniciarOficioCabecera();       // portada: línea «Diseño …» que va cambiando de oficio

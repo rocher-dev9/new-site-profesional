@@ -84,6 +84,9 @@ ul { list-style: none; }
   display: grid; place-items: center; flex: none; min-width: 30px; padding: 0 7px; border-radius: 4px;
   background: var(--indigo); color: #fff; font: 400 12px/1 'Silkscreen', var(--mono);
 }
+/* Total de secciones («01 / 06»), añadido por etiquetas-seccion.ts */
+.section-label b:has(.sl-total) { display: flex; align-items: center; gap: 5px; padding: 0 8px; }
+.sl-total { font-style: normal; opacity: 0.6; }
 
 .section-head { max-width: 620px; margin-bottom: 56px; }
 .section-head h2 {
