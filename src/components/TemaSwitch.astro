@@ -1,0 +1,15 @@
+---
+// Interruptor de modo claro / oscuro (de Uiverse, arghyaBiswasDev «shaggy-ape-11»).
+// Va en el menú, a la izquierda de la cápsula, y en móvil junto al botón «menú».
+// El cambio y la elección guardada los gestiona scripts/modulos/tema.ts.
+import type { Lang } from '../i18n/rutas';
+import { useT } from '../i18n/ui';
+
+interface Props { lang: Lang; class?: string }
+const { lang, class: clase } = Astro.props;
+const t = useT(lang);
+---
+<label class:list={['switch', 'tema-switch', 'sin-anim', clase]} title={t('tema.aria')}>
+  <input type="checkbox" role="switch" aria-label={t('tema.aria')} />
+  <span class="slider" aria-hidden="true"></span>
+</label>

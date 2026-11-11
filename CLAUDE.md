@@ -50,6 +50,10 @@ _manual-vercel-fuente/  .docx y generador del manual (no se publica)
   `--ink #15121f`, `--ink-soft #56536b`, `--muted #837f99`, `--bg #fff`, `--bg-soft #f8f7fd`.
 - **Fondos:** solo degradado lavanda en cabeceras, `--bg` y `--bg-soft`. El color de un proyecto solo va en su portada
   e ilustraciones. Única excepción: el tema oscuro de IOI. Cualquier otro fondo requiere orden expresa de Roger.
+- **Modo oscuro** (orden de Roger, 11/11/2026): interruptor `TemaSwitch` en el menú, a la izquierda de la cápsula
+  (en móvil, junto a «menú»). Pone `data-theme="dark"` en `<html>` y se guarda en `localStorage` (`tema`); por defecto,
+  claro. Solo cambia tokens en `:root[data-theme="dark"]`: para superficies usar `var(--surface)` (nunca `#fff`) y
+  `var(--ink-solid)` para bloques oscuros con texto blanco. Todo lo nuevo debe verse bien en los dos modos.
 - **Tipografías:** Plus Jakarta Sans (texto y titulares), JetBrains Mono (etiquetas y metadatos), Silkscreen (números y
   detalles pixel).
 - **Componentes:** botones `.btn` de cristal en pastilla, idénticos al de Uiverse «massive-snail-29» (orden de Roger,

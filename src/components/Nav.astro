@@ -4,6 +4,7 @@ import BrandHand from './BrandHand.astro';
 import NavIcon from './NavIcon.astro';
 import LangSwitch from './LangSwitch.astro';
 import GithubIcon from './GithubIcon.astro';
+import TemaSwitch from './TemaSwitch.astro';
 import { GITHUB } from '../datos/sitio';
 import { rutas, rel, type Lang, type Seccion } from '../i18n/rutas';
 import { useT } from '../i18n/ui';
@@ -37,6 +38,7 @@ const enPortada = activa === 'inicio';
   <div class="container nav-row">
     <a href={enPortada ? '#top' : href('inicio')} class="brand" id={enPortada ? 'brand-link' : undefined} aria-label={t('nav.marca')} title="Roger Avellana"><BrandHand /></a>
     <div class="nav-links">
+      <TemaSwitch lang={lang} />
       <div class="nav-pill">
         {items.map((s) => s === 'trabajo' ? (
           <div class:list={['nv-grupo', { 'is-active': s === activa }]} id="nv-trabajo">
@@ -57,6 +59,7 @@ const enPortada = activa === 'inicio';
       <a href={GITHUB} class="nav-gh" target="_blank" rel="noopener" aria-label={t('nav.github')} title="GitHub"><GithubIcon class="nav-gh-ico" /></a>
       <LangSwitch lang={lang} pagina={pagina} cambio={cambio} />
     </div>
+    <TemaSwitch lang={lang} class="tema-movil" />
     <button class="nav-burger" id="burger" aria-expanded="false" aria-controls="mobile-menu">{t('nav.menu')}</button>
   </div>
 </nav>

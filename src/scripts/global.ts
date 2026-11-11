@@ -4,6 +4,7 @@
 // Astro lo compila, lo minifica y le pone una huella en el nombre (caché automática).
 // ────────────────────────────────────────────────────────────────
 import { iniciarMenu } from './modulos/menu';
+import { iniciarTema } from './modulos/tema';
 import { iniciarPuntosCabecera } from './modulos/puntos-cabecera';
 import { iniciarChatCabecera } from './modulos/chat-cabecera';
 import { iniciarOficioCabecera } from './modulos/oficio-cabecera';
@@ -20,6 +21,7 @@ import { iniciarEtiquetasSeccion } from './modulos/etiquetas-seccion';
 import { iniciarReticulaPixel } from './modulos/reticula-pixel';
 
 iniciarMenu();                 // todas las páginas
+iniciarTema();                 // todas las páginas: interruptor de modo claro / oscuro
 iniciarEtiquetasSeccion();     // etiquetas de sección con el total («01 / 06»)
 iniciarPuntosCabecera();       // portada: retícula de puntos de la cabecera
 iniciarChatCabecera();         // portada: chat con ejemplos que se escriben solos

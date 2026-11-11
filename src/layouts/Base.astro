@@ -62,6 +62,8 @@ const ogLocale = lang === 'es' ? 'es_ES' : 'en_US';
   <title>{titulo}</title>
   <meta name="description" content={descripcion} />
   <meta name="theme-color" content={colorTema} />
+  <!-- Modo oscuro guardado: se aplica antes de pintar para que no parpadee (ver scripts/modulos/tema.ts) -->
+  <script is:inline>try{if(localStorage.getItem('tema')==='dark')document.documentElement.dataset.theme='dark'}catch(e){}</script>
 
   <!-- Vista previa al compartir (LinkedIn, WhatsApp, X, Slack…) -->
   <meta property="og:type" content="website" />
