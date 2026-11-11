@@ -636,6 +636,10 @@ section { padding: clamp(64px, 9vw, 112px) 0; }
    .rt: líneas verticales del contenedor; .rt-row: fila con línea inferior y cruces pixel
    en sus dos extremos; .rt-cells: tarjetas como celdas separadas por líneas. */
 .rt { position: relative; border-inline: 1px solid var(--line); }
+/* Marco más ancho que el resto de la web (hasta 1560 px de contenido) para no dejar tanto hueco en
+   pantallas grandes; siempre deja sitio al índice lateral y nunca baja del ancho normal */
+.rt-hero .container, .rt-section .container { max-width: max(var(--container), min(1608px, 100% - 192px)); }
+.rt-cells .feature-card p { max-width: 58ch; }
 .rt-row { position: relative; border-bottom: 1px solid var(--line); }
 .rt-row::before, .rt-row::after {
   content: ''; position: absolute; bottom: -4px; z-index: 1; width: 7px; height: 7px;
