@@ -633,24 +633,24 @@ section { padding: clamp(64px, 9vw, 112px) 0; }
 }
 
 /* ─── Retícula visible (Entorno) ───────────────────────────────
-   .rt: líneas verticales del contenedor; .rt-row: fila con línea inferior y cruces pixel
-   en sus dos extremos; .rt-cells: tarjetas como celdas separadas por líneas. */
-.rt { position: relative; border-inline: 1px solid var(--line); }
+   Cabecera y servicios ocupan todo el ancho de la pantalla: las líneas van de borde a borde y
+   las tarjetas son celdas separadas por líneas. Las cruces pixel marcan donde se cruzan las líneas.
+   .rt-row: fila con línea inferior; .rt-cells: tarjetas en celdas. */
+.rt-hero .container, .rt-section .container { max-width: none; padding-inline: 0; }
+.rt { position: relative; }
 .rt-row { position: relative; border-bottom: 1px solid var(--line); }
-.rt-row::before, .rt-row::after {
+.rt-x::before, .rt-x::after {
   content: ''; position: absolute; bottom: -4px; z-index: 1; width: 7px; height: 7px;
   background:
     linear-gradient(var(--indigo), var(--indigo)) center / 1px 100% no-repeat,
     linear-gradient(var(--indigo), var(--indigo)) center / 100% 1px no-repeat;
 }
-.rt-row::before { left: -4px; }
-.rt-row::after { right: -4px; }
+.rt-section { --rt-pad: clamp(22px, 2.6vw, 44px); }
 
 .about-hero.rt-hero, .rt-section { padding: 0; }
-/* La cabecera ocupa todo el ancho: la línea inferior y el arte pixel llegan a los bordes de la pantalla */
 .about-hero.rt-hero { overflow-x: clip; border-bottom: 1px solid var(--line); }
-.rt-hero-row { border-bottom: 0; }
 .rt-hero-row {
+  border-bottom: 0;
   padding: clamp(140px, 18vw, 170px) 24px clamp(48px, 6vw, 72px);
   text-align: center;
 }
@@ -660,23 +660,41 @@ section { padding: clamp(64px, 9vw, 112px) 0; }
   position: absolute; top: 0; left: 50%; width: 100vw; height: 100%; transform: translateX(-50%);
   pointer-events: none;
 }
-.rt-label { padding: 14px 20px; }
+.rt-label { padding: 14px var(--rt-pad); }
 .rt-gap { height: clamp(48px, 7vw, 88px); }
 
 .rt-cells { gap: 1px; background: var(--line); }
 .rt-cells .feature-card {
   border: 0; border-radius: 0; background: var(--bg);
+  padding: clamp(28px, 3vw, 40px) var(--rt-pad);
   transition: background-color 0.2s steps(2);
 }
+.rt-cells .feature-card p { max-width: 54ch; }
 .rt-cells .feature-card:hover { transform: none; box-shadow: none; background: var(--bg-soft); }
 .rt-cells .feature-card--ai,
 .rt-cells .feature-card--ai:hover {
   background: linear-gradient(135deg, var(--lavender) 0%, var(--lav-peach) 50%, var(--peach) 100%);
 }
+/* Cruces: bajo la etiqueta, donde empiezan las líneas entre tarjetas (3 columnas arriba);
+   al final, donde acaba la línea entre las dos tarjetas anchas */
+.rt-label::before { left: calc(100% / 3 - 4px); }
+.rt-label::after { left: calc(200% / 3 - 4px); }
+.rt-cells::before { left: calc(50% - 4px); }
+.rt-cells::after { content: none; }
+/* El índice lateral fijo (desde 1100px) queda sobre la columna derecha: se le deja sitio */
+@media (min-width: 1100px) {
+  .rt-cells .feature-card:nth-child(3), .rt-cells .feature-card:nth-child(5) { padding-right: calc(var(--rt-pad) + 96px); }
+}
+@media (max-width: 960px) {
+  .rt-label::before { left: calc(50% - 4px); }
+  .rt-label::after, .rt-cells::before { content: none; }
+}
 @media (max-width: 700px) {
   .rt-pixel { display: none; }
   .rt-hero-row { padding-inline: 18px; }
-  .rt-cells .feature-card { padding: 26px 20px; }
+}
+@media (max-width: 600px) {
+  .rt-label::before { content: none; }
 }
 
 /* ─── Work / projects ──────────────────────────────────────── */
@@ -2150,3 +2168,4 @@ a:hover > .px-arrow, a:focus-visible > .px-arrow { animation: px-nudge3 0.6s ste
 :root[data-theme="dark"] .nav.scrolled { background: rgb(var(--surface-rgb) / 0.82); }
 :root[data-theme="dark"] .lb-ico[style*="#15121f"] { --brand: var(--ink); }
 :root[data-theme="dark"] .nav-pill, :root[data-theme="dark"] .nav-gh { box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35); }
+:root[data-theme="dark"] .feature-card--ai .fc-chips li { background: rgb(var(--surface-rgb) / 0.7); border-color: var(--line); }
