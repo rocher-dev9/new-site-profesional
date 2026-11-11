@@ -445,3 +445,45 @@
 .theme-ai .mobile-menu .mobile-sub a { color: var(--ai-soft); }
 .theme-ai .nv-ai span { background: var(--ai-grad); -webkit-background-clip: text; background-clip: text; }
 .theme-ai .mv-ico { color: #c6a8ff; }
+
+/* ─── Retícula visible (como en Entorno) ───────────────────────
+   Marco más ancho (hasta 1560 px de contenido, sin chocar con el índice lateral) con líneas
+   verticales continuas de arriba abajo, líneas entre secciones de borde a borde, la etiqueta de
+   cada sección en su propia fila y cruces pixel donde se cruzan las líneas. */
+.theme-ai { --ai-cruz: #8f88ff; }
+.theme-ai .ai-hero > .container, .theme-ai .ai-section > .container {
+  position: relative;
+  max-width: max(var(--container), min(1608px, 100% - 192px));
+  border-inline: 1px solid var(--ai-border);
+}
+.theme-ai .ai-hero { padding-block: 0; border-bottom: 1px solid var(--ai-border); }
+.theme-ai .ai-hero > .container { padding-block: clamp(140px, 18vw, 180px) clamp(56px, 7vw, 84px); }
+.theme-ai .ai-section { padding: 0; }
+.theme-ai .ai-section > .container { padding-block: 0 clamp(56px, 6.5vw, 84px); }
+
+.ai-rt-label {
+  position: relative; margin: 0 calc(-1 * var(--ai-rt-pad, 24px)) clamp(36px, 4.5vw, 52px); padding: 14px var(--ai-rt-pad, 24px);
+  border-bottom: 1px solid var(--ai-border);
+}
+/* Cruces: bajo cada etiqueta, en lo alto de cada sección y al pie de la cabecera */
+.ai-rt-label::before, .ai-rt-label::after,
+.theme-ai .ai-section > .container::before, .theme-ai .ai-section > .container::after,
+.theme-ai .ai-hero > .container::before, .theme-ai .ai-hero > .container::after {
+  content: ''; position: absolute; z-index: 1; width: 7px; height: 7px; pointer-events: none;
+  background:
+    linear-gradient(var(--ai-cruz), var(--ai-cruz)) center / 1px 100% no-repeat,
+    linear-gradient(var(--ai-cruz), var(--ai-cruz)) center / 100% 1px no-repeat;
+}
+.ai-rt-label::before, .ai-rt-label::after { bottom: -4px; }
+.theme-ai .ai-section > .container::before, .theme-ai .ai-section > .container::after { top: -4px; }
+.theme-ai .ai-hero > .container::before, .theme-ai .ai-hero > .container::after { bottom: -4px; }
+.ai-rt-label::before, .theme-ai .ai-section > .container::before, .theme-ai .ai-hero > .container::before { left: -4px; }
+.ai-rt-label::after, .theme-ai .ai-section > .container::after, .theme-ai .ai-hero > .container::after { right: -4px; }
+/* Cuando el marco llenaría la pantalla, se separa de los bordes como en Entorno */
+@media (max-width: 1247px) {
+  .theme-ai .ai-hero > .container, .theme-ai .ai-section > .container { margin-inline: 16px; }
+}
+@media (max-width: 600px) {
+  .theme-ai { --ai-rt-pad: 18px; }
+  .theme-ai .ai-hero > .container, .theme-ai .ai-section > .container { margin-inline: 12px; padding-inline: var(--ai-rt-pad); }
+}
