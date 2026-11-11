@@ -45,8 +45,8 @@ const enPortada = activa === 'inicio';
               <svg viewBox="0 0 12 6" width="10" height="5" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><path d="M0 0h2v2H0zM10 0h2v2h-2zM2 2h2v2H2zM8 2h2v2H8zM4 4h4v2H4z" /></svg>
             </button>
             <ul class="nv-sub" id="nv-sub">
-              {proyectos.map((p) => (
-                <li><a href={rel(pagina, p.ruta)} aria-current={p.ruta === pagina ? 'page' : undefined}>{p.nombre}</a></li>
+              {proyectos.map((p, i) => (
+                <li style={`--i:${i}`}><a href={rel(pagina, p.ruta)} aria-current={p.ruta === pagina ? 'page' : undefined}>{p.nombre}<span class="nv-sub-n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span></a></li>
               ))}
             </ul>
           </div>
