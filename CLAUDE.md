@@ -52,8 +52,10 @@ _manual-vercel-fuente/  .docx y generador del manual (no se publica)
   e ilustraciones. Única excepción: el tema oscuro de IOI. Cualquier otro fondo requiere orden expresa de Roger.
 - **Tipografías:** Plus Jakarta Sans (texto y titulares), JetBrains Mono (etiquetas y metadatos), Silkscreen (números y
   detalles pixel).
-- **Componentes:** botones `.btn` cuadrados con curva de 6px; tarjetas con `--radius-*` y borde `--line`; sombras pixel
-  sólidas (`6px 6px 0`) al pasar el ratón y transiciones con `steps()`; flecha `PixelArrow`; mano pixel `BrandHand`.
+- **Componentes:** botones `.btn` de cristal en pastilla, idénticos al de Uiverse «massive-snail-29» (orden de Roger,
+  11/11/2026): sin variantes de color, Plus Jakarta Sans y texto claro solo sobre fondo oscuro (IOI). Tarjetas con
+  `--radius-*` y borde `--line`; sombras pixel sólidas (`6px 6px 0`) al pasar el ratón y transiciones con `steps()`;
+  flecha `PixelArrow`; mano pixel `BrandHand`.
 - **Encabezados:** etiqueta `.eyebrow` en cabeceras y `.section-label` en secciones (`<b>02</b><span>trabajo</span>`, con el número de su sección en `PageIndex`; la cabecera es 00), y h1 con la parte final en índigo dentro de `<em>`, con punto final. La portada no lleva `.eyebrow`: saludo
   «Hola, soy Roger Avellana», h1, línea mono «Diseño …» que va cambiando y texto; a la derecha, el chat en ventana (`HeroChat`).
 - **Interacción:** sutil y siempre respetando `prefers-reduced-motion`. Sin indicador cuadrado bajo el menú.

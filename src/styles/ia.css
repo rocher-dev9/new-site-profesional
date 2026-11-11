@@ -29,7 +29,6 @@
 .theme-ai .mobile-menu { background: var(--ai-bg); border-top-color: var(--ai-border); }
 .theme-ai .mobile-menu a { color: var(--ai-text); }
 .theme-ai .mobile-menu a.mobile-ai { color: #c6a8ff; }
-.theme-ai .mobile-cta .btn-ghost { color: var(--ai-text); border-color: rgba(255, 255, 255, 0.2); }
 .theme-ai .footer { border-top-color: var(--ai-border); color: var(--ai-muted); }
 .theme-ai .footer-social a { color: var(--ai-soft); }
 .theme-ai .footer-social a:hover, .theme-ai .footer-social a:focus-visible { color: #c6a8ff; }
@@ -55,13 +54,6 @@
 }
 @keyframes ai-live { to { box-shadow: 0 0 0 9px rgba(63, 191, 138, 0); } }
 
-.ai-btn {
-  background: var(--ai-grad); color: #0b0a16;
-  box-shadow: 0 10px 34px rgba(143, 136, 255, 0.35);
-}
-.ai-btn:hover { box-shadow: 0 14px 40px rgba(247, 185, 138, 0.4); }
-.ai-btn-ghost { color: var(--ai-text); border: 1.5px solid rgba(255, 255, 255, 0.18); }
-.ai-btn-ghost:hover { border-color: #c6a8ff; }
 .ai-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
 
 /* Hero */
@@ -415,18 +407,12 @@
 @media (max-width: 560px) { .ai-platforms { grid-template-columns: 1fr; } }
 
 /* Estética pixel reforzada en tema oscuro */
-.ai-btn:hover { box-shadow: 5px 5px 0 #f7b98a; }
-.ai-btn-ghost:hover { box-shadow: 5px 5px 0 #8f88ff; }
 .ai-pipeline::before, .ai-pipeline::after {
   height: 6px; top: 71px;
   -webkit-mask-image: repeating-linear-gradient(90deg, #000 0 10px, transparent 10px 14px);
   mask-image: repeating-linear-gradient(90deg, #000 0 10px, transparent 10px 14px);
 }
 
-/* Botones con esquinas pixeladas en tema oscuro */
-.ai-btn, .ai-btn:hover { background: transparent; box-shadow: none; --btn-bg: var(--ai-grad); --btn-shadow: #f7b98a; color: #0b0a16; }
-.ai-btn-ghost, .ai-btn-ghost:hover { border: none; box-shadow: none; --btn-bg: rgba(255, 255, 255, 0.1); --btn-shadow: #8f88ff; color: var(--ai-text); }
-.theme-ai .mobile-cta .btn-ghost { --btn-bg: rgba(255, 255, 255, 0.1); --btn-shadow: #8f88ff; color: var(--ai-text); }
 .theme-ai .nav-links a.nav-ai[aria-current="page"]::after { background: #f7b98a; }
 
 /* Textura de píxeles claros en las tarjetas de IOI */
@@ -437,8 +423,6 @@
 }
 .ai-step, .ai-agent-type, .ai-node { position: relative; }
 .ai-tool:hover::after, .ai-step:hover::after, .ai-agent-type:hover::after, .ai-node:hover::after { opacity: 1; }
-/* Fondo sólido para que la sombra pixel no se transparente */
-.ai-btn-ghost, .ai-btn-ghost:hover, .theme-ai .mobile-cta .btn-ghost { --btn-bg: #1d1a38; }
 
 /* Botón volver arriba en tema oscuro */
 .theme-ai .to-top { background: #ece9ff; color: #0b0a16; box-shadow: 0 10px 26px rgba(0, 0, 0, 0.4); }

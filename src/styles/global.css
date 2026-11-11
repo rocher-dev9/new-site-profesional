@@ -102,25 +102,106 @@ ul { list-style: none; }
 section { padding: clamp(64px, 9vw, 112px) 0; }
 
 /* ─── Buttons ───────────────────────────────────────────────── */
+/* Botón de cristal (de Uiverse, shokat_2650 «massive-snail-29»), igual en todas las variantes.
+   ::before = cristal + brillo diagonal + borde cónico; ::after = sombra difuminada debajo.
+   Al pasar el ratón: se encoge un poco, el brillo avanza y el borde gira; al pulsar, se inclina. */
+@property --btn-ang-1 { syntax: '<angle>'; inherits: false; initial-value: -75deg; }
+@property --btn-ang-2 { syntax: '<angle>'; inherits: false; initial-value: -45deg; }
 .btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 14px 26px;
-  border-radius: 999px;
-  font-size: 14px; font-weight: 600; letter-spacing: -0.01em;
-  transition: transform 0.2s var(--ease), background 0.2s, box-shadow 0.2s;
-  border: none;
+  --btn-t: 400ms; --btn-ease: cubic-bezier(0.25, 1, 0.5, 1); --btn-borde: clamp(1px, 0.0625em, 4px);
+  position: relative; isolation: isolate; z-index: 0;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 0.875em 1.5em; border-radius: 999vw;
+  /* Espaciado -0,02em (el original usa -0,05em con Inter; con Plus Jakarta Sans juntaba las palabras) */
+  font-size: 16px; font-weight: 500; letter-spacing: -0.02em; color: rgba(50, 50, 50, 1);
+  text-shadow: 0 0.25em 0.05em rgba(0, 0, 0, 0.1);
+  -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none;
+  /* Cristal y, encima, el brillo diagonal */
+  background:
+    linear-gradient(var(--btn-ang-2), rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 40% 50%, rgba(255, 255, 255, 0) 55%),
+    linear-gradient(-75deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
+  background-size: 200% 200%, 100% 100%;
+  background-position: 0% 50%, 0 0;
+  background-repeat: no-repeat;
+  box-shadow:
+    inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05),
+    inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
+    0 0.25em 0.125em -0.125em rgba(0, 0, 0, 0.2),
+    0 0 0.1em 0.25em inset rgba(255, 255, 255, 0.2);
+  -webkit-backdrop-filter: blur(clamp(1px, 0.125em, 4px));
+  backdrop-filter: blur(clamp(1px, 0.125em, 4px));
+  transition:
+    transform var(--btn-t) var(--btn-ease), box-shadow var(--btn-t) var(--btn-ease),
+    text-shadow var(--btn-t) var(--btn-ease),
+    background-position calc(var(--btn-t) * 1.25) var(--btn-ease),
+    --btn-ang-2 calc(var(--btn-t) * 1.25) var(--btn-ease);
 }
-.btn:hover { transform: translateY(-2px); }
-.btn-primary {
-  background: var(--indigo); color: #fff;
-  box-shadow: 0 10px 28px rgba(88, 80, 236, 0.28);
+.btn::before, .btn::after { content: ''; position: absolute; pointer-events: none; border-radius: 999vw; box-sizing: border-box; }
+/* Borde con luz cónica que gira */
+.btn::before {
+  z-index: -1; inset: calc(var(--btn-borde) / -2); padding: var(--btn-borde);
+  background:
+    conic-gradient(from var(--btn-ang-1) at 50% 50%, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 5% 40%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0) 60% 95%, rgba(0, 0, 0, 0.5)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  box-shadow: inset 0 0 0 calc(var(--btn-borde) / 2) rgba(255, 255, 255, 0.5);
+  transition: --btn-ang-1 500ms ease;
 }
-.btn-primary:hover { background: var(--indigo-dark); }
-.btn-ghost {
-  background: transparent; color: var(--ink);
-  border: 1.5px solid var(--line);
+/* Sombra difuminada que asoma por debajo */
+.btn::after {
+  z-index: -2; left: 0.125em; top: 0.5em; width: calc(100% - 0.25em); height: calc(100% - 0.25em);
+  padding: 0.125em;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  filter: blur(clamp(2px, 0.125em, 12px));
+  transition: top var(--btn-t) var(--btn-ease), opacity var(--btn-t) var(--btn-ease), filter var(--btn-t) var(--btn-ease);
 }
-.btn-ghost:hover { border-color: var(--ink); }
+.btn:hover {
+  transform: scale(0.975);
+  background-position: 25% 50%, 0 0;
+  -webkit-backdrop-filter: blur(0.01em);
+  backdrop-filter: blur(0.01em);
+  text-shadow: 0.025em 0.025em 0.025em rgba(0, 0, 0, 0.12);
+  box-shadow:
+    inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05),
+    inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
+    0 0.15em 0.05em -0.1em rgba(0, 0, 0, 0.25),
+    0 0 0.05em 0.1em inset rgba(255, 255, 255, 0.5);
+}
+.btn:hover::before { --btn-ang-1: -125deg; }
+.btn:hover::after { top: 0.125em; filter: blur(clamp(2px, 0.0625em, 6px)); }
+.btn:active {
+  transform: rotate3d(1, 0, 0, 25deg);
+  --btn-ang-2: -15deg;
+  background-position: 50% 15%, 0 0;
+  text-shadow: 0.025em 0.25em 0.05em rgba(0, 0, 0, 0.12);
+  box-shadow:
+    inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05),
+    inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
+    0 0.125em 0.125em -0.125em rgba(0, 0, 0, 0.2),
+    0 0 0.1em 0.25em inset rgba(255, 255, 255, 0.2),
+    0 0.225em 0.05em 0 rgba(0, 0, 0, 0.05),
+    0 0.25em 0 0 rgba(255, 255, 255, 0.75),
+    inset 0 0.25em 0.05em 0 rgba(0, 0, 0, 0.15);
+}
+.btn:active::before { --btn-ang-1: -75deg; }
+.btn:active::after { top: 0.5em; opacity: 0.75; filter: blur(clamp(2px, 0.125em, 12px)); }
+@media (hover: none) and (pointer: coarse) {
+  .btn, .btn:active { --btn-ang-2: -45deg; }
+  .btn::before, .btn:hover::before, .btn:active::before { --btn-ang-1: -75deg; }
+}
+/* Sobre fondo oscuro (IOI y su bloque de la portada) el texto pasa a claro para que se lea */
+.theme-ai .btn, .ia-teaser .btn { color: rgba(255, 255, 255, 0.92); }
+@media (prefers-reduced-motion: reduce) {
+  .btn, .btn::before, .btn::after { transition: none; }
+  .btn:hover, .btn:active { transform: none; }
+}
 .btn-link {
   display: inline-flex; align-items: center; gap: 6px;
   font-weight: 600; color: var(--indigo);
@@ -170,7 +251,6 @@ section { padding: clamp(64px, 9vw, 112px) 0; }
 .mobile-menu .btn { margin-top: 8px; align-self: flex-start; }
 .mobile-menu .mobile-home { display: inline-flex; align-self: flex-start; }
 .mobile-cta { display: flex; flex-wrap: wrap; gap: 12px; }
-.mobile-cta .btn { font-size: 14px; letter-spacing: -0.01em; }
 
 @media (max-width: 860px) {
   .nav-links { display: none; }
@@ -904,10 +984,6 @@ section { padding: clamp(64px, 9vw, 112px) 0; }
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 .ia-teaser p { margin: 18px 0 30px; max-width: 520px; color: rgba(255, 255, 255, 0.8); font-size: 16px; line-height: 1.7; }
-.ia-teaser-btn {
-  background: #fff; color: #4338e0;
-  box-shadow: 0 10px 34px rgba(20, 14, 90, 0.35);
-}
 
 .ia-teaser-panel {
   position: relative; overflow: hidden; display: block;
@@ -1059,7 +1135,6 @@ section { padding: clamp(64px, 9vw, 112px) 0; }
 .me-facts dt { font-size: 1.15rem; font-weight: 800; letter-spacing: -0.02em; color: var(--indigo); }
 .me-facts dd { font-size: 13px; color: var(--ink-soft); }
 .me-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-.me-actions .btn-ghost { --btn-bg: #fff; }
 
 .me-panel {
   background: #fff; border: 1px solid var(--line); border-radius: var(--radius-md);
@@ -1246,13 +1321,6 @@ a:hover > .px-arrow, a:focus-visible > .px-arrow { animation: px-nudge 0.5s step
 .services-bento .icon-badge { width: 68px; height: 68px; border-radius: 8px; }
 .services-bento .icon-badge svg.px-icon { width: 48px; height: 48px; }
 
-/* 2. Botones: sombra pixel sólida y desplazada al pasar el ratón (estilo retro) */
-.btn { transition: transform 0.12s steps(2), box-shadow 0.12s steps(2), background 0.2s, border-color 0.2s; }
-.btn:hover { transform: translate(-3px, -3px); }
-.btn-primary:hover { box-shadow: 5px 5px 0 var(--ink); }
-.btn-ghost:hover { box-shadow: 5px 5px 0 var(--indigo); border-color: var(--ink); }
-.btn:active { transform: translate(0, 0); box-shadow: 0 0 0 transparent; }
-.ia-teaser-btn:hover { box-shadow: 5px 5px 0 #1b1660; }
 /* La flecha avanza en tres saltos */
 a:hover > .px-arrow, a:focus-visible > .px-arrow { animation: px-nudge3 0.6s steps(1) infinite; }
 @keyframes px-nudge3 { 0%, 32% { transform: translateX(0); } 33%, 65% { transform: translateX(2px); } 66%, 100% { transform: translateX(4px); } }
@@ -1271,40 +1339,7 @@ a:hover > .px-arrow, a:focus-visible > .px-arrow { animation: px-nudge3 0.6s ste
 }
 .services-bento .feature-card:hover::after { opacity: 1; }
 
-@media (prefers-reduced-motion: reduce) {
-  .btn:hover { transform: none; }
-}
 
-/* ─── Botones con esquinas pixeladas ───────────────────────── */
-/* El fondo y la sombra son capas recortadas con escalones de 4 px; el botón queda transparente */
-:root {
-  --px-corners: polygon(0 8px, 4px 8px, 4px 4px, 8px 4px, 8px 0, calc(100% - 8px) 0, calc(100% - 8px) 4px,
-    calc(100% - 4px) 4px, calc(100% - 4px) 8px, 100% 8px, 100% calc(100% - 8px), calc(100% - 4px) calc(100% - 8px),
-    calc(100% - 4px) calc(100% - 4px), calc(100% - 8px) calc(100% - 4px), calc(100% - 8px) 100%, 8px 100%,
-    8px calc(100% - 4px), 4px calc(100% - 4px), 4px calc(100% - 8px), 0 calc(100% - 8px));
-}
-.btn, .btn:hover {
-  position: relative; isolation: isolate;
-  background: transparent; border: none; border-radius: 0; box-shadow: none;
-}
-.btn::before, .btn::after {
-  content: ''; position: absolute; inset: 0; clip-path: var(--px-corners); pointer-events: none;
-}
-.btn::before { z-index: -1; background: var(--btn-bg, var(--indigo)); transition: background 0.2s steps(2); }
-.btn::after {
-  z-index: -2; background: var(--btn-shadow, var(--ink));
-  transform: translate(0, 0); transition: transform 0.12s steps(2);
-}
-.btn:hover::after { transform: translate(5px, 5px); }
-.btn:active::after { transform: translate(0, 0); }
-/* Variantes */
-.btn-primary { --btn-bg: var(--indigo); --btn-shadow: var(--ink); color: #fff; }
-.btn-primary:hover { --btn-bg: var(--indigo-dark); box-shadow: none; }
-.btn-ghost { --btn-bg: #fff; --btn-shadow: var(--indigo); color: var(--ink); }
-.btn-ghost:hover { box-shadow: none; }
-.mobile-cta .btn-ghost { --btn-bg: var(--lavender); }
-.ia-teaser-btn { --btn-bg: #fff; --btn-shadow: #1b1660; color: #4338e0; }
-.ia-teaser-btn:hover { box-shadow: none; }
 
 /* ─── Indicador pixel de la página actual en el menú ───────── */
 .nav-links a.active:not(.nav-home), .nav-links a[aria-current="page"]:not(.nav-home) { position: relative; }
@@ -1321,12 +1356,7 @@ a:hover > .px-arrow, a:focus-visible > .px-arrow { animation: px-nudge3 0.6s ste
   opacity: 0; transition: opacity 0.25s steps(3);
 }
 .testi-card:hover::after, .contact-card:hover::after { opacity: 1; }
-/* La sombra pixel solo existe al pasar el ratón (evita que se vea a través de fondos translúcidos) */
-.btn::after { opacity: 0; transition: transform 0.12s steps(2), opacity 0s 0.12s; }
-.btn:hover::after { opacity: 1; transition: transform 0.12s steps(2), opacity 0s; }
 
-/* Botones cuadrados con una leve curva (sustituye a las esquinas pixeladas) */
-.btn::before, .btn::after { clip-path: none; border-radius: 6px; }
 /* Sin indicador bajo la sección actual en el menú */
 .nav-links a.active:not(.nav-home)::after, .nav-links a.nav-ai[aria-current="page"]::after { content: none; }
 
