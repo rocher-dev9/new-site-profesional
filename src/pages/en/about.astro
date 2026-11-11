@@ -9,7 +9,7 @@ import ContactCards from '../../components/ContactCards.astro';
   descripcion={"About Roger Avellana — experience, education and tools."}
   activa="sobreMi"
 >
-  <main id="main">
+  <main id="main" class="pg-rt">
 
     <header class="about-hero">
       <div class="container about-hero-grid">
@@ -34,9 +34,10 @@ import ContactCards from '../../components/ContactCards.astro';
 
     <section>
       <div class="container two-col">
+        <div class="pg-rt-label pg-rt-label--a"><span class="section-label"><b>01</b><span>experience</span></span></div>
+        <div class="pg-rt-label pg-rt-label--b"><span class="section-label"><b>02</b><span>education</span></span></div>
         <div>
-          <span class="section-label"><b>01</b><span>experience</span></span>
-          <div class="timeline" style="margin-top: 16px;">
+          <div class="timeline">
             <div class="timeline-row">
               <div class="t-main"><strong>Intera</strong><br /><span>Visual Design &amp; Digital Strategy</span></div>
               <div class="t-date">2023–2026</div>
@@ -57,8 +58,7 @@ import ContactCards from '../../components/ContactCards.astro';
         </div>
 
         <div>
-          <span class="section-label"><b>02</b><span>education</span></span>
-          <div class="timeline" style="margin-top: 16px;">
+          <div class="timeline">
             <div class="timeline-row">
               <div class="t-main"><strong>Escola Superior de Disseny</strong><br /><span>Graphic Design</span></div>
               <div class="t-date">2016</div>
@@ -78,8 +78,8 @@ import ContactCards from '../../components/ContactCards.astro';
 
     <section style="background: var(--bg-soft);">
       <div class="container">
-        <span class="section-label"><b>03</b><span>tools</span></span>
-        <div class="skills-wrap" style="margin-top: 16px;">
+        <div class="pg-rt-label"><span class="section-label"><b>03</b><span>tools</span></span></div>
+        <div class="skills-wrap">
           <span class="skill-tag">Adobe Photoshop</span>
           <span class="skill-tag">Adobe Illustrator</span>
           <span class="skill-tag">Adobe InDesign</span>
@@ -101,8 +101,8 @@ import ContactCards from '../../components/ContactCards.astro';
     <!-- CONTACTO (unificado con Sobre mí) -->
     <section id="contact" class="about-contact">
       <div class="container">
+        <div class="pg-rt-label"><span class="section-label"><b>04</b><span>contact</span></span></div>
         <div class="about-contact-head">
-          <span class="section-label"><b>04</b><span>contact</span></span>
           <h2>Let's talk<em>.</em></h2>
           <p>Have a project in mind, a brand that needs order or a campaign you want to launch? Tell me what you're working on and I'll get back to you as soon as I can.</p>
         </div>
