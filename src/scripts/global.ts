@@ -8,6 +8,7 @@ import { iniciarTema } from './modulos/tema';
 import { iniciarPuntosCabecera } from './modulos/puntos-cabecera';
 import { iniciarChatCabecera } from './modulos/chat-cabecera';
 import { iniciarOficioCabecera } from './modulos/oficio-cabecera';
+import { iniciarAgenteCabecera } from './modulos/agente-cabecera';
 import { iniciarPlaneta } from './modulos/planeta';
 import { iniciarManos } from './modulos/mano';
 import { iniciarIndiceLateral } from './modulos/indice-lateral';
@@ -26,6 +27,7 @@ iniciarEtiquetasSeccion();     // etiquetas de sección con el total («01 / 06�
 iniciarPuntosCabecera();       // portada: retícula de puntos de la cabecera
 iniciarChatCabecera();         // portada: chat con ejemplos que se escriben solos
 iniciarOficioCabecera();       // portada: línea «Diseño …» que va cambiando de oficio
+iniciarAgenteCabecera();       // portada: cursor de IOI que recorre la cabecera
 iniciarPlaneta();              // portada: planeta de píxeles ("Lo que hago")
 iniciarManos();                // portada y Sobre mí: mano pixelada saludando
 iniciarIndiceLateral();        // índice numerado, volver arriba y volver a Trabajo
