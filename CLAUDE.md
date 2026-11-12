@@ -56,8 +56,9 @@ _manual-vercel-fuente/  .docx y generador del manual (no se publica)
   `var(--ink-solid)` para bloques oscuros con texto blanco. Todo lo nuevo debe verse bien en los dos modos.
 - **Tipografías:** Plus Jakarta Sans (texto y titulares), JetBrains Mono (etiquetas y metadatos), Silkscreen (números y
   detalles pixel).
-- **Componentes:** botones `.btn` de cristal en pastilla, idénticos al de Uiverse «massive-snail-29» (orden de Roger,
-  11/11/2026), en Plus Jakarta Sans. El principal (`.btn-primary`, `.ai-btn`) lleva el cristal con tinte índigo y
+- **Componentes:** botones `.btn` en pastilla de cristal líquido (liquid glass, orden de Roger, 12/11/2026; antes, el
+  cristal de Uiverse «massive-snail-29»): refracción con el filtro SVG `#cristal-liquido` de `Base.astro`, solo en Chromium
+  (clase `.lente`); el resto ve el cristal desenfocado. En Plus Jakarta Sans. El principal (`.btn-primary`, `.ai-btn`) lleva el cristal con tinte índigo y
   texto blanco (12/11/2026); en el bloque IOI de la portada, cristal blanco y texto índigo. Los secundarios, cristal gris. Tarjetas con
   `--radius-*` y borde `--line`; sombras pixel sólidas (`6px 6px 0`) al pasar el ratón y transiciones con `steps()`;
   flecha `PixelArrow`; mano pixel `BrandHand`.
