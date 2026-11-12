@@ -16,7 +16,7 @@ import PixelArrow from '../../components/PixelArrow.astro';
 >
   <PageIndex lang="es" secciones={[['top', 'Inicio'], ['lista-servicios', 'Servicios'], ['herramientas', 'Herramientas'], ['auto-demo', 'Automatización'], ['guias', 'Guías'], ['contacto', 'Contacto']]} />
 
-  <main id="main">
+  <main id="main" class="pg-rt">
 
     <header class="about-hero rt-hero" id="top">
       <div class="container">
@@ -121,8 +121,8 @@ import PixelArrow from '../../components/PixelArrow.astro';
     <!-- HERRAMIENTAS -->
     <section class="tools-section" id="herramientas">
       <div class="container">
+        <div class="pg-rt-label"><span class="section-label"><b>02</b><span>herramientas</span></span></div>
         <div class="section-head">
-          <span class="section-label"><b>02</b><span>herramientas</span></span>
           <h2>Mi caja de <em>herramientas.</em></h2>
           <p>Las herramientas con las que trabajo cada día. La IA generativa y el vibe coding ya forman parte de mi proceso: me ayudan a pasar antes de la idea al prototipo, sin renunciar al criterio.</p>
         </div>
@@ -185,14 +185,16 @@ import PixelArrow from '../../components/PixelArrow.astro';
     </section>
 
     <section id="guias">
-      <div class="container guides">
+      <div class="container">
+        <div class="pg-rt-label"><span class="section-label"><b>04</b><span>guías</span></span></div>
+        <div class="guides">
         <div class="section-head">
-          <span class="section-label"><b>04</b><span>guías</span></span>
           <h2>Lo que aprendo, lo <em>documento.</em></h2>
           <p>Cuando adopto una herramienta, la estudio a fondo y la pongo por escrito. Esta web se
             publica en Vercel: este manual es lo que aprendí por el camino.</p>
         </div>
         <GuideCard lang="es" pagina="entorno/" />
+        </div>
       </div>
     </section>
 

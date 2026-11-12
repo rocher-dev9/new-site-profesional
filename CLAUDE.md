@@ -54,6 +54,10 @@ _manual-vercel-fuente/  .docx y generador del manual (no se publica)
   (en móvil, junto a «menú»). Pone `data-theme="dark"` en `<html>` y se guarda en `localStorage` (`tema`); por defecto,
   claro. Solo cambia tokens en `:root[data-theme="dark"]`: para superficies usar `var(--surface)` (nunca `#fff`) y
   `var(--ink-solid)` para bloques oscuros con texto blanco. Todo lo nuevo debe verse bien en los dos modos.
+- **Retícula:** todas las páginas menos la portada llevan `<main class="pg-rt">`: marco ancho (hasta 1560 px) con líneas
+  verticales continuas, líneas entre secciones de borde a borde, cruces pixel en los cruces y la etiqueta de cada
+  sección en su propia fila (`<div class="pg-rt-label">`, primer hijo del `.container`). IOI tiene su versión oscura en
+  `ia.css` (`.ai-rt-label`); la cabecera y los servicios de Entorno usan además `.rt`. Pendiente: la portada.
 - **Tipografías:** Plus Jakarta Sans (texto y titulares), JetBrains Mono (etiquetas y metadatos), Silkscreen (números y
   detalles pixel).
 - **Componentes:** botones `.btn` en pastilla de cristal líquido (liquid glass, orden de Roger, 12/11/2026; antes, el

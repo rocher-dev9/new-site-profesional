@@ -72,7 +72,7 @@ const resumen = [
   <PageIndex lang={lang} secciones={indice.map((k) => [anclas[k], t(`caso.${k}`)] as [string, string])} />
   <a href={trabajo} class="case-back-float" aria-label={t('caso.volver')}><PixelArrow back /><span>{t('caso.trabajo')}</span></a>
 
-  <main id="main" class="case" style={`--case-color: ${p.color};`}>
+  <main id="main" class="case pg-rt" style={`--case-color: ${p.color};`}>
 
     <!-- 01 · CABECERA DEL CASO -->
     <header class="case-hero" id="top">
@@ -109,8 +109,8 @@ const resumen = [
     <!-- 02 · RESUMEN: reto, solución y resultado -->
     <section id="resumen" class="case-section">
       <div class="container">
+        <div class="pg-rt-label"><span class="section-label"><b>01</b><span>{t('caso.resumen').toLowerCase()}</span></span></div>
         <div class="section-head">
-          <span class="section-label"><b>01</b><span>{t('caso.resumen').toLowerCase()}</span></span>
           <h2>{t('caso.resumen.titulo')}</h2>
         </div>
         <div class="case-summary">
@@ -128,8 +128,8 @@ const resumen = [
     <!-- 03 · PROCESO -->
     <section id="proceso" class="case-section case-section--soft">
       <div class="container">
+        <div class="pg-rt-label"><span class="section-label"><b>02</b><span>{t('caso.proceso').toLowerCase()}</span></span></div>
         <div class="section-head">
-          <span class="section-label"><b>02</b><span>{t('caso.proceso').toLowerCase()}</span></span>
           <h2>{p.proceso.titulo}</h2>
           <p>{p.proceso.intro}</p>
         </div>
@@ -149,8 +149,8 @@ const resumen = [
     <!-- 04 · ENTREGABLES (galería) -->
     <section id="entregables" class="case-section">
       <div class="container">
+        <div class="pg-rt-label"><span class="section-label"><b>03</b><span>{t('caso.entregables').toLowerCase()}</span></span></div>
         <div class="section-head">
-          <span class="section-label"><b>03</b><span>{t('caso.entregables').toLowerCase()}</span></span>
           <h2>{p.entregables.titulo}</h2>
           <p>{p.entregables.intro}</p>
         </div>
@@ -164,8 +164,8 @@ const resumen = [
     <!-- 05 · RESULTADOS -->
     <section id="resultados" class="case-section case-section--soft">
       <div class="container">
+        <div class="pg-rt-label"><span class="section-label"><b>04</b><span>{t('caso.resultados').toLowerCase()}</span></span></div>
         <div class="section-head">
-          <span class="section-label"><b>04</b><span>{t('caso.resultados').toLowerCase()}</span></span>
           <h2>{t('caso.resultados.titulo')}</h2>
         </div>
         <div class="case-results">
