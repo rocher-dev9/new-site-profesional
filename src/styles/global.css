@@ -150,7 +150,7 @@ section { padding: clamp(64px, 9vw, 112px) 0; }
   /* Cristal y, encima, el brillo diagonal */
   background:
     linear-gradient(var(--btn-ang-2), rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 40% 50%, rgba(255, 255, 255, 0) 55%),
-    linear-gradient(-75deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
+    var(--btn-cristal, linear-gradient(-75deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05)));
   background-size: 200% 200%, 100% 100%;
   background-position: 0% 50%, 0 0;
   background-repeat: no-repeat;
@@ -229,6 +229,22 @@ section { padding: clamp(64px, 9vw, 112px) 0; }
 }
 /* Sobre fondo oscuro (IOI y su bloque de la portada) el texto pasa a claro para que se lea */
 .theme-ai .btn, .ia-teaser .btn { color: rgba(255, 255, 255, 0.92); }
+/* Botón principal (Ver trabajo, Escríbeme, Ver el proceso…): el mismo cristal con tinte índigo y texto
+   blanco, para que destaque sobre los secundarios. En el bloque IOI de la portada, que ya es índigo,
+   el cristal es blanco y el texto índigo. */
+.btn-primary, .ai-btn {
+  --btn-cristal: linear-gradient(-75deg, rgba(88, 80, 236, 0.82), rgba(110, 102, 244, 0.96), rgba(88, 80, 236, 0.82));
+  color: #fff; text-shadow: 0 0.2em 0.05em rgba(20, 14, 90, 0.25);
+}
+.btn-primary:hover, .ai-btn:hover { text-shadow: 0.025em 0.025em 0.025em rgba(20, 14, 90, 0.3); }
+.theme-ai .ai-btn, :root[data-theme="dark"] .btn-primary {
+  --btn-cristal: linear-gradient(-75deg, rgba(122, 114, 255, 0.78), rgba(143, 136, 255, 0.95), rgba(122, 114, 255, 0.78));
+  color: #fff;
+}
+.ia-teaser .ia-teaser-btn {
+  --btn-cristal: linear-gradient(-75deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.97), rgba(255, 255, 255, 0.82));
+  color: #3f37d6; text-shadow: none;
+}
 @media (prefers-reduced-motion: reduce) {
   .btn, .btn::before, .btn::after { transition: none; }
   .btn:hover, .btn:active { transform: none; }
@@ -2213,3 +2229,4 @@ a:hover > .px-arrow, a:focus-visible > .px-arrow { animation: px-nudge3 0.6s ste
   .pg-rt { --pg-pad: 18px; }
   .pg-rt > header > .container, .pg-rt > section > .container { margin-inline: 12px; padding-inline: var(--pg-pad); }
 }
+:root[data-theme="dark"] .ia-teaser .ia-teaser-btn { color: #3f37d6; }

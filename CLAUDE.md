@@ -57,7 +57,8 @@ _manual-vercel-fuente/  .docx y generador del manual (no se publica)
 - **Tipografías:** Plus Jakarta Sans (texto y titulares), JetBrains Mono (etiquetas y metadatos), Silkscreen (números y
   detalles pixel).
 - **Componentes:** botones `.btn` de cristal en pastilla, idénticos al de Uiverse «massive-snail-29» (orden de Roger,
-  11/11/2026): sin variantes de color, Plus Jakarta Sans y texto claro solo sobre fondo oscuro (IOI). Tarjetas con
+  11/11/2026), en Plus Jakarta Sans. El principal (`.btn-primary`, `.ai-btn`) lleva el cristal con tinte índigo y
+  texto blanco (12/11/2026); en el bloque IOI de la portada, cristal blanco y texto índigo. Los secundarios, cristal gris. Tarjetas con
   `--radius-*` y borde `--line`; sombras pixel sólidas (`6px 6px 0`) al pasar el ratón y transiciones con `steps()`;
   flecha `PixelArrow`; mano pixel `BrandHand`.
 - **Encabezados:** etiqueta `.eyebrow` en cabeceras y `.section-label` en secciones (`<b>02</b><span>trabajo</span>`, con el número de su sección en `PageIndex`; la cabecera es 00), y h1 con la parte final en índigo dentro de `<em>`, con punto final. La portada no lleva `.eyebrow`: saludo
