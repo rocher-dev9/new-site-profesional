@@ -1,5 +1,6 @@
 ---
-// Portada: líneas de código muy tenues detrás de la ventana del chat (solo decoración)
+// Portada: líneas de código muy tenues detrás de la ventana del chat (solo decoración).
+// codigo-cabecera.ts las escribe al cargar, edita alguna de vez en cuando y aviva las que están cerca del cursor.
 import type { Lang } from '../i18n/rutas';
 
 interface Props { lang: Lang }
@@ -45,4 +46,4 @@ const lineas = lang === 'es' ? [
   'export default brand',
 ];
 ---
-<pre class="hero-code" aria-hidden="true">{lineas.join('\n')}</pre>
+<pre class="hero-code" aria-hidden="true">{lineas.map((l) => <span class="hc-l" data-l={l}>{l}{'\n'}</span>)}</pre>

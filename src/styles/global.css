@@ -1448,6 +1448,17 @@ a:hover > .px-arrow, a:focus-visible > .px-arrow { animation: px-nudge3 0.6s ste
   font: 400 13px/2.2 var(--mono); color: rgba(88, 80, 236, 0.2); white-space: pre;
 }
 @media (max-width: 960px) { .hero-code { display: none; } }
+/* Código vivo (codigo-cabecera.ts): líneas que se avivan cerca del cursor y cursor de bloque al escribir */
+.hero-code .hc-l { transition: color 0.18s steps(2); }
+.hero-code .hc-l.cerca { color: rgba(88, 80, 236, 0.62); }
+.hero-code .hc-l.cerca-2 { color: rgba(88, 80, 236, 0.36); }
+.hc-cursor-cod {
+  display: inline-block; width: 0.6em; height: 1.05em; margin-left: 1px; vertical-align: -0.15em;
+  background: rgba(88, 80, 236, 0.45); animation: hc-parpadeo 1s steps(1) infinite;
+}
+:root[data-theme="dark"] .hero-code .hc-l.cerca { color: rgba(143, 136, 255, 0.75); }
+:root[data-theme="dark"] .hero-code .hc-l.cerca-2 { color: rgba(143, 136, 255, 0.42); }
+@media (prefers-reduced-motion: reduce) { .hero-code .hc-l { transition: none; } }
 
 /* Ventana del chat: barra de título y cuerpo con aspecto de terminal */
 .hero-win {
