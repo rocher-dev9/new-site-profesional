@@ -1,0 +1,38 @@
+---
+// Sobre mí: experiencia o formación en tarjetas (cuadrícula de 3 columnas).
+// Cada tarjeta: categoría en mono arriba, puesto o título, una frase, y abajo el monograma, la
+// organización y las fechas. Si tiene caso de estudio (clave), la tarjeta entera enlaza a él.
+import { rel, type Lang } from '../i18n/rutas';
+import { rutaDelCaso } from '../proyectos/enlaces';
+import type { Entrada } from '../datos/trayectoria';
+
+interface Props { lang: Lang; pagina: string; entradas: Entrada[]; etiqueta: string }
+const { lang, pagina, entradas, etiqueta } = Astro.props;
+
+const tarjetas = await Promise.all(entradas.map(async (e) => {
+  const ruta = e.caso ? await rutaDelCaso(e.caso, lang) : undefined;
+  return { ...e, href: ruta ? rel(pagina, ruta) : undefined };
+}));
+---
+<ul class="tr-grid" aria-label={etiqueta}>
+  {tarjetas.map((e) => {
+    const Tag = e.href ? 'a' : 'div';
+    return (
+      <li>
+        <Tag class:list={['tr-card', { 'tr-card--link': e.href }]} href={e.href}>
+          <div class="tr-top">
+            <span class="tr-cat"><svg viewBox="0 0 8 8" width="9" height="9" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><path d="M0 0h5l3 3v5H3L0 5z" opacity=".35" /><path d="M2 2h1v1H2z" /></svg>{e.categoria}</span>
+            {e.href && <svg class="tr-arrow" viewBox="0 0 12 12" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M3 9l6-6M4 3h5v5" /></svg>}
+          </div>
+          <h3>{e.titulo}</h3>
+          <p>{e.texto}</p>
+          <div class="tr-foot">
+            <span class="lb-mono" aria-hidden="true">{e.mono}</span>
+            <span class="tr-org">{e.org}</span>
+            <span class="tr-fechas">{e.fechas}</span>
+          </div>
+        </Tag>
+      </li>
+    );
+  })}
+</ul>

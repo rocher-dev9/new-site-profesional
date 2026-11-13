@@ -1,6 +1,104 @@
 ---
 import Base from '../../layouts/Base.astro';
 import ContactCards from '../../components/ContactCards.astro';
+import Trayectoria from '../../components/Trayectoria.astro';
+import type { Entrada } from '../../datos/trayectoria';
+// Experiencia y formación (datos de LinkedIn)
+const experiencia: Entrada[] = [
+  {
+    "categoria": "Design & marketing",
+    "titulo": "Visual Designer & Marketing Assistant",
+    "texto": "UI/UX design and digital marketing with a brand perspective: interfaces, materials, campaigns and presentations. Previously Brand & UI Designer (2022–2023).",
+    "org": "INTERA-GROUP",
+    "mono": "IG",
+    "fechas": "2022–now",
+    "caso": "intera"
+  },
+  {
+    "categoria": "Branding",
+    "titulo": "Brand Designer",
+    "texto": "In charge of the company's visual identity: brochures, datasheets and corporate branding in a tech environment.",
+    "org": "nVision Systems & Technologies",
+    "mono": "NV",
+    "fechas": "2020–2023",
+    "caso": "nvision-ferias"
+  },
+  {
+    "categoria": "Brand identity",
+    "titulo": "Graphic design and brand identity",
+    "texto": "Graphic design and identity for an Internet of Things company, including trade fairs and corporate materials.",
+    "org": "Sensing & Control Systems",
+    "mono": "SC",
+    "fechas": "2018–2020",
+    "caso": "sensing-dashboard"
+  },
+  {
+    "categoria": "Social media",
+    "titulo": "Social media",
+    "texto": "Managed part of the club's social media.",
+    "org": "Club Bàsquet Igualada",
+    "mono": "CB",
+    "fechas": "2019–2020"
+  },
+  {
+    "categoria": "Campaigns",
+    "titulo": "Advertising campaigns",
+    "texto": "Collaborated on advertising campaigns for the City Council.",
+    "org": "Igualada City Council",
+    "mono": "IC",
+    "fechas": "collaboration"
+  },
+  {
+    "categoria": "Internship",
+    "titulo": "Design internship",
+    "texto": "Layout, photo retouching and materials for online and print campaigns at an e-commerce company.",
+    "org": "Motobuykers",
+    "mono": "MB",
+    "fechas": "2016"
+  }
+];
+const formacion: Entrada[] = [
+  {
+    "categoria": "Postgraduate",
+    "titulo": "Digital Marketing, E-Commerce & Social Media",
+    "texto": "Postgraduate degree in digital marketing, e-commerce and social media.",
+    "org": "Universitat de Barcelona",
+    "mono": "UB",
+    "fechas": "2026"
+  },
+  {
+    "categoria": "Degree",
+    "titulo": "Digital Interaction and Multimedia",
+    "texto": "Bachelor's degree focused on UI/UX and digital interaction.",
+    "org": "Universitat Oberta de Catalunya",
+    "mono": "UOC",
+    "fechas": "2020–2026"
+  },
+  {
+    "categoria": "Programme",
+    "titulo": "Generación Digital: Agentes del Cambio",
+    "texto": "Programme on leading and driving digitalisation processes.",
+    "org": "Escuela de Organización Industrial",
+    "mono": "EOI",
+    "fechas": "2023"
+  },
+  {
+    "categoria": "Graphic design",
+    "titulo": "Advertising graphics",
+    "texto": "Graphic design course focused on advertising.",
+    "org": "Escola Municipal d'Art Gaspar Camps",
+    "mono": "GC",
+    "fechas": "2018–2020"
+  },
+  {
+    "categoria": "Graphic design",
+    "titulo": "Print graphics production",
+    "texto": "Graphic design course focused on print production.",
+    "org": "Escola Municipal d'Art Gaspar Camps",
+    "mono": "GC",
+    "fechas": "2016–2018"
+  }
+];
 ---
 <Base
   lang="en"
@@ -60,70 +158,20 @@ import ContactCards from '../../components/ContactCards.astro';
     </section>
 
     <section style="background: var(--bg-soft);">
-      <div class="container two-col">
-        <div class="pg-rt-label pg-rt-label--a"><span class="section-label"><b>02</b><span>experience</span></span></div>
-        <div class="pg-rt-label pg-rt-label--b"><span class="section-label"><b>03</b><span>education</span></span></div>
-        <div>
-          <div class="timeline">
-            <div class="timeline-row">
-              <div class="t-main"><strong>INTERA-GROUP</strong><br /><span>Visual Designer &amp; Marketing Assistant</span></div>
-              <div class="t-date">2023–now</div>
-            </div>
-            <div class="timeline-row">
-              <div class="t-main"><strong>INTERA-GROUP</strong><br /><span>Brand &amp; UI Designer</span></div>
-              <div class="t-date">2022–2023</div>
-            </div>
-            <div class="timeline-row">
-              <div class="t-main"><strong>nVision Systems &amp; Technologies</strong><br /><span>Brand Designer</span></div>
-              <div class="t-date">2020–2023</div>
-            </div>
-            <div class="timeline-row">
-              <div class="t-main"><strong>Club Bàsquet Igualada</strong><br /><span>Social media</span></div>
-              <div class="t-date">2019–2020</div>
-            </div>
-            <div class="timeline-row">
-              <div class="t-main"><strong>Sensing &amp; Control Systems</strong><br /><span>Graphic design and brand identity</span></div>
-              <div class="t-date">2018–2020</div>
-            </div>
-            <div class="timeline-row">
-              <div class="t-main"><strong>Igualada City Council</strong><br /><span>Advertising campaigns</span></div>
-              <div class="t-date">collaboration</div>
-            </div>
-            <div class="timeline-row">
-              <div class="t-main"><strong>Motobuykers</strong><br /><span>Design internship</span></div>
-              <div class="t-date">2016</div>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <div class="timeline">
-            <div class="timeline-row">
-              <div class="t-main"><strong>Universitat de Barcelona</strong><br /><span>Postgraduate Degree in Digital Marketing, E-Commerce &amp; Social Media</span></div>
-              <div class="t-date">2026</div>
-            </div>
-            <div class="timeline-row">
-              <div class="t-main"><strong>Universitat Oberta de Catalunya</strong><br /><span>Bachelor’s Degree in Digital Interaction and Multimedia</span></div>
-              <div class="t-date">2020–2026</div>
-            </div>
-            <div class="timeline-row">
-              <div class="t-main"><strong>Escuela de Organización Industrial</strong><br /><span>“Generación Digital: Agentes del Cambio” programme</span></div>
-              <div class="t-date">2023</div>
-            </div>
-            <div class="timeline-row">
-              <div class="t-main"><strong>Escola Municipal d'Art Gaspar Camps</strong><br /><span>Advertising graphics</span></div>
-              <div class="t-date">2018–2020</div>
-            </div>
-            <div class="timeline-row">
-              <div class="t-main"><strong>Escola Municipal d'Art Gaspar Camps</strong><br /><span>Print graphics production</span></div>
-              <div class="t-date">2016–2018</div>
-            </div>
-          </div>
-        </div>
+      <div class="container">
+        <div class="pg-rt-label"><span class="section-label"><b>02</b><span>experience</span></span></div>
+        <Trayectoria lang="en" pagina="en/about.html" entradas={experiencia} etiqueta="experience" />
       </div>
     </section>
 
     <section>
+      <div class="container">
+        <div class="pg-rt-label"><span class="section-label"><b>03</b><span>education</span></span></div>
+        <Trayectoria lang="en" pagina="en/about.html" entradas={formacion} etiqueta="education" />
+      </div>
+    </section>
+
+    <section style="background: var(--bg-soft);">
       <div class="container">
         <div class="pg-rt-label"><span class="section-label"><b>04</b><span>tools</span></span></div>
         <div class="skills-wrap">

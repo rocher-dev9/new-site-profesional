@@ -2307,3 +2307,36 @@ a:hover > .px-arrow, a:focus-visible > .px-arrow { animation: px-nudge3 0.6s ste
     max-width: min(max(var(--container), min(1608px, 100% - 192px)), 100% - 120px);
   }
 }
+
+/* ─── Sobre mí: experiencia y formación en tarjetas (Trayectoria.astro) ──
+   Cuadrícula de 3 columnas; categoría en mono arriba, puesto, frase y, abajo, monograma,
+   organización y fechas. Las que tienen caso enlazan a él y llevan la flecha arriba a la derecha. */
+.tr-grid { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.tr-grid > li { display: flex; }
+.tr-card {
+  flex: 1; display: flex; flex-direction: column; gap: 10px;
+  padding: 26px 26px 22px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface);
+  color: var(--ink); transition: transform 0.12s steps(2), box-shadow 0.12s steps(2), border-color 0.2s;
+}
+.tr-card--link:hover, .tr-card--link:focus-visible {
+  transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--lavender-deep); border-color: var(--lavender-deep); outline: none;
+}
+.tr-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+.tr-cat {
+  display: inline-flex; align-items: center; gap: 8px;
+  font: 500 11px/1.3 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+}
+.tr-arrow { color: var(--muted); flex-shrink: 0; transition: color 0.2s steps(2), transform 0.2s steps(2); }
+.tr-card--link:hover .tr-arrow, .tr-card--link:focus-visible .tr-arrow { color: var(--indigo); transform: translate(2px, -2px); }
+.tr-card h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.25; max-width: 22ch; }
+.tr-card p { color: var(--ink-soft); font-size: 14.5px; line-height: 1.6; }
+.tr-foot {
+  margin-top: auto; padding-top: 18px; display: flex; align-items: center; gap: 8px;
+  font-size: 13px; color: var(--ink-soft);
+}
+.tr-foot .lb-mono { min-width: 22px; width: auto; padding: 0 4px; }
+.tr-org { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tr-fechas { margin-left: auto; flex-shrink: 0; font: 400 11.5px var(--mono); color: var(--muted); }
+@media (max-width: 1000px) { .tr-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .tr-grid { grid-template-columns: minmax(0, 1fr); } .tr-card { padding: 22px 20px 18px; } }
+@media (prefers-reduced-motion: reduce) { .tr-card, .tr-arrow { transition: none; } .tr-card--link:hover { transform: none; } }
