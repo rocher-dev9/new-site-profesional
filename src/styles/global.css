@@ -878,6 +878,9 @@ section { padding: clamp(64px, 9vw, 112px) 0; }
   .hand-art { height: 300px; }
 }
 .about-hero-bio { margin-top: 20px; max-width: 620px; color: var(--ink-soft); font-size: 16px; line-height: 1.7; }
+.about-hero-bio + .about-hero-bio { margin-top: 12px; }
+/* Sobre mí: línea de rol en mono bajo el titular */
+.about-hero-rol { margin-top: 14px; font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--indigo); }
 .about-hero-links { margin-top: 20px; display: flex; gap: 20px; flex-wrap: wrap; font-size: 14px; }
 .about-hero-links a { color: var(--indigo); font-weight: 600; }
 
