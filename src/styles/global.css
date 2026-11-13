@@ -2201,14 +2201,18 @@ a:hover > .px-arrow, a:focus-visible > .px-arrow { animation: px-nudge3 0.6s ste
    Cápsula vertical de cristal líquido, fija a la derecha, con un número por sección (los que
    tenga la página). La sección actual va rellena en índigo; al pasar el cursor por un número
    sale a su alrededor un marco lineal con marcas en las esquinas y, a la izquierda, su nombre.
+   En reposo es pequeña; se amplía al pasar el cursor por ella o al entrar con el teclado.
    Solo desde 1280 px; por debajo se usa el botón de volver arriba. */
+@property --pi-celda { syntax: '<length>'; inherits: true; initial-value: 24px; }
 .page-index {
   --pi-num: color-mix(in srgb, var(--ink) 55%, transparent);
   --pi-marco: var(--indigo);
-  --pi-celda: 36px;
+  --pi-celda: 24px;        /* tamaño en reposo */
+  --pi-celda-max: 36px;    /* tamaño ampliado */
   position: fixed; right: 14px; top: 50%; transform: translateY(-50%); z-index: 150;
   display: flex; flex-direction: column; align-items: center; gap: 4px;
-  padding: 6px; border-radius: 999px; isolation: isolate;
+  padding: 4px; border-radius: 999px; isolation: isolate;
+  transition: --pi-celda 0.25s var(--ease), padding 0.25s var(--ease), gap 0.25s var(--ease);
   background: linear-gradient(135deg, rgb(var(--surface-rgb) / 0.42), rgb(var(--surface-rgb) / 0.14) 55%, rgb(var(--surface-rgb) / 0.3));
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.85),
@@ -2222,12 +2226,15 @@ a:hover > .px-arrow, a:focus-visible > .px-arrow { animation: px-nudge3 0.6s ste
   backdrop-filter: blur(8px) saturate(180%) brightness(1.05);
 }
 .lente .page-index { backdrop-filter: url(#cristal-liquido) blur(2px) saturate(180%) brightness(1.05); }
+/* Ampliada: con el cursor encima, con el foco del teclado dentro o en pantallas táctiles */
+.page-index:hover, .page-index:focus-within { --pi-celda: var(--pi-celda-max); padding: 6px; }
+@media (hover: none) { .page-index { --pi-celda: var(--pi-celda-max); padding: 6px; } }
 .page-index a {
   position: relative; display: grid; place-items: center;
   width: var(--pi-celda); height: var(--pi-celda); border-radius: 50%;
   color: var(--pi-num); transition: color 0.2s steps(2), background-color 0.2s steps(2);
 }
-.page-index b { font: 400 13px/1 'Silkscreen', var(--mono); letter-spacing: 0.04em; }
+.page-index b { font: 400 max(10px, calc(var(--pi-celda) * 0.36))/1 'Silkscreen', var(--mono); letter-spacing: 0.04em; }
 /* Marco lineal alrededor del número: línea de 1 px y un cuadradito en cada esquina */
 .page-index a::before, .page-index a::after {
   content: ''; position: absolute; pointer-events: none; opacity: 0; transition: opacity 0.15s steps(2);
@@ -2278,8 +2285,7 @@ a:hover > .px-arrow, a:focus-visible > .px-arrow { animation: px-nudge3 0.6s ste
 .page-index.on-dark span { background: #1d1a38; border-color: rgba(255, 255, 255, 0.16); color: #ece9ff; }
 /* Portátiles: cápsula más compacta */
 @media (min-width: 1280px) and (max-width: 1439px) {
-  .page-index { --pi-celda: 30px; right: 10px; padding: 5px; gap: 3px; }
-  .page-index b { font-size: 11px; }
+  .page-index { --pi-celda: 22px; --pi-celda-max: 30px; right: 10px; gap: 3px; }
 }
 @media (max-width: 1279px) {
   .page-index { display: none; }
@@ -2290,7 +2296,7 @@ a:hover > .px-arrow, a:focus-visible > .px-arrow { animation: px-nudge3 0.6s ste
   .page-index.on-dark { background: #15132a; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .page-index a, .page-index a::before, .page-index a::after, .page-index span { transition: none; }
+  .page-index, .page-index a, .page-index a::before, .page-index a::after, .page-index span { transition: none; }
 }
 /* Con el índice visible (desde 1280 px), los marcos de página le dejan libre el margen derecho */
 @media (min-width: 1280px) {
