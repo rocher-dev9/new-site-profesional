@@ -58,6 +58,10 @@ _manual-vercel-fuente/  .docx y generador del manual (no se publica)
   verticales continuas, líneas entre secciones de borde a borde, cruces pixel en los cruces y la etiqueta de cada
   sección en su propia fila (`<div class="pg-rt-label">`, primer hijo del `.container`). IOI tiene su versión oscura en
   `ia.css` (`.ai-rt-label`); la cabecera y los servicios de Entorno usan además `.rt`. Pendiente: la portada.
+- **Índice lateral (`PageIndex`):** cápsula vertical de cristal líquido fija a la derecha, con un número por sección
+  (los que tenga la página). Sección actual rellena en índigo; al pasar el cursor, marco lineal con marcas en las
+  esquinas y el nombre a la izquierda. Solo desde 1280 px (por debajo, botón de volver arriba). Todo su CSS está en
+  un único bloque al final de `global.css`.
 - **Tipografías:** Plus Jakarta Sans (texto y titulares), JetBrains Mono (etiquetas y metadatos), Silkscreen (números y
   detalles pixel).
 - **Componentes:** botones `.btn` en pastilla de cristal líquido (liquid glass, orden de Roger, 12/11/2026; antes, el

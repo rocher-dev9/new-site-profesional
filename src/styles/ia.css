@@ -487,3 +487,9 @@
   .theme-ai { --ai-rt-pad: 18px; }
   .theme-ai .ai-hero > .container, .theme-ai .ai-section > .container { margin-inline: 12px; padding-inline: var(--ai-rt-pad); }
 }
+/* Con el índice lateral visible (desde 1280 px), el marco le deja libre el margen derecho */
+@media (min-width: 1280px) {
+  .theme-ai .ai-hero > .container, .theme-ai .ai-section > .container {
+    max-width: min(max(var(--container), min(1608px, 100% - 192px)), 100% - 120px);
+  }
+}
