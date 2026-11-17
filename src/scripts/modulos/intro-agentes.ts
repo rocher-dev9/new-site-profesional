@@ -16,7 +16,7 @@ import { reduceMotion, finePointer, tr } from '../utilidades';
 export const INTRO = {
   activa: true,                 // false: la portada se muestra siempre sin intro
   agentes: 34,                  // total de cursores: los que tienen papel y el resto, sin etiqueta
-  fases: { entrada: 650, montaje: 1150, salida: 500 }, // ms de cada fase
+  fases: { entrada: 900, montaje: 1800, salida: 700 }, // ms de cada fase (3,4 s en total)
   velocidad: 1,                 // multiplica la velocidad de vuelo del enjambre
   anchoMin: 961,                // por debajo (y en pantallas táctiles) no hay intro
   claveSesion: 'intro-agentes', // marca en sessionStorage: ya vista en esta sesión
