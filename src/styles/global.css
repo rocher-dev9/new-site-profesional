@@ -2237,6 +2237,21 @@ a:hover > .px-arrow, a:focus-visible > .px-arrow { animation: px-nudge3 0.6s ste
   .agente, .agente-marco { display: none; }
 }
 
+/* ─── Portada: intro del enjambre de agentes (intro-agentes.ts) ──
+   Canvas fijo encima de la página (no captura clics) y botón de cristal para saltarla. */
+.intro-agentes { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 9000; pointer-events: none; }
+.intro-saltar {
+  position: fixed; left: 24px; bottom: 24px; z-index: 9001;
+  padding: 0.6em 1.1em; font-size: 14px; cursor: pointer;
+  animation: intro-saltar-in 0.3s steps(3) both;
+}
+.intro-saltar kbd {
+  font: 500 10.5px/1 var(--mono); letter-spacing: 0.06em; color: var(--ink-soft);
+  padding: 3px 5px; border: 1px solid var(--line); border-radius: 2px;
+}
+.intro-saltar.saliendo { opacity: 0; transition: opacity 0.3s steps(3); pointer-events: none; }
+@keyframes intro-saltar-in { from { opacity: 0; } }
+
 /* ─── Índice lateral de secciones (PageIndex) ──────────────────
    Cápsula vertical de cristal líquido, fija a la derecha, con un número por sección (los que
    tenga la página). La sección actual va rellena en índigo; al pasar el cursor por un número
