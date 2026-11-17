@@ -60,11 +60,12 @@ const enPortada = activa === 'inicio';
       <LangSwitch lang={lang} pagina={pagina} cambio={cambio} />
     </div>
     <TemaSwitch lang={lang} class="tema-movil" />
-    <button class="nav-burger" id="burger" aria-expanded="false" aria-controls="mobile-menu">{t('nav.menu')}</button>
+    <button type="button" class="nav-burger" id="burger" popovertarget="mobile-menu" aria-expanded="false" aria-controls="mobile-menu">{t('nav.menu')}</button>
   </div>
 </nav>
 
-<div class="mobile-menu" id="mobile-menu">
+<!-- Popover nativo justo después del menú: al abrirse, el resto de la página queda inerte (menu.ts) -->
+<div class="mobile-menu" id="mobile-menu" popover="auto">
   {items.map((s) => (
     <>
       <a href={href(s)} class:list={['mobile-item', { 'mobile-ai': s === 'ioi' }]} data-close><NavIcon name={s} class="mv-ico" />{t(`nav.${s}`)}</a>

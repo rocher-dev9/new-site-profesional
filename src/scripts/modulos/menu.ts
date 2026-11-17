@@ -35,19 +35,31 @@ export function iniciarMenu(): void {
   const menuMovil = document.getElementById('mobile-menu');
   if (!menuMovil) return;
 
-  const cerrar = () => {
-    menuMovil.classList.remove('open');
-    document.body.classList.remove('nav-open');
-    burger?.setAttribute('aria-expanded', 'false');
-  };
-  const alternar = () => {
-    const abrir = !menuMovil.classList.contains('open');
-    menuMovil.classList.toggle('open', abrir);
-    document.body.classList.toggle('nav-open', abrir);
-    burger?.setAttribute('aria-expanded', String(abrir));
+  // Con el menú abierto, todo lo que hay detrás (contenido, pie…) queda inerte:
+  // el teclado y los lectores de pantalla no pueden ir a enlaces tapados por el menú.
+  const ponerEstado = (abierto: boolean) => {
+    document.body.classList.toggle('nav-open', abierto);
+    burger?.setAttribute('aria-expanded', String(abierto));
+    for (const el of Array.from(document.body.children)) {
+      if (el === menuMovil || el.id === 'nav' || el.tagName === 'SCRIPT') continue;
+      (el as HTMLElement).inert = abierto;
+    }
   };
 
-  burger?.addEventListener('click', alternar);
-  menuMovil.querySelectorAll('[data-close]').forEach((enlace) => enlace.addEventListener('click', cerrar));
-  window.addEventListener('keydown', (e) => { if (e.key === 'Escape') cerrar(); });
+  // Popover nativo (popovertarget en el botón): el navegador abre, cierra con Escape y al
+  // tocar fuera; aquí solo se sincroniza el estado.
+  if (Object.hasOwn(HTMLElement.prototype, 'popover')) {
+    menuMovil.addEventListener('toggle', (e) => ponerEstado((e as ToggleEvent).newState === 'open'));
+    menuMovil.querySelectorAll('[data-close]').forEach((enlace) => enlace.addEventListener('click', () => menuMovil.hidePopover()));
+    return;
+  }
+
+  // Navegadores sin popover: el menú se abre y cierra con la clase .open
+  const poner = (abrir: boolean) => {
+    menuMovil.classList.toggle('open', abrir);
+    ponerEstado(abrir);
+  };
+  burger?.addEventListener('click', () => poner(!menuMovil.classList.contains('open')));
+  menuMovil.querySelectorAll('[data-close]').forEach((enlace) => enlace.addEventListener('click', () => poner(false)));
+  window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && menuMovil.classList.contains('open')) poner(false); });
 }

@@ -5,6 +5,28 @@
    redondeadas, iconografía de línea con acentos de color.
    ──────────────────────────────────────────────────────────────── */
 
+/* Respaldo de Plus Jakarta Sans mientras carga: Arial del sistema ajustada a sus medidas
+   (ancho medio, ascendente y descendente; datos de @capsizecss/metrics), para que el texto
+   no salte al cambiar de fuente. Sin descargas: usa la fuente instalada. */
+@font-face {
+  font-family: 'Plus Jakarta Sans Fallback';
+  src: local('Arial'), local('ArialMT');
+  font-weight: 100 549;
+  size-adjust: 104.98%;
+  ascent-override: 98.88%;
+  descent-override: 21.15%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Plus Jakarta Sans Fallback';
+  src: local('Arial Bold'), local('Arial-BoldMT');
+  font-weight: 550 900;
+  size-adjust: 100.84%;
+  ascent-override: 102.94%;
+  descent-override: 22.02%;
+  line-gap-override: 0%;
+}
+
 :root {
   /* Paleta */
   --bg: #ffffff;
@@ -29,7 +51,7 @@
   --lav-peach: #f3ecfb;   /* centro del degradado lavanda → melocotón */
   --mint: #dcf3e8;
 
-  --sans: 'Plus Jakarta Sans', 'Inter Tight', system-ui, sans-serif;
+  --sans: 'Plus Jakarta Sans', 'Plus Jakarta Sans Fallback', 'Inter Tight', system-ui, sans-serif;
   --mono: 'JetBrains Mono', monospace;
 
   --radius-lg: 16px;
@@ -285,14 +307,18 @@ section { padding: clamp(64px, 9vw, 112px) 0; }
   padding: 8px 16px; border-radius: 999px; font-size: 13px; font-weight: 600;
 }
 
+/* Menú móvil: popover nativo (Escape y tocar fuera lo cierran solos). Se anulan los estilos
+   del navegador para [popover] (centrado, borde, color de sistema). Sin soporte de popover,
+   menu.ts usa la clase .open. */
 .mobile-menu {
   display: none;
   position: fixed; inset: 68px 0 0 0; z-index: 190;
-  background: var(--surface);
+  width: auto; height: auto; max-width: none; max-height: none; margin: 0;
+  color: inherit; background: var(--surface);
   flex-direction: column; padding: 32px 24px; gap: 22px;
-  border-top: 1px solid var(--line);
+  border: 0; border-top: 1px solid var(--line);
 }
-.mobile-menu.open { display: flex; }
+.mobile-menu:is(:popover-open, .open) { display: flex; }
 .mobile-menu a { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; }
 .mobile-menu .btn { margin-top: 8px; align-self: flex-start; }
 .mobile-menu .mobile-home { display: inline-flex; align-self: flex-start; }
