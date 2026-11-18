@@ -8,7 +8,7 @@ import { iniciarTema } from './modulos/tema';
 import { iniciarPuntosCabecera } from './modulos/puntos-cabecera';
 import { iniciarChatCabecera } from './modulos/chat-cabecera';
 import { iniciarOficioCabecera } from './modulos/oficio-cabecera';
-import { iniciarAgenteCabecera } from './modulos/agente-cabecera';
+import { iniciarAgenteIoi } from './modulos/agente-ioi';
 import { iniciarIntroAgentes } from './modulos/intro-agentes';
 import { iniciarCodigoCabecera } from './modulos/codigo-cabecera';
 import { iniciarPlaneta } from './modulos/planeta';
@@ -29,7 +29,7 @@ iniciarEtiquetasSeccion();     // etiquetas de sección con el total («01 / 06�
 iniciarPuntosCabecera();       // portada: retícula de puntos de la cabecera
 iniciarChatCabecera();         // portada: chat con ejemplos que se escriben solos
 iniciarOficioCabecera();       // portada: línea «Diseño …» que va cambiando de oficio
-iniciarIntroAgentes(iniciarAgenteCabecera); // portada: intro del enjambre (1.ª visita); al acabar, el cursor de IOI recorre la cabecera
+iniciarIntroAgentes(iniciarAgenteIoi); // portada: intro del enjambre (1.ª visita); en todas las páginas, el cursor de IOI que sigue al ratón
 iniciarCodigoCabecera();       // portada: código de fondo que se escribe, se edita y reacciona al cursor
 iniciarPlaneta();              // portada: planeta de píxeles ("Lo que hago")
 iniciarManos();                // portada y Sobre mí: mano pixelada saludando

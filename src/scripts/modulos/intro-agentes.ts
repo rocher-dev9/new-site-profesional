@@ -6,11 +6,12 @@
 //   2. Montaje: unos trazan el contorno de los bloques, «Copy» selecciona el nombre letra a letra
 //      y «Agente 07» arrastra la ventana del chat hasta su sitio.
 //   3. Salida: los contornos se funden con la página y el enjambre sale de pantalla. Solo se
-//      queda IOI, justo donde empieza su recorrido por la cabecera (agente-cabecera.ts).
+//      queda IOI, justo donde empieza su recorrido por la cabecera (agente-ioi.ts).
 // Solo la primera vez en la sesión, con ratón, en pantallas anchas y sin «reducir movimiento».
 // Se salta con el botón o con Esc. Para verla otra vez: añadir ?intro a la URL.
 // ────────────────────────────────────────────────────────────────
 import { reduceMotion, finePointer, tr } from '../utilidades';
+import { puntoInicioCabecera } from './agente-ioi';
 
 /** Ajustes de la intro. Los colores son tokens de global.css (cambian solos en modo oscuro). */
 export const INTRO = {
@@ -81,7 +82,7 @@ function yaVista(): boolean {
 
 /**
  * Lanza la intro si toca y llama a alTerminar al acabar (o enseguida, si no se muestra).
- * alTerminar arranca el cursor de IOI de la cabecera, que toma el relevo.
+ * alTerminar arranca el cursor de IOI (agente-ioi.ts), que toma el relevo.
  */
 export function iniciarIntroAgentes(alTerminar: () => void): void {
   const cabecera = document.querySelector<HTMLElement>('.hero');
@@ -159,11 +160,8 @@ export function iniciarIntroAgentes(alTerminar: () => void): void {
     });
   }
 
-  // Punto donde aparece el cursor de IOI de la cabecera (mismo cálculo que agente-cabecera.ts)
-  const relevo = () => {
-    const t = caja(titulo), c = caja(cabecera);
-    return { x: t.x + t.w * 0.8, y: c.y + Math.max(90, t.y - c.y - 70) };
-  };
+  // Punto donde aparece el cursor de IOI de la cabecera (agente-ioi.ts)
+  const relevo = () => puntoInicioCabecera() ?? centro;
   // Zona que ronda el enjambre libre: va pasando por los bloques de la cabecera
   const bloques = agentes.filter((a) => a.el).map((a) => a.el as HTMLElement);
   const atractor = (t: number) => {

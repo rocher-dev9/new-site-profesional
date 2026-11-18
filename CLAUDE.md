@@ -73,6 +73,10 @@ _manual-vercel-fuente/  .docx y generador del manual (no se publica)
 - **Encabezados:** etiqueta `.eyebrow` en cabeceras y `.section-label` en secciones (`<b>02</b><span>trabajo</span>`, con el número de su sección en `PageIndex`; la cabecera es 00), y h1 con la parte final en índigo dentro de `<em>`, con punto final. La portada no lleva `.eyebrow`: saludo
   «Hola, soy Roger Avellana», h1, línea mono «Diseño …» que va cambiando y texto; a la derecha, el chat en ventana (`HeroChat`).
 - **Interacción:** sutil y siempre respetando `prefers-reduced-motion`. Sin indicador cuadrado bajo el menú.
+- **Agentes (solo con ratón y desde 961 px):** cursor de IOI en todas las páginas (`agente-ioi.ts`): sigue al ratón con
+  retraso y, en reposo, recorre y enmarca los elementos de la sección donde está. En la portada, la primera vez en la
+  sesión, intro del enjambre (`intro-agentes.ts`, unos 3,4 s, ajustes en `INTRO`; `?intro` para verla de nuevo), que deja
+  a IOI en la cabecera.
 - Todo lo nuevo debe seguir este aspecto y no destacar sobre el resto. Reutilizar clases antes de crear otras.
 
 ## Tono de los textos
