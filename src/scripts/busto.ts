@@ -1,8 +1,11 @@
 // ────────────────────────────────────────────────────────────────
 // Roger Avellana — Busto de puntos (cabecera de Sobre mí)
-// Una cabeza con hombros hecha con ~5.000 puntos en 3D, generada aquí mismo (sin modelos ni
-// librerías). La cabeza gira hacia el cursor y el torso la acompaña un poco; los puntos cercanos
-// al cursor se apartan. Al entrar en pantalla, los puntos se juntan desde dispersos.
+// Una figura humana genérica (cabeza, cuello, hombros y pecho) modelada con campos de distancia
+// en 3D: cráneo, mandíbula, pómulos, cuencas, nariz, labios, orejas, músculos del cuello,
+// clavículas, trapecios, hombros y pecho, con pelo de textura irregular. Se muestrean ~20.000
+// puntos sobre su superficie, con la luz y el contorno marcados, sin modelos ni librerías.
+// La cabeza gira hacia el cursor (el cuello se tuerce y el torso acompaña un poco) y los puntos
+// cercanos al cursor se apartan. Los puntos se generan poco a poco y entran desde dispersos.
 // Uso: <div class="busto-art"><canvas class="busto-field"></canvas></div> (color: var(--indigo)).
 // Con «reducir movimiento», se dibuja quieto y no sigue al cursor.
 // ────────────────────────────────────────────────────────────────
@@ -17,155 +20,168 @@ function aleatorio(semilla: number) {
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
   };
 }
-
 const suave = (a: number, b: number, x: number) => {
   const t = Math.min(1, Math.max(0, (x - a) / (b - a)));
   return t * t * (3 - 2 * t);
 };
 
-// Partes del cuerpo: cuánto siguen el giro de la cabeza
-const CABEZA = 0, CUELLO = 1, TORSO = 2;
-const SIGUE = [1, 0.5, 0.18];
+// ─── Formas básicas (distancia con signo; y hacia arriba, z hacia el espectador) ─────────────
+function elipsoide(x: number, y: number, z: number, rx: number, ry: number, rz: number) {
+  const k0 = Math.hypot(x / rx, y / ry, z / rz);
+  const k1 = Math.hypot(x / (rx * rx), y / (ry * ry), z / (rz * rz));
+  return k1 < 1e-9 ? -Math.min(rx, ry, rz) : (k0 * (k0 - 1)) / k1;
+}
+function capsula(x: number, y: number, z: number, ax: number, ay: number, az: number, bx: number, by: number, bz: number, r: number) {
+  const px = x - ax, py = y - ay, pz = z - az;
+  const dx = bx - ax, dy = by - ay, dz = bz - az;
+  const h = Math.min(1, Math.max(0, (px * dx + py * dy + pz * dz) / (dx * dx + dy * dy + dz * dz)));
+  return Math.hypot(px - dx * h, py - dy * h, pz - dz * h) - r;
+}
+const esfera = (x: number, y: number, z: number, r: number) => Math.hypot(x, y, z) - r;
+// Unión y resta suaves (las piezas se funden como tejido)
+function unir(a: number, b: number, k: number) {
+  const h = Math.max(k - Math.abs(a - b), 0) / k;
+  return Math.min(a, b) - h * h * k * 0.25;
+}
+const restar = (a: number, b: number, k: number) => -unir(-a, b, k);
 
-interface Nube {
-  n: number;
-  x: Float32Array; y: Float32Array; z: Float32Array;     // posición (y hacia abajo, z hacia el espectador)
-  nx: Float32Array; ny: Float32Array; nz: Float32Array;  // normal aproximada (luz y cara oculta)
-  parte: Uint8Array;
-  brillo: Float32Array;                                  // variación propia de cada punto
+// ─── La figura ─────────────────────────────────────────────────
+function cabeza(x: number, y: number, z: number) {
+  const ax = Math.abs(x);                                   // simetría
+  let d = elipsoide(x, y - 0.56, z + 0.05, 0.35, 0.4, 0.41); // cráneo
+  d = unir(d, elipsoide(x, y - 0.3, z - 0.07, 0.27, 0.33, 0.31), 0.14);       // cara
+  d = unir(d, elipsoide(x, y - 0.1, z - 0.1, 0.215, 0.13, 0.2), 0.1);         // mandíbula
+  d = unir(d, esfera(x, y - 0.02, z - 0.22, 0.075), 0.08);                     // barbilla
+  d = unir(d, esfera(ax - 0.19, y - 0.35, z - 0.2, 0.075), 0.08);             // pómulos
+  d = unir(d, capsula(ax, y, z, 0.03, 0.5, 0.29, 0.2, 0.5, 0.25, 0.045), 0.06); // arco de las cejas
+  d = restar(d, esfera(ax - 0.115, y - 0.42, z - 0.35, 0.068), 0.04);         // cuencas
+  d = unir(d, esfera(ax - 0.115, y - 0.42, z - 0.28, 0.052), 0.015);          // ojos
+  // Nariz: puente, punta y aletas
+  d = unir(d, capsula(x, y, z, 0, 0.47, 0.33, 0, 0.29, 0.42, 0.032), 0.04);
+  d = unir(d, esfera(x, y - 0.27, z - 0.41, 0.045), 0.03);
+  d = unir(d, esfera(ax - 0.042, y - 0.255, z - 0.365, 0.036), 0.03);
+  // Labios y comisura
+  d = unir(d, capsula(ax, y, z, 0, 0.175, 0.335, 0.075, 0.165, 0.3, 0.028), 0.03);
+  d = unir(d, capsula(ax, y, z, 0, 0.12, 0.325, 0.065, 0.128, 0.29, 0.03), 0.03);
+  d = restar(d, capsula(ax, y, z, 0, 0.148, 0.36, 0.08, 0.15, 0.31, 0.009), 0.012);
+  // Orejas
+  d = unir(d, elipsoide(ax - 0.355, y - 0.38, z + 0.03, 0.045, 0.1, 0.07), 0.035);
+  return d;
+}
+function torso(x: number, y: number, z: number) {
+  const ax = Math.abs(x);
+  let d = capsula(x, y, z * 1.1, 0, 0.02, -0.04, 0, -0.5, -0.02, 0.15);           // cuello
+  d = unir(d, capsula(ax, y, z, 0.2, 0.18, -0.02, 0.04, -0.43, 0.12, 0.045), 0.08); // músculos del cuello
+  d = unir(d, esfera(x, y + 0.2, z - 0.1, 0.045), 0.06);                           // nuez
+  d = unir(d, capsula(ax, y, z, 0.1, -0.2, -0.1, 0.6, -0.43, -0.06, 0.1), 0.16);   // trapecios
+  d = unir(d, esfera(ax - 0.76, y + 0.57, z + 0.02, 0.2), 0.16);                   // hombros
+  d = unir(d, capsula(ax, y, z, 0.78, -0.62, 0, 0.86, -1.8, 0.02, 0.17), 0.12);     // brazos
+  d = unir(d, elipsoide(x, y + 1.0, z, 0.69, 0.62, 0.31), 0.22);                    // pecho
+  d = unir(d, elipsoide(ax - 0.3, y + 0.78, z - 0.17, 0.27, 0.16, 0.12), 0.1);     // pectorales
+  d = unir(d, capsula(ax, y, z, 0.05, -0.45, 0.17, 0.55, -0.42, 0.07, 0.026), 0.05); // clavículas
+  return d;
+}
+// Pelo: casquete algo mayor que el cráneo, con rizos (relieve irregular) y nacimiento del pelo
+function pelo(x: number, y: number, z: number) {
+  const rizo = Math.sin(x * 21 + 1.3) * Math.sin(y * 19 + 0.4) * Math.sin(z * 23 + 2.1)
+    + 0.55 * Math.sin(x * 37 + z * 11) * Math.sin(y * 33 + 1.7);
+  const casco = elipsoide(x, y - 0.6, z + 0.07, 0.395, 0.43, 0.45) - 0.03 * rizo;
+  const limite = 0.22 + 0.44 * suave(-0.32, 0.22, z) - 0.1 * suave(0.3, 0.42, Math.abs(x)) * suave(-0.1, 0.2, z);
+  return Math.max(casco, limite - y);
+}
+function figura(x: number, y: number, z: number) {
+  let d = 1e9;
+  if (y > -0.12) d = Math.min(d, pelo(x, y, z), cabeza(x, y, z));
+  if (y < 0.3) d = d === 1e9 ? torso(x, y, z) : unir(d, torso(x, y, z), 0.1);
+  return d;
 }
 
-function crearNube(): Nube {
+// ─── Puntos sobre la superficie ────────────────────────────────
+interface Region { x0: number; x1: number; y0: number; y1: number; z0: number; z1: number; meta: number }
+const REGIONES: Region[] = [
+  { x0: -0.52, x1: 0.52, y0: -0.12, y1: 1.12, z0: -0.56, z1: 0.52, meta: 10000 },  // cabeza
+  { x0: -1.08, x1: 1.08, y0: -1.55, y1: 0.05, z0: -0.48, z1: 0.42, meta: 14000 },  // cuello, hombros y pecho
+];
+const TOTAL = REGIONES.reduce((s, r) => s + r.meta, 0);
+const E = 0.0025;
+
+function generador(sx: Float32Array, sy: Float32Array, sz: Float32Array, nx: Float32Array, ny: Float32Array, nz: Float32Array, brillo: Float32Array) {
   const r = aleatorio(20261118);
-  const pts: number[][] = [];
-  const add = (x: number, y: number, z: number, nx: number, ny: number, nz: number, parte: number, brillo = 1) => {
-    const l = Math.hypot(nx, ny, nz) || 1;
-    pts.push([x, y, z, nx / l, ny / l, nz / l, parte, brillo * (0.8 + r() * 0.4)]);
+  let n = 0, region = 0, enRegion = 0;
+  const grad = (x: number, y: number, z: number) => {
+    const gx = figura(x + E, y, z) - figura(x - E, y, z);
+    const gy = figura(x, y + E, z) - figura(x, y - E, z);
+    const gz = figura(x, y, z + E) - figura(x, y, z - E);
+    const l = Math.hypot(gx, gy, gz) || 1;
+    return [gx / l, gy / l, gz / l];
   };
-  const esfera = () => {
-    let a = 0, b = 0, c = 0, l = 0;
-    do { a = r() * 2 - 1; b = r() * 2 - 1; c = r() * 2 - 1; l = a * a + b * b + c * c; } while (l > 1 || l < 1e-4);
-    l = Math.sqrt(l);
-    return [a / l, b / l, c / l];
-  };
-  // Cabeza: elipsoide con barbilla estrecha y cara algo plana
-  const CY = -0.62, RX = 0.4, RY = 0.54, RZ = 0.46;
-  const cabeza = (d: number[], extra = 1) => {
-    let [dx, dy, dz] = d;
-    const barbilla = dy > 0.25 ? 1 - 0.3 * suave(0.25, 1, dy) : 1;
-    const x = dx * RX * barbilla * extra;
-    const y = CY + dy * RY * extra;
-    const z = dz * RZ * barbilla * (dz > 0 ? 0.94 : 1) * extra;
-    return [x, y, z];
-  };
-  // Piel de la cabeza, con huecos para ojos y boca
-  for (let i = 0; i < 3600; i++) {
-    const d = esfera();
-    const [x, y, z] = cabeza(d);
-    if (z > 0.28) {
-      const ojo = Math.min(Math.hypot(x - 0.15, y + 0.67), Math.hypot(x + 0.15, y + 0.67));
-      if (ojo < 0.07 && r() < 0.75) continue;
-      if (Math.abs(y + 0.36) < 0.022 && Math.abs(x) < 0.11 && r() < 0.6) continue;
+  // Devuelve cuántos puntos hay hechos; trabaja hasta agotar el tiempo dado (ms)
+  return (presupuesto: number) => {
+    const fin = performance.now() + presupuesto;
+    while (n < TOTAL && performance.now() < fin) {
+      for (let k = 0; k < 200 && n < TOTAL; k++) {
+        const R = REGIONES[region];
+        let x = R.x0 + r() * (R.x1 - R.x0), y = R.y0 + r() * (R.y1 - R.y0), z = R.z0 + r() * (R.z1 - R.z0);
+        let d = figura(x, y, z);
+        if (Math.abs(d) > 0.035) continue;                   // solo cerca de la superficie
+        let g = grad(x, y, z);
+        for (let it = 0; it < 2; it++) {                     // acercar a la superficie
+          x -= d * g[0]; y -= d * g[1]; z -= d * g[2];
+          d = figura(x, y, z);
+          g = grad(x, y, z);
+        }
+        if (Math.abs(d) > 0.004 || y < -1.5) continue;
+        if (region === 0 && y < -0.1) continue;              // cada región, su parte
+        if (region === 1 && y >= -0.1) continue;
+        sx[n] = x; sy[n] = y; sz[n] = z; nx[n] = g[0]; ny[n] = g[1]; nz[n] = g[2];
+        const esPelo = pelo(x, y, z) < 0.006;
+        brillo[n] = esPelo ? 0.7 + r() * 0.7 : 0.82 + r() * 0.36;
+        n++;
+        if (++enRegion >= R.meta && region < REGIONES.length - 1) { region++; enRegion = 0; }
+      }
     }
-    add(x, y, z, d[0] / RX, d[1] / RY, d[2] / RZ, CABEZA);
-  }
-  // Cejas (arqueadas: más altas en el centro de cada una)
-  for (let i = 0; i < 100; i++) {
-    const lado = r() < 0.5 ? -1 : 1;
-    const t = r();
-    const x = lado * (0.07 + t * 0.15);
-    const y = -0.75 - 0.028 * (1 - Math.pow((t - 0.5) * 2, 2)) + (r() - 0.5) * 0.014;
-    const z = RZ * 0.94 * Math.sqrt(Math.max(0, 1 - (x / RX) ** 2 - ((y - CY) / RY) ** 2)) + 0.012;
-    add(x, y, z, x, y - CY, z, CABEZA);
-  }
-  // Nariz y orejas
-  for (let i = 0; i < 110; i++) {
-    const d = esfera();
-    if (d[2] < 0) continue;
-    const yN = d[1] * 0.1;
-    add(d[0] * 0.035 * (1 + yN * 4), -0.58 + yN, 0.41 + d[2] * 0.05 + (d[1] + 1) * 0.025, d[0], d[1] * 0.4, d[2] + 0.6, CABEZA, 0.85);
-  }
-  for (let i = 0; i < 180; i++) {
-    const d = esfera();
-    const lado = r() < 0.5 ? -1 : 1;
-    add(lado * (0.4 + Math.abs(d[0]) * 0.05), -0.6 + d[1] * 0.11, -0.03 + d[2] * 0.055, lado, d[1] * 0.3, d[2] * 0.3, CABEZA);
-  }
-  // Pelo: casquete algo más grande, con textura irregular
-  for (let i = 0; i < 3400; i++) {
-    const d = esfera();
-    const frente = d[2] > 0.15 && d[1] > -0.42;
-    if (d[1] > 0.12 || frente) continue;
-    const extra = 1.05 + r() * 0.07 * (0.6 + 0.4 * Math.sin(d[0] * 23) * Math.cos(d[2] * 19));
-    const [x, y, z] = cabeza(d, extra);
-    add(x, y, z, d[0], d[1], d[2], CABEZA, 1.25);
-  }
-  // Cuello
-  for (let i = 0; i < 520; i++) {
-    const a = r() * Math.PI * 2;
-    const y = -0.16 + r() * 0.28;
-    const rad = 0.165 + 0.05 * suave(-0.02, 0.12, y);
-    add(Math.cos(a) * rad, y, Math.sin(a) * rad * 0.9 - 0.03, Math.cos(a), 0, Math.sin(a), CUELLO);
-  }
-  // Hombros y pecho: secciones superelípticas que se ensanchan; más puntos en la caída del hombro
-  const ancho = (y: number) => 0.21 + 0.8 * suave(0.03, 0.44, y) + 0.07 * suave(0.44, 1.1, y);
-  const fondo = (y: number) => 0.21 + 0.17 * suave(0.04, 0.4, y);
-  for (let i = 0; i < 4000; i++) {
-    const y = r() < 0.45 ? 0.03 + r() * 0.42 : 0.03 + r() * 1.03;
-    const a = r() * Math.PI * 2;
-    const c = Math.cos(a), s = Math.sin(a);
-    const w = ancho(y), f = fondo(y);
-    const x = w * Math.sign(c) * Math.pow(Math.abs(c), 0.72);
-    const z = f * Math.sign(s) * Math.pow(Math.abs(s), 0.72) - 0.02;
-    const pendiente = (ancho(y + 0.01) - w) / 0.01;
-    add(x, y, z, c / w, -pendiente * 0.35, s / f, TORSO);
-  }
-
-  const n = pts.length;
-  const nube: Nube = {
-    n,
-    x: new Float32Array(n), y: new Float32Array(n), z: new Float32Array(n),
-    nx: new Float32Array(n), ny: new Float32Array(n), nz: new Float32Array(n),
-    parte: new Uint8Array(n), brillo: new Float32Array(n),
+    return n;
   };
-  pts.forEach((p, i) => {
-    nube.x[i] = p[0]; nube.y[i] = p[1]; nube.z[i] = p[2];
-    nube.nx[i] = p[3]; nube.ny[i] = p[4]; nube.nz[i] = p[5];
-    nube.parte[i] = p[6]; nube.brillo[i] = p[7];
-  });
-  return nube;
 }
 
-const NIVELES = 7;                       // niveles de opacidad (se pinta por grupos)
-const LUZ = (() => { const l = Math.hypot(-0.45, -0.55, 0.7); return [-0.45 / l, -0.55 / l, 0.7 / l]; })();
-const PIVOTE_Y = -0.12;                  // la cabeza gira sobre la base del cuello
+const NIVELES = 8;
+const LUZ = (() => { const l = Math.hypot(-0.5, 0.55, 0.65); return [-0.5 / l, 0.55 / l, 0.65 / l]; })();
+const PASOS = 16;                         // niveles de torsión del cuello (matrices precalculadas)
 
 function iniciarBusto(canvas: HTMLCanvasElement): void {
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
-  const nube = crearNube();
-  const n = nube.n;
-  const sx = new Float32Array(n), sy = new Float32Array(n), op = new Uint8Array(n);
-  // Posiciones de partida dispersas y retrasos de la entrada
-  const r = aleatorio(7);
-  const ox = new Float32Array(n), oy = new Float32Array(n), retraso = new Float32Array(n);
-  for (let i = 0; i < n; i++) {
-    const a = r() * Math.PI * 2, d = 0.6 + r() * 1.4;
-    ox[i] = Math.cos(a) * d; oy[i] = Math.sin(a) * d * 0.8;
-    retraso[i] = r() * 500 + (nube.y[i] + 1.2) * 140;
-  }
+  const px = new Float32Array(TOTAL), py = new Float32Array(TOTAL), pz = new Float32Array(TOTAL);
+  const nx = new Float32Array(TOTAL), ny = new Float32Array(TOTAL), nz = new Float32Array(TOTAL);
+  const brillo = new Float32Array(TOTAL);
+  const torsion = new Uint8Array(TOTAL), nace = new Float32Array(TOTAL);
+  const ox = new Float32Array(TOTAL), oy = new Float32Array(TOTAL);
+  const sx = new Float32Array(TOTAL), sy = new Float32Array(TOTAL), op = new Uint8Array(TOTAL);
+  const generar = generador(px, py, pz, nx, ny, nz, brillo);
+  const azar = aleatorio(7);
+  let hechos = 0;
+  const preparar = (desde: number, hasta: number, t: number) => {
+    for (let i = desde; i < hasta; i++) {
+      // Cuánto sigue el giro: cabeza entera, cuello cada vez menos, torso un poco
+      const k = 0.14 + 0.86 * suave(-0.62, -0.02, py[i]);
+      torsion[i] = Math.round(k * (PASOS - 1));
+      const a = azar() * Math.PI * 2, dd = 0.5 + azar() * 1.3;
+      ox[i] = Math.cos(a) * dd; oy[i] = Math.sin(a) * dd * 0.8;
+      nace[i] = t + azar() * 350;
+    }
+  };
 
-  let w = 0, h = 0, escala = 1, cx = 0, cy = 0;
+  let w = 0, h = 0, escala = 1, cx = 0, arriba = 0;
   let color = '#5850ec';
   const leerColor = () => { color = getComputedStyle(canvas).color || color; };
   const redimensionar = () => {
     ({ w, h } = ajustarCanvas(canvas, ctx));
-    escala = Math.min(w / 2.3, h / 2.05);
+    escala = Math.min(w / 2.2, h / 2.5);
     cx = w / 2;
-    cy = Math.max(h * 0.06, 0) + 1.22 * escala;
+    arriba = h * 0.04;
     leerColor();
   };
 
-  // Cursor: posición en la ventana y última vez que se movió
   let mx = -9999, my = -9999, ultimoMov = -1e9;
   if (finePointer && !reduceMotion) {
     window.addEventListener('pointermove', (e) => {
@@ -173,86 +189,88 @@ function iniciarBusto(canvas: HTMLCanvasElement): void {
       mx = e.clientX; my = e.clientY; ultimoMov = performance.now();
     }, { passive: true });
   }
-  // El color cambia con el modo claro u oscuro
   new MutationObserver(leerColor).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
-  let giro = -0.18, cabeceo = 0.02;      // posición actual de la cabeza (radianes)
-  let inicio = -1;
+  let giro = -0.22, cabeceo = 0.03;
+  const PIVOTE_Y = -0.08, PIVOTE_Z = -0.04;
 
   const dibujar = (t: number) => {
-    if (inicio < 0) inicio = t;
-    const rect = canvas.getBoundingClientRect();
-    // Objetivo: hacia el cursor si se ha movido hace poco; si no, un vaivén lento
-    let objGiro = Math.sin(t * 0.00035) * 0.28 - 0.08;
-    let objCabeceo = Math.sin(t * 0.00027) * 0.06;
-    const lx = mx - rect.left, ly = my - rect.top;
-    if (t - ultimoMov < 4000) {
-      const hx = cx, hy = cy - 0.62 * escala;
-      objGiro = Math.max(-1, Math.min(1, (lx - hx) / (innerWidth * 0.45))) * 0.8;
-      objCabeceo = Math.max(-1, Math.min(1, (ly - hy) / (innerHeight * 0.5))) * 0.38;
+    // Generar más puntos (poco a poco para no bloquear la página)
+    if (hechos < TOTAL) {
+      const antes = hechos;
+      hechos = generar(reduceMotion ? 1e5 : 7);
+      preparar(antes, hechos, reduceMotion ? -1e6 : t);
     }
-    if (reduceMotion) { objGiro = -0.18; objCabeceo = 0.02; }
+    const rect = canvas.getBoundingClientRect();
+    let objGiro = Math.sin(t * 0.00033) * 0.3 - 0.1;
+    let objCabeceo = Math.sin(t * 0.00025) * 0.07;
+    const lx = mx - rect.left, ly = my - rect.top;
+    const sigue = t - ultimoMov < 4000;
+    if (sigue) {
+      const hx = cx, hy = arriba + (1.12 - 0.4) * escala;
+      objGiro = Math.max(-1, Math.min(1, (lx - hx) / (innerWidth * 0.45))) * 0.75;
+      objCabeceo = Math.max(-1, Math.min(1, (ly - hy) / (innerHeight * 0.5))) * 0.32;
+    }
+    if (reduceMotion) { objGiro = -0.22; objCabeceo = 0.03; }
     giro += (objGiro - giro) * 0.07;
     cabeceo += (objCabeceo - cabeceo) * 0.07;
 
-    // Matrices de giro de cada parte (la cabeza entera, el cuello a medias, el torso un poco)
-    const m = SIGUE.map((k) => {
-      const a = giro * k, b = cabeceo * Math.min(1, k * 1.4);
-      return [Math.cos(a), Math.sin(a), Math.cos(b), Math.sin(b)];
-    });
-    const entrada = reduceMotion ? 1 : 0;
-    const cerca = finePointer && !reduceMotion && t - ultimoMov < 4000;
-    const RADIO = 56;
-
-    for (let i = 0; i < n; i++) {
-      const [ca, sa, cb, sb] = m[nube.parte[i]];
-      // Giro horizontal (eje vertical) y cabeceo (eje horizontal) sobre la base del cuello
-      let x = nube.x[i], y = nube.y[i] - PIVOTE_Y, z = nube.z[i];
-      let x1 = x * ca + z * sa, z1 = -x * sa + z * ca;
-      let y1 = y * cb + z1 * sb, z2 = -y * sb + z1 * cb;
-      y1 += PIVOTE_Y;
-      // Normal girada igual (para la luz y la cara oculta)
-      const nx = nube.nx[i], ny = nube.ny[i], nz = nube.nz[i];
-      const nx1 = nx * ca + nz * sa, nz1 = -nx * sa + nz * ca;
-      const ny1 = ny * cb + nz1 * sb, nz2 = -ny * sb + nz1 * cb;
-      const luz = Math.max(0, nx1 * LUZ[0] + ny1 * LUZ[1] + nz2 * LUZ[2]);
-      let a = (0.3 + 0.7 * luz) * nube.brillo[i];
-      if (nz2 < 0) a *= 0.25;                         // cara oculta: muy tenue
-      // Perspectiva
-      const f = 3.4 / (3.4 - z2);
-      let px = cx + x1 * escala * f, py = cy + y1 * escala * f;
-      // Entrada: de disperso a su sitio
-      let p = 1;
-      if (!entrada) {
-        p = Math.min(1, Math.max(0, (t - inicio - retraso[i]) / 900));
-        p = 1 - Math.pow(1 - p, 3);
-        if (p < 1) { px += ox[i] * escala * (1 - p); py += oy[i] * escala * (1 - p); a *= 0.35 + 0.65 * p; }
-      }
-      // Los puntos cercanos al cursor se apartan
-      if (cerca) {
-        const dx = px - lx, dy = py - ly, d = Math.hypot(dx, dy);
-        if (d < RADIO && d > 0.01) {
-          const empuje = Math.pow(1 - d / RADIO, 2) * 16;
-          px += (dx / d) * empuje; py += (dy / d) * empuje;
+    // Matrices por nivel de torsión
+    const ca = new Float32Array(PASOS), sa = new Float32Array(PASOS), cb = new Float32Array(PASOS), sb = new Float32Array(PASOS);
+    for (let s = 0; s < PASOS; s++) {
+      const k = s / (PASOS - 1);
+      ca[s] = Math.cos(giro * k); sa[s] = Math.sin(giro * k);
+      const kc = suave(0.45, 1, k);
+      cb[s] = Math.cos(cabeceo * kc); sb[s] = Math.sin(cabeceo * kc);
+    }
+    const RADIO = 52, D = 4;
+    for (let i = 0; i < hechos; i++) {
+      const s = torsion[i];
+      // Giro sobre el eje del cuello y cabeceo sobre su base
+      const x = px[i], y = py[i] - PIVOTE_Y, z = pz[i] - PIVOTE_Z;
+      const x1 = x * ca[s] + z * sa[s], z1 = -x * sa[s] + z * ca[s];
+      const y1 = y * cb[s] - z1 * sb[s], z2 = y * sb[s] + z1 * cb[s];
+      const n0 = nx[i], n1 = ny[i], n2 = nz[i];
+      const m0 = n0 * ca[s] + n2 * sa[s], m2a = -n0 * sa[s] + n2 * ca[s];
+      const m1 = n1 * cb[s] - m2a * sb[s], m2 = n1 * sb[s] + m2a * cb[s];
+      // Luz difusa + contorno (los bordes de la silueta se iluminan)
+      const difusa = Math.max(0, m0 * LUZ[0] + m1 * LUZ[1] + m2 * LUZ[2]);
+      const contorno = Math.pow(1 - Math.min(1, Math.abs(m2)), 2);
+      let a = (0.22 + 0.58 * difusa + 0.5 * contorno) * brillo[i];
+      if (m2 < -0.05) a *= 0.14;                              // cara oculta
+      const f = D / (D - (z2 + PIVOTE_Z));
+      let qx = cx + x1 * escala * f;
+      let qy = arriba + (1.12 - (y1 + PIVOTE_Y)) * escala * f;
+      if (!reduceMotion) {
+        let p = Math.min(1, Math.max(0, (t - nace[i]) / 900));
+        if (p < 1) {
+          p = 1 - Math.pow(1 - p, 3);
+          qx += ox[i] * escala * (1 - p); qy += oy[i] * escala * (1 - p); a *= 0.3 + 0.7 * p;
         }
       }
-      sx[i] = px; sy[i] = py;
+      if (sigue && !reduceMotion) {
+        const dx = qx - lx, dy = qy - ly, d = Math.hypot(dx, dy);
+        if (d < RADIO && d > 0.01) {
+          const empuje = Math.pow(1 - d / RADIO, 2) * 14;
+          qx += (dx / d) * empuje; qy += (dy / d) * empuje;
+        }
+      }
+      sx[i] = qx; sy[i] = qy;
       op[i] = Math.min(NIVELES - 1, Math.max(0, Math.round(a * (NIVELES - 1))));
     }
 
     ctx.clearRect(0, 0, w, h);
     ctx.fillStyle = color;
     for (let nivel = 1; nivel < NIVELES; nivel++) {
-      ctx.globalAlpha = 0.2 + (nivel / (NIVELES - 1)) * 0.8;
-      const lado = nivel > 3 ? 1.7 : 1.4;
-      for (let i = 0; i < n; i++) if (op[i] === nivel) ctx.fillRect(sx[i], sy[i], lado, lado);
+      ctx.globalAlpha = 0.14 + (nivel / (NIVELES - 1)) * 0.86;
+      const lado = nivel > 4 ? 1.5 : 1.2;
+      for (let i = 0; i < hechos; i++) if (op[i] === nivel) ctx.fillRect(sx[i], sy[i], lado, lado);
     }
     ctx.globalAlpha = 1;
   };
 
   redimensionar();
   alRedimensionar(() => { redimensionar(); if (reduceMotion) dibujar(performance.now()); });
-  // Con «reducir movimiento», un único dibujo ya montado y quieto
   if (reduceMotion) { dibujar(performance.now()); return; }
   animarEnPantalla(canvas, dibujar);
 }
