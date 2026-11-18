@@ -111,14 +111,10 @@ import ScriptBusto from '../../components/scripts/ScriptBusto.astro';
   <main id="main" class="pg-rt">
 
     <header class="about-hero">
-      <!-- Titulares encima; en medio, el busto de puntos (busto.ts) con el nombre a la izquierda y
-           «Creative …» a la derecha, que va cambiando (oficio-cabecera.ts); debajo, la bio -->
-      <div class="container about-intro">
-        <span class="eyebrow">About</span>
-        <h1>Hi, I'm <em>Roger.</em></h1>
-        <p class="about-hero-rol">Visual Designer &amp; Marketing Assistant · Generative AI · UI/UX</p>
-      </div>
+      <!-- Busto de puntos (busto.ts) con el nombre a la izquierda y «Creative …» a la derecha, que va
+           cambiando (oficio-cabecera.ts); debajo, la bio. El h1 queda solo para lectores y buscadores -->
       <div class="container about-escena">
+        <h1 class="visually-hidden">Hi, I'm <em>Roger.</em></h1>
         <div class="busto-art" role="img" aria-label="Dot portrait that turns its head towards the cursor">
           <canvas class="busto-field"></canvas>
         </div>
