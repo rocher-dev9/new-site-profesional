@@ -100,6 +100,9 @@ const formacion: Entrada[] = [
   }
 ];
 import ScriptBusto from '../../components/scripts/ScriptBusto.astro';
+import PixelArrow from '../../components/PixelArrow.astro';
+import GithubIcon from '../../components/GithubIcon.astro';
+import { EMAIL, LINKEDIN, GITHUB } from '../../datos/sitio';
 ---
 <Base
   lang="es"
@@ -122,13 +125,15 @@ import ScriptBusto from '../../components/scripts/ScriptBusto.astro';
         <p class="escena-frase">Creative <em class="escena-rot" aria-hidden="true" data-palabras="Visual Designer|Generative AI|UI/UX Designer|Brand Designer|Digital Marketing">Visual Designer</em><span class="visually-hidden">: Visual Designer, Generative AI, UI/UX Designer, Brand Designer, Digital Marketing</span></p>
       </div>
       <div class="container about-bio">
-        <p class="about-hero-bio">Desde 2016 trabajo en diseño gráfico y digital. Con los años, esa base visual ha ido hacia la interacción digital, el marketing y la inteligencia artificial aplicada, que hoy es mi principal campo.</p>
-        <p class="about-hero-bio">En INTERA-GROUP, una empresa B2B de IA embebida, semiconductores (ASIC, FPGA, RISC-V) e IoT para los sectores industrial y de defensa, combino el diseño de interfaces y el branding con el marketing digital: LinkedIn, email marketing, Google Ads y contenido web, con un enfoque basado en datos y orientado a generar leads cualificados.</p>
-        <div class="about-hero-links">
-          <a href="mailto:roger.ar123@gmail.com">roger.ar123@gmail.com</a>
-          <a href="https://www.linkedin.com/in/roger-avellana/" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="https://github.com/rocher-dev9" target="_blank" rel="noopener">GitHub</a>
-          <span style="color: var(--muted);">Barcelona · Catalunya</span>
+        <p class="about-bio-entrada">Desde 2016 trabajo en diseño gráfico y digital. Con los años, esa base visual ha ido hacia la interacción digital, el marketing y <em>la inteligencia artificial aplicada</em>, que hoy es mi principal campo.</p>
+        <div class="about-bio-detalle">
+          <p class="about-hero-bio">En INTERA-GROUP, una empresa B2B de IA embebida, semiconductores (ASIC, FPGA, RISC-V) e IoT para los sectores industrial y de defensa, combino el diseño de interfaces y el branding con el marketing digital: LinkedIn, email marketing, Google Ads y contenido web, con un enfoque basado en datos y orientado a generar leads cualificados.</p>
+          <div class="about-hero-links">
+            <a href={`mailto:${EMAIL}`} class="btn btn-primary">{EMAIL} <PixelArrow /></a>
+            <a href={LINKEDIN} class="btn" target="_blank" rel="noopener">LinkedIn <PixelArrow /></a>
+            <a href={GITHUB} class="btn" target="_blank" rel="noopener"><GithubIcon class="about-gh" /> GitHub</a>
+            <span class="about-lugar"><i aria-hidden="true"></i>Barcelona · Catalunya</span>
+          </div>
         </div>
       </div>
     </header>
