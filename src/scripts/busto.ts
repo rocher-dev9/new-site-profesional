@@ -82,12 +82,15 @@ function torso(x: number, y: number, z: number) {
   return d;
 }
 // Pelo: casquete algo mayor que el cráneo, con rizos (relieve irregular) y nacimiento del pelo
-function pelo(x: number, y: number, z: number) {
+function cascoPelo(x: number, y: number, z: number) {
   const rizo = Math.sin(x * 21 + 1.3) * Math.sin(y * 19 + 0.4) * Math.sin(z * 23 + 2.1)
     + 0.55 * Math.sin(x * 37 + z * 11) * Math.sin(y * 33 + 1.7);
-  const casco = elipsoide(x, y - 0.6, z + 0.07, 0.395, 0.43, 0.45) - 0.03 * rizo;
-  const limite = 0.22 + 0.44 * suave(-0.32, 0.22, z) - 0.1 * suave(0.3, 0.42, Math.abs(x)) * suave(-0.1, 0.2, z);
-  return Math.max(casco, limite - y);
+  return elipsoide(x, y - 0.6, z + 0.07, 0.395, 0.43, 0.45) - 0.03 * rizo;
+}
+const limitePelo = (x: number, z: number) =>
+  0.22 + 0.44 * suave(-0.32, 0.22, z) - 0.1 * suave(0.3, 0.42, Math.abs(x)) * suave(-0.1, 0.2, z);
+function pelo(x: number, y: number, z: number) {
+  return Math.max(cascoPelo(x, y, z), limitePelo(x, z) - y);
 }
 function figura(x: number, y: number, z: number) {
   let d = 1e9;
@@ -135,6 +138,8 @@ function generador(sx: Float32Array, sy: Float32Array, sz: Float32Array, nx: Flo
         if (region === 1 && y >= -0.1) continue;
         sx[n] = x; sy[n] = y; sz[n] = z; nx[n] = g[0]; ny[n] = g[1]; nz[n] = g[2];
         const esPelo = pelo(x, y, z) < 0.006;
+        // Sin puntos en el corte plano del pelo (dibujaría una línea en la frente)
+        if (esPelo && cascoPelo(x, y, z) < -0.006) continue;
         brillo[n] = esPelo ? 0.7 + r() * 0.7 : 0.82 + r() * 0.36;
         n++;
         if (++enRegion >= R.meta && region < REGIONES.length - 1) { region++; enRegion = 0; }
@@ -176,7 +181,7 @@ function iniciarBusto(canvas: HTMLCanvasElement): void {
   const leerColor = () => { color = getComputedStyle(canvas).color || color; };
   const redimensionar = () => {
     ({ w, h } = ajustarCanvas(canvas, ctx));
-    escala = Math.min(w / 2.2, h / 2.5);
+    escala = Math.min(w / 2.2, h / 2.2);      // el pecho se corta abajo (el lienzo lo funde)
     cx = w / 2;
     arriba = h * 0.04;
     leerColor();

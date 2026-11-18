@@ -111,23 +111,28 @@ import ScriptBusto from '../../components/scripts/ScriptBusto.astro';
   <main id="main" class="pg-rt">
 
     <header class="about-hero">
-      <div class="container about-hero-grid">
-        <div>
-          <span class="eyebrow">Sobre mí</span>
-          <h1>Hola, soy <em>Roger.</em></h1>
-          <p class="about-hero-rol">Visual Designer &amp; Marketing Assistant · IA generativa · UI/UX</p>
-          <p class="about-hero-bio">Desde 2016 trabajo en diseño gráfico y digital. Con los años, esa base visual ha ido hacia la interacción digital, el marketing y la inteligencia artificial aplicada, que hoy es mi principal campo.</p>
-          <p class="about-hero-bio">En INTERA-GROUP, una empresa B2B de IA embebida, semiconductores (ASIC, FPGA, RISC-V) e IoT para los sectores industrial y de defensa, combino el diseño de interfaces y el branding con el marketing digital: LinkedIn, email marketing, Google Ads y contenido web, con un enfoque basado en datos y orientado a generar leads cualificados.</p>
-          <div class="about-hero-links">
-            <a href="mailto:roger.ar123@gmail.com">roger.ar123@gmail.com</a>
-            <a href="https://www.linkedin.com/in/roger-avellana/" target="_blank" rel="noopener">LinkedIn</a>
-            <a href="https://github.com/rocher-dev9" target="_blank" rel="noopener">GitHub</a>
-            <span style="color: var(--muted);">Barcelona · Catalunya</span>
-          </div>
-        </div>
-        <!-- Busto de puntos que sigue al cursor (src/scripts/busto.ts) -->
+      <!-- Titulares encima; en medio, el busto de puntos (busto.ts) con el nombre a la izquierda y
+           «Creative …» a la derecha, que va cambiando (oficio-cabecera.ts); debajo, la bio -->
+      <div class="container about-intro">
+        <span class="eyebrow">Sobre mí</span>
+        <h1>Hola, soy <em>Roger.</em></h1>
+        <p class="about-hero-rol">Visual Designer &amp; Marketing Assistant · IA generativa · UI/UX</p>
+      </div>
+      <div class="container about-escena">
         <div class="busto-art" role="img" aria-label="Retrato de puntos que gira la cabeza hacia el cursor">
           <canvas class="busto-field"></canvas>
+        </div>
+        <p class="escena-nombre">Roger Avellana</p>
+        <p class="escena-frase">Creative <em class="escena-rot" aria-hidden="true" data-palabras="Visual Designer|Generative AI|UI/UX Designer|Brand Designer|Digital Marketing">Visual Designer</em><span class="visually-hidden">: Visual Designer, Generative AI, UI/UX Designer, Brand Designer, Digital Marketing</span></p>
+      </div>
+      <div class="container about-bio">
+        <p class="about-hero-bio">Desde 2016 trabajo en diseño gráfico y digital. Con los años, esa base visual ha ido hacia la interacción digital, el marketing y la inteligencia artificial aplicada, que hoy es mi principal campo.</p>
+        <p class="about-hero-bio">En INTERA-GROUP, una empresa B2B de IA embebida, semiconductores (ASIC, FPGA, RISC-V) e IoT para los sectores industrial y de defensa, combino el diseño de interfaces y el branding con el marketing digital: LinkedIn, email marketing, Google Ads y contenido web, con un enfoque basado en datos y orientado a generar leads cualificados.</p>
+        <div class="about-hero-links">
+          <a href="mailto:roger.ar123@gmail.com">roger.ar123@gmail.com</a>
+          <a href="https://www.linkedin.com/in/roger-avellana/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/rocher-dev9" target="_blank" rel="noopener">GitHub</a>
+          <span style="color: var(--muted);">Barcelona · Catalunya</span>
         </div>
       </div>
     </header>
