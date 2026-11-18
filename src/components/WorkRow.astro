@@ -8,19 +8,19 @@ import type { Lang } from '../i18n/rutas';
 import { useT } from '../i18n/ui';
 import type { Tarjeta } from '../proyectos/tarjetas';
 import { enlaceCaso } from '../proyectos/enlaces';
+import { sobreColor } from '../proyectos/color';
 
 interface Props { tarjeta: Tarjeta; lang: Lang; pagina: string }
 const { tarjeta: p, lang, pagina } = Astro.props;
 const t = useT(lang);
 const href = await enlaceCaso(p.clave, lang, pagina);
 const [c1, c2] = p.comentarios;
-// Texto oscuro sobre colores de proyecto claros (p. ej. ámbar), blanco sobre los oscuros
-const [r, g, b] = [1, 3, 5].map((i) => parseInt(p.fondo.slice(i, i + 2), 16) / 255);
-const textoSobreColor = 0.2126 * r + 0.7152 * g + 0.0722 * b > 0.55 ? '#15121f' : '#fff';
+// Texto y fondo de las etiquetas de los cursores sobre el color del proyecto
+const etiqueta = sobreColor(p.fondo);
 // Cursor pixel (8×11)
 const cursor = 'M0 0h1v1H0zM0 1h2v1H0zM0 2h3v1H0zM0 3h4v1H0zM0 4h5v1H0zM0 5h6v1H0zM0 6h7v1H0zM0 7h4v1H0zM0 8h2v1H0zM4 8h1v1H4zM0 9h1v1H0zM4 9h2v1H4zM5 10h1v1H5z';
 ---
-<article class="wk-row" id={`p-${p.clave}`} style={`--wk-color: ${p.fondo}; --wk-on: ${textoSobreColor};`}>
+<article class="wk-row" id={`p-${p.clave}`} style={`--wk-color: ${p.fondo}; --wk-on: ${etiqueta.texto}; --wk-label: ${etiqueta.fondo};`}>
   <div class="wk-info">
     <span class="wk-num">{String(p.num).padStart(2, '0')}</span>
     <h2 class="wk-title">{p.cliente}</h2>

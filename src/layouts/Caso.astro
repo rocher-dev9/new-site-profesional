@@ -16,6 +16,7 @@ import ContactCards from '../components/ContactCards.astro';
 import { rutas, rel, rutaCaso, type Lang } from '../i18n/rutas';
 import { useT } from '../i18n/ui';
 import { tarjetas } from '../proyectos/tarjetas';
+import { sobreColor } from '../proyectos/color';
 
 interface Props { proyecto: CollectionEntry<'proyectos'> }
 const { proyecto } = Astro.props;
@@ -180,7 +181,7 @@ const resumen = [
 
         <nav class="case-next" aria-label={t('caso.mas')}>
           <a href={trabajo} class="cn-all"><PixelArrow back />{t('caso.todos')}</a>
-          <a href={sigHref} class="cn-card" style={`--cn-color: ${p.siguiente.color};`}>
+          <a href={sigHref} class="cn-card" style={`--cn-color: ${sobreColor(p.siguiente.color).fondo}; --cn-on: ${sobreColor(p.siguiente.color).texto};`}>
             <span class="cn-label">{t('caso.siguiente')} · {dos(p.siguiente.num)}</span>
             <strong>{p.siguiente.titulo}</strong>
             <PixelArrow />

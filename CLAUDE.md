@@ -47,7 +47,7 @@ _manual-vercel-fuente/  .docx y generador del manual (no se publica)
 
 - **Colores (tokens de `global.css`):** `--lavender #e8e5fb`, `--lavender-deep #dbd6f9`, `--peach #fbe2c6`,
   `--peach-deep #f7d3aa`, `--indigo #5850ec`, `--indigo-dark #423bd1`, `--orange #e8834a`, `--green #1f8a5f`,
-  `--ink #15121f`, `--ink-soft #56536b`, `--muted #837f99`, `--bg #fff`, `--bg-soft #f8f7fd`.
+  `--ink #15121f`, `--ink-soft #56536b`, `--muted #726e89` (más oscuro desde el 18/11/2026 para contraste 4,5:1), `--bg #fff`, `--bg-soft #f8f7fd`.
 - **Fondos:** solo degradado lavanda en cabeceras, `--bg` y `--bg-soft`. El color de un proyecto solo va en su portada
   e ilustraciones. Única excepción: el tema oscuro de IOI. Cualquier otro fondo requiere orden expresa de Roger.
 - **Modo oscuro** (orden de Roger, 11/11/2026): interruptor `TemaSwitch` en el menú, a la izquierda de la cápsula
