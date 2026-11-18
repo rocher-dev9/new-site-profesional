@@ -99,6 +99,7 @@ const formacion: Entrada[] = [
     "fechas": "2016–2018"
   }
 ];
+import ScriptBusto from '../../components/scripts/ScriptBusto.astro';
 ---
 <Base
   lang="en"
@@ -124,8 +125,9 @@ const formacion: Entrada[] = [
             <span style="color: var(--muted);">Barcelona · Catalonia</span>
           </div>
         </div>
-        <div class="hand-art" role="img" aria-label="Pixel hand waving">
-          <canvas class="hand-field" id="hand-field"></canvas>
+        <!-- Busto de puntos que sigue al cursor (src/scripts/busto.ts) -->
+        <div class="busto-art" role="img" aria-label="Dot portrait that turns its head towards the cursor">
+          <canvas class="busto-field"></canvas>
         </div>
       </div>
     </header>
@@ -217,4 +219,5 @@ const formacion: Entrada[] = [
     </section>
 
   </main>
+  <Fragment slot="scripts"><ScriptBusto /></Fragment>
 </Base>
