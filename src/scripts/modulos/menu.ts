@@ -4,9 +4,24 @@ function iniciarDesplegable(): void {
   const flecha = grupo?.querySelector('.nv-caret');
   if (!grupo || !flecha) return;
 
+  // Megamenú: el proyecto señalado (ratón o foco) muestra su portada en la vista previa;
+  // al cerrar vuelve al inicial (el de la página actual, o el primero)
+  const items = Array.from(grupo.querySelectorAll<HTMLElement>('.nvm-item'));
+  const vistas = Array.from(grupo.querySelectorAll<HTMLElement>('.nvm-prev'));
+  const inicial = Math.max(0, items.findIndex((i) => i.classList.contains('is-on')));
+  const senalar = (n: number) => {
+    items.forEach((el, i) => el.classList.toggle('is-on', i === n));
+    vistas.forEach((el, i) => el.classList.toggle('is-on', i === n));
+  };
+  items.forEach((el, i) => {
+    el.addEventListener('pointerenter', () => senalar(i));
+    el.addEventListener('focus', () => senalar(i));
+  });
+
   const poner = (abrir: boolean) => {
     grupo.classList.toggle('open', abrir);
     flecha.setAttribute('aria-expanded', String(abrir));
+    if (!abrir) senalar(inicial);
   };
 
   grupo.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') poner(true); });
@@ -19,7 +34,13 @@ function iniciarDesplegable(): void {
   document.addEventListener('click', (e) => {
     if (e.target instanceof Node && !grupo.contains(e.target)) poner(false);
   });
-  window.addEventListener('keydown', (e) => { if (e.key === 'Escape') poner(false); });
+  // Escape cierra; si el foco estaba dentro del panel, vuelve a la flecha para no perderse
+  window.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape' || !grupo.classList.contains('open')) return;
+    const dentro = grupo.contains(document.activeElement);
+    poner(false);
+    if (dentro) (flecha as HTMLElement).focus();
+  });
 }
 
 // Menú: estado "scrolled" de la barra superior y menú móvil

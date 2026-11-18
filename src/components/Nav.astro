@@ -9,6 +9,9 @@ import { GITHUB } from '../datos/sitio';
 import { rutas, rel, type Lang, type Seccion } from '../i18n/rutas';
 import { useT } from '../i18n/ui';
 import { rutaDelCaso } from '../proyectos/enlaces';
+import { tarjetas } from '../proyectos/tarjetas';
+import ProjectCover from './ProjectCover.astro';
+import PixelArrow from './PixelArrow.astro';
 
 interface Props {
   lang: Lang;
@@ -23,12 +26,15 @@ const t = useT(lang);
 type Apartado = Exclude<Seccion, 'privacidad'>;
 const items: Apartado[] = ['inicio', 'entorno', 'trabajo', 'ioi', 'sobreMi'];
 const href = (s: Apartado) => rel(pagina, rutas[s][lang]);
-// Desplegable de Trabajo: los proyectos
-const proyectos = [
-  { nombre: 'Intera', ruta: await rutaDelCaso('intera', lang) ?? rutas.trabajo[lang] },
-  { nombre: 'Sensing', ruta: await rutaDelCaso('sensing-dashboard', lang) ?? rutas.trabajo[lang] },
-  { nombre: 'nVision', ruta: await rutaDelCaso('nvision-ferias', lang) ?? rutas.trabajo[lang] },
-];
+// Desplegable de Trabajo: los proyectos de tarjetas.ts, con su caso (o Trabajo si aún no hay caso)
+const proyectos = await Promise.all(tarjetas.map(async (tarjeta) => ({
+  tarjeta,
+  nombre: tarjeta.cliente,
+  ruta: await rutaDelCaso(tarjeta.clave, lang) ?? rutas.trabajo[lang],
+})));
+// Proyecto que se ve primero en la vista previa: el de la página actual, si es un caso
+const inicial = Math.max(0, proyectos.findIndex((p) => p.ruta === pagina));
+const dos = (n: number) => String(n).padStart(2, '0');
 const mail = 'mailto:roger.ar123@gmail.com';
 // En la portada el logo sube al principio de la página
 const enPortada = activa === 'inicio';
@@ -46,11 +52,37 @@ const enPortada = activa === 'inicio';
             <button type="button" class="nv-caret" aria-expanded="false" aria-controls="nv-sub" aria-label={t('nav.proyectos')}>
               <svg viewBox="0 0 12 6" width="10" height="5" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><path d="M0 0h2v2H0zM10 0h2v2h-2zM2 2h2v2H2zM8 2h2v2H8zM4 4h4v2H4z" /></svg>
             </button>
-            <ul class="nv-sub" id="nv-sub">
-              {proyectos.map((p, i) => (
-                <li style={`--i:${i}`}><a href={rel(pagina, p.ruta)} aria-current={p.ruta === pagina ? 'page' : undefined}>{p.nombre}<span class="nv-sub-n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span></a></li>
-              ))}
-            </ul>
+            <!-- Megamenú: lista de proyectos a la izquierda y, a la derecha, la portada del proyecto
+                 señalado (cambia al pasar el ratón o el foco; menu.ts). Pie con Trabajo y email. -->
+            <div class="nv-mega" id="nv-sub">
+              <ul class="nvm-lista">
+                {proyectos.map((p, i) => (
+                  <li style={`--i:${i}`}>
+                    <a href={rel(pagina, p.ruta)} class:list={['nvm-item', { 'is-on': i === inicial }]} data-i={i} aria-current={p.ruta === pagina ? 'page' : undefined}>
+                      <span class="nvm-n" aria-hidden="true">{dos(p.tarjeta.num)}</span>
+                      <span class="nvm-txt"><b>{p.nombre}</b><small>{p.tarjeta.subtitulo[lang]}</small></span>
+                      <PixelArrow />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <!-- Vista previa: repite los enlaces de la lista, solo para el ratón -->
+              <div class="nvm-vista" aria-hidden="true">
+                {proyectos.map((p, i) => (
+                  <a href={rel(pagina, p.ruta)} class:list={['nvm-prev', { 'is-on': i === inicial }]} data-i={i} tabindex="-1">
+                    <ProjectCover tarjeta={p.tarjeta} lang={lang} />
+                    <span class="nvm-cuenta">{dos(p.tarjeta.num)} / {dos(proyectos.length)}</span>
+                    <strong>{p.nombre}</strong>
+                    <span class="nvm-tags">{p.tarjeta.etiqueta[lang]} · {p.tarjeta.anio}</span>
+                    <span class="nvm-ir"><PixelArrow /></span>
+                  </a>
+                ))}
+              </div>
+              <div class="nvm-pie">
+                <a href={href('trabajo')} class="nvm-todos">{t('caso.todos')} <PixelArrow /></a>
+                <a href={mail} class="nvm-hablar"><i aria-hidden="true"></i>{t('nav.hablar')}</a>
+              </div>
+            </div>
           </div>
         ) : (
           <a href={href(s)} class:list={['nv-item', { 'nv-ai': s === 'ioi', 'is-active': s === activa }]} aria-current={s === activa && actual ? 'page' : undefined}><NavIcon name={s} class="nv-ico" /><span>{t(`nav.${s}`)}</span></a>
