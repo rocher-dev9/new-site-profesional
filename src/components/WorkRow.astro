@@ -32,7 +32,8 @@ const cursor = 'M0 0h1v1H0zM0 1h2v1H0zM0 2h3v1H0zM0 3h4v1H0zM0 4h5v1H0zM0 5h6v1H
   <div class="wk-show">
     <div class="wk-panel">
       <div class="wk-canvas">
-        <a href={href} class="wk-cover" aria-label={`${t('proyecto.ver')}: ${p.cliente}`} tabindex="-1">
+        <!-- Duplica el botón «Ver caso» del pie solo para el ratón: fuera del teclado y de los lectores de pantalla -->
+        <a href={href} class="wk-cover" aria-hidden="true" tabindex="-1">
           <ProjectCover tarjeta={p} lang={lang} />
         </a>
         <div class="wk-notes" role="group" aria-label={t('fila.comentarios')}>
